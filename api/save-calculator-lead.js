@@ -5,6 +5,19 @@ function json(res, statusCode, payload) {
   res.end(JSON.stringify(payload));
 }
 
+function escapeHtml(value) {
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatMoney(value) {
+  return '$' + Number(value || 0).toFixed(2);
+}
+
 async function sendInternalEmail(lead) {
   var resendApiKey = process.env.RESEND_API_KEY;
   var emailTo = process.env.EMAIL_TO || 'info@goldsure.com.au';
@@ -21,37 +34,60 @@ async function sendInternalEmail(lead) {
         month: 'short',
         year: 'numeric',
         hour: 'numeric',
-        minute: '2-digit'
+        minute: '2-digit',
+        timeZone: 'Australia/Sydney'
       })
     : new Date().toLocaleString('en-AU', {
         day: '2-digit',
         month: 'short',
         year: 'numeric',
         hour: 'numeric',
-        minute: '2-digit'
+        minute: '2-digit',
+        timeZone: 'Australia/Sydney'
       });
 
   var html = [
-    '<div style="font-family:Arial,sans-serif;color:#111827;line-height:1.6;">',
-    '<h2 style="margin:0 0 12px;">New Smoke Alarm Quote Download</h2>',
-    '<p style="margin:0 0 16px;">A customer downloaded a smoke alarm calculator quote.</p>',
-    '<table style="border-collapse:collapse;width:100%;max-width:760px;">',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Submitted</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + submittedAt + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Full Name</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.full_name || '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Phone</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.phone || '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Email</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.email || '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Property Address</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.property_address || '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Bedrooms</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.bedrooms ?? '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Storeys</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.storeys ?? '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Hallways</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.hallways ?? '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Alarm Qty</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.alarm_qty ?? '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Controller Selected</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.controller_selected ? 'Yes' : 'No') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Controller Qty</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.controller_qty ?? '-') + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Booking Fee</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">$' + Number(lead.booking_fee || 0).toFixed(2) + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Installation Balance</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">$' + Number(lead.installation_balance || 0).toFixed(2) + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Total Quote</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">$' + Number(lead.total_inc_gst || 0).toFixed(2) + '</td></tr>',
-    '<tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:700;">Page Path</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">' + (lead.page_path || '-') + '</td></tr>',
-    '</table>',
+    '<div style="margin:0;padding:32px 16px;background:#f8f6f1;font-family:Arial,sans-serif;color:#0d0d0d;">',
+    '<div style="max-width:760px;margin:0 auto;background:#ffffff;border:1px solid rgba(13,13,13,0.08);border-radius:22px;overflow:hidden;box-shadow:0 14px 40px rgba(13,13,13,0.08);">',
+    '<div style="background:linear-gradient(135deg,#ffffff 0%,#fbf8f0 100%);padding:28px 32px 22px;border-top:4px solid #c9a84c;border-bottom:1px solid rgba(13,13,13,0.06);">',
+    '<div style="font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#a8892f;margin-bottom:10px;">Goldsure Internal Notification</div>',
+    '<h1 style="margin:0 0 10px;font-size:30px;line-height:1.1;letter-spacing:-0.03em;color:#0d0d0d;">New Smoke Alarm Quote Download</h1>',
+    '<p style="margin:0;font-size:15px;line-height:1.7;color:#5f5f5f;">A customer has completed the calculator flow and downloaded an itemised quote.</p>',
+    '</div>',
+
+    '<div style="padding:28px 32px 8px;">',
+    '<div style="display:block;margin-bottom:22px;padding:18px 20px;background:rgba(201,168,76,0.10);border:1px solid rgba(201,168,76,0.24);border-left:4px solid #c9a84c;border-radius:16px;">',
+    '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#a8892f;margin-bottom:8px;">Submitted</div>',
+    '<div style="font-size:16px;font-weight:700;color:#0d0d0d;">' + escapeHtml(submittedAt) + '</div>',
+    '<div style="margin-top:6px;font-size:13px;color:#6b7280;">Tracker route: ' + escapeHtml(lead.page_path || '-') + '</div>',
+    '</div>',
+
+    '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7180a6;margin:0 0 12px;">Customer Details</div>',
+    '<div style="margin-bottom:24px;">',
+    '<div style="padding:14px 0;border-bottom:1px solid rgba(13,13,13,0.08);"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px;">Full Name</div><div style="font-size:18px;font-weight:700;color:#0d0d0d;">' + escapeHtml(lead.full_name || '-') + '</div></div>',
+    '<div style="padding:14px 0;border-bottom:1px solid rgba(13,13,13,0.08);"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px;">Phone</div><div style="font-size:16px;font-weight:700;color:#0d0d0d;">' + escapeHtml(lead.phone || '-') + '</div></div>',
+    '<div style="padding:14px 0;border-bottom:1px solid rgba(13,13,13,0.08);"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px;">Email</div><div style="font-size:15px;color:#0d0d0d;">' + escapeHtml(lead.email || '-') + '</div></div>',
+    '<div style="padding:14px 0;"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:6px;">Property Address</div><div style="font-size:15px;line-height:1.7;color:#0d0d0d;">' + escapeHtml(lead.property_address || '-') + '</div></div>',
+    '</div>',
+
+    '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7180a6;margin:0 0 12px;">Quote Summary</div>',
+    '<div style="font-size:0;margin-bottom:24px;">',
+    '<div style="display:inline-block;vertical-align:top;width:48%;margin:0 4% 12px 0;padding:16px 18px;background:#ffffff;border:1px solid rgba(13,13,13,0.08);border-radius:16px;"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:8px;">Property</div><div style="font-size:15px;line-height:1.8;color:#0d0d0d;">Bedrooms: ' + escapeHtml(lead.bedrooms ?? '-') + '<br>Storeys: ' + escapeHtml(lead.storeys ?? '-') + '<br>Hallways: ' + escapeHtml(lead.hallways ?? '-') + '</div></div>',
+    '<div style="display:inline-block;vertical-align:top;width:48%;padding:16px 18px;background:#ffffff;border:1px solid rgba(13,13,13,0.08);border-radius:16px;"><div style="font-size:12px;color:#7180a6;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:8px;">Equipment</div><div style="font-size:15px;line-height:1.8;color:#0d0d0d;">Alarm Qty: ' + escapeHtml(lead.alarm_qty ?? '-') + '<br>Controller: ' + (lead.controller_selected ? 'Yes' : 'No') + '<br>Controller Qty: ' + escapeHtml(lead.controller_qty ?? '-') + '</div></div>',
+    '</div>',
+
+    '<div style="padding:20px 22px;background:#0d0d0d;border-radius:18px;margin-bottom:28px;">',
+    '<div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:14px;">Pricing</div>',
+    '<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.10);font-size:15px;color:rgba(255,255,255,0.78);">Booking Fee <span style="float:right;color:#ffffff;font-weight:700;">' + escapeHtml(formatMoney(lead.booking_fee)) + '</span></div>',
+    '<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.10);font-size:15px;color:rgba(255,255,255,0.78);">Installation Balance <span style="float:right;color:#ffffff;font-weight:700;">' + escapeHtml(formatMoney(lead.installation_balance)) + '</span></div>',
+    '<div style="padding:16px 0 4px;font-size:16px;color:rgba(255,255,255,0.88);font-weight:700;">Total Quote <span style="float:right;color:#c9a84c;font-size:28px;letter-spacing:-0.03em;">' + escapeHtml(formatMoney(lead.total_inc_gst)) + '</span></div>',
+    '</div>',
+    '</div>',
+
+    '<div style="padding:18px 32px 28px;border-top:1px solid rgba(13,13,13,0.06);background:#fcfbf8;">',
+    '<div style="font-size:13px;line-height:1.7;color:#6b7280;">This is an internal lead notification generated from the Goldsure smoke alarm calculator funnel.</div>',
+    '</div>',
+    '</div>',
     '</div>'
   ].join('');
 

@@ -196,6 +196,10 @@ a {
   min-width: 240px;
 }
 
+.date-filter {
+  min-width: 170px;
+}
+
 .search input {
   width: 100%;
   border: 1px solid var(--line);
@@ -203,6 +207,16 @@ a {
   background: #f8f9fc;
   padding: 0.9rem 1rem;
   font-size: 0.95rem;
+}
+
+.date-filter input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8f9fc;
+  padding: 0.88rem 1rem;
+  font-size: 0.9rem;
+  color: var(--ink);
 }
 
 .count {
@@ -357,6 +371,13 @@ tbody td {
     <div class="search">
       <input id="searchInput" type="search" placeholder="Search name, email, phone, or address">
     </div>
+    <div class="date-filter">
+      <input id="dateFromInput" type="date" aria-label="Filter from date">
+    </div>
+    <div class="date-filter">
+      <input id="dateToInput" type="date" aria-label="Filter to date">
+    </div>
+    <button class="btn" id="clearFiltersBtn" type="button">Clear</button>
     <div class="count" id="resultCount">0 leads shown</div>
   </section>
 
@@ -368,6 +389,7 @@ tbody td {
       <thead>
         <tr>
           <th>Date</th>
+          <th>Age</th>
           <th>Customer</th>
           <th>Phone</th>
           <th>Property Address</th>
@@ -415,6 +437,21 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+function formatAge(value) {
+  if (!value) return '-';
+  var created = new Date(value);
+  if (isNaN(created.getTime())) return '-';
+
+  var now = new Date();
+  var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var startOfCreated = new Date(created.getFullYear(), created.getMonth(), created.getDate());
+  var diffDays = Math.floor((startOfToday - startOfCreated) / 86400000);
+
+  if (diffDays <= 0) return 'Today';
+  if (diffDays === 1) return '1 day ago';
+  return diffDays + ' days ago';
+}
+
 function buildRow(lead) {
   var propertySummary = [
     'Beds: ' + (lead.bedrooms ?? 0),
@@ -425,6 +462,7 @@ function buildRow(lead) {
   return [
     '<tr>',
     '<td>' + escapeHtml(formatDate(lead.created_at)) + '</td>',
+    '<td>' + escapeHtml(formatAge(lead.created_at)) + '</td>',
     '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
     '<td>' + escapeHtml(lead.phone || '-') + '</td>',
     '<td>' + escapeHtml(lead.property_address || '-') + '</td>',
@@ -488,18 +526,33 @@ function renderTable(leads) {
 
 function filterLeads() {
   var term = document.getElementById('searchInput').value.trim().toLowerCase();
-  if (!term) {
-    renderTable(allLeads);
-    return;
-  }
+  var dateFrom = document.getElementById('dateFromInput').value;
+  var dateTo = document.getElementById('dateToInput').value;
 
   var filtered = allLeads.filter(function (lead) {
-    return [
+    var haystack = [
       lead.full_name,
       lead.email,
       lead.phone,
       lead.property_address
-    ].join(' ').toLowerCase().indexOf(term) !== -1;
+    ].join(' ').toLowerCase();
+
+    var leadDate = new Date(lead.created_at);
+    var matchesText = !term || haystack.indexOf(term) !== -1;
+    var matchesFrom = true;
+    var matchesTo = true;
+
+    if (dateFrom && !isNaN(leadDate.getTime())) {
+      var fromDate = new Date(dateFrom + 'T00:00:00');
+      matchesFrom = leadDate >= fromDate;
+    }
+
+    if (dateTo && !isNaN(leadDate.getTime())) {
+      var toDate = new Date(dateTo + 'T23:59:59');
+      matchesTo = leadDate <= toDate;
+    }
+
+    return matchesText && matchesFrom && matchesTo;
   });
 
   renderTable(filtered);
@@ -524,7 +577,9 @@ async function loadLeads() {
       throw new Error('Failed to load leads');
     }
 
-    allLeads = data.leads;
+    allLeads = data.leads.slice().sort(function (a, b) {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
     filterLeads();
   } catch (error) {
     loadingState.hidden = true;
@@ -587,6 +642,14 @@ function exportCsv() {
 }
 
 document.getElementById('searchInput').addEventListener('input', filterLeads);
+document.getElementById('dateFromInput').addEventListener('input', filterLeads);
+document.getElementById('dateToInput').addEventListener('input', filterLeads);
+document.getElementById('clearFiltersBtn').addEventListener('click', function () {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('dateFromInput').value = '';
+  document.getElementById('dateToInput').value = '';
+  filterLeads();
+});
 document.getElementById('refreshBtn').addEventListener('click', loadLeads);
 document.getElementById('exportCsvBtn').addEventListener('click', exportCsv);
 
