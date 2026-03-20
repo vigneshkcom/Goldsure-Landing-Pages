@@ -26,6 +26,14 @@
     {
       "source": "/smoke-alarm/calculator/",
       "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm",
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm/",
+      "destination": "/tracker/smoke-alarm/index.html"
     }
   ]
 }

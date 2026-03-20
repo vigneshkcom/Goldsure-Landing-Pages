@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://offers.goldsure.com.au/tracker/smoke-alarm">
+<title>Smoke Alarm Lead Tracker - Goldsure</title>
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-deep: #a8892f;
+  --ink: #0d0d0d;
+  --muted: #62708a;
+  --line: rgba(13, 13, 13, 0.08);
+  --white: #ffffff;
+  --off-white: #f8f6f1;
+  --bg: #f4f6fb;
+  --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+  --radius: 18px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(201, 168, 76, 0.12), transparent 24%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shell {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 1.25rem 2rem;
+}
+
+.topbar {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+
+.topbar-inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.brand-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-weight: 700;
+}
+
+.brand-copy span:last-child {
+  color: #5f71b5;
+  font-size: 0.86rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: #314160;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+
+.hero {
+  padding: 1.6rem 0 1.2rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+}
+
+.hero p {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid rgba(84, 98, 145, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.stat {
+  padding: 1.2rem 1.25rem;
+  border-top: 4px solid transparent;
+}
+
+.stat-gold { border-top-color: var(--gold); }
+.stat-green { border-top-color: #41aa84; }
+.stat-blue { border-top-color: #6883ff; }
+.stat-navy { border-top-color: #202e4d; }
+
+.stat-label {
+  color: #6376a5;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  margin-top: 0.55rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.stat-note {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  color: #6376a5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.search {
+  flex: 1 1 320px;
+  min-width: 240px;
+}
+
+.search input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8f9fc;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+}
+
+.count {
+  margin-left: auto;
+  color: #5f71b5;
+  font-size: 0.9rem;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1080px;
+}
+
+thead th {
+  text-align: left;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6376a5;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcfe;
+}
+
+tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  font-size: 0.92rem;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.subtle {
+  display: block;
+  margin-top: 0.24rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  background: rgba(201, 168, 76, 0.12);
+  color: var(--gold-deep);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.money {
+  font-weight: 700;
+  color: var(--gold-deep);
+}
+
+.empty,
+.loading,
+.error {
+  padding: 1.25rem;
+  color: var(--muted);
+}
+
+.error {
+  color: #b42318;
+}
+
+@media (max-width: 1024px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar-inner,
+  .filters {
+    align-items: stretch;
+  }
+
+  .toolbar,
+  .brand,
+  .brand-copy {
+    flex-wrap: wrap;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .count {
+    margin-left: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure">
+      <div class="brand-copy">
+        <span>Goldsure</span>
+        <span>Lead Tracker</span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <a class="btn" href="/smoke-alarm">Landing Page</a>
+      <button class="btn" id="exportCsvBtn" type="button">Export CSV</button>
+      <button class="btn btn-primary" id="refreshBtn" type="button">Refresh</button>
+    </div>
+  </div>
+</div>
+
+<main class="shell">
+  <section class="hero">
+    <h1>Smoke Alarm Calculator Leads</h1>
+    <p>Simple internal tracker for leads captured from the calculator PDF flow.</p>
+  </section>
+
+  <section class="stats">
+    <div class="card stat stat-gold">
+      <div class="stat-label">Total Leads</div>
+      <div class="stat-value" id="statTotalLeads">0</div>
+      <div class="stat-note">All saved calculator submissions</div>
+    </div>
+    <div class="card stat stat-green">
+      <div class="stat-label">Today's Leads</div>
+      <div class="stat-value" id="statTodayLeads">0</div>
+      <div class="stat-note">Submitted today</div>
+    </div>
+    <div class="card stat stat-blue">
+      <div class="stat-label">Avg Alarms / Lead</div>
+      <div class="stat-value" id="statAvgAlarms">0.00</div>
+      <div class="stat-note">Average estimated alarm count</div>
+    </div>
+    <div class="card stat stat-navy">
+      <div class="stat-label">Quoted Total</div>
+      <div class="stat-value money" id="statQuotedTotal">$0</div>
+      <div class="stat-note">Combined quoted value</div>
+    </div>
+  </section>
+
+  <section class="card filters">
+    <div class="filter-label">Filter</div>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="Search name, email, phone, or address">
+    </div>
+    <div class="count" id="resultCount">0 leads shown</div>
+  </section>
+
+  <section class="card table-wrap">
+    <div class="loading" id="loadingState">Loading leads...</div>
+    <div class="error" id="errorState" hidden>Could not load leads.</div>
+    <div class="empty" id="emptyState" hidden>No leads found yet.</div>
+    <table id="leadsTable" hidden>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Phone</th>
+          <th>Property Address</th>
+          <th>Property</th>
+          <th>Alarms</th>
+          <th>Controllers</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="leadsTableBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+var allLeads = [];
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('en-AU', {
+    style: 'currency',
+    currency: 'AUD',
+    maximumFractionDigits: 2
+  }).format(Number(value || 0));
+}
+
+function formatDate(value) {
+  if (!value) return '-';
+  var date = new Date(value);
+  if (isNaN(date.getTime())) return value;
+  return date.toLocaleString('en-AU', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit'
+  });
+}
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildRow(lead) {
+  var propertySummary = [
+    'Beds: ' + (lead.bedrooms ?? 0),
+    'Storeys: ' + (lead.storeys ?? 0),
+    'Hallways: ' + (lead.hallways ?? 0)
+  ].join('<br>');
+
+  return [
+    '<tr>',
+    '<td>' + escapeHtml(formatDate(lead.created_at)) + '</td>',
+    '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
+    '<td>' + escapeHtml(lead.phone || '-') + '</td>',
+    '<td>' + escapeHtml(lead.property_address || '-') + '</td>',
+    '<td>' + propertySummary + '</td>',
+    '<td><span class="badge">' + escapeHtml(lead.alarm_qty ?? 0) + ' alarms</span></td>',
+    '<td>' + escapeHtml(lead.controller_selected ? (lead.controller_qty || 0) + ' selected' : 'No') + '</td>',
+    '<td class="money">' + escapeHtml(formatCurrency(lead.total_inc_gst || 0)) + '</td>',
+    '</tr>'
+  ].join('');
+}
+
+function updateStats(leads) {
+  var today = new Date();
+  var todayCount = leads.filter(function (lead) {
+    var date = new Date(lead.created_at);
+    return date.toDateString() === today.toDateString();
+  }).length;
+
+  var totalQuoted = leads.reduce(function (sum, lead) {
+    return sum + Number(lead.total_inc_gst || 0);
+  }, 0);
+
+  var avgAlarms = leads.length
+    ? leads.reduce(function (sum, lead) {
+        return sum + Number(lead.alarm_qty || 0);
+      }, 0) / leads.length
+    : 0;
+
+  document.getElementById('statTotalLeads').textContent = String(leads.length);
+  document.getElementById('statTodayLeads').textContent = String(todayCount);
+  document.getElementById('statAvgAlarms').textContent = avgAlarms.toFixed(2);
+  document.getElementById('statQuotedTotal').textContent = formatCurrency(totalQuoted);
+}
+
+function renderTable(leads) {
+  var loadingState = document.getElementById('loadingState');
+  var errorState = document.getElementById('errorState');
+  var emptyState = document.getElementById('emptyState');
+  var table = document.getElementById('leadsTable');
+  var tbody = document.getElementById('leadsTableBody');
+  var resultCount = document.getElementById('resultCount');
+
+  loadingState.hidden = true;
+  errorState.hidden = true;
+
+  if (!leads.length) {
+    emptyState.hidden = false;
+    table.hidden = true;
+    tbody.innerHTML = '';
+    resultCount.textContent = '0 leads shown';
+    updateStats([]);
+    return;
+  }
+
+  emptyState.hidden = true;
+  table.hidden = false;
+  tbody.innerHTML = leads.map(buildRow).join('');
+  resultCount.textContent = leads.length + (leads.length === 1 ? ' lead shown' : ' leads shown');
+  updateStats(leads);
+}
+
+function filterLeads() {
+  var term = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!term) {
+    renderTable(allLeads);
+    return;
+  }
+
+  var filtered = allLeads.filter(function (lead) {
+    return [
+      lead.full_name,
+      lead.email,
+      lead.phone,
+      lead.property_address
+    ].join(' ').toLowerCase().indexOf(term) !== -1;
+  });
+
+  renderTable(filtered);
+}
+
+async function loadLeads() {
+  var loadingState = document.getElementById('loadingState');
+  var errorState = document.getElementById('errorState');
+  var emptyState = document.getElementById('emptyState');
+  var table = document.getElementById('leadsTable');
+
+  loadingState.hidden = false;
+  errorState.hidden = true;
+  emptyState.hidden = true;
+  table.hidden = true;
+
+  try {
+    var response = await fetch('/api/calculator-leads', { cache: 'no-store' });
+    var data = await response.json();
+
+    if (!response.ok || !data || !Array.isArray(data.leads)) {
+      throw new Error('Failed to load leads');
+    }
+
+    allLeads = data.leads;
+    filterLeads();
+  } catch (error) {
+    loadingState.hidden = true;
+    errorState.hidden = false;
+  }
+}
+
+function exportCsv() {
+  if (!allLeads.length) return;
+
+  var rows = [
+    [
+      'created_at',
+      'full_name',
+      'phone',
+      'email',
+      'property_address',
+      'bedrooms',
+      'storeys',
+      'hallways',
+      'controller_selected',
+      'controller_qty',
+      'alarm_qty',
+      'booking_fee',
+      'installation_balance',
+      'total_inc_gst'
+    ]
+  ].concat(allLeads.map(function (lead) {
+    return [
+      lead.created_at || '',
+      lead.full_name || '',
+      lead.phone || '',
+      lead.email || '',
+      lead.property_address || '',
+      lead.bedrooms ?? '',
+      lead.storeys ?? '',
+      lead.hallways ?? '',
+      lead.controller_selected ? 'yes' : 'no',
+      lead.controller_qty ?? '',
+      lead.alarm_qty ?? '',
+      lead.booking_fee ?? '',
+      lead.installation_balance ?? '',
+      lead.total_inc_gst ?? ''
+    ];
+  }));
+
+  var csv = rows.map(function (row) {
+    return row.map(function (cell) {
+      return '"' + String(cell).replace(/"/g, '""') + '"';
+    }).join(',');
+  }).join('\n');
+
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'smoke-alarm-calculator-leads.csv';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('searchInput').addEventListener('input', filterLeads);
+document.getElementById('refreshBtn').addEventListener('click', loadLeads);
+document.getElementById('exportCsvBtn').addEventListener('click', exportCsv);
+
+loadLeads();
+</script>
+</body>
+</html>
