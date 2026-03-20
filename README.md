@@ -41,6 +41,7 @@ Main live routes:
 |-- .gitignore
 |-- DEPLOYMENT_NOTES.md
 |-- README.md
+|-- TRACKING_NOTES.md
 `-- vercel.json
 ```
 
@@ -115,3 +116,7 @@ Check these features:
 ## Deployment notes
 
 For the full deployment checklist, see [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).
+
+## Tracking notes
+
+For tracking, analytics, lead capture, and notification details, see [TRACKING_NOTES.md](./TRACKING_NOTES.md).
