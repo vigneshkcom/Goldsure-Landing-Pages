@@ -1,6 +1,6 @@
 # Goldsure Landing Pages
 
-Standalone static Vercel project for the Goldsure smoke alarm landing page.
+Standalone static Vercel project for the Goldsure smoke alarm landing page funnel.
 
 ## Project purpose
 
@@ -14,7 +14,13 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 
 ```text
 /
+|-- api/
+|   `-- maps-config.js
 |-- smoke-alarm/
+|   |-- calculator/
+|   |   `-- index.html
+|   |-- thank-you/
+|   |   `-- index.html
 |   `-- index.html
 |-- .gitignore
 |-- DEPLOYMENT_NOTES.md
@@ -25,13 +31,32 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 ## Route mapping
 
 - `/smoke-alarm` is served by `smoke-alarm/index.html`
-- `vercel.json` rewrites `/smoke-alarm` and `/smoke-alarm/` to that file
+- `/smoke-alarm/thank-you` is served by `smoke-alarm/thank-you/index.html`
+- `/smoke-alarm/calculator` is served by `smoke-alarm/calculator/index.html`
+- `vercel.json` contains explicit rewrites for all three clean URLs
+
+## Funnel flow
+
+- Main landing page: `/smoke-alarm`
+- Thank-you page: `/smoke-alarm/thank-you`
+- Calculator page: `/smoke-alarm/calculator`
 
 ## Notes about forms and assets
 
-- The page is a static HTML file with inline CSS and JavaScript
+- The pages are static HTML files with inline CSS and JavaScript
 - No local `assets/` folder is required for the current version because the page references external hosted images and embedded LeadConnector forms
-- No `/api` folder is included because there is no local backend handler in this landing page
+- A minimal `/api/maps-config.js` endpoint is included so the calculator can load the Google Maps browser key in this standalone Vercel project
+
+## Environment variables
+
+The calculator address autocomplete requires a Google Maps browser key in this Vercel project.
+
+Supported variable names:
+
+- `GOOGLE_MAPS_API_KEY`
+- `NEXT_PUBLIC_GOOGLE_MAPS_KEY`
+
+`GOOGLE_MAPS_API_KEY` is preferred for this static setup.
 
 ## How to deploy to Vercel
 
@@ -43,7 +68,8 @@ It does not depend on any other Goldsure repository or Vercel configuration.
    - Root Directory: `.`
    - Build Command: leave empty
    - Output Directory: leave empty
-5. Deploy the project.
+5. Add the Google Maps environment variable if you want the calculator address autocomplete enabled.
+6. Deploy the project.
 
 ## How to connect the custom domain
 
@@ -52,6 +78,9 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 3. Add `offers.goldsure.com.au`.
 4. Update DNS at your DNS provider using the exact record Vercel shows for that subdomain.
 5. Wait for verification and SSL issuance to complete.
-6. Test `https://offers.goldsure.com.au/smoke-alarm`.
+6. Test:
+   - `https://offers.goldsure.com.au/smoke-alarm`
+   - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 For the full step-by-step flow, including DNS checks, use [DEPLOYMENT_NOTES.md](C:\Users\vigne\Downloads\Landing Page\DEPLOYMENT_NOTES.md).

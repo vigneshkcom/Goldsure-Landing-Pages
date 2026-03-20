@@ -5,7 +5,10 @@ These steps assume:
 - this folder will become a brand-new GitHub repository
 - the repository name will be `Goldsure Landing Pages`
 - the Vercel project will also be brand new
-- the required public URL is `https://offers.goldsure.com.au/smoke-alarm`
+- the required public URLs are:
+  - `https://offers.goldsure.com.au/smoke-alarm`
+  - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+  - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 ## 1. Create the new GitHub repository
 
@@ -38,7 +41,10 @@ In Vercel:
    - Build Command: leave blank
    - Output Directory: leave blank
    - Install Command: leave blank
-4. Deploy
+4. Add environment variable:
+   - Name: `GOOGLE_MAPS_API_KEY`
+   - Value: your Google Maps browser key
+5. Deploy
 
 ## 3. Add the custom domain
 
@@ -78,17 +84,24 @@ After DNS updates:
 1. Return to the Vercel domain screen
 2. Wait until the domain shows as valid/assigned
 3. Wait for the SSL certificate to finish provisioning
-4. Confirm the route loads at `https://offers.goldsure.com.au/smoke-alarm`
+4. Confirm these routes load:
+   - `https://offers.goldsure.com.au/smoke-alarm`
+   - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 ## 6. Final checks
 
 Confirm all of the following after deployment:
 
 - `https://offers.goldsure.com.au/smoke-alarm` loads successfully
+- `https://offers.goldsure.com.au/smoke-alarm/thank-you` loads successfully
+- `https://offers.goldsure.com.au/smoke-alarm/calculator` loads successfully
 - the page shows the expected Goldsure smoke alarm content
 - the embedded forms load correctly
 - phone links still work
 - external images still load
+- Google address autocomplete works in the calculator modal
+- only Queensland addresses with postcodes starting with `4` are accepted in the calculator
 - no unrelated routes or APIs exist in the deployment
 
 ## Source references
