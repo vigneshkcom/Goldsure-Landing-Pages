@@ -83,4 +83,4 @@ Supported variable names:
    - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
    - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
-For the full step-by-step flow, including DNS checks, use [DEPLOYMENT_NOTES.md](C:\Users\vigne\Downloads\Landing Page\DEPLOYMENT_NOTES.md).
+For the full step-by-step flow, including DNS checks, use [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).
