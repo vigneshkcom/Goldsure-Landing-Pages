@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://offers.goldsure.com.au/smoke-alarm/calculator">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PSTXFKJL');</script>
+<!-- End Google Tag Manager -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1482683390150721');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+<title>Smoke Alarm Quote — Goldsure</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:      #C9A84C;
+  --gold-deep: #A8892F;
+  --gold-bg:   rgba(201,168,76,0.10);
+  --gold-bd:   rgba(201,168,76,0.30);
+  --ink:       #0D0D0D;
+  --muted:     #555;
+  --white:     #FFFFFF;
+  --off-white: #F8F6F1;
+  --border:    rgba(0,0,0,0.10);
+  --r:         10px;
+  --r-lg:      16px;
+  --shadow:    0 4px 28px rgba(0,0,0,0.10);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--off-white);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1rem 3rem;
+}
+
+/* ── CARD ── */
+.calc-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--white);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ── TOP BAR ── */
+.card-top {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.card-top img { height: 34px; width: auto; }
+.card-top-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.card-top-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ── BODY ── */
+.card-body { padding: 1.5rem; }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gold-bd);
+}
+
+/* ── INPUT GRID ── */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  align-items: end;
+}
+.input-grid .field-full {
+  grid-column: 1 / -1;
+}
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+.field label {
+  font-size: 0.63rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+.field input[type="number"] {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--off-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.6rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  width: 100%;
+}
+.field input[type="number"]:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+
+/* ── OPTION BOX ── */
+.opt-box {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-bd);
+  border-radius: var(--r);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  display: none;
+}
+.opt-box.show { display: block; }
+.opt-box p {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.55rem;
+}
+.radio-row { display: flex; gap: 1.25rem; }
+.radio-row label {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 500; color: var(--muted); cursor: pointer;
+}
+.radio-row input[type="radio"] { accent-color: var(--gold); }
+.radio-row label:has(input:checked) { color: var(--ink); font-weight: 600; }
+.ctrl-qty { display: none; align-items: center; gap: 0.65rem; margin-top: 0.65rem; }
+.ctrl-qty.show { display: flex; }
+.ctrl-qty label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+.ctrl-qty input {
+  width: 68px; font-size: 0.9rem; font-weight: 600;
+  border: 1.5px solid var(--border); border-radius: var(--r);
+  padding: 0.35rem 0.65rem; outline: none; background: var(--white);
+  font-family: 'Poppins', sans-serif;
+}
+.ctrl-qty input:focus { border-color: var(--gold); }
+
+/* ── COMPLIANCE NOTE ── */
+.compliance-note {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-bd);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--r);
+  padding: 0.75rem 1rem;
+  margin-top: 0.25rem;
+}
+.compliance-note h6 {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--gold-deep); margin-bottom: 0.5rem;
+}
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.28rem 0.75rem; }
+.comp-item { font-size: 0.7rem; color: #7a6020; display: flex; align-items: center; gap: 0.35rem; }
+.comp-item svg { flex-shrink: 0; color: var(--gold); }
+
+/* ── PRICING SUMMARY ── */
+.pricing {
+  background: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 1.25rem 1.35rem;
+  margin-top: 1.25rem;
+}
+.pricing-title {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  gap: 0.5rem;
+}
+.price-line:last-of-type { border-bottom: none; }
+.pl-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+.pl-val { font-size: 0.82rem; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+.ctrl-line { display: none; }
+.ctrl-line.show { display: flex; }
+.price-line.dim .pl-label,
+.price-line.dim .pl-val { font-size: 0.7rem; color: rgba(255,255,255,0.32); }
+
+.price-total {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.14);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.pt-label { font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.04em; }
+.pt-val { font-size: 1.9rem; font-weight: 800; color: var(--gold); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+
+/* ── DOWNLOAD BUTTON ── */
+.dl-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  width: 100%; font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--ink); background: var(--gold); border: none; border-radius: var(--r);
+  padding: 0.9rem 1rem; cursor: pointer; margin-top: 0.9rem;
+  transition: all 0.18s;
+}
+.dl-btn:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(201,168,76,0.3); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55); z-index: 1000;
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white); border-radius: var(--r-lg);
+  padding: 1.75rem 1.75rem 1.5rem; width: 100%; max-width: 440px;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.22); position: relative;
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-box h2 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
+.modal-box > p { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.25rem; }
+.modal-close {
+  position: absolute; top: 1rem; right: 1.1rem;
+  background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--muted); line-height: 1;
+}
+.modal-close:hover { color: var(--ink); }
+.modal-field { margin-bottom: 0.85rem; }
+.modal-field label {
+  display: block; font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.32rem;
+}
+.modal-field input, .modal-field textarea {
+  width: 100%; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--ink);
+  background: var(--off-white); border: 1.5px solid var(--border); border-radius: var(--r);
+  padding: 0.6rem 0.85rem; outline: none; transition: border-color 0.15s;
+}
+.modal-field input:focus, .modal-field textarea:focus { border-color: var(--gold); background: var(--white); }
+.modal-field textarea { resize: vertical; min-height: 58px; font-size: 0.85rem; }
+.address-status {
+  margin-top: 0.42rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.address-status.is-error {
+  color: #b42318;
+}
+.address-status.is-success {
+  color: #1f6b45;
+}
+.modal-field input.is-invalid {
+  border-color: #d92d20;
+  background: #fff6f5;
+}
+.modal-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.modal-actions { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
+.modal-actions button {
+  flex: 1; font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 700;
+  padding: 0.75rem; border-radius: var(--r); cursor: pointer; transition: all 0.15s;
+  border: 1.5px solid var(--border); background: var(--off-white); color: var(--muted);
+}
+.modal-actions button.primary { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.modal-actions button.primary:hover { background: var(--gold-deep); color: #fff; }
+.modal-actions button:not(.primary):hover { background: var(--white); color: var(--ink); }
+
+/* ── CARD FOOTER ── */
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: var(--off-white);
+}
+.cf-info { font-size: 0.65rem; color: var(--muted); line-height: 1.75; }
+.cf-info a { color: var(--gold-deep); text-decoration: none; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  background: var(--ink); color: #fff; font-size: 0.78rem; font-weight: 600;
+  padding: 0.6rem 1.3rem; border-radius: 2rem; border-left: 3px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.22); opacity: 0; transition: opacity 0.25s;
+  pointer-events: none; z-index: 9999; white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+
+@media (max-width: 420px) {
+  .modal-2col { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes cardEntrance {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); max-height: 0; }
+  to   { opacity: 1; transform: translateY(0); max-height: 200px; }
+}
+@keyframes goldPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  50%      { box-shadow: 0 0 0 4px rgba(201,168,76,0.18); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes countUp {
+  from { opacity: 0.4; transform: translateY(6px) scale(0.95); }
+  to   { opacity: 1;   transform: translateY(0) scale(1); }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes logoBounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  70%  { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Card entrance ── */
+.calc-card {
+  animation: cardEntrance 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Header logo bounce on load ── */
+.card-top img {
+  animation: logoBounce 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+/* ── Staggered section reveals ── */
+.card-top {
+  animation: fadeIn 0.4s ease 0.1s both;
+}
+.sec-label {
+  animation: fadeUp 0.4s ease 0.25s both;
+}
+.sec-label::after {
+  transform-origin: left;
+  animation: lineGrow 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+.input-grid {
+  animation: fadeUp 0.4s ease 0.35s both;
+}
+.opt-box.show:not(#storey-box) {
+  animation: fadeUp 0.4s ease 0.45s both;
+}
+.compliance-note {
+  animation: fadeUp 0.4s ease 0.5s both;
+}
+.pricing {
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+.card-footer {
+  animation: fadeIn 0.4s ease 0.7s both;
+}
+
+/* ── Input focus glow ── */
+.field input[type="number"]:focus {
+  border-color: var(--gold);
+  background: var(--white);
+  animation: goldPulse 0.6s ease;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+}
+
+/* ── Opt-box slide-down when shown dynamically ── */
+.opt-box.show {
+  animation: slideDown 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  overflow: hidden;
+}
+
+/* ── Price value change flash ── */
+.pl-val, .pt-val {
+  transition: color 0.2s ease;
+}
+.val-flash {
+  animation: countUp 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Download button shimmer on hover ── */
+.dl-btn {
+  position: relative;
+  overflow: hidden;
+}
+.dl-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 30%,
+    rgba(255,255,255,0.28) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -200% center;
+  transition: background-position 0s;
+}
+.dl-btn:hover::after {
+  animation: shimmer 0.55s ease forwards;
+}
+
+/* ── Modal entrance ── */
+.modal-overlay.open {
+  animation: overlayIn 0.2s ease both;
+}
+.modal-overlay.open .modal-box {
+  animation: modalIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Radio label hover transition ── */
+.radio-row label {
+  transition: color 0.15s ease;
+}
+
+/* ── Price lines slide in ── */
+.price-line:nth-child(1) { animation: fadeUp 0.3s ease 0.6s both; }
+.price-line:nth-child(2) { animation: fadeUp 0.3s ease 0.67s both; }
+.price-line:nth-child(3) { animation: fadeUp 0.3s ease 0.74s both; }
+.price-line:nth-child(4) { animation: fadeUp 0.3s ease 0.81s both; }
+.price-total             { animation: fadeUp 0.35s ease 0.88s both; }
+.dl-btn                  { animation: fadeUp 0.35s ease 0.95s both; }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSTXFKJL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Meta Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<div class="calc-card">
+
+  <!-- Top bar -->
+  <div class="card-top">
+    <img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure">
+    <div>
+      <div class="card-top-eyebrow">Smoke Alarm Installation</div>
+      <div class="card-top-title">Instant Quote Calculator</div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="card-body">
+
+    <div class="sec-label">Property Assessment</div>
+
+    <div class="input-grid">
+      <div class="field">
+        <label>No. of Bedrooms</label>
+        <input type="number" id="bedrooms" min="0" placeholder="" inputmode="numeric" oninput="calculate()">
+      </div>
+      <div class="field">
+        <label>No. of Storeys</label>
+        <input type="number" id="levels" min="1" placeholder="" inputmode="numeric" oninput="toggleStoreyQ(); calculate();">
+      </div>
+      <div class="field field-full">
+        <label>No. of Hallways Connected to Bedrooms</label>
+        <input type="number" id="hallways" min="0" placeholder="" inputmode="numeric" oninput="calculate()">
+      </div>
+    </div>
+
+    <!-- Multi-storey question -->
+    <div class="opt-box" id="storey-box">
+      <p>Does every level have a bedroom?</p>
+      <div class="radio-row">
+        <label><input type="radio" name="allLevels" value="yes" checked onchange="calculate()"> Yes</label>
+        <label><input type="radio" name="allLevels" value="no" onchange="calculate()"> No</label>
+      </div>
+    </div>
+
+    <!-- Controller add-on -->
+    <div class="opt-box show">
+      <p>Add Smoke Alarm Controller? — <strong>$49 each</strong></p>
+      <div class="radio-row">
+        <label><input type="radio" name="wantCtrl" value="no" checked onclick="toggleCtrlQty(false); calculate();"> No</label>
+        <label><input type="radio" name="wantCtrl" value="yes" onclick="toggleCtrlQty(true); calculate();"> Yes</label>
+      </div>
+      <div class="ctrl-qty" id="ctrl-qty">
+        <label>Qty</label>
+        <input type="number" id="ctrlQty" value="1" min="1" oninput="calculate()">
+      </div>
+    </div>
+
+    <!-- Compliance note -->
+    <div class="compliance-note">
+      <h6>QLD Legislation — Effective 1 January 2027</h6>
+      <div class="comp-grid">
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Photoelectric &amp; interconnected</div>
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Every bedroom &amp; hallway</div>
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Each level of the dwelling</div>
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>10-year sealed battery backup</div>
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>AS 3786-2014 or AS 3786-2023</div>
+        <div class="comp-item"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>10-year product warranty</div>
+      </div>
+    </div>
+
+    <!-- Pricing summary -->
+    <div class="pricing">
+      <div class="pricing-title">Pricing Summary</div>
+      <div class="price-line">
+        <span class="pl-label">Alarms (<span id="s-qty">0</span> × $98.00)</span>
+        <span class="pl-val" id="s-alarm-t">$0.00</span>
+      </div>
+      <div class="price-line ctrl-line" id="ctrl-line">
+        <span class="pl-label">Controllers (<span id="s-ctrl-qty">0</span> × $49.00)</span>
+        <span class="pl-val" id="s-ctrl-t">$0.00</span>
+      </div>
+      <div class="price-line">
+        <span class="pl-label">Booking Fee <span style="opacity:0.65;">(Paid Upfront)</span></span>
+        <span class="pl-val">$33.00</span>
+      </div>
+      <div class="price-line dim">
+        <span class="pl-label">Balance due on installation day</span>
+        <span class="pl-val" id="s-balance">$0.00</span>
+      </div>
+      <div class="price-total">
+        <span class="pt-label">Total (Inc. GST)</span>
+        <span class="pt-val" id="s-grand">$33.00</span>
+      </div>
+      <button class="dl-btn" onclick="openModal()" data-track="calculator_download_quote_click">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Itemised Quote
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <div class="cf-info">
+      <div><strong>Goldsure Pty Ltd</strong> · ABN: 66 683 305 106</div>
+      <div><a href="tel:0721455155">(07) 2145 5155</a> · <a href="mailto:info@goldsure.com.au">info@goldsure.com.au</a></div>
+    </div>
+    <div style="font-size:0.62rem;color:var(--muted);">Estimate only · Confirmed on site</div>
+  </div>
+
+</div>
+
+<!-- ── CUSTOMER DETAILS MODAL ── -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>Your Quote Details</h2>
+    <p>Enter your details to generate a personalised PDF quote.</p>
+    <div class="modal-2col">
+      <div class="modal-field">
+        <label>Full Name <span style="color:#e04f4f;">*</span></label>
+        <input type="text" id="m-name" placeholder="e.g. Sarah Johnson">
+      </div>
+      <div class="modal-field">
+        <label>Phone Number <span style="color:#e04f4f;">*</span></label>
+        <input type="tel" id="m-phone" placeholder="e.g. 0412 345 678">
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>Email Address</label>
+      <input type="email" id="m-email" placeholder="your@email.com">
+    </div>
+    <div class="modal-field">
+      <label>Property Address</label>
+      <input type="text" id="m-address" placeholder="Start typing your QLD property address" autocomplete="street-address">
+      <div class="address-status" id="address-status">Queensland addresses only. Please select an address from the dropdown.</div>
+    </div>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Cancel</button>
+      <button class="primary" onclick="generatePDF()">Generate PDF</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function pushMarketingEvent(eventName, details) {
+  var payload = details || {};
+  payload.event = eventName;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(payload);
+
+  if (typeof window.fbq === 'function') {
+    window.fbq('trackCustom', eventName, details || {});
+  }
+}
+
+var mapsReadyPromise;
+var addressAutocomplete;
+var addressMeta = {
+  selected: false,
+  qldValid: false,
+  postcodeValid: false
+};
+
+function setAddressStatus(message, state) {
+  var status = document.getElementById('address-status');
+  var input = document.getElementById('m-address');
+
+  if (!status || !input) return;
+
+  status.textContent = message;
+  status.classList.remove('is-error', 'is-success');
+  input.classList.remove('is-invalid');
+
+  if (state === 'error') {
+    status.classList.add('is-error');
+    input.classList.add('is-invalid');
+  } else if (state === 'success') {
+    status.classList.add('is-success');
+  }
+}
+
+function parseAddressMeta(place) {
+  var components = place && place.address_components ? place.address_components : [];
+  var state = '';
+  var postcode = '';
+
+  components.forEach(function (component) {
+    if (component.types && component.types.indexOf('administrative_area_level_1') !== -1) {
+      state = component.short_name || component.long_name || '';
+    }
+    if (component.types && component.types.indexOf('postal_code') !== -1) {
+      postcode = component.long_name || component.short_name || '';
+    }
+  });
+
+  return {
+    state: state,
+    postcode: postcode,
+    qldValid: state === 'QLD',
+    postcodeValid: /^4\d{3}$/.test(postcode)
+  };
+}
+
+function applySelectedAddress(place) {
+  var input = document.getElementById('m-address');
+  if (!input) return;
+
+  var meta = parseAddressMeta(place);
+  addressMeta.selected = true;
+  addressMeta.qldValid = meta.qldValid;
+  addressMeta.postcodeValid = meta.postcodeValid;
+
+  if (place && place.formatted_address) {
+    input.value = place.formatted_address;
+  }
+
+  if (!meta.qldValid || !meta.postcodeValid) {
+    setAddressStatus('Please select a Queensland property address with a postcode starting with 4.', 'error');
+    return;
+  }
+
+  setAddressStatus('Queensland address confirmed.', 'success');
+  pushMarketingEvent('calculator_address_selected', {
+    page_path: window.location.pathname,
+    state: meta.state,
+    postcode: meta.postcode
+  });
+}
+
+function initAddressAutocomplete() {
+  var input = document.getElementById('m-address');
+  if (!input || !window.google || !window.google.maps || !window.google.maps.places) return;
+  if (addressAutocomplete) return;
+
+  var qldBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-29.5, 137.9),
+    new google.maps.LatLng(-9.0, 154.2)
+  );
+
+  addressAutocomplete = new google.maps.places.Autocomplete(input, {
+    componentRestrictions: { country: 'au' },
+    fields: ['formatted_address', 'address_components', 'geometry'],
+    types: ['address']
+  });
+
+  addressAutocomplete.setBounds(qldBounds);
+
+  addressAutocomplete.addListener('place_changed', function () {
+    applySelectedAddress(addressAutocomplete.getPlace());
+  });
+
+  input.addEventListener('input', function () {
+    addressMeta.selected = false;
+    addressMeta.qldValid = false;
+    addressMeta.postcodeValid = false;
+    setAddressStatus('Queensland addresses only. Please select an address from the dropdown.', '');
+  });
+}
+
+function loadGoogleMaps() {
+  if (mapsReadyPromise) return mapsReadyPromise;
+
+  mapsReadyPromise = fetch('/api/maps-config', { cache: 'no-store' })
+    .then(function (response) { return response.json(); })
+    .then(function (data) {
+      if (!data || !data.googleMapsApiKey) {
+        throw new Error('Missing Google Maps API key');
+      }
+
+      return new Promise(function (resolve, reject) {
+        if (window.google && window.google.maps && window.google.maps.places) {
+          initAddressAutocomplete();
+          resolve();
+          return;
+        }
+
+        window.__initGoldsureMaps = function () {
+          initAddressAutocomplete();
+          resolve();
+        };
+
+        var script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(data.googleMapsApiKey) + '&libraries=places&callback=__initGoldsureMaps';
+        script.async = true;
+        script.defer = true;
+        script.onerror = function () {
+          reject(new Error('Failed to load Google Maps'));
+        };
+
+        document.head.appendChild(script);
+      });
+    })
+    .catch(function () {
+      setAddressStatus('Address lookup is temporarily unavailable. You can still enter your address manually.', 'error');
+    });
+
+  return mapsReadyPromise;
+}
+
+pushMarketingEvent('calculator_page_view', {
+  page_path: window.location.pathname
+});
+
+document.querySelectorAll('[data-track]').forEach(function (el) {
+  el.addEventListener('click', function () {
+    pushMarketingEvent(el.getAttribute('data-track'), {
+      label: (el.textContent || '').replace(/\s+/g, ' ').trim(),
+      page_path: window.location.pathname
+    });
+  });
+});
+
+const fmt = v => '$' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+function toggleStoreyQ() {
+  const s = parseInt(document.getElementById('levels').value) || 1;
+  document.getElementById('storey-box').classList.toggle('show', s > 1);
+}
+function toggleCtrlQty(show) {
+  document.getElementById('ctrl-qty').classList.toggle('show', show);
+}
+function flashVal(id) {
+  const el = document.getElementById(id);
+  el.classList.remove('val-flash');
+  void el.offsetWidth; // reflow
+  el.classList.add('val-flash');
+}
+
+function calculate() {
+  const beds  = parseInt(document.getElementById('bedrooms').value) || 0;
+  const halls = parseInt(document.getElementById('hallways').value) || 0;
+  const strs  = parseInt(document.getElementById('levels').value) || 1;
+  const allB  = document.querySelector('input[name="allLevels"]:checked')?.value === 'yes';
+  const wCtrl = document.querySelector('input[name="wantCtrl"]:checked')?.value === 'yes';
+  const cQty  = wCtrl ? (parseInt(document.getElementById('ctrlQty').value) || 1) : 0;
+
+  let alarms = beds + halls;
+  if (strs > 1 && !allB) alarms += (strs - 1);
+
+  const alarmT = alarms * 98, ctrlT = cQty * 49, grand = alarmT + ctrlT + 33;
+
+  document.getElementById('s-qty').innerText      = alarms;
+  document.getElementById('s-alarm-t').innerText  = fmt(alarmT);
+  document.getElementById('s-ctrl-qty').innerText = cQty;
+  document.getElementById('s-ctrl-t').innerText   = fmt(ctrlT);
+  document.getElementById('ctrl-line').classList.toggle('show', wCtrl && cQty > 0);
+  document.getElementById('s-balance').innerText  = fmt(alarmT + ctrlT);
+  document.getElementById('s-grand').innerText    = fmt(grand);
+
+  flashVal('s-alarm-t');
+  flashVal('s-grand');
+  if (wCtrl) flashVal('s-ctrl-t');
+  flashVal('s-balance');
+}
+
+function openModal()  {
+  document.getElementById('modal').classList.add('open');
+  loadGoogleMaps();
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.innerText = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+async function generatePDF() {
+  const name    = document.getElementById('m-name').value.trim();
+  const phone   = document.getElementById('m-phone').value.trim();
+  const email   = document.getElementById('m-email').value.trim();
+  const address = document.getElementById('m-address').value.trim();
+
+  if (!name)  { toast('Please enter your name.'); document.getElementById('m-name').focus(); return; }
+  if (!phone) { toast('Please enter your phone number.'); document.getElementById('m-phone').focus(); return; }
+  if (!address) { toast('Please enter your property address.'); document.getElementById('m-address').focus(); return; }
+  if (!addressMeta.selected || !addressMeta.qldValid || !addressMeta.postcodeValid) {
+    setAddressStatus('Please select a Queensland address from the dropdown. Postcodes must start with 4.', 'error');
+    document.getElementById('m-address').focus();
+    toast('Please select a valid Queensland address.');
+    return;
+  }
+
+  const beds   = parseInt(document.getElementById('bedrooms').value) || 0;
+  const halls  = parseInt(document.getElementById('hallways').value) || 0;
+  const strs   = parseInt(document.getElementById('levels').value) || 1;
+  const alarmQ = parseInt(document.getElementById('s-qty').innerText) || 0;
+  const ctrlQ  = parseInt(document.getElementById('s-ctrl-qty').innerText) || 0;
+  const grandR = parseFloat(document.getElementById('s-grand').innerText.replace(/[^\d.]/g, ''));
+  const sub    = grandR / 1.1;
+  const gst    = grandR - sub;
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const PW = 210, PH = 297, ML = 18, MR = 18, CW = PW - ML - MR;
+
+  const GOLD   = [201, 168, 76];
+  const GOLDDK = [168, 137, 47];
+  const INK    = [13, 13, 13];
+  const BLACK  = [0, 0, 0];
+  const WHITE  = [255, 255, 255];
+  const OFFWT  = [248, 246, 241];
+  const MUTED  = [85, 85, 85];
+  const GOLDBG = [252, 248, 234];
+
+  function f(v) { return '$' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  // ═══ PAGE 1 ═══
+
+  // Solid black header
+  doc.setFillColor(...BLACK);
+  doc.rect(0, 0, PW, 42, 'F');
+  // Gold accent rule
+  doc.setFillColor(...GOLD);
+  doc.rect(0, 42, PW, 1.5, 'F');
+
+  // Logo
+  try {
+    const blob = await (await fetch('https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/699a73ab3a2afd85cbdb392f.jpg')).blob();
+    const b64  = await new Promise(r => { const rd = new FileReader(); rd.onload = e => r(e.target.result); rd.readAsDataURL(blob); });
+    doc.addImage(b64, 'JPEG', ML, 5, 30, 32);
+  } catch {
+    doc.setTextColor(...GOLD); doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+    doc.text('GOLDSURE', ML, 26);
+  }
+
+  // QUOTE heading
+  doc.setTextColor(...GOLD); doc.setFont('helvetica', 'bold'); doc.setFontSize(28);
+  doc.text('QUOTE', PW - MR, 27, { align: 'right' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...WHITE);
+  doc.text('Installation Quote', PW - MR, 36, { align: 'right' });
+
+  // Sender
+  let y = 54;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...INK);
+  doc.text('Goldsure Pty Ltd', ML, y);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
+  doc.text('ABN: 66 683 305 106', ML, y + 5);
+  doc.text('Suite 4, Level 1, 293 High Street, Preston VIC 3072', ML, y + 10);
+  doc.text('(07) 2145 5155  |  info@goldsure.com.au  |  www.goldsure.com.au', ML, y + 15);
+
+  // Recipient
+  const RX = PW - MR;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
+  doc.text('Date', RX - 46, y);
+  doc.setFont('helvetica', 'bold'); doc.setTextColor(...INK);
+  doc.text(new Date().toLocaleDateString('en-AU'), RX, y, { align: 'right' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
+  doc.text('Prepared for', RX - 46, y + 8);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(10.5); doc.setTextColor(...INK);
+  doc.text(name, RX, y + 8, { align: 'right' });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
+  if (phone) doc.text(phone, RX, y + 15, { align: 'right' });
+  if (email) doc.text(email, RX, y + 20, { align: 'right' });
+  if (address) {
+    address.split('\n').forEach((l, i) => doc.text(l, RX, y + (phone ? 25 : 15) + i * 5, { align: 'right' }));
+  }
+
+  // Gold divider
+  y = 86;
+  doc.setDrawColor(...GOLD); doc.setLineWidth(0.4);
+  doc.line(ML, y, PW - MR, y);
+
+  // Property strip
+  y += 5;
+  doc.setFillColor(...OFFWT);
+  doc.roundedRect(ML, y, CW, 11, 2, 2, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...INK);
+  doc.text('PROPERTY DETAILS', ML + 4, y + 4.5);
+  doc.setFont('helvetica', 'normal'); doc.setTextColor(...MUTED);
+  doc.text(`Bedrooms: ${beds}   ·   Storeys: ${strs}   ·   Hallways: ${halls}`, ML + 4, y + 8.5);
+
+  // Line items table
+  y += 16;
+  doc.setFillColor(...BLACK); doc.rect(ML, y, CW, 9, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...WHITE);
+  doc.text('DESCRIPTION', ML + 4, y + 6);
+  doc.text('QTY', ML + CW * 0.63, y + 6, { align: 'center' });
+  doc.text('UNIT PRICE', ML + CW * 0.79, y + 6, { align: 'center' });
+  doc.text('AMOUNT', ML + CW - 3, y + 6, { align: 'right' });
+  y += 9;
+
+  const items = [];
+  if (alarmQ > 0) items.push({ desc: 'Raptor Smoke Alarm — Photoelectric, Interconnected, AS 3786-2023, 10-Year Warranty', qty: alarmQ, unit: 98, total: alarmQ * 98 });
+  if (ctrlQ  > 0) items.push({ desc: 'Smoke Alarm Controller', qty: ctrlQ, unit: 49, total: ctrlQ * 49 });
+  items.push({ desc: 'Electrician Booking Fee (refundable if installation cannot be completed)', qty: 1, unit: 33, total: 33 });
+
+  items.forEach((item, idx) => {
+    const rowH = 13;
+    doc.setFillColor(...(idx % 2 === 0 ? WHITE : OFFWT));
+    doc.rect(ML, y, CW, rowH, 'F');
+    doc.setFillColor(...GOLD); doc.rect(ML, y, 2.5, rowH, 'F'); // gold left accent
+    doc.setDrawColor(224, 221, 214); doc.setLineWidth(0.25);
+    doc.line(ML, y + rowH, ML + CW, y + rowH);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...INK);
+    const lines = doc.splitTextToSize(item.desc, CW * 0.56);
+    doc.text(lines[0], ML + 6, y + 5.5);
+    if (lines[1]) { doc.setFontSize(7.5); doc.setTextColor(...MUTED); doc.text(lines[1], ML + 6, y + 10); }
+    doc.setFontSize(8.5); doc.setTextColor(...MUTED);
+    doc.text(String(item.qty), ML + CW * 0.63, y + 6.5, { align: 'center' });
+    doc.text(f(item.unit), ML + CW * 0.79, y + 6.5, { align: 'center' });
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...INK);
+    doc.text(f(item.total), ML + CW - 3, y + 6.5, { align: 'right' });
+    y += rowH;
+  });
+
+  // Totals block
+  y += 6;
+  const TX = ML + CW * 0.58, TW = CW * 0.42;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...MUTED);
+  doc.text('Subtotal (excl. GST)', TX, y);
+  doc.setFont('helvetica', 'bold'); doc.setTextColor(...INK);
+  doc.text(f(sub), TX + TW, y, { align: 'right' });
+  y += 7;
+  doc.setFont('helvetica', 'normal'); doc.setTextColor(...MUTED);
+  doc.text('GST (10%)', TX, y);
+  doc.setFont('helvetica', 'bold'); doc.setTextColor(...INK);
+  doc.text(f(gst), TX + TW, y, { align: 'right' });
+  y += 10;
+  doc.setFillColor(...BLACK);
+  doc.roundedRect(TX - 2, y - 5, TW + 2, 13, 2, 2, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...WHITE);
+  doc.text('Total (incl. GST)', TX + 2, y + 3);
+  doc.setTextColor(...GOLD); doc.setFontSize(13.5);
+  doc.text(f(grandR), TX + TW - 1, y + 4, { align: 'right' });
+
+  // Payment note
+  y += 18;
+  doc.setFillColor(...GOLDBG);
+  doc.roundedRect(ML, y, CW, 20, 2, 2, 'F');
+  doc.setFillColor(...GOLD); doc.rect(ML, y, 2.5, 20, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...GOLDDK);
+  doc.text('PAYMENT STRUCTURE', ML + 6, y + 6);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor('#7A6020');
+  const note = `$33.00 booking fee is payable today to secure your electrician. The remaining balance of ${f(alarmQ * 98 + ctrlQ * 49)} is payable on the day of installation.`;
+  doc.text(doc.splitTextToSize(note, CW - 14), ML + 6, y + 12.5);
+
+  // Disclaimer
+  y += 26;
+  doc.setFont('helvetica', 'bolditalic'); doc.setFontSize(7); doc.setTextColor(...MUTED);
+  doc.text(doc.splitTextToSize('* Estimate based on details provided. Actual requirements confirmed by a licensed electrician on site.', CW), ML, y);
+
+  // ═══ PAGE 2 ═══
+  doc.addPage();
+  doc.setFillColor(...BLACK); doc.rect(0, 0, PW, 14, 'F');
+  doc.setFillColor(...GOLD); doc.rect(0, 14, PW, 1.5, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...GOLD);
+  doc.text('GOLDSURE', ML, 10);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...WHITE);
+  doc.text('Compliance & Product Information', PW - MR, 10, { align: 'right' });
+
+  y = 24;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...INK);
+  doc.text('QUEENSLAND SMOKE ALARM LEGISLATION (EFFECTIVE 01/01/2027)', ML, y);
+  doc.setDrawColor(...GOLD); doc.setLineWidth(0.35); doc.line(ML, y + 1.5, ML + 126, y + 1.5);
+  y += 8;
+  const legs = [
+    'Photoelectric (not ionisation) smoke alarms',
+    'Interconnected — all alarms sound simultaneously',
+    'Installed in every bedroom',
+    'In hallways connecting bedrooms to rest of home',
+    'On each level of the dwelling',
+    'Compliant with AS 3786-2014 or AS 3786-2023',
+    'Hard-wired where existing hard-wired alarms installed',
+    '10-year sealed battery backup where required',
+  ];
+  const cH = CW / 2 - 5;
+  legs.forEach((item, i) => {
+    const col = i % 2, row = Math.floor(i / 2);
+    const lx = ML + col * (cH + 10), ly = y + row * 9;
+    doc.setFillColor(...GOLD); doc.circle(lx + 1.5, ly - 1.2, 1.2, 'F');
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...INK);
+    doc.text(item, lx + 5, ly);
+  });
+  y += Math.ceil(legs.length / 2) * 9 + 8;
+
+  // Product section
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...GOLD);
+  doc.text('THE RAPTOR SMOKE ALARM', ML, y); y += 6;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.setTextColor(...INK);
+  doc.text('Purpose-Built for Queensland', ML, y); y += 6;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...MUTED);
+  doc.text(doc.splitTextToSize('Certified to AS 3786-2023 and approved for all Australian states. Designed to meet Queensland fire safety regulatory requirements.', CW), ML, y);
+  y += 12;
+
+  async function loadImg(url) {
+    try {
+      const blob = await (await fetch(url)).blob();
+      return new Promise(r => { const rd = new FileReader(); rd.onload = e => r(e.target.result); rd.readAsDataURL(blob); });
+    } catch { return null; }
+  }
+  const [imgA, imgB] = await Promise.all([
+    loadImg('https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/699aaa9d08245e3a7a8f790d.png'),
+    loadImg('https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/699aaa9ddf9bdf6826e81b7c.png'),
+  ]);
+  const iW = CW / 2 - 6, iH = 78;
+  if (imgA) { doc.addImage(imgA, 'PNG', ML, y, iW, iH); doc.setFont('helvetica', 'italic'); doc.setFontSize(7); doc.setTextColor(...MUTED); doc.text('Front View', ML + iW / 2, y + iH + 4, { align: 'center' }); }
+  if (imgB) { doc.addImage(imgB, 'PNG', ML + iW + 10, y, iW, iH); doc.setFont('helvetica', 'italic'); doc.setFontSize(7); doc.setTextColor(...MUTED); doc.text('Installed View', ML + iW + 10 + iW / 2, y + iH + 4, { align: 'center' }); }
+  y += iH + (imgA || imgB ? 12 : 0);
+
+  // Features
+  doc.setFillColor(...BLACK); doc.rect(ML, y, CW, 8.5, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...GOLD);
+  doc.text('KEY FEATURES', ML + 4, y + 6); y += 8.5;
+  const feats = [
+    { t: 'Photoelectric Sensing', d: 'Reliable early detection with fewer false alarms from cooking and steam.' },
+    { t: 'RF Wireless Interconnect', d: 'All alarms sound simultaneously. Up to 40 units per network.' },
+    { t: 'Alarm Memory', d: 'Visual log of activations and end-of-life warnings for easy servicing.' },
+    { t: '10-Year Manufacturer Warranty', d: 'Full warranty included on every alarm we install.' },
+  ];
+  const fW = CW / 2 - 2;
+  feats.forEach((ft, i) => {
+    const col = i % 2, row = Math.floor(i / 2);
+    const fx = ML + col * (fW + 4), fy = y + row * 26;
+    doc.setFillColor(...(row === 0 ? WHITE : OFFWT)); doc.rect(fx, fy, fW, 24, 'F');
+    doc.setDrawColor(224, 221, 214); doc.setLineWidth(0.25);
+    doc.line(fx, fy + 24, fx + fW, fy + 24);
+    if (col === 0) doc.line(fx + fW, fy, fx + fW, fy + 24);
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...GOLD);
+    doc.text('✓ ' + ft.t, fx + 4, fy + 8);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...MUTED);
+    doc.text(doc.splitTextToSize(ft.d, fW - 8), fx + 4, fy + 14);
+  });
+
+  // Footers
+  [1, 2].forEach(pg => {
+    doc.setPage(pg);
+    doc.setFillColor(...BLACK); doc.rect(0, PH - 18, PW, 18, 'F');
+    doc.setFillColor(...GOLD); doc.rect(0, PH - 18, PW, 1.5, 'F');
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...WHITE);
+    doc.text('Goldsure Pty Ltd  ·  ABN: 66 683 305 106  ·  Suite 4, Level 1, 293 High Street, Preston VIC 3072', PW / 2, PH - 11, { align: 'center' });
+    doc.text('(07) 2145 5155  ·  info@goldsure.com.au  ·  www.goldsure.com.au', PW / 2, PH - 6, { align: 'center' });
+    doc.setTextColor(...GOLD); doc.text(`Page ${pg} of 2`, PW - MR, PH - 11, { align: 'right' });
+  });
+
+  doc.save(`Goldsure_Quote_${name.replace(/\s+/g, '_')}.pdf`);
+  closeModal();
+  toast('PDF downloaded!');
+}
+
+calculate();
+</script>
+</body>
+</html>

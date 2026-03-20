@@ -10,6 +10,22 @@
     {
       "source": "/smoke-alarm/",
       "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/thank-you",
+      "destination": "/smoke-alarm/thank-you/index.html"
+    },
+    {
+      "source": "/smoke-alarm/thank-you/",
+      "destination": "/smoke-alarm/thank-you/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator",
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator/",
+      "destination": "/smoke-alarm/calculator/index.html"
     }
   ]
 }
