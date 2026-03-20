@@ -1,123 +1,120 @@
 # Deployment Notes
 
-These steps assume:
+Use this file as a simple checklist for getting the project live.
 
-- this folder will become a brand-new GitHub repository
-- the repository name will be `Goldsure Landing Pages`
-- the Vercel project will also be brand new
-- the required public URLs are:
-  - `https://offers.goldsure.com.au/smoke-alarm`
-  - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
-  - `https://offers.goldsure.com.au/smoke-alarm/calculator`
-  - `https://offers.goldsure.com.au/tracker/smoke-alarm`
+## What this project needs
 
-## 1. Create the new GitHub repository
+This project uses:
 
-Create a new GitHub repository named:
+- Vercel for hosting
+- GitHub for the code
+- Google Maps for address autocomplete
+- Supabase for storing calculator leads
+- Resend for internal email notifications
+
+## Pages in this project
+
+These are the main routes:
+
+- `/smoke-alarm`
+- `/thank-you/smoke-alarm`
+- `/smoke-alarm/calculator`
+- `/tracker/smoke-alarm`
+
+## Step 1. Push the code to GitHub
+
+Put this project in its own GitHub repo.
+
+Suggested repo name:
 
 - `Goldsure Landing Pages`
 
-Then push this folder into that repository.
-
-Suggested commands:
-
-```powershell
-git init
-git add .
-git commit -m "Initial smoke alarm landing page"
-git branch -M main
-git remote add origin <YOUR_NEW_GITHUB_REPO_URL>
-git push -u origin main
-```
-
-## 2. Create the new Vercel project
+## Step 2. Create the Vercel project
 
 In Vercel:
 
-1. Click `Add New... -> Project`
-2. Import the new GitHub repository
-3. Use these settings:
+1. Create a new project.
+2. Import this GitHub repo.
+3. Use:
    - Framework Preset: `Other`
    - Root Directory: `.`
-   - Build Command: leave blank
-   - Output Directory: leave blank
-   - Install Command: leave blank
-4. Add environment variables:
-   - `GOOGLE_MAPS_API_KEY`
-   - `SUPABASE_URL`
-   - `SUPABASE_SERVICE_ROLE_KEY`
-   - `RESEND_API_KEY`
-   - `EMAIL_TO`
-   - `EMAIL_BCC`
-   - `EMAIL_FROM`
-5. Deploy
+4. Do not add a build command unless you really need one.
 
-## 3. Add the custom domain
+## Step 3. Add environment variables in Vercel
 
-After the first deploy finishes:
+Add these environment variables:
 
-1. Open the project in Vercel
-2. Go to `Settings -> Domains`
-3. Add `offers.goldsure.com.au`
+- `GOOGLE_MAPS_API_KEY`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `EMAIL_TO`
+- `EMAIL_BCC`
+- `EMAIL_FROM`
 
-Because `offers.goldsure.com.au` is a subdomain, Vercel will require a `CNAME` record.
+Example email values:
 
-Use the exact target shown in the Vercel domain setup screen. Vercel's current documentation says subdomains use a `CNAME` record, and the value may be either:
+- `EMAIL_TO=info@goldsure.com.au`
+- `EMAIL_BCC=kanishka@webco.au`
+- `EMAIL_FROM=info@goldsure.com.au`
 
-- a generic Vercel target such as `cname.vercel-dns.com`
-- or a project-specific Vercel target shown in the dashboard
+## Step 4. Add the custom domain
 
-If the domain has already been connected to another Vercel project or account, Vercel may also require a temporary `TXT` verification record before the domain can be assigned here.
+Use this domain:
 
-## 4. DNS record to create
+- `offers.goldsure.com.au`
 
-At your DNS provider for `goldsure.com.au`, create or update:
+In Vercel:
+
+1. Open the project.
+2. Go to `Settings -> Domains`.
+3. Add `offers.goldsure.com.au`.
+
+## Step 5. Update DNS
+
+At your DNS provider, point the `offers` subdomain to Vercel.
+
+Usually this means:
 
 - Type: `CNAME`
-- Name/Host: `offers`
-- Value/Target: use the exact Vercel-provided target from the new project's domain screen
-- TTL: `Auto` or `300`
+- Name: `offers`
+- Value: the target Vercel gives you
 
 Important:
 
-- Remove any existing `A`, `AAAA`, or conflicting `CNAME` record for `offers` before adding the new one
-- If Vercel asks for a verification `TXT` record, add that exactly as shown and wait for verification to complete
+- Use the exact value Vercel shows
+- Remove any old conflicting DNS records for `offers`
+- If Vercel asks for a TXT verification record, add that too
 
-## 5. Verify in Vercel
+## Step 6. Deploy
 
-After DNS updates:
+Once the repo is connected and environment variables are added, deploy the project.
 
-1. Return to the Vercel domain screen
-2. Wait until the domain shows as valid/assigned
-3. Wait for the SSL certificate to finish provisioning
-4. Confirm these routes load:
-   - `https://offers.goldsure.com.au/smoke-alarm`
-   - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
-   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
-   - `https://offers.goldsure.com.au/tracker/smoke-alarm`
+If the project is already connected to GitHub, pushing to `main` should trigger a new deployment automatically.
 
-## 6. Final checks
+## Step 7. Check everything works
 
-Confirm all of the following after deployment:
+Open these pages:
 
-- `https://offers.goldsure.com.au/smoke-alarm` loads successfully
-- `https://offers.goldsure.com.au/thank-you/smoke-alarm` loads successfully
-- `https://offers.goldsure.com.au/smoke-alarm/calculator` loads successfully
-- `https://offers.goldsure.com.au/tracker/smoke-alarm` loads successfully
-- the page shows the expected Goldsure smoke alarm content
-- the embedded forms load correctly
-- phone links still work
-- external images still load
-- Google address autocomplete works in the calculator modal
-- only Queensland addresses with postcodes starting with `4` are accepted in the calculator
-- calculator leads are saved into Supabase
-- internal notification emails are sent through Resend
-- the tracker page lists saved calculator leads
-- no unrelated routes or APIs exist in the deployment
+- `https://offers.goldsure.com.au/smoke-alarm`
+- `https://offers.goldsure.com.au/thank-you/smoke-alarm`
+- `https://offers.goldsure.com.au/smoke-alarm/calculator`
+- `https://offers.goldsure.com.au/tracker/smoke-alarm`
 
-## Source references
+Check these things:
 
-These DNS notes are based on current Vercel documentation for custom domains and subdomains:
+- the landing page loads
+- the thank-you page loads
+- the calculator loads
+- the tracker loads
+- the calculator address field shows Google suggestions
+- only Queensland addresses with postcodes starting with `4` are accepted
+- downloading a quote saves a lead into Supabase
+- an internal email is sent after a quote download
+- the new lead appears in the tracker
 
-- [Adding & Configuring a Custom Domain](https://vercel.com/docs/domains/working-with-domains/add-a-domain)
-- [Setting up a custom domain](https://vercel.com/docs/domains/set-up-custom-domain)
+## Final reminder
+
+This project is meant to work by itself.
+
+It should not need anything from another repo to deploy or run.
