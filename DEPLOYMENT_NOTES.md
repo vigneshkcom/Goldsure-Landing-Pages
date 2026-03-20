@@ -58,6 +58,12 @@ Example email values:
 - `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 
+Notes:
+
+- `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
+- the code already has fallback email addresses
+- adding them in Vercel is still recommended if you want to manage email recipients without changing code
+
 ## Step 4. Add the custom domain
 
 Use this domain:

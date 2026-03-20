@@ -83,6 +83,12 @@ Example email values:
 - `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 
+Notes:
+
+- `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
+- the project already has fallback email addresses in code
+- adding them in Vercel is still better if you want to change recipients later without editing code
+
 ## How to deploy
 
 1. Push this project to GitHub.
