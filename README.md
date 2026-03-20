@@ -19,9 +19,10 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 |-- smoke-alarm/
 |   |-- calculator/
 |   |   `-- index.html
-|   |-- thank-you/
-|   |   `-- index.html
 |   `-- index.html
+|-- thank-you/
+|   `-- smoke-alarm/
+|       `-- index.html
 |-- .gitignore
 |-- DEPLOYMENT_NOTES.md
 |-- README.md
@@ -31,14 +32,14 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 ## Route mapping
 
 - `/smoke-alarm` is served by `smoke-alarm/index.html`
-- `/smoke-alarm/thank-you` is served by `smoke-alarm/thank-you/index.html`
+- `/thank-you/smoke-alarm` is served by `thank-you/smoke-alarm/index.html`
 - `/smoke-alarm/calculator` is served by `smoke-alarm/calculator/index.html`
 - `vercel.json` contains explicit rewrites for all three clean URLs
 
 ## Funnel flow
 
 - Main landing page: `/smoke-alarm`
-- Thank-you page: `/smoke-alarm/thank-you`
+- Thank-you page: `/thank-you/smoke-alarm`
 - Calculator page: `/smoke-alarm/calculator`
 
 ## Notes about forms and assets
@@ -80,7 +81,7 @@ Supported variable names:
 5. Wait for verification and SSL issuance to complete.
 6. Test:
    - `https://offers.goldsure.com.au/smoke-alarm`
-   - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+   - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
    - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 For the full step-by-step flow, including DNS checks, use [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).

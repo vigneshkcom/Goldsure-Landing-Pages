@@ -7,7 +7,7 @@ These steps assume:
 - the Vercel project will also be brand new
 - the required public URLs are:
   - `https://offers.goldsure.com.au/smoke-alarm`
-  - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+  - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 ## 1. Create the new GitHub repository
@@ -86,7 +86,7 @@ After DNS updates:
 3. Wait for the SSL certificate to finish provisioning
 4. Confirm these routes load:
    - `https://offers.goldsure.com.au/smoke-alarm`
-   - `https://offers.goldsure.com.au/smoke-alarm/thank-you`
+   - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
    - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 
 ## 6. Final checks
@@ -94,7 +94,7 @@ After DNS updates:
 Confirm all of the following after deployment:
 
 - `https://offers.goldsure.com.au/smoke-alarm` loads successfully
-- `https://offers.goldsure.com.au/smoke-alarm/thank-you` loads successfully
+- `https://offers.goldsure.com.au/thank-you/smoke-alarm` loads successfully
 - `https://offers.goldsure.com.au/smoke-alarm/calculator` loads successfully
 - the page shows the expected Goldsure smoke alarm content
 - the embedded forms load correctly

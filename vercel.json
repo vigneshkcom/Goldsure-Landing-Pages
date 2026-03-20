@@ -12,12 +12,12 @@
       "destination": "/smoke-alarm/index.html"
     },
     {
-      "source": "/smoke-alarm/thank-you",
-      "destination": "/smoke-alarm/thank-you/index.html"
+      "source": "/thank-you/smoke-alarm",
+      "destination": "/thank-you/smoke-alarm/index.html"
     },
     {
-      "source": "/smoke-alarm/thank-you/",
-      "destination": "/smoke-alarm/thank-you/index.html"
+      "source": "/thank-you/smoke-alarm/",
+      "destination": "/thank-you/smoke-alarm/index.html"
     },
     {
       "source": "/smoke-alarm/calculator",
