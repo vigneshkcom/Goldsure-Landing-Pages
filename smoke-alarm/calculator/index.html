@@ -665,6 +665,7 @@ function pushMarketingEvent(eventName, details) {
 
 var mapsReadyPromise;
 var addressAutocomplete;
+var leadSavePromise = null;
 var addressMeta = {
   selected: false,
   qldValid: false,
@@ -875,6 +876,58 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
+function getCalculatorSnapshot() {
+  const beds  = parseInt(document.getElementById('bedrooms').value) || 0;
+  const halls = parseInt(document.getElementById('hallways').value) || 0;
+  const strs  = parseInt(document.getElementById('levels').value) || 1;
+  const wCtrl = document.querySelector('input[name="wantCtrl"]:checked')?.value === 'yes';
+  const cQty  = wCtrl ? (parseInt(document.getElementById('ctrlQty').value) || 1) : 0;
+  const alarmQ = parseInt(document.getElementById('s-qty').innerText) || 0;
+  const installationBalance = parseFloat(document.getElementById('s-balance').innerText.replace(/[^\d.]/g, '')) || 0;
+  const totalIncGst = parseFloat(document.getElementById('s-grand').innerText.replace(/[^\d.]/g, '')) || 0;
+
+  return {
+    bedrooms: beds,
+    storeys: strs,
+    hallways: halls,
+    controller_selected: wCtrl,
+    controller_qty: cQty,
+    alarm_qty: alarmQ,
+    booking_fee: 33,
+    installation_balance: installationBalance,
+    total_inc_gst: totalIncGst,
+    page_path: window.location.pathname
+  };
+}
+
+async function saveLead(payload) {
+  if (leadSavePromise) return leadSavePromise;
+
+  leadSavePromise = fetch('/api/save-calculator-lead', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(async function (response) {
+    const data = await response.json().catch(function () { return {}; });
+
+    if (!response.ok) {
+      throw new Error(data && data.error ? data.error : 'Failed to save lead');
+    }
+
+    pushMarketingEvent('calculator_lead_saved', {
+      page_path: window.location.pathname
+    });
+
+    return data;
+  }).finally(function () {
+    leadSavePromise = null;
+  });
+
+  return leadSavePromise;
+}
+
 async function generatePDF() {
   const name    = document.getElementById('m-name').value.trim();
   const phone   = document.getElementById('m-phone').value.trim();
@@ -888,6 +941,21 @@ async function generatePDF() {
     setAddressStatus('Please select a Queensland address from the dropdown. Postcodes must start with 4.', 'error');
     document.getElementById('m-address').focus();
     toast('Please select a valid Queensland address.');
+    return;
+  }
+
+  try {
+    await saveLead(Object.assign({
+      full_name: name,
+      phone: phone,
+      email: email || null,
+      property_address: address
+    }, getCalculatorSnapshot()));
+  } catch (error) {
+    pushMarketingEvent('calculator_lead_save_failed', {
+      page_path: window.location.pathname
+    });
+    toast('We could not save your details right now. Please try again.');
     return;
   }
 
