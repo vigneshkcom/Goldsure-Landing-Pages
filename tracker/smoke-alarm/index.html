@@ -9,14 +9,17 @@
 :root {
   --gold: #c9a84c;
   --gold-deep: #a8892f;
-  --ink: #0d0d0d;
-  --muted: #62708a;
-  --line: rgba(13, 13, 13, 0.08);
+  --ink: #101522;
+  --muted: #5f6980;
+  --line: rgba(16, 21, 34, 0.08);
+  --line-strong: rgba(16, 21, 34, 0.14);
   --white: #ffffff;
   --off-white: #f8f6f1;
-  --bg: #f4f6fb;
-  --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
-  --radius: 18px;
+  --bg: #f6f4ef;
+  --panel: #fcfbf8;
+  --soft-blue: #6b7fd7;
+  --shadow: 0 14px 34px rgba(16, 21, 34, 0.08);
+  --radius: 20px;
 }
 
 *,
@@ -27,11 +30,11 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(201, 168, 76, 0.12), transparent 24%),
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    radial-gradient(circle at top left, rgba(201, 168, 76, 0.10), transparent 22%),
+    linear-gradient(180deg, #fdfcf9 0%, var(--bg) 100%);
 }
 
 a {
@@ -46,7 +49,7 @@ a {
 }
 
 .topbar {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -84,7 +87,7 @@ a {
 }
 
 .brand-copy span:last-child {
-  color: #5f71b5;
+  color: var(--soft-blue);
   font-size: 0.86rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -99,18 +102,19 @@ a {
 
 .btn {
   border: 1px solid var(--line);
-  background: var(--white);
-  color: #314160;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #33405e;
+  border-radius: 14px;
   padding: 0.8rem 1rem;
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
 .btn-primary {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.92);
+  border-color: rgba(201, 168, 76, 0.6);
   color: var(--ink);
 }
 
@@ -120,7 +124,7 @@ a {
 
 .hero h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 2rem;
   letter-spacing: -0.03em;
 }
 
@@ -137,24 +141,24 @@ a {
 }
 
 .card {
-  background: var(--white);
-  border: 1px solid rgba(84, 98, 145, 0.08);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(16, 21, 34, 0.06);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
 .stat {
   padding: 1.2rem 1.25rem;
-  border-top: 4px solid transparent;
+  border-top: 3px solid transparent;
 }
 
-.stat-gold { border-top-color: var(--gold); }
-.stat-green { border-top-color: #41aa84; }
-.stat-blue { border-top-color: #6883ff; }
-.stat-navy { border-top-color: #202e4d; }
+.stat-gold { border-top-color: rgba(201, 168, 76, 0.9); }
+.stat-green { border-top-color: rgba(65, 170, 132, 0.82); }
+.stat-blue { border-top-color: rgba(107, 127, 215, 0.86); }
+.stat-navy { border-top-color: rgba(32, 46, 77, 0.88); }
 
 .stat-label {
-  color: #6376a5;
+  color: #7180a6;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -184,7 +188,7 @@ a {
 }
 
 .filter-label {
-  color: #6376a5;
+  color: #7180a6;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -203,17 +207,18 @@ a {
 .search input {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #f8f9fc;
+  border-radius: 14px;
+  background: #fbfaf7;
   padding: 0.9rem 1rem;
   font-size: 0.95rem;
+  color: var(--ink);
 }
 
 .date-filter input {
   width: 100%;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  background: #f8f9fc;
+  border-radius: 14px;
+  background: #fbfaf7;
   padding: 0.88rem 1rem;
   font-size: 0.9rem;
   color: var(--ink);
@@ -221,7 +226,7 @@ a {
 
 .count {
   margin-left: auto;
-  color: #5f71b5;
+  color: var(--soft-blue);
   font-size: 0.9rem;
 }
 
@@ -240,10 +245,10 @@ thead th {
   font-size: 0.76rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6376a5;
+  color: #7180a6;
   padding: 1rem;
   border-bottom: 1px solid var(--line);
-  background: #fbfcfe;
+  background: var(--panel);
 }
 
 tbody td {
@@ -269,7 +274,7 @@ tbody td {
   align-items: center;
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
-  background: rgba(201, 168, 76, 0.12);
+  background: rgba(201, 168, 76, 0.10);
   color: var(--gold-deep);
   font-size: 0.76rem;
   font-weight: 700;
@@ -278,6 +283,10 @@ tbody td {
 .money {
   font-weight: 700;
   color: var(--gold-deep);
+}
+
+tbody tr:hover {
+  background: rgba(201, 168, 76, 0.04);
 }
 
 .empty,
