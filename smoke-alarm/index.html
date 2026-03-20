@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://offers.goldsure.com.au/smoke-alarm">
+<title>Smoke Alarm Compliance — Goldsure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;810&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   TOKENS — LIGHT SYSTEM ONLY
+   Backgrounds: off-white (#F8F6F1) or white (#FFFFFF)
+   Text: black (#0D0D0D) or gold (#C9A84C)
+   No dark/grey/black backgrounds anywhere
+══════════════════════════════════════ */
+:root {
+  --gold:       #C9A84C;
+  --gold-deep:  #A8892F;
+  --gold-light: #DDB95E;
+  --gold-bg:    rgba(201,168,76,0.10);
+  --gold-bd:    rgba(201,168,76,0.30);
+
+  --ink:       #0D0D0D;
+  --body-txt:  #0D0D0D;
+  --muted:     #555555;
+
+  /* ONLY two background tones allowed */
+  --white:      #FFFFFF;
+  --off-white:  #F8F6F1;
+  --off-white-2: #F2EFE8; /* slightly deeper for alternating sections */
+
+  /* Borders & dividers */
+  --border:     rgba(0,0,0,0.10);
+  --border-mid: rgba(0,0,0,0.07);
+
+  /* Legacy aliases so old selectors don't break */
+  --black:     #0D0D0D;
+  --charcoal:  #F8F6F1;
+  --char-mid:  #F2EFE8;
+  --char-soft: #F2EFE8;
+  --gray-50:   #F5F5F5;
+  --gray-100:  #EBEBEB;
+  --gray-200:  #D8D8D8;
+  --gray-400:  #9A9A9A;
+  --gray-600:  #555555;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow:    0 4px 20px rgba(0,0,0,0.09);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════
+   RESET + BASE
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--body-txt);
+  background: var(--white);
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY HELPERS
+══════════════════════════════════════ */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.75rem;
+}
+h1 { font-size: clamp(1.9rem, 3.2vw, 2.65rem); font-weight: 810; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); }
+h2 { font-size: clamp(1.65rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; color: var(--ink); }
+p { font-size: 0.95rem; line-height: 1.78; color: var(--muted); }
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 5rem 2rem; }
+
+/* ══════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.82rem 1.85rem;
+  font-family: 'Poppins', sans-serif; font-weight: 600;
+  font-size: 0.88rem; letter-spacing: 0.02em;
+  border: none; cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap; border-radius: var(--radius-sm);
+}
+.btn-gold { background: var(--gold); color: #0D0D0D; border: 2px solid var(--gold); }
+.btn-gold:hover { background: var(--gold-deep); border-color: var(--gold-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.28); }
+/* Call Us / secondary — black border, black text on light bg */
+.btn-outline-white { background: transparent; border: 2px solid var(--ink); color: var(--ink); border-radius: var(--radius-sm); }
+.btn-outline-white:hover { background: var(--ink); color: var(--white); }
+.btn-outline-dark { background: transparent; border: 2px solid var(--gold); color: var(--gold-deep); border-radius: var(--radius-sm); }
+.btn-outline-dark:hover { background: var(--gold); color: var(--ink); }
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 66px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  gap: 0.5rem;
+}
+.header-logo img { height: 40px; width: auto; flex-shrink: 0; }
+.header-cta {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; font-size: 0.78rem;
+  color: var(--ink); border: 1.5px solid var(--gold-bd);
+  border-radius: var(--radius-sm);
+  transition: all 0.22s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.header-cta:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+.header-cta:hover svg { color: var(--white); }
+.header-cta svg { color: var(--gold); transition: color 0.22s; flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   MARQUEE / TICKER
+══════════════════════════════════════ */
+.marquee-bar {
+  background: var(--gold);
+  padding: 0.62rem 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex; white-space: nowrap;
+  animation: marquee 36s linear infinite;
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  padding: 0 2.5rem;
+  font-size: 0.67rem; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--ink);
+}
+.marquee-item .m-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(0,0,0,0.4); flex-shrink: 0;
+}
+.marquee-sep { color: var(--ink); font-size: 0.7rem; }
+.marquee-item.highlight { color: var(--black); font-weight: 810; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  background: var(--off-white);
+  padding: 7.5rem 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; top: -80px; right: -60px;
+  width: 520px; height: 520px; pointer-events: none;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 68%);
+}
+.hero-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr minmax(0, 480px);
+  gap: 3.5rem; align-items: start;
+}
+
+/* Hero left */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.08);
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 1.25rem;
+}
+.hero-badge .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s ease infinite; flex-shrink: 0;
+}
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.3; transform:scale(1.4); } }
+
+.hero h1 { margin-bottom: 1rem; max-width: 520px; }
+.hero h1 .gold { color: var(--gold); }
+.hero-sub {
+  color: var(--muted); font-size: 0.97rem;
+  font-weight: 400; max-width: 460px;
+  margin-bottom: 2rem; line-height: 1.85;
+}
+
+/* Countdown */
+.countdown {
+  display: inline-flex; align-items: center; gap: 0.85rem;
+  padding: 0.6rem 1.1rem;
+  background: var(--white);
+  border: 1.5px solid var(--gold-bd);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+.cd-label {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold-deep); white-space: nowrap;
+  line-height: 1.4;
+}
+.cd-units { display: flex; align-items: center; gap: 0.45rem; }
+.cd-unit { text-align: center; }
+.cd-num {
+  display: block;
+  font-size: 1.1rem; font-weight: 810;
+  color: var(--ink); line-height: 1;
+  font-variant-numeric: tabular-nums;
+  min-width: 40px;
+}
+.cd-lbl {
+  display: block; font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-top: 0.2rem;
+}
+.cd-colon {
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 0.35rem; align-self: flex-start; margin-top: 0.08rem;
+}
+
+/* Hero checklist */
+.hero-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.85rem; }
+.hero-list-item {
+  display: flex; align-items: center; gap: 0.65rem;
+  font-size: 0.9rem; font-weight: 500;
+  color: var(--ink);
+}
+.hero-list-item svg { color: var(--gold); flex-shrink: 0; }
+
+.hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+/* Hero form card — clean white card on off-white bg */
+.hero-form-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+  overflow: visible; position: relative;
+  animation: fadeUp 0.65s 0.2s ease both;
+}
+.hero-form-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  z-index: 2; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.hfc-body {
+  padding: 1.25rem 1.25rem 1rem;
+}
+/* Clip container — hides GHL injected promo header via overflow */
+.hfc-clip {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  --clip-offset: 178px;
+  margin-bottom: 0;
+}
+.hfc-body iframe {
+  width: 100%; border: none; display: block;
+  /* visible area = this height minus --clip-offset (178px)
+     form content ~720px → 178 + 720 + 20 buffer = 908px */
+  height: 810px;;
+  margin-top: calc(-1 * var(--clip-offset, 178px));
+  padding-top: var(--clip-offset, 178px);
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+/* Form card header */
+.hfc-header { padding-bottom: 1rem; }
+.hfc-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.hfc-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+/* Form note */
+.form-note {
+  margin-top: 0.75rem; display: flex; align-items: center;
+  justify-content: center; gap: 0.38rem;
+  font-size: 0.75rem; color: var(--muted);
+  position: relative; z-index: 2;
+}
+.form-note svg { color: var(--gold-deep); }
+
+/* Footer legal line */
+.footer-legal { font-size: 0.74rem; color: rgba(255,255,255,0.45); }
+
+/* ══════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════ */
+.testimonials-section {
+  background: var(--white);
+  padding: 5.5rem 2.5rem;
+}
+.testimonials-inner { max-width: 1160px; margin: 0 auto; }
+.testimonials-header { margin-bottom: 2.5rem; }
+.testimonials-header h2 { color: var(--ink); }
+
+.rating-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.6rem; margin-bottom: 2.75rem;
+}
+.rating-bar-inner {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  padding: 0.55rem 1.4rem;
+  background: var(--off-white);
+  border: 1.5px solid var(--gold-bd);
+  border-radius: var(--radius-sm);
+}
+.rating-score {
+  font-size: 0.95rem; font-weight: 810; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.rating-stars-sm { display: flex; gap: 0.18rem; }
+.rating-stars-sm svg { color: var(--gold); }
+.rating-count {
+  font-size: 0.80rem; color: var(--muted);
+  font-weight: 400;
+}
+.rating-divider {
+  width: 1px; height: 14px;
+  background: var(--border);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: var(--off-white);
+  border: 1px solid var(--border-mid);
+  box-shadow: none;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.6rem;
+  display: flex; flex-direction: column; gap: 0.85rem;
+  position: relative;
+  transition: border-color 0.28s, transform 0.28s, box-shadow 0.28s;
+}
+.review-card:hover {
+  border-color: var(--gold-bd);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.review-stars { display: flex; gap: 0.22rem; }
+.review-stars svg { color: var(--gold); }
+.review-text {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.78; flex: 1;
+  font-style: italic;
+}
+.review-footer {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-mid);
+}
+.review-name {
+  font-size: 0.88rem; font-weight: 700;
+  color: var(--ink); line-height: 1.3;
+}
+.review-source {
+  display: inline-flex; align-items: center; gap: 0.32rem;
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: 0.04em; white-space: nowrap;
+}
+.g-badge {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.58rem; font-weight: 810;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+@media (max-width: 1020px) {
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Mobile review carousel ── */
+@media (max-width: 660px) {
+  .reviews-grid {
+    display: none;
+  }
+  .reviews-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .reviews-carousel-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    will-change: transform;
+  }
+  .reviews-slide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    min-width: 100%;
+    padding: 0.25rem 0;
+  }
+  .reviews-carousel .review-card {
+    font-size: 0.76rem;
+    padding: 0.9rem 0.8rem;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+  }
+  .reviews-carousel .review-text { font-size: 0.74rem; line-height: 1.6; }
+  .reviews-carousel .review-name { font-size: 0.74rem; }
+  .reviews-carousel .review-source { font-size: 0.62rem; }
+  .reviews-carousel .review-stars svg { width: 11px; height: 11px; }
+
+  .reviews-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-top: 1.1rem;
+  }
+  .reviews-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+    padding: 0;
+  }
+  .reviews-dot.active {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+}
+@media (min-width: 661px) {
+  .reviews-carousel { display: none; }
+}
+
+/* ══════════════════════════════════════
+   WHY GOLDSURE
+══════════════════════════════════════ */
+.trust-section {
+  background: var(--off-white);
+  padding: 5.5rem 2.5rem;
+}
+.trust-inner { max-width: 1160px; margin: 0 auto; }
+.trust-header { margin-bottom: 3rem; }
+.trust-header h2 { color: var(--ink); max-width: 520px; }
+.trust-header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.65rem; max-width: 500px; }
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.trust-card {
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 1.75rem 2rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+.trust-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.trust-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-bd);
+  box-shadow: var(--shadow);
+}
+.trust-card:hover::before { transform: scaleX(1); }
+
+.trust-card-num {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.18em; color: var(--gold-bd);
+  margin-bottom: 1.5rem; display: block;
+  text-transform: uppercase;
+}
+.trust-icon {
+  width: 52px; height: 52px;
+  background: var(--gold-bg);
+  border: 1.5px solid var(--gold-bd);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-deep); margin-bottom: 1.25rem;
+  transition: background 0.28s, border-color 0.28s;
+}
+.trust-card:hover .trust-icon {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+}
+.trust-card h3 {
+  font-size: 1.05rem; color: var(--ink);
+  margin-bottom: 0.6rem; font-weight: 700;
+}
+.trust-card p {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.78;
+}
+
+/* ══════════════════════════════════════
+   WHY ACT NOW
+══════════════════════════════════════ */
+.act-section { background: var(--white); padding: 5rem 2.5rem; }
+.act-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr minmax(0, 460px);
+  gap: 4rem; align-items: center;
+}
+.act-header { margin-bottom: 3rem; }
+.act-header h2 { max-width: 520px; color: var(--ink); }
+
+.deadline-rows {
+  display: flex; flex-direction: column; gap: 0.55rem;
+  margin-bottom: 1.75rem;
+}
+.deadline-row {
+  display: flex; align-items: center; gap: 1.1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border-mid);
+  background: var(--white);
+  font-size: 0.88rem;
+  transition: border-color 0.2s;
+}
+.deadline-row.passed {
+  background: var(--off-white);
+  opacity: 0.72;
+}
+.deadline-row.active {
+  background: var(--white);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.10);
+}
+
+/* State icon on left */
+.dl-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.deadline-row.passed .dl-icon {
+  background: var(--gray-100);
+  color: var(--muted);
+  border: 1.5px solid var(--border);
+}
+.deadline-row.active .dl-icon {
+  background: var(--gold);
+  color: var(--ink);
+  border: 1.5px solid var(--gold-deep);
+}
+
+.dl-content { flex: 1; min-width: 0; }
+.dl-year {
+  display: block;
+  font-weight: 810; font-size: 0.70rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.1rem;
+}
+.deadline-row.active .dl-year { color: var(--gold-deep); }
+.dl-desc {
+  display: block;
+  color: var(--ink); font-weight: 600;
+  font-size: 0.9rem; line-height: 1.3;
+}
+.deadline-row.passed .dl-desc { color: var(--muted); font-weight: 500; }
+
+.dl-tag {
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm); flex-shrink: 0;
+}
+.dl-tag-passed { background: var(--gray-100); color: var(--muted); border: 1px solid var(--border); }
+.dl-tag-active { background: var(--gold); color: var(--ink); border: 1px solid var(--gold-deep); font-weight: 810; }
+
+.act-points { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
+.act-point {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.90rem; color: var(--ink);
+}
+.act-point-dot {
+  width: 22px; height: 22px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gold-bg); border: 1.5px solid var(--gold-bd);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-deep); margin-top: 0.12rem;
+}
+.act-image-col { position: relative; }
+.act-img-wrap { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+.act-img-wrap img {
+  width: 100%; height: auto; max-height: 520px;
+  object-fit: cover; object-position: center top; display: block;
+}
+
+/* ══════════════════════════════════════
+   PACKAGE — CARD GRID (not a table)
+══════════════════════════════════════ */
+.package-section { background: var(--off-white); padding: 5.5rem 2.5rem; }
+.package-inner { max-width: 1160px; margin: 0 auto; }
+.pkg-header { margin-bottom: 3rem; }
+.pkg-header h2 { color: var(--ink); }
+.pkg-header p { color: var(--muted); font-size: 0.95rem; max-width: 540px; margin-top: 0.7rem; line-height: 1.75; }
+
+/* 3-column card grid — clean, premium, not Excel */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.pkg-item {
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  position: relative; overflow: hidden;
+}
+.pkg-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.pkg-item:hover {
+  border-color: var(--gold-bd);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.pkg-item:hover::before { transform: scaleX(1); }
+
+.pkg-check {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: var(--radius);
+  background: var(--gold-bg);
+  border: 1.5px solid var(--gold-bd);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-deep);
+  transition: background 0.25s, border-color 0.25s;
+}
+.pkg-item:hover .pkg-check {
+  background: rgba(201,168,76,0.18);
+  border-color: var(--gold);
+}
+.pkg-item-body { display: flex; flex-direction: column; gap: 0.3rem; }
+.pkg-item-body h4 { font-size: 0.97rem; font-weight: 700; color: var(--ink); }
+.pkg-item-body p { font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
+
+/* CTA strip below package grid */
+.pkg-cta-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: nowrap; gap: 1.5rem;
+  padding: 1.6rem 2.25rem;
+  background: var(--ink);
+  border-radius: var(--radius);
+  max-width: 810px;
+  margin: 0 auto;
+}
+.pkg-cta-copy { flex: 1 1 auto; min-width: 0; }
+.pkg-cta-copy h4 { font-size: 1rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.25rem; }
+.pkg-cta-copy p { font-size: 0.84rem; color: rgba(255,255,255,0.60); }
+.pkg-cta-strip .btn-gold { flex-shrink: 0; }
+
+/* ══════════════════════════════════════
+   PROCESS
+══════════════════════════════════════ */
+.process-section { background: var(--white); padding: 5rem 2.5rem; }
+.process-inner { max-width: 1160px; margin: 0 auto; }
+.process-header { text-align: center; max-width: 540px; margin: 0 auto 3.5rem; }
+.process-header h2 { margin-bottom: 0.65rem; color: var(--ink); }
+.process-header p { font-size: 0.95rem; color: var(--muted); }
+
+.process-track {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0; position: relative;
+}
+.process-track::before {
+  content: ''; position: absolute;
+  top: 34px; left: 16.5%; right: 16.5%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-bd), rgba(201,168,76,0.4), var(--gold-bd), transparent);
+  z-index: 0;
+}
+.process-step {
+  padding: 0 2rem; text-align: center;
+  position: relative; z-index: 1;
+}
+.ps-circle {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; box-shadow: var(--shadow-sm);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative; z-index: 1;
+}
+.process-step:hover .ps-circle { border-color: var(--gold); box-shadow: 0 4px 20px rgba(201,168,76,0.18); }
+.ps-num { font-size: 0.88rem; font-weight: 810; color: var(--gold-deep); letter-spacing: 0.04em; }
+.ps-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+.ps-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+/* ══════════════════════════════════════
+   GUARANTEE — LIGHT, OFF-WHITE BACKGROUND
+   Dark cards removed. Clean white cards on off-white.
+══════════════════════════════════════ */
+.guarantee-section {
+  background: var(--off-white);
+  padding: 5.5rem 2.5rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.guarantee-section::before {
+  content: '';
+  position: absolute; top: -120px; right: -80px;
+  width: 600px; height: 600px; pointer-events: none;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 65%);
+}
+.guarantee-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+.guarantee-header { max-width: 560px; margin-bottom: 3.5rem; }
+.guarantee-header h2 { color: var(--ink); }
+.guarantee-header p { color: var(--muted); font-size: 0.95rem; margin-top: 0.65rem; }
+
+.guarantee-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.gu-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.75rem 2.25rem;
+  border: 1.5px solid var(--border-mid);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  cursor: default;
+}
+.gu-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transform: scaleX(0); transform-origin: center;
+  transition: transform 0.35s ease;
+}
+.gu-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-bd);
+  box-shadow: var(--shadow);
+}
+.gu-card:hover::before { transform: scaleX(1); }
+
+.gu-icon {
+  width: 72px; height: 72px;
+  border-radius: var(--radius-lg);
+  background: var(--gold-bg);
+  border: 1.5px solid var(--gold-bd);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-deep);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  transition: background 0.28s, border-color 0.28s, transform 0.28s;
+}
+.gu-card:hover .gu-icon {
+  background: rgba(201,168,76,0.18);
+  border-color: var(--gold);
+  transform: scale(1.06);
+}
+.gu-card h3 {
+  font-size: 1.05rem; color: var(--ink);
+  margin-bottom: 0.7rem; font-weight: 700;
+  line-height: 1.3; letter-spacing: -0.01em;
+}
+.gu-card p {
+  font-size: 0.88rem; color: var(--muted);
+  line-height: 1.82; margin: 0;
+}
+
+/* Footer strip */
+.gu-footer {
+  margin-top: 2.5rem; padding: 1.1rem 1.75rem;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.gu-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.gu-pill {
+  font-size: 0.76rem; color: var(--ink); font-weight: 500;
+  border: 1.5px solid var(--border);
+  padding: 0.28rem 0.75rem; border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 0.38rem;
+  transition: border-color 0.2s, color 0.2s;
+  background: var(--white);
+}
+.gu-pill:hover { border-color: var(--gold); color: var(--gold-deep); }
+.gu-pill svg { color: var(--gold-deep); }
+.gu-footer-label { font-size: 0.82rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+
+/* ══════════════════════════════════════
+   BOTTOM FORM
+══════════════════════════════════════ */
+.bottom-form-section { background: var(--white); padding: 5.5rem 2.5rem; }
+.bottom-form-inner {
+  max-width: 820px; margin: 0 auto; text-align: center;
+}
+.bottom-form-inner h2 { color: var(--ink); margin-bottom: 0.75rem; }
+.bottom-form-inner .bfs-sub {
+  color: var(--muted); font-size: 0.95rem;
+  font-weight: 400; margin-bottom: 2.5rem; line-height: 1.75;
+}
+.bfc {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  box-shadow: var(--shadow);
+  text-align: left; position: relative;
+}
+.bfc::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.bfc-body { padding: 1.75rem 1.75rem 0.5rem; }
+.bfc-body iframe {
+  width: 100%; border: none; display: block;
+  height: 820px;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════
+   FAQ
+══════════════════════════════════════ */
+.faq-section { background: var(--off-white); padding: 5rem 2.5rem; }
+.faq-inner { max-width: 820px; margin: 0 auto; }
+.faq-header { margin-bottom: 2.5rem; }
+.faq-header h2 { color: var(--ink); }
+
+.faq-list {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--white);
+}
+.faq-item { border-bottom: 1px solid var(--border-mid); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  padding: 1.15rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--ink);
+  background: var(--white); transition: background 0.18s; user-select: none; gap: 1rem;
+}
+.faq-q:hover { background: var(--off-white); }
+.faq-item.open .faq-q { background: var(--off-white); color: var(--ink); }
+.faq-toggle {
+  width: 24px; height: 24px; flex-shrink: 0;
+  border-radius: 50%; border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold-deep); transition: transform 0.28s, border-color 0.28s;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); border-color: var(--gold); color: var(--gold); }
+.faq-body { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
+.faq-body-inner {
+  padding: 0.9rem 1.5rem 1.35rem;
+  font-size: 0.88rem; color: var(--muted); line-height: 1.85;
+  border-top: 1px solid var(--border-mid); background: var(--white);
+}
+.faq-body-inner ul { padding-left: 1rem; margin-top: 0.6rem; }
+.faq-body-inner li { margin-bottom: 0.35rem; color: var(--muted); }
+.faq-item.open .faq-body { max-height: 900px; }
+
+/* FAQ checklist rows */
+.faq-check-list { display: flex; flex-direction: column; gap: 0.45rem; margin: 0.6rem 0; }
+.faq-check-item {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+}
+.faq-check-item svg { color: var(--gold-deep); flex-shrink: 0; margin-top: 0.18rem; }
+.faq-sub-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--gold-deep);
+  margin: 0.85rem 0 0.4rem;
+}
+.faq-bullet-list { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.5rem 0; }
+.faq-bullet-item {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+}
+.faq-bullet-item::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0; margin-top: 0.52rem;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.site-footer {
+  background: var(--ink); padding: 2.25rem 2.5rem;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.5rem; text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-disc { font-size: 0.74rem; color: rgba(255,255,255,0.50); max-width: 580px; text-align: center; line-height: 1.65; }
+.footer-copy { font-size: 0.74rem; color: rgba(255,255,255,0.30); }
+
+/* ══════════════════════════════════════
+   SCROLL REVEAL + MOBILE ANIMATIONS
+══════════════════════════════════════ */
+
+/* Progress bar */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 600;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* Base reveal — fade + rise */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* Slide-from-left for section eyebrow+heading blocks on mobile */
+@media (max-width: 660px) {
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-left.in { opacity: 1; transform: none; }
+}
+
+/* Stagger parent */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.in > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+.stagger.in > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.08s; }
+.stagger.in > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.16s; }
+.stagger.in > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.24s; }
+.stagger.in > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.32s; }
+.stagger.in > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.40s; }
+
+/* Deadline row entrance — individual stagger */
+.deadline-row {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.2s;
+}
+.deadline-row.visible { opacity: 1; transform: none; }
+.deadline-row:nth-child(1) { transition-delay: 0s; }
+.deadline-row:nth-child(2) { transition-delay: 0.1s; }
+.deadline-row:nth-child(3) { transition-delay: 0.2s; }
+
+/* Package card entrance */
+.pkg-item {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.25s, box-shadow 0.25s;
+}
+.pkg-item.visible { opacity: 1; transform: none; }
+
+/* Countdown digit flip */
+@keyframes digitFlip {
+  0%   { transform: translateY(0);    opacity: 1; }
+  30%  { transform: translateY(-8px); opacity: 0; }
+  31%  { transform: translateY(8px);  opacity: 0; }
+  100% { transform: translateY(0);    opacity: 1; }
+}
+.cd-num.flip {
+  animation: digitFlip 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Trust cards entrance */
+.trust-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s, box-shadow 0.28s;
+}
+.trust-card.visible { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE — TABLET (≤1020px)
+══════════════════════════════════════ */
+@media (max-width: 1020px) {
+  section { padding: 3.75rem 1.5rem; }
+
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .act-inner  { grid-template-columns: 1fr !important; gap: 2rem; }
+
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .trust-grid .trust-card:nth-child(3) { grid-column: span 2; }
+
+  .pkg-grid { grid-template-columns: 1fr 1fr; }
+
+  .guarantee-layout { grid-template-columns: 1fr 1fr; }
+  .guarantee-layout .gu-card:nth-child(3) { grid-column: span 2; }
+  .gu-footer { flex-direction: column; align-items: flex-start; }
+
+  .process-track { grid-template-columns: 1fr; }
+  .process-track::before { display: none; }
+  .process-step { display: flex; align-items: flex-start; gap: 1.25rem; text-align: left; padding: 0; margin-bottom: 2rem; }
+  .ps-circle { flex-shrink: 0; margin: 0; }
+
+  .reviews-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MOBILE (≤660px)
+══════════════════════════════════════ */
+@media (max-width: 660px) {
+  /* Global — tighter vertical rhythm on mobile */
+  section { padding: 2.25rem 1rem; }
+  .wrap   { padding: 0 1rem; }
+
+  /* Header */
+  .site-header { padding: 0 1rem; height: 58px; }
+  .header-logo img { height: 36px; }
+  .header-cta { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+
+  /* Hero */
+  .hero { padding: 5rem 1rem 2.25rem; }
+  h1 { font-size: clamp(1.6rem, 6.5vw, 1.9rem); }
+  h2 { font-size: clamp(1.35rem, 5.5vw, 1.6rem); }
+  .hero-badge { font-size: 0.66rem; }
+  .hero-sub   { font-size: 0.90rem; }
+
+  /* Countdown — compact inline row, no full-width stretch */
+  .countdown { flex-direction: row; align-items: center; gap: 0.65rem; padding: 0.55rem 0.9rem; width: auto; display: inline-flex; }
+  .cd-units { gap: 0.3rem; }
+  .cd-num   { font-size: 0.95rem; min-width: 30px; }
+  .cd-lbl   { font-size: 0.52rem; }
+  .cd-colon { font-size: 1rem; }
+  .cd-label { font-size: 0.62rem; }
+
+  /* Hero CTAs — hide Call Us on mobile, form is the CTA */
+  .hero-list-item { font-size: 0.86rem; }
+  .hero-ctas { flex-direction: column; gap: 0.65rem; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-ctas .btn-gold { display: none; }
+
+  /* Hero form */
+  .hero-form-card { border-radius: var(--radius); }
+  .hfc-body { padding: 0.9rem 0.9rem 0.75rem; }
+  .hfc-body iframe { height: 908px; }
+  .hfc-title { font-size: 0.92rem; }
+
+  /* Marquee */
+  .marquee-item { font-size: 0.66rem; padding: 0 1.5rem; gap: 0.6rem; }
+
+  /* Act / Why now */
+  .act-section { padding: 2.25rem 1rem; }
+  .act-header { margin-bottom: 1.5rem; }
+  .deadline-row { padding: 0.85rem 1rem; gap: 0.85rem; }
+  .dl-icon { width: 30px; height: 30px; }
+  .dl-icon svg { width: 12px; height: 12px; }
+  .dl-year { font-size: 0.67rem; }
+  .dl-desc { font-size: 0.84rem; }
+  .dl-tag { font-size: 0.62rem; padding: 0.2rem 0.55rem; }
+  .act-points { gap: 0.65rem; }
+  .act-image-col { margin-top: 1.5rem; }
+  .act-img-wrap img { max-height: 260px; object-position: center 20%; }
+
+  /* Trust grid */
+  .trust-section { padding: 2.25rem 1rem; }
+  .trust-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+  .trust-grid .trust-card:nth-child(3) { grid-column: span 1; }
+  .trust-card { padding: 1.5rem 1.25rem 1.25rem; }
+  .trust-header { margin-bottom: 1.75rem; }
+
+  /* Package — 2×3 grid on mobile */
+  .package-section { padding: 2.25rem 1rem; }
+  .pkg-header { margin-bottom: 1.75rem; }
+  .pkg-grid {
+    display: block;
+    margin-bottom: 0;
+    padding-bottom: 4.5rem;
+  }
+  .pkg-item {
+    padding: 1rem 0.9rem;
+    gap: 0.65rem;
+    position: sticky;
+    top: 4.6rem;
+    margin-top: -0.35rem;
+    box-shadow: 0 18px 34px rgba(16, 24, 32, 0.08);
+  }
+  .pkg-item:first-child { margin-top: 0; }
+  .pkg-item:nth-child(1) { z-index: 1; }
+  .pkg-item:nth-child(2) { z-index: 2; }
+  .pkg-item:nth-child(3) { z-index: 3; }
+  .pkg-item:nth-child(4) { z-index: 4; }
+  .pkg-item:nth-child(5) { z-index: 5; }
+  .pkg-item:nth-child(6) { z-index: 6; }
+  .pkg-item + .pkg-item { margin-top: 1rem; }
+  .pkg-item--placement {
+    padding-right: 0.9rem;
+    position: sticky;
+  }
+  .placement-hint {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    align-self: unset;
+    margin-bottom: 0;
+    animation: none;
+    pointer-events: none;
+  }
+  .pkg-check { width: 36px; height: 36px; }
+  .pkg-check svg { width: 16px; height: 16px; }
+  .pkg-item-body h4 { font-size: 0.86rem; font-weight: 700; }
+  .pkg-item-body p  { font-size: 0.78rem; line-height: 1.55; }
+  .pkg-cta-strip { flex-direction: column; align-items: stretch; padding: 1.25rem 1rem; margin-top: 1rem; }
+  .pkg-cta-strip .btn-gold { width: 100%; justify-content: center; }
+
+  /* Process */
+  .process-section { padding: 2.25rem 1rem; }
+  .process-header { margin-bottom: 2rem; }
+  .process-step { gap: 1rem; margin-bottom: 1.25rem; }
+  .ps-circle { width: 48px; height: 48px; }
+  .ps-title { font-size: 0.92rem; }
+  .ps-desc  { font-size: 0.84rem; }
+
+  /* Guarantee — single column */
+  .guarantee-section { padding: 2.25rem 1rem 2.75rem; }
+  .guarantee-header { margin-bottom: 1.75rem; }
+  .guarantee-layout { grid-template-columns: 1fr !important; gap: 0.65rem; }
+  .guarantee-layout .gu-card:nth-child(3) { grid-column: span 1 !important; }
+  .gu-card { padding: 1.5rem 1.25rem 1.25rem; }
+  .gu-icon { width: 54px; height: 54px; margin-bottom: 1rem; border-radius: var(--radius); }
+  .gu-card h3 { font-size: 1rem; }
+  .gu-card p  { font-size: 0.85rem; }
+  .gu-footer { padding: 0.85rem 1.1rem; flex-direction: column; align-items: flex-start; margin-top: 1.5rem; }
+  .gu-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .gu-pill { justify-content: flex-start; }
+
+  /* Bottom form */
+  .bottom-form-section { padding: 2.25rem 1rem; }
+  .bfc-body { padding: 1rem 1rem 0.5rem; }
+  .bfc-body iframe { height: 810px; }
+
+  /* Reviews */
+  .testimonials-section { padding: 2.25rem 1rem; }
+  .testimonials-header { margin-bottom: 1.5rem; }
+  .rating-bar { margin-bottom: 1.5rem; }
+  .reviews-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .review-card { padding: 0.9rem 0.8rem; gap: 0.5rem; }
+  .review-text { font-size: 0.76rem; line-height: 1.6; }
+  .review-name { font-size: 0.76rem; }
+  .review-source { font-size: 0.64rem; }
+  .review-stars svg { width: 11px; height: 11px; }
+
+  /* FAQ */
+  .faq-section { padding: 2.25rem 1rem; }
+  .faq-header { margin-bottom: 1.5rem; }
+  .faq-q { font-size: 0.88rem; padding: 1rem 1.1rem; }
+  .faq-body-inner { padding: 0.75rem 1.1rem 1rem; font-size: 0.84rem; }
+
+  /* Footer */
+  .site-footer { padding: 1.5rem 1rem; flex-direction: column; text-align: center; }
+  .footer-disc { font-size: 0.70rem; max-width: 100%; }
+}
+/* ══════════════════════════════════════
+   PLACEMENT GUIDE MODAL
+══════════════════════════════════════ */
+
+/* The clickable card gets a special treatment */
+.pkg-item--placement {
+  cursor: pointer;
+  position: relative;
+}
+.pkg-item--placement:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.15), var(--shadow);
+}
+
+/* Hint badge — pulses to invite click */
+.placement-hint {
+  position: absolute;
+  top: 0.65rem; right: 0.65rem;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 0.58rem; font-weight: 800;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  animation: hintPulse 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+.placement-hint-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--ink); flex-shrink: 0;
+  animation: hintDot 2.2s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.65; transform: scale(0.94); }
+}
+@keyframes hintDot {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.6); }
+}
+
+/* Modal overlay */
+.placement-modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  padding: 1.5rem;
+  animation: overlayIn 0.22s ease;
+}
+.placement-modal-overlay.open {
+  display: flex;
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Modal box */
+.placement-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 880px; width: 100%;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.40);
+  position: relative;
+  overflow: hidden;
+  animation: modalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Gold top bar */
+.placement-modal::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+}
+
+.placement-modal-header {
+  padding: 1.25rem 1.5rem 0.85rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border-mid);
+}
+.placement-modal-title {
+  font-size: 1rem; font-weight: 700; color: var(--ink);
+}
+.placement-modal-sub {
+  font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem;
+}
+
+/* Close button */
+.placement-close {
+  width: 34px; height: 34px; flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted);
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  margin-left: 1rem;
+}
+.placement-close:hover {
+  background: var(--ink); color: var(--white); border-color: var(--ink);
+}
+
+/* Image container */
+.placement-modal-img {
+  display: block; width: 100%; height: auto;
+  max-height: 72vh; object-fit: contain;
+  background: var(--off-white);
+  padding: 1rem;
+}
+
+@media (max-width: 660px) {
+  .placement-modal-overlay { padding: 1rem; align-items: center; }
+  .placement-modal { border-radius: var(--radius-lg); max-height: 88vh; overflow-y: auto; }
+  .placement-modal-img { max-height: 55vh; }
+  .pkg-item--placement {
+    padding-right: 0.9rem;
+    position: sticky;
+  }
+  .pkg-item--placement .placement-hint {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    align-self: unset;
+    margin-bottom: 0;
+    font-size: 0.52rem;
+    animation: none;
+  }
+  .pkg-item--placement .placement-hint-dot {
+    animation: none;
+  }
+}
+
+/* ── Typing Headline ── */
+#hero-headline { min-height: 1.15em; }
+.type-cursor {
+  display: inline-block;
+  width: 2px; height: 0.88em;
+  background: var(--ink);
+  vertical-align: middle;
+  margin-left: 2px;
+  border-radius: 1px;
+  animation: cursorBlink 0.7s step-end infinite;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.type-qmark {
+  display: inline-block;
+  animation: qmarkBeep 0.55s ease-in-out 3;
+  animation-fill-mode: forwards;
+}
+@keyframes qmarkBeep {
+  0%   { transform: scale(1);    color: inherit; }
+  30%  { transform: scale(1.45); color: var(--gold); }
+  60%  { transform: scale(0.9);  color: var(--gold-deep); }
+  100% { transform: scale(1);    color: inherit; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SCROLL PROGRESS BAR ══ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header">
+  <a href="/smoke-alarm" class="header-logo">
+    <img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure">
+  </a>
+  <a href="tel:0721455155" class="header-cta">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013 10.81 19.8 19.8 0 01-.07 2.17 2 2 0 011.91 0h3a2 2 0 012 1.72 12.8 12.8 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.8 12.8 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    (07) 2145 5155
+  </a>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="book">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="pulse"></span>
+        QLD Compliance Deadline: 1 January 2027
+      </div>
+
+      <h1 id="hero-headline">Are Your Smoke Alarms <span class="gold">Compliant</span> with Queensland's Law?</h1>
+      <p class="hero-sub">Older alarms may not meet current QLD requirements. Goldsure installs compliant photoelectric smoke alarms, replacing existing hard-wired alarms with hard-wired units and using battery-operated alarms for new installations where appropriate. A Certificate of Compliance is issued on the day.</p>
+
+      <!-- Countdown -->
+      <div class="countdown">
+        <span class="cd-label">Time to deadline</span>
+        <div class="cd-units">
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-d">000</span>
+            <span class="cd-lbl">Days</span>
+          </div>
+          <span class="cd-colon">:</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-h">00</span>
+            <span class="cd-lbl">Hours</span>
+          </div>
+          <span class="cd-colon">:</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-m">00</span>
+            <span class="cd-lbl">Mins</span>
+          </div>
+          <span class="cd-colon">:</span>
+          <div class="cd-unit">
+            <span class="cd-num" id="cd-s">00</span>
+            <span class="cd-lbl">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-list">
+        <div class="hero-list-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Photoelectric, interconnected alarms to AS 3786 standard
+        </div>
+        <div class="hero-list-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Hard-wired alarms installed by fully licensed QLD electricians
+        </div>
+        <div class="hero-list-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Certificate of Compliance issued on the day
+        </div>
+       </div>
+
+      <div class="hero-ctas">
+        <a href="tel:0721455155" class="btn btn-gold">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013 10.81 19.8 19.8 0 01-.07 2.17 2 2 0 011.91 0h3a2 2 0 012 1.72 12.8 12.8 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.8 12.8 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call Us
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="hero-form-card">
+      <div class="hfc-body">
+        <div class="hfc-header">
+          <div class="hfc-title">Get a Free Quote</div>
+          <div class="hfc-sub">We'll confirm your requirements and provide pricing within 24 hours.</div>
+        </div>
+        <div class="hfc-clip">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/HApM0TGgenKKKOjPzsxB"
+            id="hero-iframe"
+            name="form-7JO-0ZuQsl"
+            title="Book Your Installation"
+            data-form-id="HApM0TGgenKKKOjPzsxB"
+          ></iframe>
+        </div>
+        <div class="form-note">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Secure and confidential. No obligation.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item highlight"> QLD Compliance Deadline: 1 January 2027 <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Photoelectric Alarms Required <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Hard-Wired alarms installed by Licensed Electricians <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Certificate of Compliance on Completion <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Interconnected in All Bedrooms and Hallways <span class="marquee-sep">/</span></span>
+    <span class="marquee-item highlight"> QLD Compliance Deadline: 1 January 2027 <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Photoelectric Alarms Required <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Hard-Wired by Licensed Electricians <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Certificate of Compliance on Completion <span class="marquee-sep">/</span></span>
+    <span class="marquee-item">Interconnected in All Bedrooms and Hallways <span class="marquee-sep">/</span></span>
+  </div>
+</div>
+
+<!-- ══ WHY ACT NOW ══ -->
+<section class="act-section">
+  <div class="wrap">
+    <div class="act-header reveal">
+      <div class="eyebrow">Why Act Now</div>
+      <h2>Non-Compliant Smoke Alarms Can Cost You - Deadline 1 Jan 2027</h2>
+    </div>
+    <div class="act-inner">
+      <div class="act-left reveal">
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.8;">Queensland's smoke alarm legislation requires photoelectric, interconnected, hard-wired alarms in every home. Many older installations no longer meet the current standard.</p>
+
+        <div class="deadline-rows">
+          <div class="deadline-row passed">
+            <div class="dl-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="dl-content">
+              <span class="dl-year">1 Jan 2022</span>
+              <span class="dl-desc">Homes being sold or leased</span>
+            </div>
+            <span class="dl-tag dl-tag-passed">Passed</span>
+          </div>
+          <div class="deadline-row passed">
+            <div class="dl-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="dl-content">
+              <span class="dl-year">1 Jul 2024</span>
+              <span class="dl-desc">Caravans and motorhomes</span>
+            </div>
+            <span class="dl-tag dl-tag-passed">Passed</span>
+          </div>
+          <div class="deadline-row active">
+            <div class="dl-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="dl-content">
+              <span class="dl-year">1 Jan 2027</span>
+              <span class="dl-desc">All remaining dwellings</span>
+            </div>
+            <span class="dl-tag dl-tag-active">Approaching</span>
+          </div>
+        </div>
+
+        <div class="act-points" style="margin-top:1.5rem;">
+          <div class="act-point">
+            <div class="act-point-dot">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Non-compliance at sale can result in a <strong>0.15% purchase price reduction</strong> at settlement</span>
+          </div>
+          <div class="act-point">
+            <div class="act-point-dot">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Queensland Fire Department can issue Penalty Infringement Notices for non-compliant homes</span>
+          </div>
+          <div class="act-point">
+            <div class="act-point-dot">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <span>Installation slots are booking up. Early action avoids last-minute delays and rushed installs.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <a href="#book" class="btn btn-gold">
+            Book Your Installation
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="act-image-col reveal">
+        <div class="act-img-wrap">
+          <img src="https://portal.goldsure.com.au/assets/goldsure-technician.png" alt="Goldsure licensed electrician holding Raptor smoke alarm outside Queensland home">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PACKAGE ══ -->
+<section class="package-section" id="package">
+  <div class="package-inner">
+    <div class="pkg-header reveal">
+      <div class="eyebrow" style="color:var(--gold-deep)">What's Included</div>
+      <h2 style="color:var(--ink);">Your All-Inclusive Compliance Package</h2>
+      <p>Everything required to bring your Queensland home to full smoke alarm compliance, handled end to end.</p>
+    </div>
+
+    <div class="pkg-grid reveal">
+
+      <div class="pkg-item">
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>Photoelectric Smoke Alarms</h4>
+          <p>Interconnected alarms compliant with AS 3786-2014 or AS 3786-2023, as required by QLD legislation.</p>
+        </div>
+      </div>
+
+      <div class="pkg-item">
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>Licensed Electrician Installation</h4>
+          <p>Hard-wired at 240V by a fully licensed Queensland electrician. No unlicensed installs.</p>
+        </div>
+      </div>
+
+      <div class="pkg-item pkg-item--placement" onclick="openPlacementModal()" title="Click to see placement guide">
+        <span class="placement-hint"><span class="placement-hint-dot"></span>View Guide</span>
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>Correct Placement Throughout</h4>
+          <p>Every bedroom, every connecting hallway, and each storey placed to QLD requirements.</p>
+        </div>
+      </div>
+
+      <div class="pkg-item">
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>10-Year Non-Replaceable Battery</h4>
+          <p>Included in all installed alarms as required by current Queensland smoke alarm legislation.</p>
+        </div>
+      </div>
+
+      <div class="pkg-item">
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>Certificate of Compliance</h4>
+          <p>Issued on the day of installation. Clear documentation for your records and future property transactions.</p>
+        </div>
+      </div>
+
+      <div class="pkg-item">
+        <div class="pkg-check">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="pkg-item-body">
+          <h4>Quotes Provided Upfront</h4>
+          <p>Upfront pricing based on the details provided, with final requirements and pricing confirmed on site by a licensed electrician.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section class="process-section">
+  <div class="process-inner">
+    <div class="process-header reveal">
+      <div class="eyebrow">Our Process</div>
+      <h2>Our 3-Step "We Do It All For You" Process</h2>
+      <p>From first enquiry to a fully certified install, we take care of every step.</p>
+    </div>
+    <div class="process-track stagger">
+
+      <div class="process-step">
+        <div class="ps-circle"><span class="ps-num">01</span></div>
+        <div>
+          <div class="ps-title">Confirm Your Requirements</div>
+          <div class="ps-desc">A quick call to confirm exactly what your home needs under Queensland's current smoke alarm standards. No guesswork.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="ps-circle"><span class="ps-num">02</span></div>
+        <div>
+          <div class="ps-title">Book and Install</div>
+          <div class="ps-desc">Choose a time that suits you. Our licensed electricians complete the full installation at every required location.</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="ps-circle"><span class="ps-num">03</span></div>
+        <div>
+          <div class="ps-title">Receive Your Certificate</div>
+          <div class="ps-desc">Your Certificate of Compliance is issued on the same day, clear, documented, and ready for your records.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GUARANTEE ══ -->
+<section class="guarantee-section">
+  <div class="guarantee-inner">
+    <div class="guarantee-header reveal">
+      <div class="eyebrow" style="color:var(--gold)">Peace of Mind</div>
+      <h2>The Goldsure Guarantee</h2>
+      <p style="font-size:0.95rem;margin-top:0.6rem;color:var(--muted);">Every Goldsure installation comes with a clear set of commitments to you.</p>
+    </div>
+
+    <div class="guarantee-layout stagger">
+      <div class="gu-card">
+        <div class="gu-icon">
+          <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>The Right Compliance for Your Home</h3>
+        <p>We ensure your installation meets all current Queensland requirements. No shortcuts, no ambiguity, no guesswork on placement or product type.</p>
+      </div>
+      <div class="gu-card">
+        <div class="gu-icon">
+          <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="11" y2="17"/></svg>
+        </div>
+        <h3>Certificate and Compliance Guarantee</h3>
+        <p>Your Certificate of Compliance is issued on completion, clearly documented and recorded. Your paper trail is fully handled.</p>
+      </div>
+      <div class="gu-card">
+        <div class="gu-icon">
+          <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>The Professional Install Promise</h3>
+        <p>Licensed professionals only. Installed correctly the first time. We do not cut corners and we do not subcontract to unlicensed operators.</p>
+      </div>
+    </div><!-- /.guarantee-layout -->
+
+    <div class="gu-footer reveal">
+      <span class="gu-footer-label">Every installation includes:</span>
+      <div class="gu-pills">
+        <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Certified Products</span>
+        <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Licensed Electricians</span>
+        <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Same-Day Certificate</span>
+        <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>QLD-Specific Assessment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BOTTOM FORM ══ -->
+<section class="bottom-form-section" id="get-started">
+  <div class="bottom-form-inner">
+    <div class="eyebrow" style="color:var(--gold)">Get Compliant</div>
+    <h2>Secure Your Compliance Before the 2027 Deadline</h2>
+    <p class="bfs-sub">A licensed professional will review your property and confirm exactly what is needed. Book now and we handle everything from assessment through to certification.</p>
+    <div class="bfc reveal">
+      <div class="bfc-body">
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/rVYCfxI9xEn7hwVcMRNp"
+          id="bottom-iframe"
+          title="Get Compliant Now"
+          scrolling="no"
+        ></iframe>
+        <div class="form-note" style="margin-top:0.75rem;color:var(--muted);">
+          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Secure and confidential. No obligation.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+
+    <div class="testimonials-header reveal">
+      <div class="eyebrow" style="color:var(--gold)">What Customers Say</div>
+      <h2 style="color:var(--ink)">Trusted by Queensland Homeowners</h2>
+    </div>
+
+    <div class="rating-bar reveal">
+      <div class="rating-bar-inner">
+        <span class="rating-score">4.8</span>
+        <div class="rating-stars-sm">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="rating-divider"></div>
+        <span class="rating-count">Google Rating</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid stagger">
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking — cost was very reasonable."</p>
+        <div class="review-footer">
+          <span class="review-name">Alastair Anderson</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Called to enquire about making my home smoke alarm compliant. The process was easy, electrician came, installed 5 new smoke alarms. Very happy."</p>
+        <div class="review-footer">
+          <span class="review-name">Liam McLeod</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Goldsure made getting our smoke alarms installed super easy — great communication, quick install, top job. Highly recommend!"</p>
+        <div class="review-footer">
+          <span class="review-name">Samantha Maristela</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Excellent service with quick response to my enquiries. Adam the electrician was very professional and helpful. He also left no mess! Happy to recommend Goldsure and Adam."</p>
+        <div class="review-footer">
+          <span class="review-name">Heidi Closter</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"The guys were great, they were on time and called prior to arrival. They also did a great job and were very quick. And pleasant to talk to. Well Done!!!"</p>
+        <div class="review-footer">
+          <span class="review-name">John Andrews</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Adam, who attended the job was efficient, friendly and respectful. I would thoroughly recommend him."</p>
+        <div class="review-footer">
+          <span class="review-name">Mark Bowes</span>
+          <span class="review-source"><span class="g-badge">G</span>Google Review</span>
+        </div>
+      </div>
+
+    </div><!-- /.reviews-grid -->
+
+    <!-- Mobile auto-flip carousel — shows 2 cards per frame -->
+    <div class="reviews-carousel" aria-label="Customer reviews carousel">
+      <div class="reviews-carousel-track" id="reviewsTrack">
+
+        <!-- Slide 1 -->
+        <div class="reviews-slide">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking — cost was very reasonable."</p>
+            <div class="review-footer">
+              <span class="review-name">Alastair Anderson</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"Called to enquire about making my home smoke alarm compliant. The process was easy, electrician came, installed 5 new smoke alarms. Very happy."</p>
+            <div class="review-footer">
+              <span class="review-name">Liam McLeod</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="reviews-slide">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"Goldsure made getting our smoke alarms installed super easy — great communication, quick install, top job. Highly recommend!"</p>
+            <div class="review-footer">
+              <span class="review-name">Samantha Maristela</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"Excellent service with quick response to my enquiries. Adam the electrician was very professional and helpful. He also left no mess! Happy to recommend Goldsure and Adam."</p>
+            <div class="review-footer">
+              <span class="review-name">Heidi Closter</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="reviews-slide">
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"The guys were great, they were on time and called prior to arrival. They also did a great job and were very quick. And pleasant to talk to. Well Done!!!"</p>
+            <div class="review-footer">
+              <span class="review-name">John Andrews</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="review-text">"Adam, who attended the job was efficient, friendly and respectful. I would thoroughly recommend him."</p>
+            <div class="review-footer">
+              <span class="review-name">Mark Bowes</span>
+              <span class="review-source"><span class="g-badge">G</span>Google</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.reviews-carousel-track -->
+      <div class="reviews-dots" id="reviewsDots">
+        <button class="reviews-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="reviews-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="reviews-dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+    </div><!-- /.reviews-carousel -->
+  </div><!-- /.testimonials-inner -->
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          What are the Queensland smoke alarm requirements?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">To comply with Queensland legislation, smoke alarms must:</p>
+          <div class="faq-check-list">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be photoelectric (not ionisation type)</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Comply with AS 3786-2014 or AS 3786-2023</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be interconnected — when one alarm sounds, all alarms sound</div>
+          </div>
+          <div class="faq-sub-label">Be installed:</div>
+          <div class="faq-check-list">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>In every bedroom</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>In hallways connecting bedrooms to the rest of the dwelling</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>If there is no hallway, between the bedrooms and other parts of the storey</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>On each storey of the dwelling</div>
+          </div>
+          <div class="faq-sub-label">Power source (either):</div>
+          <div class="faq-check-list">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Hard-wired (240V) with a non-removable 10-year battery backup</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Powered by a 10-year non-removable battery</div>
+          </div>
+          <div class="faq-check-list" style="margin-top:0.5rem;">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be less than 10 years old</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Operate correctly when tested</div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          What is the Queensland smoke alarm compliance deadline?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <div class="faq-bullet-list">
+            <div class="faq-bullet-item"><strong style="color:var(--ink);min-width:100px;">1 Jan 2022</strong> Homes being sold or leased</div>
+            <div class="faq-bullet-item"><strong style="color:var(--ink);min-width:100px;">1 Jul 2024</strong> Caravans and motorhomes being transferred</div>
+            <div class="faq-bullet-item"><strong style="color:var(--gold);min-width:100px;">1 Jan 2027</strong> All remaining dwellings</div>
+          </div>
+          <p style="margin-top:0.75rem;">All homes must meet the updated smoke alarm requirements by 1 January 2027.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          Who does the Queensland smoke alarm legislation affect?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">The legislation applies to:</p>
+          <div class="faq-bullet-list">
+            <div class="faq-bullet-item">Class 1a buildings (houses and townhouses)</div>
+            <div class="faq-bullet-item">Class 2 buildings (units and apartments)</div>
+            <div class="faq-bullet-item">Caravans and motorhomes</div>
+          </div>
+          <p style="margin-top:0.75rem;">It does not apply to short-term stay buildings such as motels, which are covered by the National Construction Code (NCC).</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          How many smoke alarms are required in a Queensland home?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">The number required depends on the layout of the dwelling. Smoke alarms must be installed:</p>
+          <div class="faq-bullet-list">
+            <div class="faq-bullet-item">In every bedroom</div>
+            <div class="faq-bullet-item">In hallways connecting bedrooms to the rest of the dwelling</div>
+            <div class="faq-bullet-item">If there is no hallway, between the bedrooms and other parts of the storey</div>
+            <div class="faq-bullet-item">On each storey of the dwelling</div>
+          </div>
+          <p style="margin-top:0.75rem;">All required alarms must be interconnected. Our team assesses your specific property as part of every booking.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          Do smoke alarms need to be photoelectric and interconnected in Queensland?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">Yes. Under Queensland legislation, required smoke alarms must:</p>
+          <div class="faq-bullet-list">
+            <div class="faq-bullet-item">Be photoelectric and must not contain an ionisation sensor</div>
+            <div class="faq-bullet-item">Comply with AS 3786-2014 or AS 3786-2023</div>
+            <div class="faq-bullet-item">Be interconnected so that when one alarm detects smoke, all alarms in the dwelling sound simultaneously</div>
+          </div>
+          <p style="margin-top:0.75rem;">Ionisation smoke alarms do not meet the updated Queensland requirements and must be replaced to achieve compliance.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          What type of smoke alarm is required in Queensland?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">Smoke alarms must:</p>
+          <div class="faq-check-list">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be photoelectric, not ionisation type</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Comply with AS 3786-2014 or AS 3786-2023</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be interconnected</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be either hard-wired 240V with battery backup, or powered by a 10-year non-removable battery</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be less than 10 years old</div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          Do I need a licensed electrician to install smoke alarms?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p>Yes. Smoke alarms that are hard-wired at 240V must be installed by a licensed electrician under Queensland law. All Goldsure installations are completed by fully licensed electricians — no exceptions.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          What happens if my home is not compliant?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">If a property is sold without compliant smoke alarms:</p>
+          <div class="faq-bullet-list">
+            <div class="faq-bullet-item">The buyer may claim a 0.15% reduction of the purchase price at settlement</div>
+            <div class="faq-bullet-item">The Queensland Fire Department may issue Penalty Infringement Notices (PINs)</div>
+            <div class="faq-bullet-item">The Queensland Police Service may pursue charges for non-compliance</div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="faqToggle(this)">
+          How do I check if my smoke alarms are compliant?
+          <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        </div>
+        <div class="faq-body"><div class="faq-body-inner">
+          <p style="margin-bottom:0.6rem;">You can check:</p>
+          <div class="faq-check-list">
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether alarms are photoelectric</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>The date of manufacture — must be less than 10 years old</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether alarms are interconnected</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether placement meets legislative requirements</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>A licensed installer can assess compliance and provide documentation where required</div>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PLACEMENT GUIDE MODAL ══ -->
+<div class="placement-modal-overlay" id="placementModal" onclick="closePlacementModalOutside(event)">
+  <div class="placement-modal">
+    <div class="placement-modal-header">
+      <div>
+        <div class="placement-modal-title">QLD Smoke Alarm Placement Guide</div>
+        <div class="placement-modal-sub">Interconnected alarms required in every bedroom, hallway and on each storey</div>
+      </div>
+      <button class="placement-close" onclick="closePlacementModal()" aria-label="Close">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <img
+      class="placement-modal-img"
+      src="https://portal.goldsure.com.au/assets/Smoke%20Alarm%20Placement%20Guide.png"
+      alt="Queensland smoke alarm placement guide showing required locations in a two-storey home"
+    >
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-disc">This is an estimated quote based on information provided at the time of enquiry. Compliance requirements may vary based on individual property assessments conducted by a licensed professional.</div>
+  <div class="footer-copy">&copy; 2026 Goldsure Pty Ltd</div>
+</footer>
+
+<script>
+/* ── Scroll progress bar ── */
+(function () {
+  var bar = document.getElementById('scrollProgress');
+  if (!bar) return;
+  function update() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (docH > 0 ? (scrollTop / docH) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ── Countdown to 1 Jan 2027 with digit flip ── */
+(function () {
+  var deadline = new Date('2027-01-01T00:00:00');
+  var dEl = document.getElementById('cd-d');
+  var hEl = document.getElementById('cd-h');
+  var mEl = document.getElementById('cd-m');
+  var sEl = document.getElementById('cd-s');
+  var prev = { d: null, h: null, m: null, s: null };
+
+  function pad(n, len) { return String(n).padStart(len || 2, '0'); }
+
+  function flipIfChanged(el, newVal, key) {
+    if (prev[key] !== newVal) {
+      el.textContent = newVal;
+      el.classList.remove('flip');
+      void el.offsetWidth; /* reflow to restart animation */
+      el.classList.add('flip');
+      prev[key] = newVal;
+    }
+  }
+
+  function tick() {
+    var now  = new Date();
+    var diff = deadline - now;
+    if (diff <= 0) {
+      dEl.textContent = '000'; hEl.textContent = '00';
+      mEl.textContent = '00';  sEl.textContent = '00';
+      return;
+    }
+    flipIfChanged(dEl, pad(Math.floor(diff / 86400000), 3),    'd');
+    flipIfChanged(hEl, pad(Math.floor((diff % 86400000) / 3600000)), 'h');
+    flipIfChanged(mEl, pad(Math.floor((diff % 3600000) / 60000)),    'm');
+    flipIfChanged(sEl, pad(Math.floor((diff % 60000) / 1000)),       's');
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── Unified scroll-triggered animations ── */
+(function () {
+  var isMobile = window.innerWidth <= 660;
+
+  /* Standard reveals (.reveal, .stagger) */
+  var revealObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: isMobile ? 0.05 : 0.07 });
+  document.querySelectorAll('.reveal, .stagger').forEach(function (el) {
+    revealObs.observe(el);
+  });
+
+  /* reveal-left — section headers on mobile */
+  if (isMobile) {
+    document.querySelectorAll('.act-header, .pkg-header, .process-header, .guarantee-header, .faq-header, .testimonials-header, .trust-header').forEach(function (el) {
+      el.classList.add('reveal-left');
+    });
+    var leftObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); leftObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal-left').forEach(function (el) { leftObs.observe(el); });
+  }
+
+  /* Deadline rows — staggered slide-in */
+  var dlRows = document.querySelectorAll('.deadline-row');
+  if (dlRows.length) {
+    var dlObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          dlObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    dlRows.forEach(function (row) { dlObs.observe(row); });
+  }
+
+  /* Package items — staggered pop-in */
+  var pkgItems = document.querySelectorAll('.pkg-item');
+  if (pkgItems.length) {
+    var pkgObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          /* delay per item index */
+          var idx = Array.from(pkgItems).indexOf(e.target);
+          setTimeout(function () { e.target.classList.add('visible'); }, idx * 60);
+          pkgObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
+    pkgItems.forEach(function (item) { pkgObs.observe(item); });
+  }
+
+  /* Trust cards — staggered */
+  var trustCards = document.querySelectorAll('.trust-card');
+  if (trustCards.length) {
+    var trustObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var idx = Array.from(trustCards).indexOf(e.target);
+          setTimeout(function () { e.target.classList.add('visible'); }, idx * 80);
+          trustObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    trustCards.forEach(function (card) { trustObs.observe(card); });
+  }
+})();
+
+/* ── Reviews Carousel (mobile auto-flip) ── */
+(function () {
+  var track = document.getElementById('reviewsTrack');
+  var dots  = document.querySelectorAll('.reviews-dot');
+  if (!track || !dots.length) return;
+
+  var total   = dots.length;
+  var current = 0;
+  var timer;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(function () { goTo(current + 1); }, 4000);
+  }
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(dot.getAttribute('data-slide')));
+      startAuto();
+    });
+  });
+
+  var startX = 0;
+  track.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX; clearInterval(timer);
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    startAuto();
+  }, { passive: true });
+
+  if (window.innerWidth <= 660) startAuto();
+  window.addEventListener('resize', function () {
+    clearInterval(timer);
+    if (window.innerWidth <= 660) startAuto();
+  });
+})();
+
+/* ── FAQ ── */
+function faqToggle(el) {
+  var item = el.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Iframe auto-resize — no internal scrollbars ── */
+(function () {
+  /* visible area = iframe height − clip-offset (178px)
+     GHL form content ≈ 820px → floor = 178 + 820 + 60 buffer = 1058 */
+  var HERO_FLOOR   = 898;
+  var BOTTOM_FLOOR = 810;
+
+  function setHeight(id, h) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var floor = id === 'hero-iframe' ? HERO_FLOOR : BOTTOM_FLOOR;
+    var next  = Math.max(h, floor);
+    if (parseInt(el.style.height, 10) !== next) {
+      el.style.height = next + 'px';
+    }
+  }
+
+  /* Set floors immediately */
+  setHeight('hero-iframe',   HERO_FLOOR);
+  setHeight('bottom-iframe', BOTTOM_FLOOR);
+
+  /* postMessage from GHL embed */
+  window.addEventListener('message', function (e) {
+    if (!e.data) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
+    var raw = d.height || d.iframeHeight || d.frameHeight || d.scrollHeight || 0;
+    var h   = parseInt(raw, 10);
+    if (!h || isNaN(h) || h < 100) return;
+    setHeight('hero-iframe',   h + 178 + 40);
+    setHeight('bottom-iframe', h + 40);
+  });
+
+  /* Poll — same-origin read attempt (silently fails cross-origin) */
+  function poll() {
+    ['hero-iframe', 'bottom-iframe'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      try {
+        var doc = el.contentDocument || (el.contentWindow && el.contentWindow.document);
+        if (doc && doc.body) {
+          var sh = doc.body.scrollHeight;
+          if (sh > 100) setHeight(id, id === 'hero-iframe' ? sh + 178 + 40 : sh + 40);
+        }
+      } catch (err) { /* cross-origin — expected */ }
+    });
+  }
+
+  /* Frequent polling for first 15s, then every 3s */
+  var ticks = 0;
+  var fastPoll = setInterval(function () {
+    poll();
+    if (++ticks >= 30) {
+      clearInterval(fastPoll);
+      setInterval(poll, 3000);
+    }
+  }, 500);
+})();
+/* ── Placement Guide Modal ── */
+function openPlacementModal() {
+  var modal = document.getElementById('placementModal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePlacementModal() {
+  var modal = document.getElementById('placementModal');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closePlacementModalOutside(e) {
+  if (e.target === document.getElementById('placementModal')) {
+    closePlacementModal();
+  }
+}
+/* Close on Escape key */
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closePlacementModal();
+});
+/* ── Typing Headline Animation ── */
+(function () {
+  var el = document.getElementById('hero-headline');
+  if (!el) return;
+
+  // Clear static fallback before typing begins
+  el.innerHTML = '';
+
+  var segments = [
+    { text: 'Are Your Smoke Alarms ' },
+    { text: 'Compliant', cls: 'gold' },
+    { text: "\u00A0with Queensland\u2019s Law" }
+  ];
+
+  var chars = [];
+  segments.forEach(function (seg) {
+    seg.text.split('').forEach(function (ch) {
+      chars.push({ ch: ch, cls: seg.cls || null });
+    });
+  });
+
+  var cursor = document.createElement('span');
+  cursor.className = 'type-cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  el.appendChild(cursor);
+
+  var idx = 0;
+
+  function typeNext() {
+    if (idx < chars.length) {
+      var item = chars[idx];
+      if (item.cls) {
+        var span = el.querySelector('span.' + item.cls + ':last-of-type');
+        if (!span || span._done) {
+          span = document.createElement('span');
+          span.className = item.cls;
+          el.insertBefore(span, cursor);
+        }
+        span.textContent += item.ch;
+      } else {
+        var prev = cursor.previousSibling;
+        if (prev && prev.nodeType === 3 && prev._typed) {
+          prev.textContent += item.ch;
+        } else {
+          var tn = document.createTextNode(item.ch);
+          tn._typed = true;
+          el.insertBefore(tn, cursor);
+        }
+      }
+      idx++;
+      setTimeout(typeNext, 50);
+    } else {
+      el.querySelectorAll('span.gold').forEach(function (s) { s._done = true; });
+      var qm = document.createElement('span');
+      qm.className = 'type-qmark';
+      qm.textContent = '?';
+      el.insertBefore(qm, cursor);
+      setTimeout(function () {
+        if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+      }, 1700);
+    }
+  }
+
+  setTimeout(typeNext, 320);
+})();
+
+</script>
+
+</body>
+</html>

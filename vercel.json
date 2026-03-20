@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/smoke-alarm",
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/",
+      "destination": "/smoke-alarm/index.html"
+    }
+  ]
+}
