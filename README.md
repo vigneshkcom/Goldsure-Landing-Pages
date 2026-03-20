@@ -1,26 +1,41 @@
 # Goldsure Landing Pages
 
-Standalone static Vercel project for the Goldsure smoke alarm landing page funnel.
+This is a standalone website project for the Goldsure smoke alarm funnel.
 
-## Project purpose
+It is designed to be deployed on Vercel by itself.
 
-This repository is intended to be pushed as a new GitHub repository and deployed as a new, isolated Vercel project for:
+## What this project does
 
-- `https://offers.goldsure.com.au/smoke-alarm`
+This project contains:
 
-It does not depend on any other Goldsure repository or Vercel configuration.
+- a smoke alarm landing page
+- a thank-you page
+- a calculator page
+- a simple internal tracker page
+
+Main live routes:
+
+- `/smoke-alarm`
+- `/thank-you/smoke-alarm`
+- `/smoke-alarm/calculator`
+- `/tracker/smoke-alarm`
 
 ## Folder structure
 
 ```text
 /
 |-- api/
-|   `-- maps-config.js
+|   |-- calculator-leads.js
+|   |-- maps-config.js
+|   `-- save-calculator-lead.js
 |-- smoke-alarm/
 |   |-- calculator/
 |   |   `-- index.html
 |   `-- index.html
 |-- thank-you/
+|   `-- smoke-alarm/
+|       `-- index.html
+|-- tracker/
 |   `-- smoke-alarm/
 |       `-- index.html
 |-- .gitignore
@@ -29,59 +44,74 @@ It does not depend on any other Goldsure repository or Vercel configuration.
 `-- vercel.json
 ```
 
-## Route mapping
+## Which file serves which page
 
-- `/smoke-alarm` is served by `smoke-alarm/index.html`
-- `/thank-you/smoke-alarm` is served by `thank-you/smoke-alarm/index.html`
-- `/smoke-alarm/calculator` is served by `smoke-alarm/calculator/index.html`
-- `vercel.json` contains explicit rewrites for all three clean URLs
+- `/smoke-alarm` -> `smoke-alarm/index.html`
+- `/thank-you/smoke-alarm` -> `thank-you/smoke-alarm/index.html`
+- `/smoke-alarm/calculator` -> `smoke-alarm/calculator/index.html`
+- `/tracker/smoke-alarm` -> `tracker/smoke-alarm/index.html`
 
-## Funnel flow
+The route rules are handled in `vercel.json`.
 
-- Main landing page: `/smoke-alarm`
-- Thank-you page: `/thank-you/smoke-alarm`
-- Calculator page: `/smoke-alarm/calculator`
+## What the API files do
 
-## Notes about forms and assets
+- `api/maps-config.js`
+  Gives the calculator access to the Google Maps key for address autocomplete.
 
-- The pages are static HTML files with inline CSS and JavaScript
-- No local `assets/` folder is required for the current version because the page references external hosted images and embedded LeadConnector forms
-- A minimal `/api/maps-config.js` endpoint is included so the calculator can load the Google Maps browser key in this standalone Vercel project
+- `api/save-calculator-lead.js`
+  Saves calculator leads to Supabase and sends the internal email notification.
 
-## Environment variables
+- `api/calculator-leads.js`
+  Loads lead data from Supabase for the tracker page.
 
-The calculator address autocomplete requires a Google Maps browser key in this Vercel project.
+## Environment variables needed in Vercel
 
-Supported variable names:
+Add these in your Vercel project settings:
 
 - `GOOGLE_MAPS_API_KEY`
-- `NEXT_PUBLIC_GOOGLE_MAPS_KEY`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `EMAIL_TO`
+- `EMAIL_BCC`
+- `EMAIL_FROM`
 
-`GOOGLE_MAPS_API_KEY` is preferred for this static setup.
+Example email values:
 
-## How to deploy to Vercel
+- `EMAIL_TO=info@goldsure.com.au`
+- `EMAIL_BCC=kanishka@webco.au`
+- `EMAIL_FROM=info@goldsure.com.au`
 
-1. Create a new GitHub repository named `Goldsure Landing Pages`.
-2. Push the contents of this folder to that new repository.
-3. In Vercel, create a new project by importing that repository.
-4. Keep the project as a static site:
+## How to deploy
+
+1. Push this project to GitHub.
+2. Import the repo into Vercel.
+3. Choose:
    - Framework Preset: `Other`
    - Root Directory: `.`
-   - Build Command: leave empty
-   - Output Directory: leave empty
-5. Add the Google Maps environment variable if you want the calculator address autocomplete enabled.
-6. Deploy the project.
+4. Add the environment variables listed above.
+5. Deploy.
 
-## How to connect the custom domain
+## What to check after deploy
 
-1. Open the new Vercel project.
-2. Go to `Settings -> Domains`.
-3. Add `offers.goldsure.com.au`.
-4. Update DNS at your DNS provider using the exact record Vercel shows for that subdomain.
-5. Wait for verification and SSL issuance to complete.
-6. Test:
-   - `https://offers.goldsure.com.au/smoke-alarm`
-   - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
-   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
+Check these pages:
 
-For the full step-by-step flow, including DNS checks, use [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).
+- `/smoke-alarm`
+- `/thank-you/smoke-alarm`
+- `/smoke-alarm/calculator`
+- `/tracker/smoke-alarm`
+
+Check these features:
+
+- the landing page loads correctly
+- the thank-you page loads correctly
+- the calculator works
+- Google address autocomplete works
+- only Queensland addresses with postcodes starting with `4` are accepted
+- a quote download saves the lead to Supabase
+- the internal email notification is sent
+- the tracker page shows the saved lead
+
+## Deployment notes
+
+For the full deployment checklist, see [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).

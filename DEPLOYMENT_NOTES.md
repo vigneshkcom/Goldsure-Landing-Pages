@@ -9,6 +9,7 @@ These steps assume:
   - `https://offers.goldsure.com.au/smoke-alarm`
   - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
   - `https://offers.goldsure.com.au/smoke-alarm/calculator`
+  - `https://offers.goldsure.com.au/tracker/smoke-alarm`
 
 ## 1. Create the new GitHub repository
 
@@ -41,9 +42,14 @@ In Vercel:
    - Build Command: leave blank
    - Output Directory: leave blank
    - Install Command: leave blank
-4. Add environment variable:
-   - Name: `GOOGLE_MAPS_API_KEY`
-   - Value: your Google Maps browser key
+4. Add environment variables:
+   - `GOOGLE_MAPS_API_KEY`
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `RESEND_API_KEY`
+   - `EMAIL_TO`
+   - `EMAIL_BCC`
+   - `EMAIL_FROM`
 5. Deploy
 
 ## 3. Add the custom domain
@@ -88,6 +94,7 @@ After DNS updates:
    - `https://offers.goldsure.com.au/smoke-alarm`
    - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
    - `https://offers.goldsure.com.au/smoke-alarm/calculator`
+   - `https://offers.goldsure.com.au/tracker/smoke-alarm`
 
 ## 6. Final checks
 
@@ -96,12 +103,16 @@ Confirm all of the following after deployment:
 - `https://offers.goldsure.com.au/smoke-alarm` loads successfully
 - `https://offers.goldsure.com.au/thank-you/smoke-alarm` loads successfully
 - `https://offers.goldsure.com.au/smoke-alarm/calculator` loads successfully
+- `https://offers.goldsure.com.au/tracker/smoke-alarm` loads successfully
 - the page shows the expected Goldsure smoke alarm content
 - the embedded forms load correctly
 - phone links still work
 - external images still load
 - Google address autocomplete works in the calculator modal
 - only Queensland addresses with postcodes starting with `4` are accepted in the calculator
+- calculator leads are saved into Supabase
+- internal notification emails are sent through Resend
+- the tracker page lists saved calculator leads
 - no unrelated routes or APIs exist in the deployment
 
 ## Source references
