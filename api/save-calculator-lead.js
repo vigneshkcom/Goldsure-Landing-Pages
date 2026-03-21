@@ -89,8 +89,6 @@ async function sendInternalEmail(lead) {
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var submittedAt = formatSydneyDateTime(lead.created_at);
   var status = String(lead.status || 'sent').toLowerCase() === 'accepted' ? 'accepted' : 'sent';
-  var acceptUrl = buildAcceptUrl(lead);
-
   var html = [
     '<!DOCTYPE html>',
     '<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>New Smoke Alarm Quote Download</title></head>',
@@ -135,7 +133,6 @@ async function sendInternalEmail(lead) {
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="background:#fcfbf8;border:1px solid #ece8df;"><tr>',
     '<td style="padding:12px 14px;font-size:12px;line-height:1.7;color:#5f6980;">Tracker route: ' + escapeHtml(lead.page_path || '-') + '</td>',
-    '<td align="right" style="padding:12px 14px;font-size:12px;line-height:1.7;color:#5f6980;"><a href="' + escapeHtml(acceptUrl) + '" style="color:#a8892f;text-decoration:none;font-weight:700;">Acceptance link</a></td>',
     '</tr></table>',
     '</td></tr>',
     '</table>',
@@ -258,12 +255,12 @@ async function sendCustomerQuoteEmail(lead) {
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:24px;padding-top:16px;border-top:1px solid #e0e0e0;">',
     '<tr>',
-    '<td width="96" valign="middle" style="padding-right:16px;">',
-    '<img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure" width="84" style="display:block;width:84px;height:auto;">',
+    '<td width="128" valign="middle" style="padding-right:18px;">',
+    '<img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure" width="112" style="display:block;width:112px;height:auto;">',
     '</td>',
     '<td valign="middle" style="border-left:2px solid #b08d2e;padding-left:18px;">',
-    '<p style="margin:0 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:700;line-height:1;color:#111111;">Customer Service</p>',
-    '<p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b08d2e;">Goldsure Pty Ltd</p>',
+    '<p style="margin:0 0 2px;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:700;line-height:1.2;color:#111111;">Customer Service</p>',
+    '<p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b08d2e;">Goldsure Pty Ltd</p>',
     '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#555555;line-height:1.6;">p: 07 2145 5155<br>e: <a href="mailto:' + escapeHtml(replyTo) + '" style="color:#b08d2e;text-decoration:none;font-weight:bold;">' + escapeHtml(replyTo) + '</a><br>w: <a href="https://www.goldsure.com.au" style="color:#b08d2e;text-decoration:none;font-weight:bold;">www.goldsure.com.au</a></p>',
     '</td>',
     '</tr>',
