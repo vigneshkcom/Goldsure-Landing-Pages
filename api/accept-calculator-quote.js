@@ -145,7 +145,7 @@ async function sendAcceptedInternalEmail(lead) {
     from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [emailTo],
     bcc: emailBcc ? [emailBcc] : [],
-    subject: 'Quote Accepted - ' + (lead.full_name || 'Customer') + ' - ' + formatMoney(lead.total_inc_gst || 0),
+    subject: 'Quote Accepted (Landing Page download) - ' + (lead.full_name || 'Customer') + ' - ' + formatMoney(lead.total_inc_gst || 0),
     html: html
   });
 }

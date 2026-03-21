@@ -69,6 +69,48 @@ The route rules are handled in `vercel.json`.
 - `api/accept-calculator-quote.js`
   Marks a quote as accepted and sends the accepted-quote internal notification.
 
+## Email map
+
+Use this section if you need to change who gets which email.
+
+- Quote download internal notification
+  - File: `api/save-calculator-lead.js`
+  - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
+  - Sent to: `info@goldsure.com.au`
+  - BCC: `kanishka@webco.au`
+  - What it is: internal alert when someone downloads a quote from the calculator
+
+- Customer quote email
+  - File: `api/save-calculator-lead.js`
+  - Subject: `Your Smoke Alarm Quote - Goldsure`
+  - Sent to: the customer email they entered in the calculator
+  - Sender name: `Goldsure Pty Ltd`
+  - Reply-to: controlled by `EMAIL_TO` in Vercel, or the code fallback if that env var is missing
+  - What it is: the actual quote email the customer receives
+
+- Quote accepted internal notification
+  - File: `api/accept-calculator-quote.js`
+  - Subject: `Quote Accepted (Landing Page download) - Customer Name - $Amount`
+  - Sent to: `info@goldsure.com.au`
+  - What it is: internal alert after the customer clicks the accept button in the quote email
+
+## Where to change email settings
+
+- To change the quote download internal recipients:
+  - edit `api/save-calculator-lead.js`
+
+- To change the customer email sender name, footer details, or reply-to:
+  - edit `api/save-calculator-lead.js`
+
+- To change the accepted-quote internal recipients:
+  - edit `api/accept-calculator-quote.js`
+
+- To change the sender email address for all emails:
+  - change `EMAIL_FROM` in Vercel
+
+- To change the reply-to address used in the customer quote email:
+  - change `EMAIL_TO` in Vercel
+
 ## Environment variables needed in Vercel
 
 Add these in your Vercel project settings:
