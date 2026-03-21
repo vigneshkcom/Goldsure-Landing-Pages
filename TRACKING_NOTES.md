@@ -139,7 +139,7 @@ Purpose:
 
 Email defaults:
 
-- To: `info@goldsure.com.au`
+- To: `vignesh@goldsure.com.au`
 - BCC: `kanishka@webco.au`
 
 Related env vars:

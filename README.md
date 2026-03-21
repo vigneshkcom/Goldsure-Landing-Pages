@@ -79,7 +79,7 @@ Add these in your Vercel project settings:
 
 Example email values:
 
-- `EMAIL_TO=info@goldsure.com.au`
+- `EMAIL_TO=vignesh@goldsure.com.au`
 - `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 

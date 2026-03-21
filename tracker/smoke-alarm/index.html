@@ -280,6 +280,27 @@ tbody td {
   font-weight: 700;
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.38rem 0.78rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.status-sent {
+  background: rgba(107, 127, 215, 0.12);
+  color: #4c60b7;
+}
+
+.status-accepted {
+  background: rgba(65, 170, 132, 0.14);
+  color: #1f7b59;
+}
+
 .money {
   font-weight: 700;
   color: var(--gold-deep);
@@ -398,6 +419,7 @@ tbody tr:hover {
         <tr>
           <th>Date</th>
           <th>Age</th>
+          <th>Status</th>
           <th>Customer</th>
           <th>Phone</th>
           <th>Property Address</th>
@@ -464,11 +486,13 @@ function buildRow(lead) {
     'Storeys: ' + (lead.storeys ?? 0),
     'Hallways: ' + (lead.hallways ?? 0)
   ].join('<br>');
+  var status = String(lead.status || 'sent').toLowerCase() === 'accepted' ? 'accepted' : 'sent';
 
   return [
     '<tr>',
     '<td>' + escapeHtml(formatDate(lead.created_at)) + '</td>',
     '<td>' + escapeHtml(formatAge(lead.created_at)) + '</td>',
+    '<td><span class="status-badge status-' + escapeHtml(status) + '">' + escapeHtml(status) + '</span></td>',
     '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
     '<td>' + escapeHtml(lead.phone || '-') + '</td>',
     '<td>' + escapeHtml(lead.property_address || '-') + '</td>',
@@ -599,6 +623,8 @@ function exportCsv() {
   var rows = [
     [
       'created_at',
+      'status',
+      'accepted_at',
       'full_name',
       'phone',
       'email',
@@ -616,6 +642,8 @@ function exportCsv() {
   ].concat(allLeads.map(function (lead) {
     return [
       lead.created_at || '',
+      lead.status || 'sent',
+      lead.accepted_at || '',
       lead.full_name || '',
       lead.phone || '',
       lead.email || '',

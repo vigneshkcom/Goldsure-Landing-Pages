@@ -34,6 +34,14 @@
     {
       "source": "/tracker/smoke-alarm/",
       "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm",
+      "destination": "/api/accept-calculator-quote"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm/",
+      "destination": "/api/accept-calculator-quote"
     }
   ]
 }
