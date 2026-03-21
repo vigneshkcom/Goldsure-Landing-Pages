@@ -20,6 +20,20 @@ function formatMoney(value) {
   return '$' + Number(value || 0).toFixed(2);
 }
 
+function formatFromAddress(value, displayName) {
+  var raw = String(value || '').trim();
+
+  if (!raw) {
+    return displayName + ' <info@goldsure.com.au>';
+  }
+
+  if (raw.indexOf('<') !== -1 && raw.indexOf('>') !== -1) {
+    return raw;
+  }
+
+  return displayName + ' <' + raw + '>';
+}
+
 function formatSydneyDateTime(value) {
   var date = value ? new Date(value) : new Date();
   return date.toLocaleString('en-AU', {
@@ -134,7 +148,7 @@ async function sendInternalEmail(lead) {
   ].join('');
 
   return sendResendEmail({
-    from: emailFrom,
+    from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [emailTo],
     bcc: emailBcc ? [emailBcc] : [],
     subject: 'New Smoke Alarm Quote Download - ' + (lead.full_name || 'Customer'),
@@ -272,7 +286,7 @@ async function sendCustomerQuoteEmail(lead) {
   ].join('');
 
   return sendResendEmail({
-    from: emailFrom,
+    from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [lead.email],
     reply_to: replyTo,
     subject: 'Your Smoke Alarm Quote - Goldsure',

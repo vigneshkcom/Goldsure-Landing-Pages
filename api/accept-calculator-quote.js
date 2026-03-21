@@ -11,6 +11,20 @@ function formatMoney(value) {
   return '$' + Number(value || 0).toFixed(2);
 }
 
+function formatFromAddress(value, displayName) {
+  var raw = String(value || '').trim();
+
+  if (!raw) {
+    return displayName + ' <info@goldsure.com.au>';
+  }
+
+  if (raw.indexOf('<') !== -1 && raw.indexOf('>') !== -1) {
+    return raw;
+  }
+
+  return displayName + ' <' + raw + '>';
+}
+
 function formatSydneyDateTime(value) {
   var date = value ? new Date(value) : new Date();
   return date.toLocaleString('en-AU', {
@@ -69,6 +83,7 @@ async function sendAcceptedInternalEmail(lead) {
   var emailTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
   var emailBcc = process.env.EMAIL_BCC || '';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
+  var trackerUrl = 'https://offers.goldsure.com.au/tracker/smoke-alarm';
 
   if (!resendApiKey) {
     return { ok: false, skipped: true, reason: 'Missing RESEND_API_KEY' };
@@ -116,7 +131,8 @@ async function sendAcceptedInternalEmail(lead) {
     '<tr style="background:#000000;"><td style="padding:14px 14px;"><p style="margin:0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:rgba(255,255,255,0.5);">Grand Total</p></td><td align="right" style="padding:14px 14px;white-space:nowrap;"><p style="margin:0;font-size:18px;font-weight:700;color:#b08d2e;">' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) + '</p></td></tr>',
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="padding:12px 16px;background:#fef7e7;border-left:3px solid #b08d2e;border-radius:0 4px 4px 0;">',
-    '<p style="margin:0;font-size:13px;color:#7a6020;line-height:1.6;"><strong style="color:#141c2e;">Next step:</strong> Follow up with ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm the booking date and collect the booking fee.</p>',
+    '<p style="margin:0 0 12px;font-size:13px;color:#7a6020;line-height:1.6;"><strong style="color:#141c2e;">Next step:</strong> Follow up with ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm the booking date and collect the booking fee.</p>',
+    '<a href="' + trackerUrl + '" style="display:inline-block;padding:12px 18px;background:#111111;color:#ffffff;font-size:12px;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:6px;">Open Lead Tracker</a>',
     '</td></tr></table>',
     '</td></tr>',
     '<tr><td align="center" style="padding:20px 0 0;"><p style="margin:0 0 2px;font-size:11px;font-weight:700;color:#6b7899;">Goldsure Pty Ltd</p><p style="margin:0;font-size:11px;color:#9aa5b8;">Queensland, Australia</p></td></tr>',
@@ -126,7 +142,7 @@ async function sendAcceptedInternalEmail(lead) {
   ].join('');
 
   return sendResendEmail({
-    from: emailFrom,
+    from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [emailTo],
     bcc: emailBcc ? [emailBcc] : [],
     subject: 'Quote Accepted - ' + (lead.full_name || 'Customer') + ' - ' + formatMoney(lead.total_inc_gst || 0),
