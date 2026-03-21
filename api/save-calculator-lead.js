@@ -20,8 +20,8 @@ function formatMoney(value) {
 
 async function sendInternalEmail(lead) {
   var resendApiKey = process.env.RESEND_API_KEY;
-  var emailTo = process.env.EMAIL_TO || 'info@goldsure.com.au';
-  var emailBcc = process.env.EMAIL_BCC || 'kanishka@webco.au';
+  var emailTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
+  var emailBcc = process.env.EMAIL_BCC || '';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
 
   if (!resendApiKey) {
@@ -100,7 +100,7 @@ async function sendInternalEmail(lead) {
     body: JSON.stringify({
       from: emailFrom,
       to: [emailTo],
-      bcc: [emailBcc],
+      bcc: emailBcc ? [emailBcc] : [],
       subject: 'New Smoke Alarm Quote Download - ' + (lead.full_name || 'Customer'),
       html: html
     })
@@ -119,6 +119,149 @@ async function sendInternalEmail(lead) {
     return {
       ok: false,
       error: 'Failed to send email',
+      details: data
+    };
+  }
+
+  return {
+    ok: true,
+    data: data
+  };
+}
+
+async function sendCustomerQuoteEmail(lead) {
+  var resendApiKey = process.env.RESEND_API_KEY;
+  var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
+  var replyTo = process.env.EMAIL_TO || 'info@goldsure.com.au';
+
+  if (!resendApiKey) {
+    return { ok: false, skipped: true, reason: 'Missing RESEND_API_KEY' };
+  }
+
+  if (!lead.email) {
+    return { ok: false, skipped: true, reason: 'Missing customer email' };
+  }
+
+  var html = [
+    '<!DOCTYPE html>',
+    '<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Your Smoke Alarm Quote</title></head>',
+    '<body style="margin:0;padding:0;background-color:#ebebeb;">',
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ebebeb">',
+    '<tr><td align="center" style="padding:20px 16px;">',
+    '<table width="600" border="0" cellpadding="0" cellspacing="0" style="background:#ffffff;overflow:hidden;">',
+    '<tr><td bgcolor="#000000" align="center" style="padding:20px 32px 5px;">',
+    '<img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/699a73ab3a2afd85cbdb392f.jpg" alt="Goldsure" width="180" style="display:block;width:180px;height:auto;margin:0 auto;" />',
+    '</td></tr>',
+    '<tr><td bgcolor="#000000" align="center" style="padding:0 32px 16px;">',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;letter-spacing:4px;text-transform:uppercase;color:#b08d2e;">Smoke Alarm Quote</p>',
+    '</td></tr>',
+    '<tr><td bgcolor="#b08d2e" style="height:2px;font-size:1px;line-height:1px;">&nbsp;</td></tr>',
+
+    '<tr><td style="padding:24px 30px;background:#ffffff;">',
+    '<p style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:700;color:#000000;">Hi ' + escapeHtml(lead.full_name || 'there') + ',</p>',
+    '<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#444444;line-height:1.7;">Thank you for requesting a smoke alarm quote from Goldsure. Please find your quote summary below. Our team will review your requirements and contact you if needed.</p>',
+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;border:1px solid #e0e0e0;">',
+    '<tr bgcolor="#000000">',
+    '<td style="padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;">Description</td>',
+    '<td style="padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;text-align:center;">Qty</td>',
+    '<td style="padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;text-align:right;">Amount</td>',
+    '</tr>',
+    '<tr bgcolor="#ffffff">',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;border-top:1px solid #f0f0f0;"><strong>Raptor Smoke Alarms</strong><br><span style="font-size:11px;color:#888888;">Photoelectric · Interconnected · 10-Year Warranty</span></td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;text-align:center;border-top:1px solid #f0f0f0;">' + escapeHtml(lead.alarm_qty ?? 0) + '</td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:#000000;text-align:right;border-top:1px solid #f0f0f0;">' + escapeHtml(formatMoney((lead.alarm_qty || 0) * 98)) + '</td>',
+    '</tr>',
+    '<tr bgcolor="#f9f9f9">',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;border-top:1px solid #f0f0f0;"><strong>Smoke Alarm Controller</strong><br><span style="font-size:11px;color:#888888;">Remote control and status display</span></td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;text-align:center;border-top:1px solid #f0f0f0;">' + escapeHtml(lead.controller_qty ?? 0) + '</td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:#000000;text-align:right;border-top:1px solid #f0f0f0;">' + escapeHtml(formatMoney((lead.controller_qty || 0) * 49)) + '</td>',
+    '</tr>',
+    '<tr bgcolor="#ffffff">',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;border-top:1px solid #f0f0f0;"><strong>Booking Fee</strong><br><span style="font-size:11px;color:#888888;">Payable upfront to secure your booking</span></td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#111111;text-align:center;border-top:1px solid #f0f0f0;">1</td>',
+    '<td style="padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700;color:#000000;text-align:right;border-top:1px solid #f0f0f0;">' + escapeHtml(formatMoney(lead.booking_fee || 0)) + '</td>',
+    '</tr>',
+    '<tr bgcolor="#000000">',
+    '<td colspan="2" style="padding:12px 12px;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;color:#ffffff;text-transform:uppercase;letter-spacing:2px;">Grand Total (Incl. GST)</td>',
+    '<td style="padding:12px 12px;font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:700;color:#b08d2e;text-align:right;">' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) + '</td>',
+    '</tr>',
+    '</table>',
+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;background:#faf6ec;border-left:3px solid #b08d2e;">',
+    '<tr><td style="padding:10px 14px;">',
+    '<p style="margin:0 0 3px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;">Property Details</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;line-height:1.6;">Address: ' + escapeHtml(lead.property_address || '-') + '<br>Bedrooms: ' + escapeHtml(lead.bedrooms ?? '-') + ' · Storeys: ' + escapeHtml(lead.storeys ?? '-') + ' · Hallways: ' + escapeHtml(lead.hallways ?? '-') + '</p>',
+    '</td></tr>',
+    '</table>',
+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;border-top:2px solid #b08d2e;">',
+    '<tr><td style="padding-top:14px;">',
+    '<p style="margin:0 0 2px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#b08d2e;">Queensland Legislation</p>',
+    '<p style="margin:0 0 5px;font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:700;color:#000000;line-height:1.2;">Important Compliance Notes</p>',
+    '<p style="margin:0 0 15px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;line-height:1.6;">Final alarm placement and exact compliance requirements are confirmed by a licensed electrician on site.</p>',
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #e0e0e0;">',
+    '<tr><td colspan="2" bgcolor="#000000" style="padding:8px 12px;"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#b08d2e;">Key Points</p></td></tr>',
+    '<tr>',
+    '<td width="50%" valign="top" bgcolor="#ffffff" style="padding:10px 12px;border-right:1px solid #eeeeee;border-bottom:1px solid #eeeeee;"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#333333;line-height:1.6;">• Photoelectric and interconnected alarms</p></td>',
+    '<td width="50%" valign="top" bgcolor="#ffffff" style="padding:10px 12px;border-bottom:1px solid #eeeeee;"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#333333;line-height:1.6;">• Alarms in bedrooms, hallways, and each storey</p></td>',
+    '</tr>',
+    '<tr>',
+    '<td width="50%" valign="top" bgcolor="#f9f9f9" style="padding:10px 12px;border-right:1px solid #eeeeee;"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#333333;line-height:1.6;">• 10-year sealed battery backup where required</p></td>',
+    '<td width="50%" valign="top" bgcolor="#f9f9f9" style="padding:10px 12px;"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#333333;line-height:1.6;">• Final compliance confirmed on site</p></td>',
+    '</tr>',
+    '</table>',
+    '</td></tr>',
+    '</table>',
+
+    '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:24px;padding-top:14px;border-top:1px solid #e0e0e0;">',
+    '<tr><td valign="middle">',
+    '<p style="margin:0 0 2px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#000000;">Goldsure Pty Ltd</p>',
+    '<p style="margin:0 0 5px;font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;color:#b08d2e;letter-spacing:1px;text-transform:uppercase;">Smoke Alarm Team</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#555555;line-height:1.6;">p: 07 2145 5155<br>e: <a href="mailto:' + escapeHtml(replyTo) + '" style="color:#b08d2e;text-decoration:none;font-weight:bold;">' + escapeHtml(replyTo) + '</a><br>w: <a href="https://www.goldsure.com.au" style="color:#b08d2e;text-decoration:none;font-weight:bold;">www.goldsure.com.au</a></p>',
+    '</td></tr>',
+    '</table>',
+
+    '<p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#aaaaaa;font-style:italic;line-height:1.5;border-top:1px solid #eeeeee;padding-top:12px;">This quote is an estimate based on the property details provided. Final requirements may vary after on-site review by a licensed electrician.</p>',
+    '</td></tr>',
+    '<tr><td bgcolor="#000000" align="center" style="padding:15px 20px;">',
+    '<p style="margin:0 0 3px;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#b08d2e;">Goldsure Pty Ltd</p>',
+    '<p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#888888;line-height:1.5;">Queensland, Australia</p>',
+    '</td></tr>',
+    '</table>',
+    '</td></tr>',
+    '</table>',
+    '</body></html>'
+  ].join('');
+
+  var response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + resendApiKey,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: emailFrom,
+      to: [lead.email],
+      reply_to: replyTo,
+      subject: 'Your Smoke Alarm Quote - Goldsure',
+      html: html
+    })
+  });
+
+  var text = await response.text();
+  var data;
+
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch (error) {
+    data = text;
+  }
+
+  if (!response.ok) {
+    return {
+      ok: false,
+      error: 'Failed to send customer email',
       details: data
     };
   }
@@ -202,12 +345,15 @@ module.exports = async function handler(req, res) {
     }
 
     var savedLead = Array.isArray(data) ? data[0] : data;
-    var emailResult = await sendInternalEmail(savedLead || payload);
+    var finalLead = savedLead || payload;
+    var emailResult = await sendInternalEmail(finalLead);
+    var customerEmailResult = await sendCustomerQuoteEmail(finalLead);
 
     return json(res, 200, {
       ok: true,
       lead: savedLead,
-      email: emailResult
+      email: emailResult,
+      customerEmail: customerEmailResult
     });
   } catch (error) {
     return json(res, 500, {
