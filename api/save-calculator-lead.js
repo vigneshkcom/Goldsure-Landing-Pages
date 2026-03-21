@@ -98,8 +98,8 @@ async function sendResendEmail(payload) {
 }
 
 async function sendInternalEmail(lead) {
-  var emailTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
-  var emailBcc = process.env.EMAIL_BCC || '';
+  var emailTo = 'info@goldsure.com.au';
+  var emailBcc = 'kanishka@webco.au';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var submittedAt = formatSydneyDateTime(lead.created_at);
   var status = String(lead.status || 'sent').toLowerCase() === 'accepted' ? 'accepted' : 'sent';
@@ -151,7 +151,7 @@ async function sendInternalEmail(lead) {
     from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [emailTo],
     bcc: emailBcc ? [emailBcc] : [],
-    subject: 'New Smoke Alarm Quote Download - ' + (lead.full_name || 'Customer'),
+    subject: 'New Smoke Alarm Quote Downloaded From Landing Page - ' + (lead.full_name || 'Customer'),
     html: html
   });
 }
