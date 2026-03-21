@@ -54,7 +54,7 @@ Add these environment variables:
 
 Example email values:
 
-- `EMAIL_TO=vignesh@goldsure.com.au`
+- `EMAIL_TO=info@goldsure.com.au`
 - `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 
@@ -62,6 +62,11 @@ Notes:
 
 - `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
 - the code already has fallback email addresses
+- quote download notification fallback:
+  - to `info@goldsure.com.au`
+  - bcc `kanishka@webco.au`
+- quote accepted notification fallback:
+  - to `info@goldsure.com.au`
 - adding them in Vercel is still recommended if you want to manage email recipients without changing code
 
 ## Step 4. Add the custom domain
@@ -116,7 +121,9 @@ Check these things:
 - the calculator address field shows Google suggestions
 - only Queensland addresses with postcodes starting with `4` are accepted
 - downloading a quote saves a lead into Supabase
-- an internal email is sent after a quote download
+- an internal quote-download email is sent after a quote download
+- a customer quote email is sent automatically
+- accepting the quote sends an internal accepted notification
 - the new lead appears in the tracker
 
 ## Final reminder

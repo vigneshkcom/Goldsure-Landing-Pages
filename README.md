@@ -25,6 +25,7 @@ Main live routes:
 ```text
 /
 |-- api/
+|   |-- accept-calculator-quote.js
 |   |-- calculator-leads.js
 |   |-- maps-config.js
 |   `-- save-calculator-lead.js
@@ -60,10 +61,13 @@ The route rules are handled in `vercel.json`.
   Gives the calculator access to the Google Maps key for address autocomplete.
 
 - `api/save-calculator-lead.js`
-  Saves calculator leads to Supabase and sends the internal email notification.
+  Saves calculator leads to Supabase, sends the quote-download notification, and sends the customer quote email.
 
 - `api/calculator-leads.js`
   Loads lead data from Supabase for the tracker page.
+
+- `api/accept-calculator-quote.js`
+  Marks a quote as accepted and sends the accepted-quote internal notification.
 
 ## Environment variables needed in Vercel
 
@@ -79,7 +83,7 @@ Add these in your Vercel project settings:
 
 Example email values:
 
-- `EMAIL_TO=vignesh@goldsure.com.au`
+- `EMAIL_TO=info@goldsure.com.au`
 - `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 
@@ -87,7 +91,11 @@ Notes:
 
 - `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
 - the project already has fallback email addresses in code
-- adding them in Vercel is still better if you want to change recipients later without editing code
+- current fallback behavior is:
+- quote download notification goes to `info@goldsure.com.au` and BCCs `kanishka@webco.au`
+- quote accepted notification goes to `info@goldsure.com.au`
+- customer quote email sends from `Goldsure Pty Ltd <info@goldsure.com.au>`
+- adding env vars in Vercel is still better if you want to change recipients later without editing code
 
 ## How to deploy
 
@@ -116,7 +124,9 @@ Check these features:
 - Google address autocomplete works
 - only Queensland addresses with postcodes starting with `4` are accepted
 - a quote download saves the lead to Supabase
-- the internal email notification is sent
+- the internal quote-download email is sent
+- the customer quote email is sent
+- clicking accept in the customer quote email updates the lead status
 - the tracker page shows the saved lead
 
 ## Deployment notes

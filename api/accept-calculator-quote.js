@@ -80,8 +80,8 @@ function renderPage(title, message, tone, lead) {
 
 async function sendAcceptedInternalEmail(lead) {
   var resendApiKey = process.env.RESEND_API_KEY;
-  var emailTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
-  var emailBcc = process.env.EMAIL_BCC || '';
+  var emailTo = 'info@goldsure.com.au';
+  var emailBcc = '';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var trackerUrl = 'https://offers.goldsure.com.au/tracker/smoke-alarm';
 

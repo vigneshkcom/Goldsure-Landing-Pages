@@ -129,18 +129,28 @@ Tracker route:
 
 ## Internal email notifications
 
-File:
+Files:
 
 - `api/save-calculator-lead.js`
+- `api/accept-calculator-quote.js`
 
 Purpose:
 
 - sends internal email after a calculator lead is saved
+- sends internal email when a customer accepts the quote
 
 Email defaults:
 
-- To: `vignesh@goldsure.com.au`
-- BCC: `kanishka@webco.au`
+- Quote download notification:
+  - To: `info@goldsure.com.au`
+  - BCC: `kanishka@webco.au`
+- Quote accepted notification:
+  - To: `info@goldsure.com.au`
+
+Subject lines:
+
+- `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
+- `Quote Accepted (Landing Page download) - Customer Name - $Amount`
 
 Related env vars:
 
@@ -182,6 +192,7 @@ Remove:
 Remove:
 
 - `api/save-calculator-lead.js`
+- `api/accept-calculator-quote.js`
 - frontend call from `smoke-alarm/calculator/index.html` that posts to `/api/save-calculator-lead`
 - Supabase lead save logic
 
@@ -198,6 +209,7 @@ Remove:
 Remove:
 
 - Resend email logic inside `api/save-calculator-lead.js`
+- Resend email logic inside `api/accept-calculator-quote.js`
 - related env vars:
   - `RESEND_API_KEY`
   - `EMAIL_TO`
