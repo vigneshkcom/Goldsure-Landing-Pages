@@ -159,6 +159,7 @@ async function sendInternalEmail(lead) {
 async function sendCustomerQuoteEmail(lead) {
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var replyTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
+  var footerEmail = 'info@goldsure.com.au';
 
   if (!lead.email) {
     return { ok: false, skipped: true, reason: 'Missing customer email' };
@@ -261,13 +262,13 @@ async function sendCustomerQuoteEmail(lead) {
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top:24px;padding-top:16px;border-top:1px solid #e0e0e0;">',
     '<tr>',
-    '<td width="128" valign="middle" style="padding-right:18px;">',
+    '<td width="136" valign="middle" style="padding-right:10px;">',
     '<img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure" width="112" style="display:block;width:112px;height:auto;">',
     '</td>',
-    '<td valign="middle" style="border-left:2px solid #b08d2e;padding-left:18px;">',
+    '<td valign="middle" style="border-left:2px solid #b08d2e;padding-left:14px;">',
     '<p style="margin:0 0 2px;font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:700;line-height:1.2;color:#111111;">Customer Service</p>',
     '<p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#b08d2e;">Goldsure Pty Ltd</p>',
-    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#555555;line-height:1.6;">p: 07 2145 5155<br>e: <a href="mailto:' + escapeHtml(replyTo) + '" style="color:#b08d2e;text-decoration:none;font-weight:bold;">' + escapeHtml(replyTo) + '</a><br>w: <a href="https://www.goldsure.com.au" style="color:#b08d2e;text-decoration:none;font-weight:bold;">www.goldsure.com.au</a></p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#555555;line-height:1.6;">p: 07 2145 5155<br>e: <a href="mailto:' + escapeHtml(footerEmail) + '" style="color:#b08d2e;text-decoration:none;font-weight:bold;">' + escapeHtml(footerEmail) + '</a><br>w: <a href="https://www.goldsure.com.au" style="color:#b08d2e;text-decoration:none;font-weight:bold;">www.goldsure.com.au</a></p>',
     '</td>',
     '</tr>',
     '</table>',
