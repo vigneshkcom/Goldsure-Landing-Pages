@@ -85,8 +85,8 @@ Use this section if you need to change who gets which email.
 - Quote download internal notification
   - File: `api/smoke-alarm/save-lead.js`
   - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
-  - Sent to: `info@goldsure.com.au`
-  - BCC: `kanishka@webco.au`
+  - Sent to: `vignesh@goldsure.com.au`
+  - BCC: none for now
   - What it is: internal alert when someone downloads a quote from the calculator
 
 - Customer quote email
@@ -152,7 +152,7 @@ Notes:
 - `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
 - the project already has fallback email addresses in code
 - current fallback behavior is:
-- quote download notification goes to `info@goldsure.com.au` and BCCs `kanishka@webco.au`
+- quote download notification goes to `vignesh@goldsure.com.au` with no BCC
 - quote accepted notification goes to `info@goldsure.com.au`
 - customer quote email sends from `Goldsure Pty Ltd <info@goldsure.com.au>`
 - adding env vars in Vercel is still better if you want to change recipients later without editing code

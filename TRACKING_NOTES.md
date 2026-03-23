@@ -152,8 +152,8 @@ Purpose:
 Email defaults:
 
 - Quote download notification:
-  - To: `info@goldsure.com.au`
-  - BCC: `kanishka@webco.au`
+  - To: `vignesh@goldsure.com.au`
+  - BCC: none for now
 - Quote accepted notification:
   - To: `info@goldsure.com.au`
 
