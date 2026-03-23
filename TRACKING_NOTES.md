@@ -152,10 +152,14 @@ Purpose:
 Email defaults:
 
 - Quote download notification:
-  - To: `vignesh@goldsure.com.au`
-  - BCC: none for now
+  - To: `info@goldsure.com.au`
+  - BCC: `kanishka@webco.au`
 - Quote accepted notification:
   - To: `info@goldsure.com.au`
+- Customer quote email reply-to:
+  - `info@goldsure.com.au` by default, or `EMAIL_TO` if set
+- Customer reminder email reply-to:
+  - `info@goldsure.com.au` by default, or `EMAIL_TO` if set
 
 Subject lines:
 
@@ -167,7 +171,6 @@ Related env vars:
 
 - `RESEND_API_KEY`
 - `EMAIL_TO`
-- `EMAIL_BCC`
 - `EMAIL_FROM`
 
 ## If asked to remove tracking
@@ -235,7 +238,6 @@ Remove:
 - related env vars:
   - `RESEND_API_KEY`
   - `EMAIL_TO`
-  - `EMAIL_BCC`
   - `EMAIL_FROM`
 
 ## Safe editing rule

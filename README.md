@@ -85,8 +85,8 @@ Use this section if you need to change who gets which email.
 - Quote download internal notification
   - File: `api/smoke-alarm/save-lead.js`
   - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
-  - Sent to: `vignesh@goldsure.com.au`
-  - BCC: none for now
+  - Sent to: `info@goldsure.com.au`
+  - BCC: `kanishka@webco.au`
   - What it is: internal alert when someone downloads a quote from the calculator
 
 - Customer quote email
@@ -94,7 +94,7 @@ Use this section if you need to change who gets which email.
   - Subject: `Your Smoke Alarm Quote - Goldsure`
   - Sent to: the customer email they entered in the calculator
   - Sender name: `Goldsure Pty Ltd`
-  - Reply-to: controlled by `EMAIL_TO` in Vercel, or the code fallback if that env var is missing
+  - Reply-to: `info@goldsure.com.au` by default, or `EMAIL_TO` if that env var is set
   - What it is: the actual quote email the customer receives
 
 - Quote accepted internal notification
@@ -107,6 +107,7 @@ Use this section if you need to change who gets which email.
   - File: `api/smoke-alarm/send-reminder.js`
   - Subject: `Reminder: Your Smoke Alarm Quote - Goldsure`
   - Sent to: the customer email they entered in the calculator
+  - Reply-to: `info@goldsure.com.au` by default, or `EMAIL_TO` if that env var is set
   - What it is: a follow-up email that re-sends the quote and accept button
 
 ## Where to change email settings
@@ -138,22 +139,22 @@ Add these in your Vercel project settings:
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `RESEND_API_KEY`
 - `EMAIL_TO`
-- `EMAIL_BCC`
 - `EMAIL_FROM`
 
 Example email values:
 
 - `EMAIL_TO=info@goldsure.com.au`
-- `EMAIL_BCC=kanishka@webco.au`
 - `EMAIL_FROM=info@goldsure.com.au`
 
 Notes:
 
-- `EMAIL_TO`, `EMAIL_BCC`, and `EMAIL_FROM` are optional right now
+- `EMAIL_TO` and `EMAIL_FROM` are optional right now
 - the project already has fallback email addresses in code
 - current fallback behavior is:
-- quote download notification goes to `vignesh@goldsure.com.au` with no BCC
+- quote download notification goes to `info@goldsure.com.au` and BCCs `kanishka@webco.au`
 - quote accepted notification goes to `info@goldsure.com.au`
+- customer quote email replies go to `info@goldsure.com.au`
+- customer reminder email replies go to `info@goldsure.com.au`
 - customer quote email sends from `Goldsure Pty Ltd <info@goldsure.com.au>`
 - adding env vars in Vercel is still better if you want to change recipients later without editing code
 
