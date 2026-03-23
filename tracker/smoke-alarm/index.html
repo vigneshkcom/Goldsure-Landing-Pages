@@ -154,7 +154,7 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 
-.search { flex: 1 1 200px; min-width: 160px; }
+.search { flex: 1 1 180px; min-width: 140px; max-width: 280px; }
 .date-filter { min-width: 130px; }
 
 .search input,
@@ -188,7 +188,13 @@ a { color: inherit; text-decoration: none; }
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 1000px;
+  min-width: 900px;
+}
+
+.addr-cell {
+  max-width: 200px;
+  white-space: normal;
+  word-break: break-word;
 }
 
 thead th {
@@ -388,14 +394,11 @@ thead th.money { text-align: right; }
       <thead>
         <tr>
           <th>Date</th>
-          <th>Age</th>
           <th>Status</th>
           <th>Customer</th>
           <th>Phone</th>
-          <th>Property Address</th>
-          <th>Property</th>
+          <th>Address &amp; Property</th>
           <th>Alarms</th>
-          <th>Controllers</th>
           <th>Reminders</th>
           <th>Actions</th>
           <th class="money">Total</th>
@@ -429,13 +432,14 @@ function formatDate(value) {
   if (!value) return '-';
   var date = new Date(value);
   if (isNaN(date.getTime())) return value;
-  return date.toLocaleString('en-AU', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit'
-  });
+  var day   = String(date.getDate()).padStart(2, '0');
+  var month = String(date.getMonth() + 1).padStart(2, '0');
+  var year  = date.getFullYear();
+  var hours = date.getHours();
+  var mins  = String(date.getMinutes()).padStart(2, '0');
+  var ampm  = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12 || 12;
+  return day + '/' + month + '/' + year + ' ' + hours + ':' + mins + ampm;
 }
 
 function escapeHtml(value) {
@@ -461,41 +465,47 @@ function formatAge(value) {
 }
 
 function buildRow(lead) {
-  var propertySummary = (lead.bedrooms ?? 0) + 'bd &middot; ' + (lead.storeys ?? 0) + 'st &middot; ' + (lead.hallways ?? 0) + 'hw';
   var status = normalizeStatus(lead.status);
   var reminderCount = Number(lead.reminder_count || 0);
-  var actionButtons = [];
+  var age = formatAge(lead.created_at);
 
+  // Address + Property merged
+  var addressCell = escapeHtml(lead.property_address || '-')
+    + '<span class="subtle">'
+    + (lead.bedrooms ?? 0) + 'bd &middot; '
+    + (lead.storeys ?? 0) + 'st &middot; '
+    + (lead.hallways ?? 0) + 'hw'
+    + '</span>';
+
+  // Alarms + Controllers merged
+  var alarmsCell = '<span class="badge">' + escapeHtml(String(lead.alarm_qty ?? 0)) + '</span>'
+    + (lead.controller_selected
+        ? '<span class="subtle">' + escapeHtml(String(lead.controller_qty || 0)) + ' ctrl</span>'
+        : '<span class="subtle">No ctrl</span>');
+
+  // Reminders
+  var reminderCell = escapeHtml(reminderCount > 0 ? String(reminderCount) + ' sent' : 'None')
+    + (lead.last_reminder_at
+        ? '<span class="subtle">Last: ' + escapeHtml(formatDate(lead.last_reminder_at)) + '</span>'
+        : '');
+
+  // Action buttons
+  var actionButtons = [];
   if (status === 'downloaded') {
     actionButtons.push('<button class="btn btn-small btn-secondary" type="button" data-action="reminder" data-id="' + escapeHtml(lead.id || '') + '">Send Reminder</button>');
   }
-
   if (status !== 'won') {
     actionButtons.push('<button class="btn btn-small btn-success" type="button" data-action="won" data-id="' + escapeHtml(lead.id || '') + '">Mark Won</button>');
   }
 
-  var reminderText = reminderCount > 0
-    ? String(reminderCount) + ' sent'
-    : 'None';
-
-  var reminderSubtext = lead.last_reminder_at
-    ? 'Last: ' + escapeHtml(formatDate(lead.last_reminder_at))
-    : '';
-
-  var reminderCell = reminderText
-    + (reminderSubtext ? '<span class="subtle">' + reminderSubtext + '</span>' : '');
-
   return [
     '<tr>',
-    '<td>' + escapeHtml(formatDate(lead.created_at)) + '</td>',
-    '<td style="color:var(--muted)">' + escapeHtml(formatAge(lead.created_at)) + 'd</td>',
+    '<td>' + escapeHtml(formatDate(lead.created_at)) + '<span class="subtle">' + escapeHtml(age) + 'd ago</span></td>',
     '<td><span class="status-badge status-' + escapeHtml(status) + '">' + escapeHtml(status) + '</span></td>',
     '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
     '<td>' + escapeHtml(lead.phone || '-') + '</td>',
-    '<td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">' + escapeHtml(lead.property_address || '-') + '</td>',
-    '<td style="color:var(--muted)">' + propertySummary + '</td>',
-    '<td><span class="badge">' + escapeHtml(String(lead.alarm_qty ?? 0)) + '</span></td>',
-    '<td style="color:var(--muted)">' + escapeHtml(lead.controller_selected ? (lead.controller_qty || 0) + ' sel.' : 'No') + '</td>',
+    '<td class="addr-cell">' + addressCell + '</td>',
+    '<td>' + alarmsCell + '</td>',
     '<td style="color:var(--muted)">' + reminderCell + '</td>',
     '<td><div class="action-stack">' + (actionButtons.join('') || '<span style="color:var(--muted);font-size:0.72rem">&mdash;</span>') + '</div></td>',
     '<td class="money">' + escapeHtml(formatCurrency(lead.total_inc_gst || 0)) + '</td>',
