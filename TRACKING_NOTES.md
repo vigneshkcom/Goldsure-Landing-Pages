@@ -20,6 +20,7 @@ Current tracking IDs:
 
 - Google Tag Manager: `GTM-PSTXFKJL`
 - Meta Pixel: `1482683390150721`
+- Microsoft Clarity: `vg3xq1chsb`
 
 What is included on those pages:
 
@@ -27,6 +28,11 @@ What is included on those pages:
 - GTM `noscript` iframe after `<body>`
 - Meta Pixel script in the `<head>`
 - Meta Pixel `noscript` image after `<body>`
+- Microsoft Clarity script in the landing page `<head>`
+
+Clarity is currently installed on:
+
+- `smoke-alarm/index.html`
 
 Do not paste these a second time.
 
@@ -166,6 +172,7 @@ If someone says:
 - "remove tracking"
 - "remove GTM"
 - "remove Meta Pixel"
+- "remove Clarity"
 - "remove Supabase lead tracking"
 - "remove internal email notifications"
 
@@ -186,6 +193,16 @@ Remove:
 - Meta Pixel script
 - Meta Pixel `noscript` image
 - custom event push code only if marketing event tracking is also meant to be removed
+
+### Remove Clarity
+
+Remove from:
+
+- `smoke-alarm/index.html`
+
+Remove:
+
+- the Microsoft Clarity script with project id `vg3xq1chsb`
 
 ### Remove calculator lead tracking
 
