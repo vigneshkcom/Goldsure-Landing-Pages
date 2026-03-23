@@ -239,7 +239,7 @@ module.exports = async function handler(req, res) {
     }
 
     var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
-    var replyTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
+    var replyTo = process.env.EMAIL_TO || 'info@goldsure.com.au';
     var emailResult = await sendResendEmail({
       from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
       to: [lead.email],

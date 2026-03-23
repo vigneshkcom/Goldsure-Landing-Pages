@@ -166,7 +166,7 @@ async function sendInternalEmail(lead) {
 
 async function sendCustomerQuoteEmail(lead) {
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
-  var replyTo = process.env.EMAIL_TO || 'vignesh@goldsure.com.au';
+  var replyTo = process.env.EMAIL_TO || 'info@goldsure.com.au';
   var footerEmail = 'info@goldsure.com.au';
 
   if (!lead.email) {
