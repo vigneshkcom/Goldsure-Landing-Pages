@@ -28,7 +28,9 @@ Main live routes:
 |   |-- accept-calculator-quote.js
 |   |-- calculator-leads.js
 |   |-- maps-config.js
-|   `-- save-calculator-lead.js
+|   |-- save-calculator-lead.js
+|   |-- send-calculator-reminder.js
+|   `-- update-calculator-lead-status.js
 |-- smoke-alarm/
 |   |-- calculator/
 |   |   `-- index.html
@@ -69,6 +71,12 @@ The route rules are handled in `vercel.json`.
 - `api/accept-calculator-quote.js`
   Marks a quote as accepted and sends the accepted-quote internal notification.
 
+- `api/send-calculator-reminder.js`
+  Sends a reminder email with the quote back to the customer and increases the reminder count.
+
+- `api/update-calculator-lead-status.js`
+  Updates a lead status from the tracker, for example marking it as won.
+
 ## Email map
 
 Use this section if you need to change who gets which email.
@@ -94,6 +102,12 @@ Use this section if you need to change who gets which email.
   - Sent to: `info@goldsure.com.au`
   - What it is: internal alert after the customer clicks the accept button in the quote email
 
+- Customer reminder email
+  - File: `api/send-calculator-reminder.js`
+  - Subject: `Reminder: Your Smoke Alarm Quote - Goldsure`
+  - Sent to: the customer email they entered in the calculator
+  - What it is: a follow-up email that re-sends the quote and accept button
+
 ## Where to change email settings
 
 - To change the quote download internal recipients:
@@ -104,6 +118,9 @@ Use this section if you need to change who gets which email.
 
 - To change the accepted-quote internal recipients:
   - edit `api/accept-calculator-quote.js`
+
+- To change the reminder email wording or who it sends to:
+  - edit `api/send-calculator-reminder.js`
 
 - To change the sender email address for all emails:
   - change `EMAIL_FROM` in Vercel
@@ -170,6 +187,9 @@ Check these features:
 - the customer quote email is sent
 - clicking accept in the customer quote email updates the lead status
 - the tracker page shows the saved lead
+- the tracker can mark a lead as won
+- the tracker can send a reminder email to a customer
+- the tracker shows how many reminders have been sent
 
 ## Deployment notes
 

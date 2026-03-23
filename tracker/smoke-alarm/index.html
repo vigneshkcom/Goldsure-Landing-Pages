@@ -296,8 +296,42 @@ tbody td {
   color: #4c60b7;
 }
 
+.status-downloaded {
+  background: rgba(107, 127, 215, 0.12);
+  color: #4c60b7;
+}
+
 .status-accepted {
   background: rgba(65, 170, 132, 0.14);
+  color: #1f7b59;
+}
+
+.status-won {
+  background: rgba(201, 168, 76, 0.18);
+  color: #8a6a1f;
+}
+
+.action-stack {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-small {
+  padding: 0.52rem 0.8rem;
+  font-size: 0.76rem;
+  border-radius: 999px;
+}
+
+.btn-secondary {
+  background: rgba(107, 127, 215, 0.08);
+  border-color: rgba(107, 127, 215, 0.18);
+  color: #4151a1;
+}
+
+.btn-success {
+  background: rgba(65, 170, 132, 0.12);
+  border-color: rgba(65, 170, 132, 0.2);
   color: #1f7b59;
 }
 
@@ -426,6 +460,8 @@ tbody tr:hover {
           <th>Property</th>
           <th>Alarms</th>
           <th>Controllers</th>
+          <th>Reminders</th>
+          <th>Actions</th>
           <th>Total</th>
         </tr>
       </thead>
@@ -436,6 +472,14 @@ tbody tr:hover {
 
 <script>
 var allLeads = [];
+
+function normalizeStatus(value) {
+  var status = String(value || '').trim().toLowerCase();
+  if (!status || status === 'sent') return 'downloaded';
+  if (status === 'accepted') return 'accepted';
+  if (status === 'won') return 'won';
+  return 'downloaded';
+}
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-AU', {
@@ -486,7 +530,17 @@ function buildRow(lead) {
     'Storeys: ' + (lead.storeys ?? 0),
     'Hallways: ' + (lead.hallways ?? 0)
   ].join('<br>');
-  var status = String(lead.status || 'sent').toLowerCase() === 'accepted' ? 'accepted' : 'sent';
+  var status = normalizeStatus(lead.status);
+  var reminderCount = Number(lead.reminder_count || 0);
+  var actionButtons = [];
+
+  if (status === 'downloaded') {
+    actionButtons.push('<button class="btn btn-small btn-secondary" type="button" data-action="reminder" data-id="' + escapeHtml(lead.id || '') + '">Send Reminder</button>');
+  }
+
+  if (status !== 'won') {
+    actionButtons.push('<button class="btn btn-small btn-success" type="button" data-action="won" data-id="' + escapeHtml(lead.id || '') + '">Mark Won</button>');
+  }
 
   return [
     '<tr>',
@@ -499,6 +553,8 @@ function buildRow(lead) {
     '<td>' + propertySummary + '</td>',
     '<td><span class="badge">' + escapeHtml(lead.alarm_qty ?? 0) + ' alarms</span></td>',
     '<td>' + escapeHtml(lead.controller_selected ? (lead.controller_qty || 0) + ' selected' : 'No') + '</td>',
+    '<td>' + escapeHtml(String(reminderCount)) + '<span class="subtle">' + escapeHtml(lead.last_reminder_at ? 'Last: ' + formatDate(lead.last_reminder_at) : 'No reminder sent') + '</span></td>',
+    '<td><div class="action-stack">' + (actionButtons.join('') || '<span class="subtle">No action needed</span>') + '</div></td>',
     '<td class="money">' + escapeHtml(formatCurrency(lead.total_inc_gst || 0)) + '</td>',
     '</tr>'
   ].join('');
@@ -617,6 +673,57 @@ async function loadLeads() {
   }
 }
 
+async function postJson(url, payload) {
+  var response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  var data = await response.json().catch(function () {
+    return null;
+  });
+
+  if (!response.ok) {
+    throw new Error((data && data.error) || 'Request failed');
+  }
+
+  return data;
+}
+
+async function handleReminder(id, button) {
+  button.disabled = true;
+  button.textContent = 'Sending...';
+
+  try {
+    await postJson('/api/send-calculator-reminder', { id: id });
+    await loadLeads();
+  } catch (error) {
+    alert(error.message || 'Could not send reminder.');
+    button.disabled = false;
+    button.textContent = 'Send Reminder';
+  }
+}
+
+async function handleMarkWon(id, button) {
+  button.disabled = true;
+  button.textContent = 'Saving...';
+
+  try {
+    await postJson('/api/update-calculator-lead-status', {
+      id: id,
+      status: 'won'
+    });
+    await loadLeads();
+  } catch (error) {
+    alert(error.message || 'Could not update lead status.');
+    button.disabled = false;
+    button.textContent = 'Mark Won';
+  }
+}
+
 function exportCsv() {
   if (!allLeads.length) return;
 
@@ -625,6 +732,8 @@ function exportCsv() {
       'created_at',
       'status',
       'accepted_at',
+      'reminder_count',
+      'last_reminder_at',
       'full_name',
       'phone',
       'email',
@@ -642,8 +751,10 @@ function exportCsv() {
   ].concat(allLeads.map(function (lead) {
     return [
       lead.created_at || '',
-      lead.status || 'sent',
+      normalizeStatus(lead.status),
       lead.accepted_at || '',
+      lead.reminder_count ?? 0,
+      lead.last_reminder_at || '',
       lead.full_name || '',
       lead.phone || '',
       lead.email || '',
@@ -686,6 +797,22 @@ document.getElementById('clearFiltersBtn').addEventListener('click', function ()
 });
 document.getElementById('refreshBtn').addEventListener('click', loadLeads);
 document.getElementById('exportCsvBtn').addEventListener('click', exportCsv);
+document.getElementById('leadsTableBody').addEventListener('click', function (event) {
+  var target = event.target;
+  if (!target || !target.dataset || !target.dataset.action) return;
+
+  var id = target.dataset.id;
+  if (!id) return;
+
+  if (target.dataset.action === 'reminder') {
+    handleReminder(id, target);
+    return;
+  }
+
+  if (target.dataset.action === 'won') {
+    handleMarkWon(id, target);
+  }
+});
 
 loadLeads();
 </script>

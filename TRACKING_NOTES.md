@@ -139,11 +139,15 @@ Files:
 
 - `api/save-calculator-lead.js`
 - `api/accept-calculator-quote.js`
+- `api/send-calculator-reminder.js`
+- `api/update-calculator-lead-status.js`
 
 Purpose:
 
 - sends internal email after a calculator lead is saved
 - sends internal email when a customer accepts the quote
+- sends customer reminder emails with the quote again
+- updates tracker status to values like `downloaded`, `accepted`, and `won`
 
 Email defaults:
 
@@ -157,6 +161,7 @@ Subject lines:
 
 - `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
 - `Quote Accepted (Landing Page download) - Customer Name - $Amount`
+- `Reminder: Your Smoke Alarm Quote - Goldsure`
 
 Related env vars:
 

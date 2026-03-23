@@ -260,6 +260,13 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    if ((lead.status || '').toLowerCase() === 'won') {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(renderPage('Quote already processed', 'This quote has already been marked as completed by the Goldsure team.', 'repeat', lead));
+      return;
+    }
+
     var acceptedAt = new Date().toISOString();
     var patchResponse = await fetch(
       supabaseUrl.replace(/\/$/, '') +

@@ -46,6 +46,14 @@ function formatSydneyDateTime(value) {
   });
 }
 
+function normalizeLeadStatus(value) {
+  var status = String(value || '').trim().toLowerCase();
+  if (!status || status === 'sent') return 'downloaded';
+  if (status === 'accepted') return 'accepted';
+  if (status === 'won') return 'won';
+  return status;
+}
+
 function getBaseUrl() {
   return (process.env.PUBLIC_SITE_URL || 'https://offers.goldsure.com.au').replace(/\/$/, '');
 }
@@ -102,7 +110,7 @@ async function sendInternalEmail(lead) {
   var emailBcc = 'kanishka@webco.au';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var submittedAt = formatSydneyDateTime(lead.created_at);
-  var status = String(lead.status || 'sent').toLowerCase() === 'accepted' ? 'accepted' : 'sent';
+  var status = normalizeLeadStatus(lead.status);
   var html = [
     '<!DOCTYPE html>',
     '<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>New Smoke Alarm Quote Download</title></head>',
@@ -341,9 +349,11 @@ module.exports = async function handler(req, res) {
     installation_balance: Number.isFinite(body.installation_balance) ? body.installation_balance : null,
     total_inc_gst: Number.isFinite(body.total_inc_gst) ? body.total_inc_gst : null,
     page_path: body.page_path ? String(body.page_path).trim() : null,
-    status: 'sent',
+    status: 'downloaded',
     quote_token: generateQuoteToken(),
-    accepted_at: null
+    accepted_at: null,
+    reminder_count: 0,
+    last_reminder_at: null
   };
 
   try {
@@ -370,8 +380,8 @@ module.exports = async function handler(req, res) {
     if (!response.ok) {
       var missingColumns = JSON.stringify(data || '').toLowerCase();
       return json(res, 500, {
-        error: missingColumns.indexOf('quote_token') !== -1 || missingColumns.indexOf('accepted_at') !== -1 || missingColumns.indexOf('status') !== -1
-          ? 'Supabase table needs the accept-quote columns first.'
+        error: missingColumns.indexOf('quote_token') !== -1 || missingColumns.indexOf('accepted_at') !== -1 || missingColumns.indexOf('status') !== -1 || missingColumns.indexOf('reminder_count') !== -1 || missingColumns.indexOf('last_reminder_at') !== -1
+          ? 'Supabase table needs the tracker reminder columns first.'
           : 'Failed to save calculator lead',
         details: data
       });
