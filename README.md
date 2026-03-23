@@ -25,12 +25,13 @@ Main live routes:
 ```text
 /
 |-- api/
-|   |-- accept-calculator-quote.js
-|   |-- calculator-leads.js
-|   |-- maps-config.js
-|   |-- save-calculator-lead.js
-|   |-- send-calculator-reminder.js
-|   `-- update-calculator-lead-status.js
+|   `-- smoke-alarm/
+|       |-- accept-quote.js
+|       |-- get-leads.js
+|       |-- maps-config.js
+|       |-- save-lead.js
+|       |-- send-reminder.js
+|       `-- update-lead-status.js
 |-- smoke-alarm/
 |   |-- calculator/
 |   |   `-- index.html
@@ -59,22 +60,22 @@ The route rules are handled in `vercel.json`.
 
 ## What the API files do
 
-- `api/maps-config.js`
+- `api/smoke-alarm/maps-config.js`
   Gives the calculator access to the Google Maps key for address autocomplete.
 
-- `api/save-calculator-lead.js`
+- `api/smoke-alarm/save-lead.js`
   Saves calculator leads to Supabase, sends the quote-download notification, and sends the customer quote email.
 
-- `api/calculator-leads.js`
+- `api/smoke-alarm/get-leads.js`
   Loads lead data from Supabase for the tracker page.
 
-- `api/accept-calculator-quote.js`
+- `api/smoke-alarm/accept-quote.js`
   Marks a quote as accepted and sends the accepted-quote internal notification.
 
-- `api/send-calculator-reminder.js`
+- `api/smoke-alarm/send-reminder.js`
   Sends a reminder email with the quote back to the customer and increases the reminder count.
 
-- `api/update-calculator-lead-status.js`
+- `api/smoke-alarm/update-lead-status.js`
   Updates a lead status from the tracker, for example marking it as won.
 
 ## Email map
@@ -82,14 +83,14 @@ The route rules are handled in `vercel.json`.
 Use this section if you need to change who gets which email.
 
 - Quote download internal notification
-  - File: `api/save-calculator-lead.js`
+  - File: `api/smoke-alarm/save-lead.js`
   - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
   - Sent to: `info@goldsure.com.au`
   - BCC: `kanishka@webco.au`
   - What it is: internal alert when someone downloads a quote from the calculator
 
 - Customer quote email
-  - File: `api/save-calculator-lead.js`
+  - File: `api/smoke-alarm/save-lead.js`
   - Subject: `Your Smoke Alarm Quote - Goldsure`
   - Sent to: the customer email they entered in the calculator
   - Sender name: `Goldsure Pty Ltd`
@@ -97,13 +98,13 @@ Use this section if you need to change who gets which email.
   - What it is: the actual quote email the customer receives
 
 - Quote accepted internal notification
-  - File: `api/accept-calculator-quote.js`
+  - File: `api/smoke-alarm/accept-quote.js`
   - Subject: `Quote Accepted (Landing Page download) - Customer Name - $Amount`
   - Sent to: `info@goldsure.com.au`
   - What it is: internal alert after the customer clicks the accept button in the quote email
 
 - Customer reminder email
-  - File: `api/send-calculator-reminder.js`
+  - File: `api/smoke-alarm/send-reminder.js`
   - Subject: `Reminder: Your Smoke Alarm Quote - Goldsure`
   - Sent to: the customer email they entered in the calculator
   - What it is: a follow-up email that re-sends the quote and accept button
@@ -111,16 +112,16 @@ Use this section if you need to change who gets which email.
 ## Where to change email settings
 
 - To change the quote download internal recipients:
-  - edit `api/save-calculator-lead.js`
+  - edit `api/smoke-alarm/save-lead.js`
 
 - To change the customer email sender name, footer details, or reply-to:
-  - edit `api/save-calculator-lead.js`
+  - edit `api/smoke-alarm/save-lead.js`
 
 - To change the accepted-quote internal recipients:
-  - edit `api/accept-calculator-quote.js`
+  - edit `api/smoke-alarm/accept-quote.js`
 
 - To change the reminder email wording or who it sends to:
-  - edit `api/send-calculator-reminder.js`
+  - edit `api/smoke-alarm/send-reminder.js`
 
 - To change the sender email address for all emails:
   - change `EMAIL_FROM` in Vercel

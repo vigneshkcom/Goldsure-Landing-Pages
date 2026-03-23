@@ -656,7 +656,7 @@ async function loadLeads() {
   table.hidden = true;
 
   try {
-    var response = await fetch('/api/calculator-leads', { cache: 'no-store' });
+    var response = await fetch('/api/smoke-alarm/get-leads', { cache: 'no-store' });
     var data = await response.json();
 
     if (!response.ok || !data || !Array.isArray(data.leads)) {
@@ -698,7 +698,7 @@ async function handleReminder(id, button) {
   button.textContent = 'Sending...';
 
   try {
-    await postJson('/api/send-calculator-reminder', { id: id });
+    await postJson('/api/smoke-alarm/send-reminder', { id: id });
     await loadLeads();
   } catch (error) {
     alert(error.message || 'Could not send reminder.');
@@ -712,7 +712,7 @@ async function handleMarkWon(id, button) {
   button.textContent = 'Saving...';
 
   try {
-    await postJson('/api/update-calculator-lead-status', {
+    await postJson('/api/smoke-alarm/update-lead-status', {
       id: id,
       status: 'won'
     });

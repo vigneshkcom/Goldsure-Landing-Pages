@@ -771,7 +771,7 @@ function initAddressAutocomplete() {
 function loadGoogleMaps() {
   if (mapsReadyPromise) return mapsReadyPromise;
 
-  mapsReadyPromise = fetch('/api/maps-config', { cache: 'no-store' })
+  mapsReadyPromise = fetch('/api/smoke-alarm/maps-config', { cache: 'no-store' })
     .then(function (response) { return response.json(); })
     .then(function (data) {
       if (!data || !data.googleMapsApiKey) {
@@ -903,7 +903,7 @@ function getCalculatorSnapshot() {
 async function saveLead(payload) {
   if (leadSavePromise) return leadSavePromise;
 
-  leadSavePromise = fetch('/api/save-calculator-lead', {
+  leadSavePromise = fetch('/api/smoke-alarm/save-lead', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

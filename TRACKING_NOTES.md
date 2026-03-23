@@ -87,7 +87,7 @@ Examples of events:
 
 File:
 
-- `api/maps-config.js`
+- `api/smoke-alarm/maps-config.js`
 
 Purpose:
 
@@ -101,7 +101,7 @@ Related env var:
 
 File:
 
-- `api/save-calculator-lead.js`
+- `api/smoke-alarm/save-lead.js`
 
 Purpose:
 
@@ -120,7 +120,7 @@ Related env vars:
 
 Files:
 
-- `api/calculator-leads.js`
+- `api/smoke-alarm/get-leads.js`
 - `tracker/smoke-alarm/index.html`
 
 Purpose:
@@ -137,10 +137,10 @@ Tracker route:
 
 Files:
 
-- `api/save-calculator-lead.js`
-- `api/accept-calculator-quote.js`
-- `api/send-calculator-reminder.js`
-- `api/update-calculator-lead-status.js`
+- `api/smoke-alarm/save-lead.js`
+- `api/smoke-alarm/accept-quote.js`
+- `api/smoke-alarm/send-reminder.js`
+- `api/smoke-alarm/update-lead-status.js`
 
 Purpose:
 
@@ -213,16 +213,16 @@ Remove:
 
 Remove:
 
-- `api/save-calculator-lead.js`
-- `api/accept-calculator-quote.js`
-- frontend call from `smoke-alarm/calculator/index.html` that posts to `/api/save-calculator-lead`
+- `api/smoke-alarm/save-lead.js`
+- `api/smoke-alarm/accept-quote.js`
+- frontend call from `smoke-alarm/calculator/index.html` that posts to `/api/smoke-alarm/save-lead`
 - Supabase lead save logic
 
 ### Remove tracker page
 
 Remove:
 
-- `api/calculator-leads.js`
+- `api/smoke-alarm/get-leads.js`
 - `tracker/smoke-alarm/index.html`
 - route entries in `vercel.json` for `/tracker/smoke-alarm`
 
@@ -230,8 +230,8 @@ Remove:
 
 Remove:
 
-- Resend email logic inside `api/save-calculator-lead.js`
-- Resend email logic inside `api/accept-calculator-quote.js`
+- Resend email logic inside `api/smoke-alarm/save-lead.js`
+- Resend email logic inside `api/smoke-alarm/accept-quote.js`
 - related env vars:
   - `RESEND_API_KEY`
   - `EMAIL_TO`

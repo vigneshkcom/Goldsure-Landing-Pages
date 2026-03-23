@@ -37,11 +37,11 @@
     },
     {
       "source": "/accept-quote/smoke-alarm",
-      "destination": "/api/accept-calculator-quote"
+      "destination": "/api/smoke-alarm/accept-quote"
     },
     {
       "source": "/accept-quote/smoke-alarm/",
-      "destination": "/api/accept-calculator-quote"
+      "destination": "/api/smoke-alarm/accept-quote"
     }
   ]
 }
