@@ -116,7 +116,7 @@ Current default behavior in code:
 
 - quote download internal notification
   - to `info@goldsure.com.au`
-  - bcc `kanishka@webco.au`
+  - no bcc
 
 - quote accepted internal notification
   - to `info@goldsure.com.au`

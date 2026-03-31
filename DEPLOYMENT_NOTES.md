@@ -62,7 +62,7 @@ Notes:
 - the code already has fallback email addresses
 - quote download notification fallback:
   - to `info@goldsure.com.au`
-  - bcc `kanishka@webco.au`
+  - no bcc
 - quote accepted notification fallback:
   - to `info@goldsure.com.au`
 - customer quote email reply-to fallback:

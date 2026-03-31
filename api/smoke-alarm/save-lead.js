@@ -107,7 +107,7 @@ async function sendResendEmail(payload) {
 
 async function sendInternalEmail(lead) {
   var emailTo = 'info@goldsure.com.au';
-  var emailBcc = 'kanishka@webco.au';
+  var emailBcc = '';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
   var submittedAt = formatSydneyDateTime(lead.created_at);
   var status = normalizeLeadStatus(lead.status);

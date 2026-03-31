@@ -86,7 +86,7 @@ Use this section if you need to change who gets which email.
   - File: `api/smoke-alarm/save-lead.js`
   - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
   - Sent to: `info@goldsure.com.au`
-  - BCC: `kanishka@webco.au`
+  - BCC: none
   - What it is: internal alert when someone downloads a quote from the calculator
 
 - Customer quote email
@@ -151,7 +151,7 @@ Notes:
 - `EMAIL_TO` and `EMAIL_FROM` are optional right now
 - the project already has fallback email addresses in code
 - current fallback behavior is:
-- quote download notification goes to `info@goldsure.com.au` and BCCs `kanishka@webco.au`
+- quote download notification goes to `info@goldsure.com.au` with no BCC
 - quote accepted notification goes to `info@goldsure.com.au`
 - customer quote email replies go to `info@goldsure.com.au`
 - customer reminder email replies go to `info@goldsure.com.au`

@@ -153,7 +153,7 @@ Email defaults:
 
 - Quote download notification:
   - To: `info@goldsure.com.au`
-  - BCC: `kanishka@webco.au`
+  - BCC: none
 - Quote accepted notification:
   - To: `info@goldsure.com.au`
 - Customer quote email reply-to:

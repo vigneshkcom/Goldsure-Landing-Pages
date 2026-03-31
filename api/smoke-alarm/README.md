@@ -37,7 +37,7 @@ Current email behaviour:
 
 - customer quote email goes to the customer's email address
 - internal quote-download email goes to `info@goldsure.com.au`
-- that internal email also BCCs `kanishka@webco.au`
+- that internal email has no BCC
 - customer replies go to `info@goldsure.com.au`
 
 ### `accept-quote.js`
