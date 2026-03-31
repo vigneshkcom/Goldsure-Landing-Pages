@@ -197,6 +197,10 @@ Check these features:
 
 For the full deployment checklist, see [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).
 
+## Architecture notes
+
+For the repo structure, request flow, API responsibilities, and service dependencies, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
 ## Tracking notes
 
 For tracking, analytics, lead capture, and notification details, see [TRACKING_NOTES.md](./TRACKING_NOTES.md).
