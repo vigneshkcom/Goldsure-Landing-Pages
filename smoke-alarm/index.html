@@ -684,15 +684,70 @@ section { padding: 5rem 2rem; }
 
 .act-points { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
 .act-point {
-  display: flex; align-items: flex-start; gap: 0.75rem;
-  font-size: 0.90rem; color: var(--ink);
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  position: relative; overflow: hidden;
+  cursor: default;
 }
-.act-point-dot {
-  width: 22px; height: 22px; flex-shrink: 0;
-  border-radius: 50%;
+.act-point::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--gold-deep), var(--gold-light));
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.35s ease;
+}
+.act-point:hover {
+  transform: translateX(4px) translateY(-2px) scale(1.01);
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+}
+.act-point:hover::before { transform: scaleY(1); }
+.act-point-icon {
+  width: 26px; height: 26px; flex-shrink: 0;
+  border-radius: 4px;
   background: var(--gold-bg); border: 1.5px solid var(--gold-bd);
   display: flex; align-items: center; justify-content: center;
-  color: var(--gold-deep); margin-top: 0.12rem;
+  color: var(--gold-deep); margin-top: 0.2rem;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.act-point:hover .act-point-icon {
+  background: rgba(201,168,76,0.18);
+  border-color: var(--gold);
+  transform: scale(1.08);
+}
+.act-point-content { flex: 1; }
+.act-point-label {
+  display: block; font-size: 0.68rem; font-weight: 810;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 0.35rem;
+}
+.act-point-text {
+  display: block; color: var(--ink); font-weight: 500;
+  font-size: 0.94rem; line-height: 1.5;
+}
+
+.act-alert {
+  display: flex; align-items: center; gap: 0.85rem;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--gold-bd);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 12px rgba(201,168,76,0.06);
+}
+.act-alert-icon {
+  width: 26px; height: 26px; flex-shrink: 0;
+  background: var(--gold); color: var(--ink);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+.act-alert-text {
+  font-size: 0.90rem; color: var(--ink); line-height: 1.5; flex: 1;
 }
 .act-image-col { position: relative; }
 .act-img-wrap { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
@@ -1137,6 +1192,11 @@ section { padding: 5rem 2rem; }
   .dl-desc { font-size: 0.84rem; }
   .dl-tag { font-size: 0.62rem; padding: 0.2rem 0.55rem; }
   .act-points { gap: 0.65rem; }
+  .act-point { padding: 1rem 1.15rem; gap: 0.85rem; border-radius: var(--radius); }
+  .act-point-icon { width: 24px; height: 24px; }
+  .act-alert { padding: 0.85rem 1rem; align-items: flex-start; margin-top: 1.25rem; }
+  .act-alert-icon { width: 22px; height: 22px; }
+  .act-alert-text { font-size: 0.84rem; }
   .act-image-col { margin-top: 1.5rem; }
   .act-img-wrap img { max-height: 260px; object-position: center 20%; }
 
@@ -1519,38 +1579,60 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 
         <div class="act-points" style="margin-top:0;">
           <div class="act-point">
-            <div class="act-point-dot">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/></svg>
+            <div class="act-point-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             </div>
-            <span><strong>MISSING PROTECTION:</strong> Do you have a smoke alarm in every bedroom?</span>
+            <div class="act-point-content">
+              <span class="act-point-label">Missing Protection</span>
+              <span class="act-point-text">Do you have a smoke alarm in every bedroom?</span>
+            </div>
           </div>
           <div class="act-point">
-            <div class="act-point-dot">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/></svg>
+            <div class="act-point-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             </div>
-            <span><strong>ISOLATED UNITS:</strong> Are all your alarms interconnected (if one goes off, they all do)?</span>
+            <div class="act-point-content">
+              <span class="act-point-label">Isolated Units</span>
+              <span class="act-point-text">Are all your alarms interconnected (when one goes off, they all do)?</span>
+            </div>
           </div>
           <div class="act-point">
-            <div class="act-point-dot">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/></svg>
+            <div class="act-point-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             </div>
-            <span><strong>EXPIRED HARDWARE:</strong> Are your current alarms less than 10 years old?</span>
+            <div class="act-point-content">
+              <span class="act-point-label">Expired Hardware</span>
+              <span class="act-point-text">Are your current alarms less than 10 years old?</span>
+            </div>
           </div>
           <div class="act-point">
-            <div class="act-point-dot">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/></svg>
+            <div class="act-point-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             </div>
-            <span><strong>ESCAPE PATH BLOCKED:</strong> Is there an alarm in the hallway connecting the bedrooms?</span>
+            <div class="act-point-content">
+              <span class="act-point-label">Escape Path Blocked</span>
+              <span class="act-point-text">Is there an alarm in the hallway connecting the bedrooms?</span>
+            </div>
           </div>
           <div class="act-point">
-            <div class="act-point-dot">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/></svg>
+            <div class="act-point-icon">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             </div>
-            <span><strong>MULTI-STORY RISK:</strong> If you have a second floor, is there at least one alarm on that level?</span>
+            <div class="act-point-content">
+              <span class="act-point-label">Multi-Story Risk</span>
+              <span class="act-point-text">If you have a second floor, is there at least one alarm on that level?</span>
+            </div>
           </div>
         </div>
 
-        <p style="color:var(--muted);font-size:0.95rem;margin-top:1.5rem;line-height:1.8;"><strong>If you answered "No" to any of the above, your home is currently non-compliant.</strong></p>
+        <div class="act-alert">
+          <div class="act-alert-icon">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <div class="act-alert-text">
+            <strong>If you answered "No" to any of the above, your home is currently non-compliant.</strong>
+          </div>
+        </div>
 
         <div class="deadline-rows" style="margin-top:1.5rem;">
           <div class="deadline-row active">
