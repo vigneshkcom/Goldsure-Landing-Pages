@@ -127,7 +127,7 @@ Use this section if you need to change who gets which email.
 - To change the sender email address for all emails:
   - change `EMAIL_FROM` in Vercel
 
-- To change the reply-to address used in the customer quote email:
+- To change the reply-to address used in the customer quote email and reminder email:
   - change `EMAIL_TO` in Vercel
 
 ## Environment variables needed in Vercel
@@ -138,6 +138,7 @@ Add these in your Vercel project settings:
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `RESEND_API_KEY`
+- `PUBLIC_SITE_URL`
 - `EMAIL_TO`
 - `EMAIL_FROM`
 
@@ -145,16 +146,18 @@ Example email values:
 
 - `EMAIL_TO=info@goldsure.com.au`
 - `EMAIL_FROM=info@goldsure.com.au`
+- `PUBLIC_SITE_URL=https://offers.goldsure.com.au`
 
 Notes:
 
-- `EMAIL_TO` and `EMAIL_FROM` are optional right now
+- `EMAIL_TO`, `EMAIL_FROM`, and `PUBLIC_SITE_URL` are optional right now
 - the project already has fallback email addresses in code
 - current fallback behavior is:
 - quote download notification goes to `info@goldsure.com.au` with no BCC
 - quote accepted notification goes to `info@goldsure.com.au`
 - customer quote email replies go to `info@goldsure.com.au`
 - customer reminder email replies go to `info@goldsure.com.au`
+- accept links default to `https://offers.goldsure.com.au` if `PUBLIC_SITE_URL` is not set
 - customer quote email sends from `Goldsure Pty Ltd <info@goldsure.com.au>`
 - adding env vars in Vercel is still better if you want to change recipients later without editing code
 

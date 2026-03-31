@@ -153,6 +153,25 @@ This keeps the customer-facing acceptance URL clean while still using a serverle
 - Google Maps
   - address autocomplete support
 
+## Environment Variables
+
+Main variables used by this repo:
+
+- `GOOGLE_MAPS_API_KEY`
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESEND_API_KEY`
+- `EMAIL_TO`
+- `EMAIL_FROM`
+- `PUBLIC_SITE_URL`
+
+Notes:
+
+- `EMAIL_TO` controls the fallback reply-to address for customer quote emails and reminder emails
+- `EMAIL_FROM` controls the sender address
+- `PUBLIC_SITE_URL` controls the base URL used in customer accept links
+- if `PUBLIC_SITE_URL` is not set, accept links fall back to `https://offers.goldsure.com.au`
+
 ## What Is Not In This Repo
 
 - No framework app layer such as Next.js pages or React components

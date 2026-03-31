@@ -140,14 +140,12 @@ Files:
 - `api/smoke-alarm/save-lead.js`
 - `api/smoke-alarm/accept-quote.js`
 - `api/smoke-alarm/send-reminder.js`
-- `api/smoke-alarm/update-lead-status.js`
 
 Purpose:
 
 - sends internal email after a calculator lead is saved
 - sends internal email when a customer accepts the quote
 - sends customer reminder emails with the quote again
-- updates tracker status to values like `downloaded`, `accepted`, and `won`
 
 Email defaults:
 

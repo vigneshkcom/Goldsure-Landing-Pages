@@ -48,6 +48,7 @@ Add these environment variables:
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `RESEND_API_KEY`
+- `PUBLIC_SITE_URL`
 - `EMAIL_TO`
 - `EMAIL_FROM`
 
@@ -55,10 +56,11 @@ Example email values:
 
 - `EMAIL_TO=info@goldsure.com.au`
 - `EMAIL_FROM=info@goldsure.com.au`
+- `PUBLIC_SITE_URL=https://offers.goldsure.com.au`
 
 Notes:
 
-- `EMAIL_TO` and `EMAIL_FROM` are optional right now
+- `EMAIL_TO`, `EMAIL_FROM`, and `PUBLIC_SITE_URL` are optional right now
 - the code already has fallback email addresses
 - quote download notification fallback:
   - to `info@goldsure.com.au`
@@ -69,6 +71,8 @@ Notes:
   - `info@goldsure.com.au`
 - customer reminder email reply-to fallback:
   - `info@goldsure.com.au`
+- accept link base URL fallback:
+  - `https://offers.goldsure.com.au`
 - adding them in Vercel is still recommended if you want to manage email recipients without changing code
 
 ## Step 4. Add the custom domain
