@@ -1,209 +1,66 @@
-# Goldsure Landing Pages
+# Goldsure Landing Pages Workflow
 
-This is a standalone website project for the Goldsure smoke alarm funnel.
+This repository contains the standalone, conversion-optimized landing pages and unified calculator funnel for Goldsure. 
 
-It is designed to be deployed on Vercel by itself.
+**Live Domain:** [https://offers.goldsure.com.au](https://offers.goldsure.com.au)  
+**Hosting Environment:** Vercel (Serverless)
 
-## What this project does
+---
 
-This project contains:
+## 1. The Funnel Workflow
 
-- a smoke alarm landing page
-- a thank-you page
-- a calculator page
-- a simple internal tracker page
+The user journey is strategically split into distinct lead-capture phases to maximize conversions and generate immediate quoting data.
 
-Main live routes:
+### Step 1: The Opt-In (Landing Page)
+- **URL:** `/smoke-alarm`
+- **Action:** Users fill out the Hero section form to request a quote.
+- **System:** This form is a **GoHighLevel (LeadConnector) iframe**. Leads submitted here are instantly captured directly into the Goldsure GHL CRM.
+- **Routing:** Upon successful submission, the GHL form automatically redirects the user's browser to the custom Thank You Page.
 
-- `/smoke-alarm`
-- `/thank-you/smoke-alarm`
-- `/smoke-alarm/calculator`
-- `/tracker/smoke-alarm`
+### Step 2: The Soft-Upsell (Thank You Page)
+- **URL:** `/thank-you/smoke-alarm`
+- **Action:** Users are thanked for their enquiry and prompted to click the primary CTA: "Calculate My Requirements" to get an instant breakdown of the hardware they need.
+- **System:** Clicking this button is natively tracked via our data layer and routes the user into the internal quote calculator flow.
 
-## Folder structure
+### Step 3: The Calculator Flow & Backend Execution
+- **URL:** `/smoke-alarm/calculator`
+- **Action:** The user inputs their specific property details (number of bedrooms, levels, etc.) to receive an instant on-screen quote.
+- **System:** When the user completes the calculator, it triggers a background Vercel serverless function (`/api/smoke-alarm/save-lead.js`).
+- **Data Routing:** 
+  - The finalized quote data is securely saved to a **Supabase** PostgreSQL database.
+  - **Resend** (the transactional email API) automatically emails an internal notification to the Goldsure team AND simultaneously sends a stylized HTML quote PDF/email directly to the customer.
 
-```text
-/
-|-- api/
-|   `-- smoke-alarm/
-|       |-- accept-quote.js
-|       |-- get-leads.js
-|       |-- maps-config.js
-|       |-- save-lead.js
-|       |-- send-reminder.js
-|       `-- update-lead-status.js
-|-- smoke-alarm/
-|   |-- calculator/
-|   |   `-- index.html
-|   `-- index.html
-|-- thank-you/
-|   `-- smoke-alarm/
-|       `-- index.html
-|-- tracker/
-|   `-- smoke-alarm/
-|       `-- index.html
-|-- .gitignore
-|-- DEPLOYMENT_NOTES.md
-|-- README.md
-|-- TRACKING_NOTES.md
-`-- vercel.json
-```
+---
 
-## Which file serves which page
+## 2. Tracking Architecture & Analytics
 
-- `/smoke-alarm` -> `smoke-alarm/index.html`
-- `/thank-you/smoke-alarm` -> `thank-you/smoke-alarm/index.html`
-- `/smoke-alarm/calculator` -> `smoke-alarm/calculator/index.html`
-- `/tracker/smoke-alarm` -> `tracker/smoke-alarm/index.html`
+This landing page is hardcoded with specific tags to ensure seamless attribution for advertising campaigns.
 
-The route rules are handled in `vercel.json`.
+### Hardcoded Tags
+1. **Google Tag Manager**
+   - **ID:** `GTM-PSTXFKJL`
+   - **Placement:** Base script inside the `<head>`, fallback `<noscript>` directly inside the `<body>`.
 
-## What the API files do
+2. **Meta (Facebook) Pixel**
+   - **ID:** `1482683390150721`
+   - **Placement:** Base pageview initialization inside the `<head>`, immediately following GTM.
 
-- `api/smoke-alarm/maps-config.js`
-  Gives the calculator access to the Google Maps key for address autocomplete.
+### Custom Conversion Events (`dataLayer`)
+The application intercepts specific user interactions across the funnel and instantly pushes them to both `window.dataLayer.push()` and `fbq('trackCustom')`. 
 
-- `api/smoke-alarm/save-lead.js`
-  Saves calculator leads to Supabase, sends the quote-download notification, and sends the customer quote email.
+**Key Events Tracked:**
+- `book_installation_click`: Triggered when users click secondary anchor links on the landing page to jump back up to the primary Hero form.
+- `phone_click_hero` / `phone_click_header`: Triggered on direct `tel:` link clicks on desktop and mobile.
+- `thank_you_calculate_click`: Triggered on the Thank You page when a user proceeds to the calculator.
+- `thank_you_page_view`: Fired automatically upon landing on the Thank You page (This is the primary Lead conversion metric post-GoHighLevel submission).
 
-- `api/smoke-alarm/get-leads.js`
-  Loads lead data from Supabase for the tracker page.
+---
 
-- `api/smoke-alarm/accept-quote.js`
-  Marks a quote as accepted and sends the accepted-quote internal notification.
+## 3. Database & Services Overview
 
-- `api/smoke-alarm/send-reminder.js`
-  Sends a reminder email with the quote back to the customer and increases the reminder count.
+If you need to query leads, test deliverability, or understand where the data lives post-capture:
+- **Hosting / Routing:** Vercel handles all URL rewrites (e.g., rewriting `/smoke-alarm` directly to the static `smoke-alarm/index.html` file) via `vercel.json` and powers the backend API logic.
+- **Database:** Supabase (Queries are stored in the `public.calculator_leads` table).
+- **Email Delivery:** Resend triggers the dynamic HTML quote notifications.
 
-- `api/smoke-alarm/update-lead-status.js`
-  Updates a lead status from the tracker, for example marking it as won.
-
-## Email map
-
-Use this section if you need to change who gets which email.
-
-- Quote download internal notification
-  - File: `api/smoke-alarm/save-lead.js`
-  - Subject: `New Smoke Alarm Quote Downloaded From Landing Page - Customer Name`
-  - Sent to: `info@goldsure.com.au`
-  - BCC: none
-  - What it is: internal alert when someone downloads a quote from the calculator
-
-- Customer quote email
-  - File: `api/smoke-alarm/save-lead.js`
-  - Subject: `Your Smoke Alarm Quote - Goldsure`
-  - Sent to: the customer email they entered in the calculator
-  - Sender name: `Goldsure Pty Ltd`
-  - Reply-to: `info@goldsure.com.au` by default, or `EMAIL_TO` if that env var is set
-  - What it is: the actual quote email the customer receives
-
-- Quote accepted internal notification
-  - File: `api/smoke-alarm/accept-quote.js`
-  - Subject: `Quote Accepted (Landing Page download) - Customer Name - $Amount`
-  - Sent to: `info@goldsure.com.au`
-  - What it is: internal alert after the customer clicks the accept button in the quote email
-
-- Customer reminder email
-  - File: `api/smoke-alarm/send-reminder.js`
-  - Subject: `Reminder: Your Smoke Alarm Quote - Goldsure`
-  - Sent to: the customer email they entered in the calculator
-  - Reply-to: `info@goldsure.com.au` by default, or `EMAIL_TO` if that env var is set
-  - What it is: a follow-up email that re-sends the quote and accept button
-
-## Where to change email settings
-
-- To change the quote download internal recipients:
-  - edit `api/smoke-alarm/save-lead.js`
-
-- To change the customer email sender name, footer details, or reply-to:
-  - edit `api/smoke-alarm/save-lead.js`
-
-- To change the accepted-quote internal recipients:
-  - edit `api/smoke-alarm/accept-quote.js`
-
-- To change the reminder email wording or who it sends to:
-  - edit `api/smoke-alarm/send-reminder.js`
-
-- To change the sender email address for all emails:
-  - change `EMAIL_FROM` in Vercel
-
-- To change the reply-to address used in the customer quote email and reminder email:
-  - change `EMAIL_TO` in Vercel
-
-## Environment variables needed in Vercel
-
-Add these in your Vercel project settings:
-
-- `GOOGLE_MAPS_API_KEY`
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `RESEND_API_KEY`
-- `PUBLIC_SITE_URL`
-- `EMAIL_TO`
-- `EMAIL_FROM`
-
-Example email values:
-
-- `EMAIL_TO=info@goldsure.com.au`
-- `EMAIL_FROM=info@goldsure.com.au`
-- `PUBLIC_SITE_URL=https://offers.goldsure.com.au`
-
-Notes:
-
-- `EMAIL_TO`, `EMAIL_FROM`, and `PUBLIC_SITE_URL` are optional right now
-- the project already has fallback email addresses in code
-- current fallback behavior is:
-- quote download notification goes to `info@goldsure.com.au` with no BCC
-- quote accepted notification goes to `info@goldsure.com.au`
-- customer quote email replies go to `info@goldsure.com.au`
-- customer reminder email replies go to `info@goldsure.com.au`
-- accept links default to `https://offers.goldsure.com.au` if `PUBLIC_SITE_URL` is not set
-- customer quote email sends from `Goldsure Pty Ltd <info@goldsure.com.au>`
-- adding env vars in Vercel is still better if you want to change recipients later without editing code
-
-## How to deploy
-
-1. Push this project to GitHub.
-2. Import the repo into Vercel.
-3. Choose:
-   - Framework Preset: `Other`
-   - Root Directory: `.`
-4. Add the environment variables listed above.
-5. Deploy.
-
-## What to check after deploy
-
-Check these pages:
-
-- `/smoke-alarm`
-- `/thank-you/smoke-alarm`
-- `/smoke-alarm/calculator`
-- `/tracker/smoke-alarm`
-
-Check these features:
-
-- the landing page loads correctly
-- the thank-you page loads correctly
-- the calculator works
-- Google address autocomplete works
-- only Queensland addresses with postcodes starting with `4` are accepted
-- a quote download saves the lead to Supabase
-- the internal quote-download email is sent
-- the customer quote email is sent
-- clicking accept in the customer quote email updates the lead status
-- the tracker page shows the saved lead
-- the tracker can mark a lead as won
-- the tracker can send a reminder email to a customer
-- the tracker shows how many reminders have been sent
-
-## Deployment notes
-
-For the full deployment checklist, see [DEPLOYMENT_NOTES.md](./DEPLOYMENT_NOTES.md).
-
-## Architecture notes
-
-For the repo structure, request flow, API responsibilities, and service dependencies, see [ARCHITECTURE.md](./ARCHITECTURE.md).
-
-## Tracking notes
-
-For tracking, analytics, lead capture, and notification details, see [TRACKING_NOTES.md](./TRACKING_NOTES.md).
+*(Note for Developers: Deep-dive API maps, serverless routing architectures, and internal tracking payloads are preserved in `ARCHITECTURE.md` and `TRACKING_NOTES.md`)*
