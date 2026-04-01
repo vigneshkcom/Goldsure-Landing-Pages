@@ -1,6 +1,6 @@
 # Goldsure Landing Pages Workflow
 
-This repository contains the standalone, conversion-optimized landing pages and unified calculator funnel for Goldsure. 
+This repository contains the standalone, conversion-optimised landing pages and unified calculator funnel for Goldsure. 
 
 **Live Domain:** [https://offers.goldsure.com.au](https://offers.goldsure.com.au)  
 **Hosting Environment:** Vercel (Serverless)
@@ -9,26 +9,26 @@ This repository contains the standalone, conversion-optimized landing pages and 
 
 ## 1. The Funnel Workflow
 
-The user journey is strategically split into distinct lead-capture phases to maximize conversions and generate immediate quoting data.
+The user journey is strategically split into distinct lead-capture phases to maximise conversions and generate immediate quoting data.
 
 ### Step 1: The Opt-In (Landing Page)
-- **URL:** `/smoke-alarm`
+- **URL:** [https://offers.goldsure.com.au/smoke-alarm](https://offers.goldsure.com.au/smoke-alarm)
 - **Action:** Users fill out the Hero section form to request a quote.
 - **System:** This form is a **GoHighLevel (LeadConnector) iframe**. Leads submitted here are instantly captured directly into the Goldsure GHL CRM.
 - **Routing:** Upon successful submission, the GHL form automatically redirects the user's browser to the custom Thank You Page.
 
 ### Step 2: The Soft-Upsell (Thank You Page)
-- **URL:** `/thank-you/smoke-alarm`
+- **URL:** [https://offers.goldsure.com.au/thank-you/smoke-alarm](https://offers.goldsure.com.au/thank-you/smoke-alarm)
 - **Action:** Users are thanked for their enquiry and prompted to click the primary CTA: "Calculate My Requirements" to get an instant breakdown of the hardware they need.
 - **System:** Clicking this button is natively tracked via our data layer and routes the user into the internal quote calculator flow.
 
 ### Step 3: The Calculator Flow & Backend Execution
-- **URL:** `/smoke-alarm/calculator`
+- **URL:** [https://offers.goldsure.com.au/smoke-alarm/calculator](https://offers.goldsure.com.au/smoke-alarm/calculator)
 - **Action:** The user inputs their specific property details (number of bedrooms, levels, etc.) to receive an instant on-screen quote.
 - **System:** When the user completes the calculator, it triggers a background Vercel serverless function (`/api/smoke-alarm/save-lead.js`).
 - **Data Routing:** 
-  - The finalized quote data is securely saved to a **Supabase** PostgreSQL database.
-  - **Resend** (the transactional email API) automatically emails an internal notification to the Goldsure team AND simultaneously sends a stylized HTML quote PDF/email directly to the customer.
+  - The finalised quote data is securely saved to a **Supabase** PostgreSQL database.
+  - **Resend** (the transactional email API) automatically emails an internal notification to the Goldsure team AND simultaneously sends a stylised HTML quote PDF/email directly to the customer.
 
 ---
 
