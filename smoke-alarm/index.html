@@ -1156,7 +1156,7 @@ section { padding: 5rem 2rem; }
   .hero-list-item { font-size: 0.86rem; }
   .hero-ctas { flex-direction: column; gap: 0.65rem; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
-  .hero-ctas .btn-gold { display: none; }
+  /* .hero-ctas .btn-gold intentionally visible on mobile — phone CTA kept for users who prefer calling */
 
   /* Hero form */
   .hero-form-card { border-radius: var(--radius); }
@@ -1474,13 +1474,14 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 
     <!-- Left -->
     <div class="hero-left">
+      <div class="eyebrow">Queensland's Trusted Smoke Alarm Specialists</div>
       <div class="hero-badge">
         <span class="pulse"></span>
         QLD Compliance Deadline: 1 January 2027
       </div>
 
-      <h1 id="hero-headline">Are Your Smoke Alarms <span class="gold">Compliant</span> with Queensland's Law?</h1>
-      <p class="hero-sub">Most Queensland homes still have the wrong type of smoke alarm. Goldsure handles everything — licensed electrician, correct placement throughout your home, and a Certificate of Compliance issued on the same day.</p>
+      <h1 id="hero-headline">QLD Smoke Alarm Deadline:&nbsp;<span class="gold">1 Jan 2027</span>&nbsp;— Is Your Home Ready?</h1>
+      <p class="hero-sub">Most Queensland homes still have the wrong type of smoke alarm. Goldsure has helped over 1,000 Queensland homeowners get compliant — licensed electrician, correct placement throughout your home, and a Certificate of Compliance issued on the same day.</p>
 
       <div class="hero-list">
         <div class="hero-list-item">
@@ -1509,8 +1510,8 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
     <div class="hero-form-card">
       <div class="hfc-body">
         <div class="hfc-header">
-          <div class="hfc-title">Get a Free Quote</div>
-          <div class="hfc-sub">We'll confirm your requirements and provide pricing within 24 hours.</div>
+          <div class="hfc-title">Get Your Instant Price</div>
+          <div class="hfc-sub">Fill in your details and get an instant price for your property — takes 2 minutes.</div>
         </div>
         <div class="hfc-clip">
           <iframe
@@ -1967,6 +1968,22 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
       </div>
     </div><!-- /.reviews-carousel -->
   </div><!-- /.testimonials-inner -->
+
+  <!-- Post-testimonials CTA -->
+  <div style="text-align:center;padding:2rem 2rem 3.5rem;">
+    <div class="eyebrow" style="color:var(--gold)">Ready to join them?</div>
+    <p style="color:var(--muted);font-size:0.92rem;margin:0.5rem auto 1.5rem;max-width:420px;line-height:1.7;">Get your instant compliance quote — takes 2 minutes.</p>
+    <div style="display:flex;gap:0.85rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#book" class="btn btn-gold" data-track="book_installation_click">
+        Check My Home's Compliance
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:0721455155" class="btn btn-outline-dark" data-track="phone_click_testimonials">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013 10.81 19.8 19.8 0 01-.07 2.17 2 2 0 011.91 0h3a2 2 0 012 1.72 12.8 12.8 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.8 12.8 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        (07) 2145 5155
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- ══ GUARANTEE ══ -->
@@ -2017,12 +2034,12 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 <!-- ══ CTA STRIP ══ -->
 <section style="background:var(--off-white);padding:4rem 2.5rem;">
   <div style="max-width:820px;margin:0 auto;text-align:center;">
-    <div class="eyebrow" style="color:var(--gold)">Ready to Get Compliant?</div>
-    <h2 style="color:var(--ink);margin-bottom:0.75rem;">Book Your Installation Before the 2027 Deadline</h2>
-    <p style="color:var(--muted);font-size:0.95rem;max-width:540px;margin:0 auto 2rem;line-height:1.75;">A licensed professional will confirm exactly what your home needs and handle everything from assessment through to certification.</p>
+    <div class="eyebrow" style="color:var(--gold)">Don't Wait</div>
+    <h2 style="color:var(--ink);margin-bottom:0.75rem;">Most homeowners leave this until the last minute — don't.</h2>
+    <p style="color:var(--muted);font-size:0.95rem;max-width:540px;margin:0 auto 2rem;line-height:1.75;">Installation slots fill up as the 2027 deadline approaches. Get your instant quote now and lock in a time that suits you.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#book" class="btn btn-gold">
-        Get a Free Quote
+      <a href="#book" class="btn btn-gold" data-track="book_installation_click">
+        Get My Instant Quote
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="tel:0721455155" class="btn btn-outline-dark" data-track="phone_click_cta_strip">
@@ -2513,9 +2530,9 @@ document.addEventListener('keydown', function (e) {
   el.innerHTML = '';
 
   var segments = [
-    { text: 'Are Your Smoke Alarms ' },
-    { text: 'Compliant', cls: 'gold' },
-    { text: "\u00A0with Queensland\u2019s Law" }
+    { text: 'QLD Smoke Alarm Deadline:\u00A0' },
+    { text: '1 Jan 2027', cls: 'gold' },
+    { text: '\u00A0\u2014 Is Your Home Ready?' }
   ];
 
   var chars = [];
