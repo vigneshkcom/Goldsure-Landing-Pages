@@ -352,23 +352,14 @@ section { padding: 5rem 2rem; }
 .hfc-body {
   padding: 1.25rem 1.25rem 1rem;
 }
-/* Clip container — hides GHL injected promo header via overflow */
-.hfc-clip {
-  overflow: hidden;
+.hfc-embed {
   border-radius: var(--radius-sm);
-  --clip-offset: 178px;
-  margin-bottom: 0;
-}
-.hfc-body iframe {
-  width: 100%; border: none; display: block;
-  /* visible area = this height minus --clip-offset (178px)
-     form content ~720px → 178 + 720 + 20 buffer = 908px */
-  height: 920px;
-  margin-top: calc(-1 * var(--clip-offset, 178px));
-  padding-top: var(--clip-offset, 178px);
-  box-sizing: border-box;
   overflow: hidden;
-  background: #ffffff;
+}
+.hfc-embed iframe {
+  width: 100%;
+  display: block;
+  min-height: 566px;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 
@@ -1161,7 +1152,6 @@ section { padding: 5rem 2rem; }
   /* Hero form */
   .hero-form-card { border-radius: var(--radius); }
   .hfc-body { padding: 0.9rem 0.9rem 0.75rem; }
-  .hfc-body iframe { height: 980px; }
   .hfc-title { font-size: 0.92rem; }
 
   /* Marquee */
@@ -1529,14 +1519,23 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="hfc-title">Get Your Instant Price</div>
           <div class="hfc-sub">Fill in your details and get an instant price for your property — takes 2 minutes.</div>
         </div>
-        <div class="hfc-clip">
+        <div class="hfc-embed" data-track-form="hero_quote_form">
           <iframe
-            src="https://api.leadconnectorhq.com/widget/form/HApM0TGgenKKKOjPzsxB"
-            id="hero-iframe"
-            name="form-7JO-0ZuQsl"
-            title="Book Your Installation"
-            data-form-id="HApM0TGgenKKKOjPzsxB"
-            data-track-form="hero_quote_form"
+            src="https://api.leadconnectorhq.com/widget/form/bD5qLVBmI0AurEIsmUpj"
+            style="width:100%;height:100%;border:none;border-radius:3px"
+            id="inline-bD5qLVBmI0AurEIsmUpj"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="Smoke Alarms Landing Page Form"
+            data-height="566"
+            data-layout-iframe-id="inline-bD5qLVBmI0AurEIsmUpj"
+            data-form-id="bD5qLVBmI0AurEIsmUpj"
+            title="Smoke Alarms Landing Page Form"
           ></iframe>
         </div>
         <div class="form-note">
@@ -2469,54 +2468,6 @@ function faqToggle(el) {
   if (!isOpen) item.classList.add('open');
 }
 
-/* ── Iframe auto-resize — no internal scrollbars ── */
-(function () {
-  var HERO_FLOOR = window.innerWidth <= 768 ? 980 : 920;
-
-  function setHeight(h) {
-    var el = document.getElementById('hero-iframe');
-    if (!el) return;
-    var next = Math.max(h, HERO_FLOOR);
-    if (parseInt(el.style.height, 10) !== next) {
-      el.style.height = next + 'px';
-    }
-  }
-
-  setHeight(HERO_FLOOR);
-
-  /* postMessage from GHL embed */
-  window.addEventListener('message', function (e) {
-    if (!e.data) return;
-    var d = e.data;
-    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
-    var raw = d.height || d.iframeHeight || d.frameHeight || d.scrollHeight || 0;
-    var h   = parseInt(raw, 10);
-    if (!h || isNaN(h) || h < 100) return;
-    setHeight(h + 178 + 40);
-  });
-
-  /* Poll — same-origin read attempt (silently fails cross-origin) */
-  function poll() {
-    var el = document.getElementById('hero-iframe');
-    if (!el) return;
-    try {
-      var doc = el.contentDocument || (el.contentWindow && el.contentWindow.document);
-      if (doc && doc.body) {
-        var sh = doc.body.scrollHeight;
-        if (sh > 100) setHeight(sh + 178 + 40);
-      }
-    } catch (err) { /* cross-origin — expected */ }
-  }
-
-  var ticks = 0;
-  var fastPoll = setInterval(function () {
-    poll();
-    if (++ticks >= 30) {
-      clearInterval(fastPoll);
-      setInterval(poll, 3000);
-    }
-  }, 500);
-})();
 /* ── Placement Guide Modal ── */
 function openPlacementModal() {
   var modal = document.getElementById('placementModal');
@@ -2652,6 +2603,7 @@ document.addEventListener('keydown', function (e) {
 })();
 
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 </body>
 </html>
