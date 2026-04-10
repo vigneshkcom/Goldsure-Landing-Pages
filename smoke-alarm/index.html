@@ -113,7 +113,6 @@ fbq('track', 'PageView');
     })(window, document, "clarity", "script", "vg3xq1chsb");
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://link.msgsndr.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;810&display=swap" rel="stylesheet">
 <style>
 
@@ -353,18 +352,34 @@ section { padding: 5rem 2rem; }
 .hfc-body {
   padding: 1.25rem 1.25rem 1rem;
 }
-.hfc-embed {
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+.hfc-native-form { display: flex; flex-direction: column; gap: 0.85rem; }
+.hnf-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.hnf-group label { font-size: 0.82rem; font-weight: 500; color: #1a1a1a; }
+.hnf-group input,
+.hnf-group select {
+  width: 100%; padding: 0.65rem 0.85rem;
+  border: 1.5px solid #d1d5db; border-radius: var(--radius-sm);
+  font-size: 0.9rem; font-family: inherit; color: #1a1a1a;
+  background: #fff; outline: none; box-sizing: border-box;
+  transition: border-color 0.15s;
 }
-.hfc-embed iframe {
-  width: 100%;
-  display: block;
-  min-height: 566px;
-  position: relative;
-  top: -65px;
-  margin-bottom: -65px;
+.hnf-group input::placeholder { color: #9ca3af; }
+.hnf-group input:focus,
+.hnf-group select:focus { border-color: var(--gold-deep); box-shadow: 0 0 0 2px rgba(163,127,62,0.12); }
+.hnf-group select { appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.8rem center; padding-right: 2.2rem; }
+.hnf-error { font-size: 0.82rem; color: #dc2626; padding: 0.25rem 0; }
+.hnf-submit {
+  width: 100%; padding: 0.9rem 1rem;
+  background: var(--gold); color: #0D0D0D;
+  border: none; border-radius: var(--radius-sm);
+  font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em;
+  text-transform: uppercase; cursor: pointer; font-family: inherit;
+  transition: background 0.15s;
 }
+.hnf-submit:hover { background: var(--gold-deep); color: #fff; }
+.hnf-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 
 /* Form card header */
@@ -1157,7 +1172,6 @@ section { padding: 5rem 2rem; }
   .hero-form-card { border-radius: var(--radius); }
   .hfc-body { padding: 0.9rem 0.9rem 0.75rem; }
   .hfc-title { font-size: 0.92rem; }
-  .hfc-embed iframe { top: -60px; margin-bottom: -60px; }
 
   /* Marquee */
   .marquee-item { font-size: 0.66rem; padding: 0 1.5rem; gap: 0.6rem; }
@@ -1524,25 +1538,44 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="hfc-title">Get Your Instant Price</div>
           <div class="hfc-sub">Fill in your details and get an instant price for your property — takes 2 minutes.</div>
         </div>
-        <div class="hfc-embed" data-track-form="hero_quote_form">
-          <iframe
-            src="https://api.leadconnectorhq.com/widget/form/bD5qLVBmI0AurEIsmUpj"
-            style="width:100%;height:100%;border:none;border-radius:3px"
-            id="inline-bD5qLVBmI0AurEIsmUpj"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Smoke Alarms Landing Page Form"
-            data-height="566"
-            data-layout-iframe-id="inline-bD5qLVBmI0AurEIsmUpj"
-            data-form-id="bD5qLVBmI0AurEIsmUpj"
-            title="Smoke Alarms Landing Page Form"
-          ></iframe>
-        </div>
+        <form id="hero-lead-form" class="hfc-native-form" novalidate data-track-form="hero_quote_form">
+
+          <div class="hnf-group">
+            <label for="hf-name">Full Name *</label>
+            <input type="text" id="hf-name" name="name" placeholder="Full Name" required autocomplete="name">
+          </div>
+
+          <div class="hnf-group">
+            <label for="hf-phone">Phone *</label>
+            <input type="tel" id="hf-phone" name="phone" placeholder="Phone" required autocomplete="tel">
+          </div>
+
+          <div class="hnf-group">
+            <label for="hf-email">Email *</label>
+            <input type="email" id="hf-email" name="email" placeholder="Email" required autocomplete="email">
+          </div>
+
+          <div class="hnf-group">
+            <label for="hf-postal">Postal Code *</label>
+            <input type="text" id="hf-postal" name="postal_code" placeholder="Postal Code" required autocomplete="postal-code" inputmode="numeric">
+          </div>
+
+          <div class="hnf-group">
+            <label for="hf-time">Preferred time of call *</label>
+            <select id="hf-time" name="preferred_time_of_call" required>
+              <option value="" disabled selected></option>
+              <option value="AM: 8:00 am – 11:59 am">AM: 8:00 am – 11:59 am</option>
+              <option value="PM: 12:00 pm – 5:00 pm">PM: 12:00 pm – 5:00 pm</option>
+            </select>
+          </div>
+
+          <div id="hnf-error" class="hnf-error" hidden></div>
+
+          <button type="submit" class="hnf-submit" id="hnf-submit">
+            Book Now and Calculate My Requirements
+          </button>
+
+        </form>
         <div class="form-note">
           <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           Secure and confidential. No obligation.
@@ -2608,7 +2641,53 @@ document.addEventListener('keydown', function (e) {
 })();
 
 </script>
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script>
+/* ── Webhook lead form ── */
+(function () {
+  var form    = document.getElementById('hero-lead-form');
+  var btn     = document.getElementById('hnf-submit');
+  var errEl   = document.getElementById('hnf-error');
+  var WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/dcfdeb51-112a-433d-be65-f20a229fc3cc';
+
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled    = true;
+    btn.textContent = 'Submitting\u2026';
+    errEl.hidden    = true;
+
+    var payload = {
+      name:                   form.elements['name'].value.trim(),
+      phone:                  form.elements['phone'].value.trim(),
+      email:                  form.elements['email'].value.trim(),
+      postal_code:            form.elements['postal_code'].value.trim(),
+      preferred_time_of_call: form.elements['preferred_time_of_call'].value
+    };
+
+    fetch(WEBHOOK, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (res) {
+      if (res.ok) {
+        window.location.href = '/thank-you/smoke-alarm';
+      } else {
+        throw new Error('status ' + res.status);
+      }
+    })
+    .catch(function () {
+      errEl.textContent = 'Something went wrong \u2014 please try again or call us on (07) 2145 5155.';
+      errEl.hidden      = false;
+      btn.disabled      = false;
+      btn.textContent   = 'Book Now and Calculate My Requirements';
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
