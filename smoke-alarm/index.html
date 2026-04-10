@@ -383,28 +383,37 @@ section { padding: 5rem 2rem; }
 
 /* ── Risk callout ── */
 .hero-risk-callout {
-  display: flex; gap: 0.55rem; align-items: flex-start;
-  margin-top: 0.35rem;
+  display: flex; align-items: flex-start; gap: 0.55rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.08);
+  margin-top: 0.9rem;
 }
-.hero-risk-callout svg { flex-shrink: 0; margin-top: 3px; color: var(--gold-deep); }
-.hero-risk-callout p { font-size: 0.86rem; color: var(--text); margin: 0; line-height: 1.5; }
-.hero-risk-callout strong { color: var(--text); font-weight: 600; }
+.hero-risk-callout .pulse-tri {
+  flex-shrink: 0; margin-top: 2px;
+  color: var(--gold-deep);
+  animation: pulse 2s ease infinite;
+}
+.hero-risk-callout p { font-size: 0.82rem; color: var(--text); margin: 0; line-height: 1.5; }
+.hero-risk-callout strong { color: var(--gold-deep); font-weight: 600; }
 
 /* ── Price anchor pill ── */
 .hfc-price-pill {
-  display: flex; align-items: center; gap: 0.4rem;
-  font-size: 0.78rem; color: #374151; margin-top: 0.5rem;
-  padding: 0.4rem 0.65rem; background: #f9fafb;
-  border: 1px solid #e5e7eb; border-radius: 999px;
+  display: flex; flex-direction: column; gap: 0.2rem;
+  font-size: 0.78rem; color: #374151; margin-top: 0.55rem;
+  padding: 0.45rem 0.65rem; background: #f9fafb;
+  border: 1px solid #e5e7eb; border-radius: var(--radius-sm);
 }
-.hfc-price-pill svg { color: #16a34a; flex-shrink: 0; }
+.hfc-price-pill-row { display: flex; align-items: center; gap: 0.4rem; }
+.hfc-price-pill-row svg { color: #16a34a; flex-shrink: 0; }
 .hfc-price-pill strong { color: var(--gold-deep); font-weight: 700; }
 
 /* ── Availability note ── */
 .hnf-availability {
-  font-size: 0.76rem; color: #6b7280; text-align: center;
+  font-size: 0.76rem; color: #6b7280;
   display: flex; align-items: center; justify-content: center;
-  gap: 0.35rem; margin: 0.35rem 0 0; padding: 0; line-height: 1;
+  flex-wrap: nowrap; gap: 0.3rem; margin: 0.4rem 0 0; padding: 0; line-height: 1.3;
 }
 .hnf-availability svg { color: var(--gold-deep); flex-shrink: 0; display: block; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
@@ -1551,7 +1560,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
        </div>
 
       <div class="hero-risk-callout">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <svg class="pulse-tri" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <p>Non-compliant sellers face a <strong>0.15% purchase price reduction at settlement</strong> — that's <strong>$1,125 on a $750k home</strong>, legally deducted by the buyer.</p>
       </div>
 
@@ -1570,8 +1579,14 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="hfc-title">Get Your Instant Price</div>
           <div class="hfc-sub">Fill in your details and get an instant price for your property — takes 2 minutes.</div>
           <div class="hfc-price-pill">
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            <strong>$98 per alarm, fully installed</strong> &nbsp;·&nbsp; Certificate of Compliance included
+            <div class="hfc-price-pill-row">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              <strong>$98 per alarm, fully installed</strong>
+            </div>
+            <div class="hfc-price-pill-row">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Certificate of Compliance included
+            </div>
           </div>
         </div>
         <form id="hero-lead-form" class="hfc-native-form" novalidate data-track-form="hero_quote_form">
@@ -1612,8 +1627,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           </button>
 
           <p class="hnf-availability">
-            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Booking 1–2 weeks ahead across Brisbane Southside — slots are limited.
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Booking 1–2 weeks ahead · Brisbane Southside · Limited slots</span>
           </p>
 
         </form>
