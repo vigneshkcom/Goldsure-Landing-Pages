@@ -383,14 +383,12 @@ section { padding: 5rem 2rem; }
 
 /* ── Risk callout ── */
 .hero-risk-callout {
-  display: flex; gap: 0.65rem; align-items: flex-start;
-  background: rgba(220,38,38,0.07); border-left: 3px solid #dc2626;
-  border-radius: var(--radius-sm); padding: 0.75rem 1rem;
-  margin-top: 1.1rem;
+  display: flex; gap: 0.55rem; align-items: flex-start;
+  margin-top: 0.35rem;
 }
-.hero-risk-callout svg { flex-shrink: 0; margin-top: 2px; color: #dc2626; }
-.hero-risk-callout p { font-size: 0.84rem; color: #1a1a1a; margin: 0; line-height: 1.5; }
-.hero-risk-callout strong { color: #dc2626; font-weight: 600; }
+.hero-risk-callout svg { flex-shrink: 0; margin-top: 3px; color: var(--gold-deep); }
+.hero-risk-callout p { font-size: 0.86rem; color: var(--text); margin: 0; line-height: 1.5; }
+.hero-risk-callout strong { color: var(--text); font-weight: 600; }
 
 /* ── Price anchor pill ── */
 .hfc-price-pill {
@@ -406,9 +404,9 @@ section { padding: 5rem 2rem; }
 .hnf-availability {
   font-size: 0.76rem; color: #6b7280; text-align: center;
   display: flex; align-items: center; justify-content: center;
-  gap: 0.35rem; margin-top: 0.35rem; line-height: 1.4;
+  gap: 0.35rem; margin: 0.35rem 0 0; padding: 0; line-height: 1;
 }
-.hnf-availability svg { color: var(--gold-deep); flex-shrink: 0; }
+.hnf-availability svg { color: var(--gold-deep); flex-shrink: 0; display: block; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
 
 /* Form card header */
@@ -1553,8 +1551,8 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
        </div>
 
       <div class="hero-risk-callout">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <p>Non-compliant sellers can face a <strong>0.15% purchase price reduction at settlement</strong> — on a $750,000 home, that's <strong>$1,125 legally deducted</strong> by the buyer.</p>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p>Non-compliant sellers face a <strong>0.15% purchase price reduction at settlement</strong> — that's <strong>$1,125 on a $750k home</strong>, legally deducted by the buyer.</p>
       </div>
 
       <div class="hero-ctas">
@@ -1573,7 +1571,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="hfc-sub">Fill in your details and get an instant price for your property — takes 2 minutes.</div>
           <div class="hfc-price-pill">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            From <strong>$98 fully installed</strong> per alarm &nbsp;·&nbsp; Certificate of Compliance included
+            <strong>$98 per alarm, fully installed</strong> &nbsp;·&nbsp; Certificate of Compliance included
           </div>
         </div>
         <form id="hero-lead-form" class="hfc-native-form" novalidate data-track-form="hero_quote_form">
@@ -1619,10 +1617,6 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           </p>
 
         </form>
-        <div class="form-note">
-          <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Secure and confidential. No obligation.
-        </div>
       </div>
     </div>
 
