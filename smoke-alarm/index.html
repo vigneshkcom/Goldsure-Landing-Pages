@@ -2703,6 +2703,8 @@ document.addEventListener('keydown', function (e) {
 
   if (!form) return;
 
+  var utmParams = new URLSearchParams(window.location.search);
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -2716,7 +2718,14 @@ document.addEventListener('keydown', function (e) {
       phone:                  form.elements['phone'].value.trim(),
       email:                  form.elements['email'].value.trim(),
       postal_code:            form.elements['postal_code'].value.trim(),
-      preferred_time_of_call: form.elements['preferred_time_of_call'].value
+      preferred_time_of_call: form.elements['preferred_time_of_call'].value,
+      source:                 'Smoke Alarm Landing Page',
+      page_url:               window.location.href,
+      utm_source:             utmParams.get('utm_source')   || '',
+      utm_medium:             utmParams.get('utm_medium')   || '',
+      utm_campaign:           utmParams.get('utm_campaign') || '',
+      utm_content:            utmParams.get('utm_content')  || '',
+      utm_term:               utmParams.get('utm_term')     || ''
     };
 
     fetch(WEBHOOK, {
