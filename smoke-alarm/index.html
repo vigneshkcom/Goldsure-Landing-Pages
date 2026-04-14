@@ -2725,7 +2725,9 @@ document.addEventListener('keydown', function (e) {
       utm_medium:             utmParams.get('utm_medium')   || '',
       utm_campaign:           utmParams.get('utm_campaign') || '',
       utm_content:            utmParams.get('utm_content')  || '',
-      utm_term:               utmParams.get('utm_term')     || ''
+      utm_term:               utmParams.get('utm_term')     || '',
+      fbclid:                 utmParams.get('fbclid')       || '',
+      gclid:                  utmParams.get('gclid')        || ''
     };
 
     fetch(WEBHOOK, {
