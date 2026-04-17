@@ -16,6 +16,10 @@ These pages include Google Tag Manager and Meta Pixel code:
 - `thank-you/smoke-alarm/index.html`
 - `smoke-alarm/calculator/index.html`
 
+These pages include Google Tag Manager and Microsoft Clarity code:
+
+- `thank-you/hotwater/index.html`
+
 Current tracking IDs:
 
 - Google Tag Manager: `GTM-PSTXFKJL`
@@ -68,6 +72,17 @@ Examples of events:
 - `thank_you_page_view`
 - `thank_you_phone_click`
 - `thank_you_calculate_click`
+
+### Hotwater thank-you page
+
+File:
+
+- `thank-you/hotwater/index.html`
+
+Examples of events:
+
+- `thank_you_page_view`
+- `thank_you_phone_click`
 
 ### Calculator page
 
