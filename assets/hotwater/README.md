@@ -15,5 +15,5 @@ That file path is already wired into the hot water landing page for both the hea
 - `290L All In One.webp` is currently used for:
   - Hero image
   - 290L product card
-- `Econova 330L.png` is currently used for:
+- `Econova 330L.png` (`/assets/hotwater/Econova%20330L.png`) is currently used for:
   - 330L product card
