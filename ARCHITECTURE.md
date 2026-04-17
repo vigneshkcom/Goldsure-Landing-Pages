@@ -15,6 +15,10 @@ It uses static HTML pages for the frontend and simple serverless API routes for 
 
 ## Main Pages
 
+- `/hotwater`
+  - file: `hotwater/index.html`
+  - purpose: main hot water landing page (static HTML)
+
 - `/smoke-alarm`
   - file: `smoke-alarm/index.html`
   - purpose: main landing page with embedded lead form
@@ -31,9 +35,15 @@ It uses static HTML pages for the frontend and simple serverless API routes for 
   - file: `tracker/smoke-alarm/index.html`
   - purpose: internal lead tracker for reminders and status changes
 
+- `/thank-you/hotwater`
+  - file: `thank-you/hotwater/index.html`
+  - purpose: thank-you page for hot water enquiries
+
 ## API Layer
 
 All smoke alarm backend handlers live in `api/smoke-alarm/`.
+
+There are currently no dedicated hot water backend handlers in this repo; hot water pages are frontend-only static pages at this time.
 
 - `save-lead.js`
   - saves a calculator lead in Supabase

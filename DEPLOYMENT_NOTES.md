@@ -16,8 +16,10 @@ This project uses:
 
 These are the main routes:
 
+- `/hotwater`
 - `/smoke-alarm`
 - `/thank-you/smoke-alarm`
+- `/thank-you/hotwater`
 - `/smoke-alarm/calculator`
 - `/tracker/smoke-alarm`
 
@@ -113,14 +115,18 @@ If the project is already connected to GitHub, pushing to `main` should trigger 
 
 Open these pages:
 
+- `https://offers.goldsure.com.au/hotwater`
 - `https://offers.goldsure.com.au/smoke-alarm`
+- `https://offers.goldsure.com.au/thank-you/hotwater`
 - `https://offers.goldsure.com.au/thank-you/smoke-alarm`
 - `https://offers.goldsure.com.au/smoke-alarm/calculator`
 - `https://offers.goldsure.com.au/tracker/smoke-alarm`
 
 Check these things:
 
+- the hot water landing page loads
 - the landing page loads
+- the hot water thank-you page loads
 - the thank-you page loads
 - the calculator loads
 - the tracker loads

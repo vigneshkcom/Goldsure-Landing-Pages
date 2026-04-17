@@ -26,9 +26,15 @@ The user journey is strategically split into distinct lead-capture phases to max
 - **URL:** [https://offers.goldsure.com.au/smoke-alarm/calculator](https://offers.goldsure.com.au/smoke-alarm/calculator)
 - **Action:** The user inputs their specific property details (number of bedrooms, levels, etc.) to receive an instant on-screen quote.
 - **System:** When the user completes the calculator, it triggers a background Vercel serverless function (`/api/smoke-alarm/save-lead.js`).
-- **Data Routing:** 
+  - **Data Routing:** 
   - The finalised quote data is securely saved to a **Supabase** PostgreSQL database.
   - **Resend** (the transactional email API) automatically emails an internal notification to the Goldsure team AND simultaneously sends a stylised HTML quote PDF/email directly to the customer.
+
+### Hot Water Landing Page (Static)
+- **URL:** [https://offers.goldsure.com.au/hotwater](https://offers.goldsure.com.au/hotwater)
+- **System:** This route is a static HTML page served by Vercel rewrite rules.
+- **Current Scope:** Frontend-only page flow (no dedicated hot water backend API handlers in this repo yet).
+- **Related Thank You URL:** [https://offers.goldsure.com.au/thank-you/hotwater](https://offers.goldsure.com.au/thank-you/hotwater)
 
 ---
 
