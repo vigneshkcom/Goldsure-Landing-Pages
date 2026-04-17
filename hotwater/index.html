@@ -505,57 +505,89 @@ section { padding: 5rem 2rem; }
    PRODUCT
 ══════════════════════════════════════ */
 .product-sec { background: var(--white); padding: 5rem 2rem; }
-.product-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
-}
-.prod-card {
+.product-strip {
   background: var(--off-white);
   border: 1.5px solid var(--border-mid);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease;
 }
-.prod-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+.product-strip:hover {
   border-color: var(--gold-bd);
+  box-shadow: var(--shadow);
 }
-.prod-card.featured { border-color: var(--gold); border-width: 2px; }
+.product-strip::before {
+  content: '';
+  position: absolute;
+  top: 3rem; bottom: 3rem;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, var(--gold-bd) 20%, var(--gold-bd) 80%, transparent 100%);
+  pointer-events: none;
+}
+.prod-col {
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.prod-col.featured {
+  background: linear-gradient(180deg, rgba(201,168,76,0.05) 0%, rgba(201,168,76,0) 60%);
+}
 .prod-img-wrap {
-  background: var(--white);
-  height: 260px; display: flex; align-items: flex-end; justify-content: center;
-  padding: 1.5rem 1.5rem 0; position: relative;
-  border-bottom: 1px solid var(--border-mid);
+  height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.75rem;
+  position: relative;
 }
 .prod-img-wrap img {
-  max-height: 220px; object-fit: contain;
-  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.10));
+  max-height: 260px; max-width: 100%; object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.14));
 }
 .prod-badge {
-  position: absolute; top: 12px; right: 12px;
+  position: absolute; top: 0; right: 0;
   background: var(--gold); color: var(--ink);
-  font-size: 0.68rem; font-weight: 700; padding: 0.25rem 0.75rem;
-  border-radius: 999px; letter-spacing: 0.04em;
+  font-size: 0.66rem; font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(201,168,76,0.35);
 }
-.prod-body { padding: 1.5rem; }
-.prod-name { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
-.prod-sub  { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
-.prod-feats { list-style: none; display: flex; flex-direction: column; }
+.prod-header {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-mid);
+}
+.prod-name {
+  font-size: 1.55rem; font-weight: 700; color: var(--ink);
+  margin-bottom: 0.4rem; letter-spacing: -0.015em;
+}
+.prod-sub  { font-size: 0.85rem; color: var(--muted); }
+.prod-feats { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
 .prod-feat {
-  display: flex; gap: 0.65rem; align-items: flex-start;
-  font-size: 0.84rem; color: var(--ink); line-height: 1.55;
-  padding: 0.6rem 0; border-bottom: 1px solid var(--border-mid);
+  display: flex; gap: 0.8rem; align-items: flex-start;
+  font-size: 0.88rem; color: var(--ink); line-height: 1.55;
 }
-.prod-feat:last-child { border-bottom: none; padding-bottom: 0; }
 .feat-tick {
-  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
-  background: var(--gold-bg); border: 1.5px solid var(--gold-bd);
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gold); color: var(--white);
   display: flex; align-items: center; justify-content: center;
-  color: var(--gold-deep); margin-top: 1px;
+  margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(201,168,76,0.3);
 }
-@media (max-width: 640px) {
-  .product-grid { grid-template-columns: 1fr; }
-  .prod-img-wrap { height: 220px; }
+@media (max-width: 860px) {
+  .product-strip { grid-template-columns: 1fr; }
+  .product-strip::before { display: none; }
+  .prod-col { padding: 2.5rem 1.75rem; }
+  .prod-col + .prod-col { border-top: 1px solid var(--border-mid); }
+  .prod-img-wrap { height: 220px; margin-bottom: 1.25rem; }
+  .prod-img-wrap img { max-height: 200px; }
+  .prod-name { font-size: 1.35rem; }
 }
 
 /* ══════════════════════════════════════
@@ -1171,39 +1203,39 @@ footer {
     <div class="eyebrow reveal">Our product</div>
     <h2 class="section-h2 reveal">Installed by the people who built it —<br>Econova manufacturer-trained</h2>
     <p class="section-sub reveal">We install Econova heat pump hot water systems — and our installation team is trained directly by the manufacturer. That means every install is done the way the product was designed to be installed.</p>
-    <div class="product-grid">
-      <div class="prod-card reveal">
+    <div class="product-strip reveal">
+      <div class="prod-col">
         <div class="prod-img-wrap">
           <img src="/assets/hotwater/290L%20All%20In%20One.webp" alt="Econova 290L Heat Pump">
         </div>
-        <div class="prod-body">
+        <div class="prod-header">
           <div class="prod-name">Econova 290L</div>
           <div class="prod-sub">Ideal for households of 2–4 people</div>
-          <ul class="prod-feats">
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Up to 75% less energy than conventional electric storage</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>R290 refrigerant — low environmental impact</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Wi-Fi app control and energy monitoring</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Operates efficiently in Melbourne's climate year-round</li>
-          </ul>
         </div>
+        <ul class="prod-feats">
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Up to 75% less energy than conventional electric storage</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>R290 refrigerant — low environmental impact</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Wi-Fi app control and energy monitoring</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Operates efficiently in Melbourne's climate year-round</li>
+        </ul>
       </div>
-      <div class="prod-card featured reveal reveal-d2">
+      <div class="prod-col featured">
         <div class="prod-img-wrap">
           <div class="prod-badge">Most popular</div>
           <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L Heat Pump">
         </div>
-        <div class="prod-body">
+        <div class="prod-header">
           <div class="prod-name">Econova 330L</div>
           <div class="prod-sub">Ideal for households of 4–6+ people</div>
-          <ul class="prod-feats">
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>One of the largest tanks available in the Australian market</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Up to 75% less energy than conventional electric storage</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Ideal for solar households — timer for off-peak or solar hours</li>
-            <li class="prod-feat"><span class="feat-tick"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Recommended for high-use households and large families</li>
-          </ul>
         </div>
+        <ul class="prod-feats">
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>One of the largest tanks available in the Australian market</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Up to 75% less energy than conventional electric storage</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Ideal for solar households — timer for off-peak or solar hours</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Recommended for high-use households and large families</li>
+        </ul>
       </div>
     </div>
     <div class="section-cta reveal" style="margin-top:2.25rem;">
