@@ -42,6 +42,22 @@
     {
       "source": "/accept-quote/smoke-alarm/",
       "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/hotwater",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/hotwater/",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater",
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater/",
+      "destination": "/thank-you/hotwater/index.html"
     }
   ]
 }
