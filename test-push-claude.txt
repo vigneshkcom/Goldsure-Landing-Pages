@@ -1,0 +1,2 @@
+This is a temporary test file created to verify Claude can push to this repository.
+Safe to delete.
