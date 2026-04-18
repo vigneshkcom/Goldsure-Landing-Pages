@@ -10,7 +10,7 @@
 <style>
 
 /* ══════════════════════════════════════
-   TOKENS — LIGHT SYSTEM ONLY
+   TOKENS — DARK SYSTEM
 ══════════════════════════════════════ */
 :root {
   --gold:       #C9A84C;
@@ -19,28 +19,28 @@
   --gold-bg:    rgba(201,168,76,0.10);
   --gold-bd:    rgba(201,168,76,0.30);
 
-  --ink:       #0D0D0D;
-  --body-txt:  #0D0D0D;
-  --muted:     #555555;
+  --ink:       #F0EDE6;
+  --body-txt:  #E0DDD6;
+  --muted:     #8A8A8A;
 
-  --white:      #FFFFFF;
-  --off-white:  #F8F6F1;
-  --off-white-2: #F2EFE8;
+  --white:      #1C1C1C;
+  --off-white:  #232323;
+  --off-white-2: #2A2A2A;
 
-  --border:     rgba(0,0,0,0.10);
-  --border-mid: rgba(0,0,0,0.07);
+  --border:     rgba(255,255,255,0.10);
+  --border-mid: rgba(255,255,255,0.07);
 
-  --gray-100:  #EBEBEB;
-  --gray-200:  #D8D8D8;
-  --gray-400:  #9A9A9A;
+  --gray-100:  #2E2E2E;
+  --gray-200:  #3D3D3D;
+  --gray-400:  #6B6B6B;
 
   --radius-sm: 4px;
   --radius:    8px;
   --radius-lg: 14px;
 
-  --shadow-sm: 0 4px 12px rgba(0,0,0,0.03), 0 2px 8px rgba(201,168,76,0.05);
-  --shadow:    0 12px 32px rgba(0,0,0,0.06), 0 6px 16px rgba(201,168,76,0.08);
-  --shadow-lg: 0 24px 64px rgba(0,0,0,0.08), 0 12px 32px rgba(201,168,76,0.12);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.20), 0 2px 8px rgba(201,168,76,0.05);
+  --shadow:    0 12px 32px rgba(0,0,0,0.35), 0 6px 16px rgba(201,168,76,0.08);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.50), 0 12px 32px rgba(201,168,76,0.12);
 
   --max: 1160px;
   --pad: clamp(16px, 5vw, 48px);
@@ -157,7 +157,7 @@ section { padding: 5rem 2rem; }
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   height: 66px;
-  background: rgba(255,255,255,0.75);
+  background: rgba(28,28,28,0.85);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border-bottom: 1px solid var(--border);
@@ -948,7 +948,7 @@ section { padding: 5rem 2rem; }
    FOOTER
 ══════════════════════════════════════ */
 footer {
-  background: var(--ink);
+  background: #111111;
   padding: 2rem;
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 1rem;
