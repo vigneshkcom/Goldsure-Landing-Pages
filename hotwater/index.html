@@ -313,16 +313,11 @@ section { padding: 5rem 2rem; }
    forcing an extra "dead" scroll after the 290L is already visible. */
 .hero-scroll-right { }
 
-/* Stage: card shell for the auto-rotating product showcase */
+/* Stage: open container — no card box */
 .hp-product-stage {
   position: relative;
   height: 460px;
   overflow: hidden;
-  border-radius: var(--radius-lg);
-  border: 1.5px solid var(--border-mid);
-  border-top: 3px solid var(--gold);
-  background: var(--off-white);
-  box-shadow: var(--shadow);
 }
 .hp-product {
   position: absolute; inset: 0;
@@ -344,9 +339,10 @@ section { padding: 5rem 2rem; }
 .hp-info-strip {
   flex-shrink: 0;
   background: #242424;
-  border-top: 1px solid rgba(201,168,76,0.18);
+  border-radius: var(--radius);
   padding: 1rem 1.4rem;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin: 0 0.5rem 0.5rem;
 }
 .hp-info-name {
   font-size: 0.95rem; font-weight: 700; color: #F0EDE6;
@@ -370,7 +366,7 @@ section { padding: 5rem 2rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
   .hero-scroll-right { min-height: 0; }
-  .hp-product-stage { position: static; height: auto; overflow: visible; border-radius: var(--radius-lg); }
+  .hp-product-stage { position: static; height: auto; overflow: visible; }
   .hp-product { position: static; inset: unset; width: 100%; height: auto; }
   .hp-product-1 { transform: none; opacity: 1; margin-top: 2rem; }
   .hero-visual-img-wrap { min-height: 240px; }
