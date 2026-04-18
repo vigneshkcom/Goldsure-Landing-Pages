@@ -309,7 +309,8 @@ section { padding: 5rem 2rem; }
 .hp-product-stage {
   position: sticky; top: 82px;
   height: calc(100vh - 82px);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 8rem;
   overflow: hidden;
 }
 
@@ -346,7 +347,7 @@ section { padding: 5rem 2rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
   .hero-scroll-right { min-height: 0; }
-  .hp-product-stage { position: static; height: auto; overflow: visible; }
+  .hp-product-stage { position: static; height: auto; overflow: visible; padding-top: 0; }
   .hp-product { position: static; width: 100%; }
   .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
   .hero-visual-img-wrap img { max-height: 280px; }
