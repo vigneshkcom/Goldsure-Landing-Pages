@@ -193,7 +193,7 @@ section { padding: 5rem 2rem; }
 ══════════════════════════════════════ */
 .hero {
   background: var(--off-white);
-  padding: 7.5rem 2.5rem 5rem;
+  padding: 6rem 2.5rem 1.25rem;
   position: relative;
 }
 .hero-glow-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
@@ -311,10 +311,9 @@ section { padding: 5rem 2rem; }
 /* ── STICKY PRODUCT SCROLL SWAP ── */
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
 
-/* Right column: keep this taller than the left hero copy so the sticky stage
-   does not unstick too early (which was causing the 290L tank to slide upward
-   and get clipped near the top while scrolling). */
-.hero-scroll-right { min-height: 165vh; }
+/* Keep only a very short sticky runway so the marquee appears immediately
+   after load (or with a tiny scroll), while preserving one product swap. */
+.hero-scroll-right { min-height: 102vh; }
 
 /* Stage: sticky, viewport-height container that clips the swap animation */
 .hp-product-stage {
@@ -1869,8 +1868,8 @@ function toggleFaq(btn) {
       return;
     }
     var scrolled = -hero.getBoundingClientRect().top;
-    /* Trigger at 40% of viewport height — predictable across all hero sizes */
-    var switchAt = window.innerHeight * 0.40;
+    /* Trigger earlier so one scroll immediately advances to 290L */
+    var switchAt = window.innerHeight * 0.15;
     if (scrolled >= switchAt && !switched) {
       switched = true;
       prod0.classList.add('hp-exit');
