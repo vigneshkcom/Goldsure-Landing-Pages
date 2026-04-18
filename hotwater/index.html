@@ -272,22 +272,20 @@ section { padding: 5rem 2rem; }
 .hero-visual { position: relative; width: 100%; }
 .hero-visual::before { display: none; }
 .hero-visual-img-wrap {
+  flex: 1;
   display: flex; align-items: flex-end; justify-content: center;
-  padding: 1rem 1rem 0;
+  padding: 2rem 1.5rem 1.25rem;
   position: relative;
-  max-width: 420px; margin: 0 auto;
-  height: 360px;
 }
 .hero-visual-img-wrap img {
-  height: 100%;
+  max-height: 295px;
   width: auto;
-  max-height: none;
   object-fit: contain;
   object-position: center bottom;
-  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.10));
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18));
 }
 .hp-img-330 { margin-left: 0; }
-.hp-img-290 { height: 100%; max-height: none; margin-left: 10px; }
+.hp-img-290 { max-height: 310px; margin-left: 6px; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .hero-price-chip {
   position: absolute; bottom: 16px; right: 16px;
@@ -315,20 +313,20 @@ section { padding: 5rem 2rem; }
    forcing an extra "dead" scroll after the 290L is already visible. */
 .hero-scroll-right { }
 
-/* Stage: fixed-height container for the auto-rotating product showcase */
+/* Stage: card shell for the auto-rotating product showcase */
 .hp-product-stage {
   position: relative;
   height: 460px;
   overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-mid);
+  border-top: 3px solid var(--gold);
+  background: var(--off-white);
+  box-shadow: var(--shadow);
 }
-
-/* Both products fill the stage identically — explicit inset removes any
-   reliance on flex static-position, ensuring 290L and 330L land in the
-   same spot. padding-top shifts the visual centre to align with the text. */
 .hp-product {
   position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: flex-start; padding-top: 7rem;
+  display: flex; flex-direction: column;
   will-change: transform, opacity;
 }
 .hp-product-0 {
@@ -339,28 +337,44 @@ section { padding: 5rem 2rem; }
   transform: translateY(80px); opacity: 0;
   transition: transform 0.8s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease;
 }
-/* On scroll: 330L exits up, 290L enters from below */
-.hp-product-0.hp-exit  { transform: translateY(-60px); opacity: 0; }
-.hp-product-1.hp-active { transform: translateY(0); opacity: 1; }
+.hp-product-0.hp-exit   { transform: translateY(-60px); opacity: 0; }
+.hp-product-1.hp-active { transform: translateY(0);     opacity: 1; }
 
-.hp-model-label {
-  text-align: center; margin-top: 1rem;
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--muted);
+/* Info strip — dark bar at the bottom of each product card */
+.hp-info-strip {
+  flex-shrink: 0;
+  background: #242424;
+  border-top: 1px solid rgba(201,168,76,0.18);
+  padding: 1rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
 }
+.hp-info-name {
+  font-size: 0.95rem; font-weight: 700; color: #F0EDE6;
+  line-height: 1.2; margin-bottom: 0.18rem;
+}
+.hp-info-type {
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+.hp-info-price-wrap { text-align: right; flex-shrink: 0; }
+.hp-info-from { font-size: 0.60rem; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.08em; }
+.hp-info-price {
+  font-size: 1.65rem; font-weight: 800; color: var(--gold);
+  line-height: 1; letter-spacing: -0.02em;
+}
+.hp-info-note { font-size: 0.60rem; color: #8A8A8A; margin-top: 0.1rem; }
 
 @media (max-width: 940px) {
   .hero { min-height: auto; padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
   .hero-scroll-right { min-height: 0; }
-  .hp-product-stage { position: static; height: auto; overflow: visible; }
-  .hp-product { position: static; inset: unset; width: 100%; height: auto; padding-top: 0; justify-content: flex-start; }
-  .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
-  .hero-visual-img-wrap { height: 300px; }
-  .hero-visual-img-wrap img { height: 100%; max-height: none; }
-  .hp-img-290 { height: 106%; margin-left: 6px; }
+  .hp-product-stage { position: static; height: auto; overflow: visible; border-radius: var(--radius-lg); }
+  .hp-product { position: static; inset: unset; width: 100%; height: auto; }
+  .hp-product-1 { transform: none; opacity: 1; margin-top: 2rem; }
+  .hero-visual-img-wrap { min-height: 240px; }
+  .hp-img-290 { max-height: 260px; margin-left: 6px; }
 }
 
 /* ══════════════════════════════════════
@@ -1142,25 +1156,35 @@ footer {
         <div class="hp-product hp-product-0">
           <div class="hero-visual-img-wrap">
             <img class="hp-img-330" src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
-            <div class="hero-price-chip">
-              <div class="hpc-label">From</div>
-              <div class="hpc-val">$1,100</div>
-              <div class="hpc-note">fully installed</div>
+          </div>
+          <div class="hp-info-strip">
+            <div>
+              <div class="hp-info-name">Econova 330L</div>
+              <div class="hp-info-type">Heat Pump Split System</div>
+            </div>
+            <div class="hp-info-price-wrap">
+              <div class="hp-info-from">From</div>
+              <div class="hp-info-price">$1,100</div>
+              <div class="hp-info-note">fully installed</div>
             </div>
           </div>
-          <div class="hp-model-label">Econova 330L · Heat Pump Split System</div>
         </div>
-        <!-- 290L: slides up on scroll -->
+        <!-- 290L: auto-cycles in -->
         <div class="hp-product hp-product-1">
           <div class="hero-visual-img-wrap">
             <img class="hp-img-290" src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
-            <div class="hero-price-chip">
-              <div class="hpc-label">From</div>
-              <div class="hpc-val">$998</div>
-              <div class="hpc-note">fully installed</div>
+          </div>
+          <div class="hp-info-strip">
+            <div>
+              <div class="hp-info-name">Econova 290L</div>
+              <div class="hp-info-type">All-in-One Compact</div>
+            </div>
+            <div class="hp-info-price-wrap">
+              <div class="hp-info-from">From</div>
+              <div class="hp-info-price">$998</div>
+              <div class="hp-info-note">fully installed</div>
             </div>
           </div>
-          <div class="hp-model-label">Econova 290L · All-in-One Compact</div>
         </div>
       </div>
     </div>
