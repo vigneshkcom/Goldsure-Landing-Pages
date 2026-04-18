@@ -305,7 +305,7 @@ section { padding: 5rem 2rem; }
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
 
 /* Right column: must be taller than the viewport for sticky to scroll within it */
-.hero-scroll-right { min-height: 150vh; }
+.hero-scroll-right { min-height: 120vh; }
 
 /* Stage: sticky, viewport-height container that clips the swap animation */
 .hp-product-stage {
@@ -1848,8 +1848,18 @@ function toggleFaq(btn) {
   if (!hero || !prod0 || !prod1) return;
   var switched = false;
   function update() {
-    var scrolled  = -hero.getBoundingClientRect().top;
-    var switchAt  = hero.offsetHeight * 0.38;
+    /* No animation on mobile — stacked layout handles both tanks */
+    if (window.innerWidth <= 940) {
+      if (switched) {
+        switched = false;
+        prod0.classList.remove('hp-exit');
+        prod1.classList.remove('hp-active');
+      }
+      return;
+    }
+    var scrolled = -hero.getBoundingClientRect().top;
+    /* Trigger at 40% of viewport height — predictable across all hero sizes */
+    var switchAt = window.innerHeight * 0.40;
     if (scrolled >= switchAt && !switched) {
       switched = true;
       prod0.classList.add('hp-exit');
@@ -1861,6 +1871,7 @@ function toggleFaq(btn) {
     }
   }
   window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
 })();
 
 /* Scroll reveal */
