@@ -189,8 +189,9 @@ section { padding: 5rem 2rem; }
 .hero {
   background: var(--off-white);
   padding: 7.5rem 2.5rem 5rem;
-  position: relative; overflow: hidden;
+  position: relative;
 }
+.hero-glow-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
 .hero-glow {
   position: absolute; top: -80px; right: -60px;
   width: 520px; height: 520px; pointer-events: none;
@@ -306,9 +307,39 @@ section { padding: 5rem 2rem; }
 .hero-form-footer-text { font-size: 0.78rem; color: var(--muted); }
 .hero-form-footer-text strong { color: var(--ink); font-weight: 600; }
 
+/* ── STICKY PRODUCT SCROLL ── */
+.hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
+.hp-slide { min-height: 100vh; display: flex; align-items: center; }
+.hp-slide:last-child { padding-bottom: 5rem; }
+.hp-tabs { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.6rem; }
+.hp-tab {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.6rem 0.9rem; border-radius: var(--radius-sm);
+  border: 1.5px solid transparent; cursor: default;
+  font-size: 0.82rem; font-weight: 500; color: var(--muted);
+  background: transparent; transition: all 0.3s;
+}
+.hp-tab.active {
+  border-color: var(--gold-bd);
+  background: var(--gold-bg);
+  color: var(--ink);
+}
+.hp-tab-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gray-200); flex-shrink: 0; transition: background 0.3s;
+}
+.hp-tab.active .hp-tab-dot { background: var(--gold); }
+.hp-tab-name { font-weight: 600; }
+.hp-tab-price { font-size: 0.74rem; margin-left: auto; font-weight: 500; }
+.hp-tab.active .hp-tab-price { color: var(--gold-deep); font-weight: 600; }
+
 @media (max-width: 940px) {
   .hero { padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-content { position: static; }
+  .hp-slide { min-height: auto; padding: 0; }
+  .hp-slide:last-child { padding-bottom: 0; }
+  .hp-tabs { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
   .hero-visual-img-wrap { min-height: 280px; }
   .hero-visual-img-wrap img { max-height: 240px; }
 }
@@ -1046,8 +1077,10 @@ footer {
      HERO
      ════════════════════════════════════ -->
 <div class="hero panel-light">
-  <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
+  <div class="hero-glow-wrap">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+  </div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tag reveal">
@@ -1096,22 +1129,55 @@ footer {
           <div class="hgb-label">Google Rating</div>
         </div>
       </div>
+      <!-- Product model tabs — update on scroll -->
+      <div class="hp-tabs">
+        <div class="hp-tab active" data-idx="0">
+          <span class="hp-tab-dot"></span>
+          <span class="hp-tab-name">Econova 330L</span>
+          <span class="hp-tab-price">from $1,100</span>
+        </div>
+        <div class="hp-tab" data-idx="1">
+          <span class="hp-tab-dot"></span>
+          <span class="hp-tab-name">Econova 290L All-in-One</span>
+          <span class="hp-tab-price">from $998</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Product Visual -->
-    <div class="reveal reveal-d2">
-      <div class="hero-visual">
-        <div class="hero-visual-img-wrap">
-          <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
-          <div class="hero-price-chip">
-            <div class="hpc-label">From</div>
-            <div class="hpc-val">$1,100</div>
-            <div class="hpc-note">fully installed</div>
+    <!-- Product Scroll Right -->
+    <div class="hero-scroll-right">
+      <!-- Slide 1: Econova 330L -->
+      <div class="hp-slide" data-idx="0">
+        <div class="hero-visual">
+          <div class="hero-visual-img-wrap">
+            <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
+            <div class="hero-price-chip">
+              <div class="hpc-label">From</div>
+              <div class="hpc-val">$1,100</div>
+              <div class="hpc-note">fully installed</div>
+            </div>
+          </div>
+          <div class="hero-form-footer">
+            <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
+            <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
           </div>
         </div>
-        <div class="hero-form-footer">
-          <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
-          <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
+      </div>
+      <!-- Slide 2: Econova 290L All-in-One -->
+      <div class="hp-slide" data-idx="1">
+        <div class="hero-visual">
+          <div class="hero-visual-img-wrap">
+            <img src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
+            <div class="hero-price-chip">
+              <div class="hpc-label">From</div>
+              <div class="hpc-val">$998</div>
+              <div class="hpc-note">fully installed</div>
+            </div>
+          </div>
+          <div class="hero-form-footer">
+            <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
+            <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1785,6 +1851,22 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
   if (!isOpen) item.classList.add('open');
 }
+
+/* Product slide tab sync */
+(function() {
+  var slides = document.querySelectorAll('.hp-slide');
+  var tabs   = document.querySelectorAll('.hp-tab');
+  if (!slides.length || !tabs.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        var idx = e.target.dataset.idx;
+        tabs.forEach(function(t, i) { t.classList.toggle('active', String(i) === idx); });
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+  slides.forEach(function(s) { io.observe(s); });
+})();
 
 /* Scroll reveal */
 (function() {
