@@ -210,7 +210,10 @@ section { padding: 5rem 2rem; }
 .hero-inner {
   max-width: var(--max); margin: 0 auto;
   display: grid; grid-template-columns: 1fr minmax(0, 460px);
-  gap: 3.5rem; align-items: start;
+  gap: 3.5rem;
+  /* Match column heights so sticky hero copy stays locked in place
+     while the right-side tank swap animation runs. */
+  align-items: stretch;
   position: relative; z-index: 1;
 }
 .hero-tag {
