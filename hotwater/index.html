@@ -275,12 +275,19 @@ section { padding: 5rem 2rem; }
   padding: 1rem 1rem 0;
   position: relative;
   max-width: 420px; margin: 0 auto;
+  height: 360px;
 }
 .hero-visual-img-wrap img {
-  max-height: 340px; object-fit: contain;
+  height: 100%;
+  width: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center bottom;
   filter: drop-shadow(0 18px 32px rgba(0,0,0,0.10));
   animation: float 5s ease-in-out infinite;
 }
+.hp-img-330 { margin-left: 0; }
+.hp-img-290 { height: 112%; max-height: none; margin-left: 10px; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .hero-price-chip {
   position: absolute; bottom: 16px; right: 16px;
@@ -352,7 +359,9 @@ section { padding: 5rem 2rem; }
   .hp-product-stage { position: static; height: auto; overflow: visible; }
   .hp-product { position: static; inset: unset; width: 100%; height: auto; padding-top: 0; justify-content: flex-start; }
   .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
-  .hero-visual-img-wrap img { max-height: 280px; }
+  .hero-visual-img-wrap { height: 300px; }
+  .hero-visual-img-wrap img { height: 100%; max-height: none; }
+  .hp-img-290 { height: 106%; margin-left: 6px; }
 }
 
 /* ══════════════════════════════════════
@@ -1122,7 +1131,7 @@ footer {
         <!-- 330L: visible on load -->
         <div class="hp-product hp-product-0">
           <div class="hero-visual-img-wrap">
-            <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
+            <img class="hp-img-330" src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
             <div class="hero-price-chip">
               <div class="hpc-label">From</div>
               <div class="hpc-val">$1,100</div>
@@ -1134,7 +1143,7 @@ footer {
         <!-- 290L: slides up on scroll -->
         <div class="hp-product hp-product-1">
           <div class="hero-visual-img-wrap">
-            <img src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
+            <img class="hp-img-290" src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
             <div class="hero-price-chip">
               <div class="hpc-label">From</div>
               <div class="hpc-val">$998</div>
