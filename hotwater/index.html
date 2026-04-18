@@ -278,25 +278,81 @@ section { padding: 5rem 2rem; }
 .hero-visual-img-wrap {
   background: linear-gradient(160deg, var(--off-white) 0%, var(--off-white-2) 100%);
   display: flex; align-items: flex-end; justify-content: center;
-  padding: 2rem 2rem 0; min-height: 360px;
+  padding: 2.5rem 2rem 130px; min-height: 420px;
   position: relative;
 }
 .hero-visual-img-wrap img {
-  max-height: 320px; object-fit: contain;
-  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.12));
+  max-height: 290px; object-fit: contain;
+  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.10));
   animation: float 5s ease-in-out infinite;
+  position: relative; z-index: 1;
 }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-.hero-price-chip {
-  position: absolute; bottom: 16px; right: 16px;
-  background: var(--gold); color: var(--ink);
-  border-radius: var(--radius-sm); padding: 0.65rem 1rem;
-  box-shadow: 0 6px 20px rgba(201,168,76,0.35);
-  text-align: right;
+
+/* Gold ambient halo */
+.hero-tank-halo {
+  position: absolute; top: 46%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(ellipse at center,
+    rgba(201,168,76,0.22) 0%,
+    rgba(201,168,76,0.09) 42%,
+    transparent 70%);
+  border-radius: 50%; pointer-events: none; z-index: 0;
+  animation: halo-pulse 5s ease-in-out infinite;
 }
-.hpc-label { font-size: 0.68rem; font-weight: 600; opacity: 0.75; }
-.hpc-val { font-size: 1.45rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
-.hpc-note { font-size: 0.68rem; opacity: 0.75; }
+@keyframes halo-pulse {
+  0%,100% { opacity:.75; transform:translate(-50%,-50%) scale(1); }
+  50%     { opacity:1;   transform:translate(-50%,-50%) scale(1.10); }
+}
+
+/* Floating spec badges — parent is .hero-visual-wrap */
+.hero-visual-wrap { position: relative; }
+.hero-badge {
+  position: absolute;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.36rem 0.88rem 0.36rem 0.62rem;
+  background: #fff; border: 1px solid rgba(201,168,76,0.28);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(201,168,76,0.09);
+  font-size: 0.71rem; font-weight: 700; color: #1A1A1A;
+  white-space: nowrap; z-index: 10; pointer-events: none;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+}
+.hero-badge-330l     { top: 36px; left: -18px;  animation: hbf-a 6s   ease-in-out infinite; }
+.hero-badge-cop      { top: 36px; right: -18px; animation: hbf-b 7s   ease-in-out infinite; }
+.hero-badge-warranty { top: 47%;  left: -18px;  animation: hbf-c 5.5s ease-in-out infinite; }
+.hero-badge-quiet    { top: 47%;  right: -18px; animation: hbf-a 6.5s ease-in-out 0.5s infinite; }
+@keyframes hbf-a { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes hbf-b { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+@keyframes hbf-c { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+/* Premium rebate breakdown card */
+.hero-rebate-card {
+  position: absolute; bottom: 18px; left: 1rem; right: 1rem;
+  background: #fff;
+  border: 1px solid rgba(201,168,76,0.20);
+  border-top: 2.5px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 2px 8px rgba(201,168,76,0.09);
+  z-index: 5;
+}
+.hrc-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.70rem; padding: 0.14rem 0; }
+.hrc-lbl    { color: #777; font-weight: 500; }
+.hrc-strike { color: #BBBBBB; text-decoration: line-through; font-weight: 600; }
+.hrc-rebate { color: var(--gold-deep); font-weight: 700; }
+.hrc-rule   { height: 1px; background: rgba(201,168,76,0.18); margin: 0.5rem 0; }
+.hrc-total  { display: flex; justify-content: space-between; align-items: baseline; }
+.hrc-total-lbl  { font-size: 0.70rem; font-weight: 600; color: #1A1A1A; }
+.hrc-price-wrap { text-align: right; }
+.hrc-from       { font-size: 0.59rem; color: #999; display: block; line-height: 1; }
+.hrc-price      { font-size: 1.35rem; font-weight: 800; color: #1A1A1A; letter-spacing: -0.02em; line-height: 1; display: block; }
+.hrc-installed  { font-size: 0.58rem; color: #999; display: block; }
+
 .hero-form-footer {
   padding: 1.25rem 1.5rem;
   background: var(--white);
@@ -309,8 +365,14 @@ section { padding: 5rem 2rem; }
 @media (max-width: 940px) {
   .hero { padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .hero-visual-img-wrap { min-height: 280px; }
-  .hero-visual-img-wrap img { max-height: 240px; }
+  .hero-badge { display: none; }
+  .hero-visual-img-wrap { min-height: 340px; padding-bottom: 120px; }
+  .hero-visual-img-wrap img { max-height: 210px; }
+}
+@media (max-width: 640px) {
+  .hero-visual-img-wrap { min-height: 300px; }
+  .hero-visual-img-wrap img { max-height: 200px; }
+  .hero-rebate-card { left: 0.75rem; right: 0.75rem; bottom: 14px; }
 }
 
 /* ══════════════════════════════════════
@@ -1100,19 +1162,41 @@ footer {
 
     <!-- Product Visual -->
     <div class="reveal reveal-d2">
-      <div class="hero-visual">
-        <div class="hero-visual-img-wrap">
-          <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
-          <div class="hero-price-chip">
-            <div class="hpc-label">From</div>
-            <div class="hpc-val">$1,100</div>
-            <div class="hpc-note">fully installed</div>
+      <div class="hero-visual-wrap">
+        <div class="hero-visual">
+          <div class="hero-visual-img-wrap">
+            <div class="hero-tank-halo"></div>
+            <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
+            <div class="hero-rebate-card">
+              <div class="hrc-row">
+                <span class="hrc-lbl">Retail price</span>
+                <span class="hrc-strike">$3,200</span>
+              </div>
+              <div class="hrc-row">
+                <span class="hrc-lbl">Govt rebate</span>
+                <span class="hrc-rebate">− $1,900</span>
+              </div>
+              <div class="hrc-rule"></div>
+              <div class="hrc-total">
+                <span class="hrc-total-lbl">You pay</span>
+                <div class="hrc-price-wrap">
+                  <span class="hrc-from">From</span>
+                  <span class="hrc-price">$1,100</span>
+                  <span class="hrc-installed">fully installed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-form-footer">
+            <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
+            <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
           </div>
         </div>
-        <div class="hero-form-footer">
-          <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
-          <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
-        </div>
+        <!-- Floating spec badges -->
+        <div class="hero-badge hero-badge-330l"><span class="hero-badge-dot"></span>330L</div>
+        <div class="hero-badge hero-badge-cop"><span class="hero-badge-dot"></span>COP 3.5</div>
+        <div class="hero-badge hero-badge-warranty"><span class="hero-badge-dot"></span>5 Year Warranty</div>
+        <div class="hero-badge hero-badge-quiet"><span class="hero-badge-dot"></span>Quiet Operation</div>
       </div>
     </div>
   </div>
