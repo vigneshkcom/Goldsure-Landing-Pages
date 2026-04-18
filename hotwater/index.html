@@ -274,6 +274,7 @@ section { padding: 5rem 2rem; }
   display: flex; align-items: flex-end; justify-content: center;
   padding: 1rem 1rem 0;
   position: relative;
+  max-width: 420px; margin: 0 auto;
 }
 .hero-visual-img-wrap img {
   max-height: 340px; object-fit: contain;
@@ -300,43 +301,50 @@ section { padding: 5rem 2rem; }
 .hero-form-footer-text { font-size: 0.78rem; color: var(--muted); }
 .hero-form-footer-text strong { color: var(--ink); font-weight: 600; }
 
-/* ── STICKY PRODUCT SCROLL ── */
+/* ── STICKY PRODUCT SCROLL SWAP ── */
+.hero { min-height: 200vh; }
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
-.hp-slide { min-height: 60vh; display: flex; align-items: center; }
-.hp-slide:first-child { align-items: flex-start; padding-top: 1.5rem; }
+
+/* Right column: sticky stage that clips both images */
+.hp-product-stage {
+  position: sticky; top: 82px;
+  height: calc(100vh - 82px);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+
+/* Both products sit in the same spot, absolutely stacked */
+.hp-product {
+  position: absolute; width: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  will-change: transform, opacity;
+}
+.hp-product-0 {
+  transform: translateY(0); opacity: 1;
+  transition: transform 0.8s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease;
+}
+.hp-product-1 {
+  transform: translateY(80px); opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease;
+}
+/* On scroll: 330L exits up, 290L enters from below */
+.hp-product-0.hp-exit  { transform: translateY(-60px); opacity: 0; }
+.hp-product-1.hp-active { transform: translateY(0); opacity: 1; }
+
 .hp-model-label {
   text-align: center; margin-top: 1rem;
   font-size: 0.68rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--muted);
 }
-.hp-tabs { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.6rem; }
-.hp-tab {
-  display: flex; align-items: center; gap: 0.65rem;
-  padding: 0.6rem 0.9rem; border-radius: var(--radius-sm);
-  border: 1.5px solid transparent; cursor: default;
-  font-size: 0.82rem; font-weight: 500; color: var(--muted);
-  background: transparent; transition: all 0.3s;
-}
-.hp-tab.active {
-  border-color: var(--gold-bd);
-  background: var(--gold-bg);
-  color: var(--ink);
-}
-.hp-tab-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--gray-200); flex-shrink: 0; transition: background 0.3s;
-}
-.hp-tab.active .hp-tab-dot { background: var(--gold); }
-.hp-tab-name { font-weight: 600; }
-.hp-tab-price { font-size: 0.74rem; margin-left: auto; font-weight: 500; }
-.hp-tab.active .hp-tab-price { color: var(--gold-deep); font-weight: 600; }
 
 @media (max-width: 940px) {
-  .hero { padding: 6.5rem 1.5rem 4rem; }
+  .hero { min-height: auto; padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
-  .hp-slide { min-height: auto; }
+  .hp-product-stage { position: static; height: auto; overflow: visible; }
+  .hp-product { position: static; width: 100%; }
+  .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
   .hero-visual-img-wrap img { max-height: 280px; }
 }
 
@@ -1129,9 +1137,9 @@ footer {
 
     <!-- Product Scroll Right -->
     <div class="hero-scroll-right">
-      <!-- Slide 1: Econova 330L -->
-      <div class="hp-slide" data-idx="0">
-        <div class="hero-visual">
+      <div class="hp-product-stage">
+        <!-- 330L: visible on load -->
+        <div class="hp-product hp-product-0">
           <div class="hero-visual-img-wrap">
             <img src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
             <div class="hero-price-chip">
@@ -1142,10 +1150,8 @@ footer {
           </div>
           <div class="hp-model-label">Econova 330L · Heat Pump Split System</div>
         </div>
-      </div>
-      <!-- Slide 2: Econova 290L All-in-One -->
-      <div class="hp-slide hp-reveal" data-idx="1">
-        <div class="hero-visual">
+        <!-- 290L: slides up on scroll -->
+        <div class="hp-product hp-product-1">
           <div class="hero-visual-img-wrap">
             <img src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
             <div class="hero-price-chip">
@@ -1829,20 +1835,27 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-/* Product slide tab sync */
+/* Scroll-driven product swap: 290L slides up to replace 330L */
 (function() {
-  var slides = document.querySelectorAll('.hp-slide');
-  var tabs   = document.querySelectorAll('.hp-tab');
-  if (!slides.length || !tabs.length) return;
-  var io = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        var idx = e.target.dataset.idx;
-        tabs.forEach(function(t, i) { t.classList.toggle('active', String(i) === idx); });
-      }
-    });
-  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
-  slides.forEach(function(s) { io.observe(s); });
+  var hero  = document.querySelector('.hero');
+  var prod0 = document.querySelector('.hp-product-0');
+  var prod1 = document.querySelector('.hp-product-1');
+  if (!hero || !prod0 || !prod1) return;
+  var switched = false;
+  function update() {
+    var scrolled  = -hero.getBoundingClientRect().top;
+    var switchAt  = hero.offsetHeight * 0.38;
+    if (scrolled >= switchAt && !switched) {
+      switched = true;
+      prod0.classList.add('hp-exit');
+      prod1.classList.add('hp-active');
+    } else if (scrolled < switchAt && switched) {
+      switched = false;
+      prod0.classList.remove('hp-exit');
+      prod1.classList.remove('hp-active');
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
 })();
 
 /* Scroll reveal */
@@ -1862,17 +1875,6 @@ function toggleFaq(btn) {
   document.querySelectorAll('.hero .reveal, .trust-strip .reveal').forEach(function(el) {
     el.classList.add('in');
   });
-  /* 290L slide: reveal on scroll only — separate observer, not auto-triggered */
-  var hpEls = document.querySelectorAll('.hp-reveal');
-  var hpIo = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        hpIo.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  hpEls.forEach(function(el) { hpIo.observe(el); });
 })();
 </script>
 </body>
