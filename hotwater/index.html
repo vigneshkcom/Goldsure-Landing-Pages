@@ -304,8 +304,10 @@ section { padding: 5rem 2rem; }
 /* ── STICKY PRODUCT SCROLL SWAP ── */
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
 
-/* Right column: must be taller than the viewport for sticky to scroll within it */
-.hero-scroll-right { min-height: 120vh; }
+/* Right column: keep this taller than the left hero copy so the sticky stage
+   does not unstick too early (which was causing the 290L tank to slide upward
+   and get clipped near the top while scrolling). */
+.hero-scroll-right { min-height: 165vh; }
 
 /* Stage: sticky, viewport-height container that clips the swap animation */
 .hp-product-stage {
