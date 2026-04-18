@@ -211,9 +211,7 @@ section { padding: 5rem 2rem; }
   max-width: var(--max); margin: 0 auto;
   display: grid; grid-template-columns: 1fr minmax(0, 460px);
   gap: 3.5rem;
-  /* Match column heights so sticky hero copy stays locked in place
-     while the right-side tank swap animation runs. */
-  align-items: stretch;
+  align-items: start;
   position: relative; z-index: 1;
 }
 .hero-tag {
@@ -289,7 +287,7 @@ section { padding: 5rem 2rem; }
   filter: drop-shadow(0 18px 32px rgba(0,0,0,0.10));
 }
 .hp-img-330 { margin-left: 0; }
-.hp-img-290 { height: 112%; max-height: none; margin-left: 10px; }
+.hp-img-290 { height: 100%; max-height: none; margin-left: 10px; }
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .hero-price-chip {
   position: absolute; bottom: 16px; right: 16px;
@@ -311,16 +309,16 @@ section { padding: 5rem 2rem; }
 .hero-form-footer-text strong { color: var(--ink); font-weight: 600; }
 
 /* ── STICKY PRODUCT SCROLL SWAP ── */
-.hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
+.hero-content { padding-bottom: 2rem; }
 
 /* Right column: keep enough sticky runway for one product swap, but avoid
    forcing an extra "dead" scroll after the 290L is already visible. */
-.hero-scroll-right { min-height: 100vh; }
+.hero-scroll-right { }
 
-/* Stage: sticky, viewport-height container that clips the swap animation */
+/* Stage: fixed-height container for the auto-rotating product showcase */
 .hp-product-stage {
-  position: sticky; top: 82px;
-  height: calc(100vh - 82px);
+  position: relative;
+  height: 460px;
   overflow: hidden;
 }
 
@@ -1863,38 +1861,19 @@ function toggleFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-/* Scroll-driven product swap: 290L slides up to replace 330L */
+/* Timer-based product showcase: auto-cycles between 330L and 290L */
 (function() {
-  var hero  = document.querySelector('.hero');
   var prod0 = document.querySelector('.hp-product-0');
   var prod1 = document.querySelector('.hp-product-1');
-  if (!hero || !prod0 || !prod1) return;
+  if (!prod0 || !prod1) return;
   var switched = false;
-  function update() {
-    /* No animation on mobile — stacked layout handles both tanks */
-    if (window.innerWidth <= 940) {
-      if (switched) {
-        switched = false;
-        prod0.classList.remove('hp-exit');
-        prod1.classList.remove('hp-active');
-      }
-      return;
-    }
-    var scrolled = -hero.getBoundingClientRect().top;
-    /* Trigger earlier so one scroll immediately advances to 290L */
-    var switchAt = window.innerHeight * 0.40;
-    if (scrolled >= switchAt && !switched) {
-      switched = true;
-      prod0.classList.add('hp-exit');
-      prod1.classList.add('hp-active');
-    } else if (scrolled < switchAt && switched) {
-      switched = false;
-      prod0.classList.remove('hp-exit');
-      prod1.classList.remove('hp-active');
-    }
+  function swap() {
+    if (window.innerWidth <= 940) return;
+    switched = !switched;
+    prod0.classList.toggle('hp-exit', switched);
+    prod1.classList.toggle('hp-active', switched);
   }
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
+  setInterval(swap, 3500);
 })();
 
 /* Scroll reveal */
