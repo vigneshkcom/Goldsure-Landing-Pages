@@ -335,28 +335,34 @@ section { padding: 5rem 2rem; }
 .hp-product-0.hp-exit   { transform: translateY(-60px); opacity: 0; }
 .hp-product-1.hp-active { transform: translateY(0);     opacity: 1; }
 
-/* Info strip — dark bar at the bottom of each product card */
+/* Model name overlaid on the image */
+.hp-model-name {
+  position: absolute;
+  top: 0.9rem; left: 0.2rem;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+/* Info strip — compact dark bar: type left, price right */
 .hp-info-strip {
   flex-shrink: 0;
   background: #242424;
   border-radius: var(--radius);
-  padding: 1rem 1.4rem;
+  padding: 0.75rem 1.2rem;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   margin: 0 0.5rem 0.5rem;
 }
-.hp-info-name {
-  font-size: 0.95rem; font-weight: 700; color: #F0EDE6;
-  line-height: 1.2; margin-bottom: 0.18rem;
-}
 .hp-info-type {
-  font-size: 0.62rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.10em; text-transform: uppercase;
   color: var(--gold);
 }
 .hp-info-price-wrap { text-align: right; flex-shrink: 0; }
-.hp-info-from { font-size: 0.60rem; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.08em; }
+.hp-info-price-line { display: flex; align-items: baseline; gap: 0.3rem; justify-content: flex-end; }
+.hp-info-from { font-size: 0.62rem; color: #8A8A8A; }
 .hp-info-price {
-  font-size: 1.65rem; font-weight: 800; color: var(--gold);
+  font-size: 1.25rem; font-weight: 800; color: var(--gold);
   line-height: 1; letter-spacing: -0.02em;
 }
 .hp-info-note { font-size: 0.60rem; color: #8A8A8A; margin-top: 0.1rem; }
@@ -1152,15 +1158,15 @@ footer {
         <div class="hp-product hp-product-0">
           <div class="hero-visual-img-wrap">
             <img class="hp-img-330" src="/assets/hotwater/Econova 330L.png" alt="Econova 330L heat pump hot water system">
+            <div class="hp-model-name">Econova 330L</div>
           </div>
           <div class="hp-info-strip">
-            <div>
-              <div class="hp-info-name">Econova 330L</div>
-              <div class="hp-info-type">Heat Pump Split System</div>
-            </div>
+            <div class="hp-info-type">Heat Pump Split System</div>
             <div class="hp-info-price-wrap">
-              <div class="hp-info-from">From</div>
-              <div class="hp-info-price">$1,100</div>
+              <div class="hp-info-price-line">
+                <span class="hp-info-from">from</span>
+                <span class="hp-info-price">$1,100</span>
+              </div>
               <div class="hp-info-note">fully installed</div>
             </div>
           </div>
@@ -1169,15 +1175,15 @@ footer {
         <div class="hp-product hp-product-1">
           <div class="hero-visual-img-wrap">
             <img class="hp-img-290" src="/assets/hotwater/290L All In One.webp" alt="Econova 290L All-in-One heat pump hot water system">
+            <div class="hp-model-name">Econova 290L</div>
           </div>
           <div class="hp-info-strip">
-            <div>
-              <div class="hp-info-name">Econova 290L</div>
-              <div class="hp-info-type">All-in-One Compact</div>
-            </div>
+            <div class="hp-info-type">All-in-One Compact</div>
             <div class="hp-info-price-wrap">
-              <div class="hp-info-from">From</div>
-              <div class="hp-info-price">$998</div>
+              <div class="hp-info-price-line">
+                <span class="hp-info-from">from</span>
+                <span class="hp-info-price">$998</span>
+              </div>
               <div class="hp-info-note">fully installed</div>
             </div>
           </div>
