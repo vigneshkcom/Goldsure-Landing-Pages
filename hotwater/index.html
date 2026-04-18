@@ -331,6 +331,9 @@ section { padding: 5rem 2rem; }
 .hp-product-0.hp-exit  { transform: translateY(-60px); opacity: 0; }
 .hp-product-1.hp-active { transform: translateY(0); opacity: 1; }
 
+/* Right column must be taller than the stage so sticky has room to scroll */
+.hero-scroll-right { min-height: 200vh; }
+
 .hp-model-label {
   text-align: center; margin-top: 1rem;
   font-size: 0.68rem; font-weight: 700;
@@ -342,6 +345,7 @@ section { padding: 5rem 2rem; }
   .hero { min-height: auto; padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
+  .hero-scroll-right { min-height: 0; }
   .hp-product-stage { position: static; height: auto; overflow: visible; }
   .hp-product { position: static; width: 100%; }
   .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
