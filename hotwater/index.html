@@ -302,22 +302,25 @@ section { padding: 5rem 2rem; }
 .hero-form-footer-text strong { color: var(--ink); font-weight: 600; }
 
 /* ── STICKY PRODUCT SCROLL SWAP ── */
-.hero { min-height: 200vh; }
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
 
-/* Right column: sticky stage that clips both images */
+/* Right column: must be taller than the viewport for sticky to scroll within it */
+.hero-scroll-right { min-height: 150vh; }
+
+/* Stage: sticky, viewport-height container that clips the swap animation */
 .hp-product-stage {
   position: sticky; top: 82px;
   height: calc(100vh - 82px);
-  display: flex; align-items: flex-start; justify-content: center;
-  padding-top: 8rem;
   overflow: hidden;
 }
 
-/* Both products sit in the same spot, absolutely stacked */
+/* Both products fill the stage identically — explicit inset removes any
+   reliance on flex static-position, ensuring 290L and 330L land in the
+   same spot. padding-top shifts the visual centre to align with the text. */
 .hp-product {
-  position: absolute; width: 100%;
+  position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; padding-top: 7rem;
   will-change: transform, opacity;
 }
 .hp-product-0 {
@@ -332,9 +335,6 @@ section { padding: 5rem 2rem; }
 .hp-product-0.hp-exit  { transform: translateY(-60px); opacity: 0; }
 .hp-product-1.hp-active { transform: translateY(0); opacity: 1; }
 
-/* Right column must be taller than the stage so sticky has room to scroll */
-.hero-scroll-right { min-height: 200vh; }
-
 .hp-model-label {
   text-align: center; margin-top: 1rem;
   font-size: 0.68rem; font-weight: 700;
@@ -347,8 +347,8 @@ section { padding: 5rem 2rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
   .hero-scroll-right { min-height: 0; }
-  .hp-product-stage { position: static; height: auto; overflow: visible; padding-top: 0; }
-  .hp-product { position: static; width: 100%; }
+  .hp-product-stage { position: static; height: auto; overflow: visible; }
+  .hp-product { position: static; inset: unset; width: 100%; height: auto; padding-top: 0; justify-content: flex-start; }
   .hp-product-1 { transform: none; opacity: 1; margin-top: 3rem; }
   .hero-visual-img-wrap img { max-height: 280px; }
 }
