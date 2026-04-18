@@ -263,23 +263,11 @@ section { padding: 5rem 2rem; }
 .hgb-label { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
 
 /* Product visual panel */
-.hero-visual {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-  position: relative;
-}
-.hero-visual::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
-  z-index: 2;
-}
+.hero-visual { position: relative; }
+.hero-visual::before { display: none; }
 .hero-visual-img-wrap {
-  background: linear-gradient(160deg, var(--off-white) 0%, var(--off-white-2) 100%);
   display: flex; align-items: flex-end; justify-content: center;
-  padding: 2rem 2rem 0; min-height: 360px;
+  padding: 1rem 1rem 0;
   position: relative;
 }
 .hero-visual-img-wrap img {
@@ -309,8 +297,8 @@ section { padding: 5rem 2rem; }
 
 /* ── STICKY PRODUCT SCROLL ── */
 .hero-content { position: sticky; top: 82px; padding-bottom: 2rem; }
-.hp-slide { min-height: 100vh; display: flex; align-items: center; }
-.hp-slide:last-child { padding-bottom: 5rem; }
+.hp-slide { display: flex; align-items: flex-start; }
+.hp-slide:last-child { padding-top: 3rem; padding-bottom: 4rem; }
 .hp-tabs { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.6rem; }
 .hp-tab {
   display: flex; align-items: center; gap: 0.65rem;
@@ -337,11 +325,9 @@ section { padding: 5rem 2rem; }
   .hero { padding: 6.5rem 1.5rem 4rem; }
   .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-content { position: static; }
-  .hp-slide { min-height: auto; padding: 0; }
-  .hp-slide:last-child { padding-bottom: 0; }
-  .hp-tabs { flex-direction: row; flex-wrap: wrap; gap: 0.4rem; }
-  .hero-visual-img-wrap { min-height: 280px; }
-  .hero-visual-img-wrap img { max-height: 240px; }
+  .hp-slide[data-idx="1"] { display: none; }
+  .hp-slide:last-child { padding-top: 0; padding-bottom: 0; }
+  .hero-visual-img-wrap img { max-height: 300px; }
 }
 
 /* ══════════════════════════════════════
@@ -1129,19 +1115,6 @@ footer {
           <div class="hgb-label">Google Rating</div>
         </div>
       </div>
-      <!-- Product model tabs — update on scroll -->
-      <div class="hp-tabs">
-        <div class="hp-tab active" data-idx="0">
-          <span class="hp-tab-dot"></span>
-          <span class="hp-tab-name">Econova 330L</span>
-          <span class="hp-tab-price">from $1,100</span>
-        </div>
-        <div class="hp-tab" data-idx="1">
-          <span class="hp-tab-dot"></span>
-          <span class="hp-tab-name">Econova 290L All-in-One</span>
-          <span class="hp-tab-price">from $998</span>
-        </div>
-      </div>
     </div>
 
     <!-- Product Scroll Right -->
@@ -1157,10 +1130,6 @@ footer {
               <div class="hpc-note">fully installed</div>
             </div>
           </div>
-          <div class="hero-form-footer">
-            <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
-            <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
-          </div>
         </div>
       </div>
       <!-- Slide 2: Econova 290L All-in-One -->
@@ -1173,10 +1142,6 @@ footer {
               <div class="hpc-val">$998</div>
               <div class="hpc-note">fully installed</div>
             </div>
-          </div>
-          <div class="hero-form-footer">
-            <div class="hero-form-footer-text"><strong>Limited rebates</strong> remaining — Solar Victoria allocations running low</div>
-            <a href="#quote" class="btn btn-gold" style="padding:0.6rem 1.1rem;font-size:0.78rem;">Quote now →</a>
           </div>
         </div>
       </div>
