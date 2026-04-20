@@ -1131,6 +1131,39 @@ footer {
   --off-white:  #232323;
 }
 
+/* ══════════════════════════════════════
+   MOBILE — fix double horizontal padding
+   Sections add 2rem side padding AND .wrap
+   adds another 2rem, totalling 64px per
+   side. On mobile, zero out section-level
+   horizontal padding and reduce .wrap to
+   1rem so cards fill the screen properly.
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .rebate-sec,
+  .diff-sec,
+  .product-sec,
+  .sizing-sec,
+  .process-sec,
+  .reviews-sec,
+  .cta-sec {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Give rebate cards a touch more breathing room on mobile */
+  .r-card { padding: 1.5rem 1.25rem; }
+  /* Diff cards: tighten inner padding slightly */
+  .diff-col { padding: 1.5rem 1.25rem; }
+  /* Product strip: reduce inner col padding */
+  .prod-col { padding: 2rem 1.25rem; }
+  /* Sizing cards: reduce inner padding */
+  .size-card { padding: 1.5rem 1.25rem 1.25rem; }
+}
+
 </style>
 </head>
 <body>
