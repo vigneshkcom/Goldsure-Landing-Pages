@@ -1767,22 +1767,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="form-card-body">
           <div class="form-title">Get my free quote</div>
           <div class="form-sub">No obligation. We'll be in touch within 24 hours.</div>
-          <form action="#" method="post">
+          <form id="hw-lead-form">
             <div class="form-group">
               <label class="form-label">Full name</label>
-              <input type="text" class="form-input" placeholder="Your full name">
+              <input type="text" class="form-input" placeholder="Your full name" name="name" required>
             </div>
             <div class="form-group">
               <label class="form-label">Email address</label>
-              <input type="email" class="form-input" placeholder="your@email.com">
+              <input type="email" class="form-input" placeholder="your@email.com" name="email" required>
             </div>
             <div class="form-group">
               <label class="form-label">Phone number</label>
-              <input type="tel" class="form-input" placeholder="Your phone number">
+              <input type="tel" class="form-input" placeholder="Your phone number" name="phone" required>
             </div>
             <div class="form-group">
               <label class="form-label">Current hot water system</label>
-              <select class="form-select">
+              <select class="form-select" name="current_system">
                 <option value="">Select your current system</option>
                 <option>Gas storage hot water</option>
                 <option>Gas continuous flow (instantaneous)</option>
@@ -1794,7 +1794,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="form-group">
               <label class="form-label">Household size</label>
-              <select class="form-select">
+              <select class="form-select" name="household_size">
                 <option value="">Number of people in home</option>
                 <option>1–2 people</option>
                 <option>3–4 people</option>
@@ -1804,9 +1804,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="form-group">
               <label class="form-label">Your message</label>
-              <textarea class="form-input" rows="3" placeholder="Tell us anything else we should know — location, current system age, any questions..." style="resize:vertical;padding-top:10px"></textarea>
+              <textarea class="form-input" rows="3" placeholder="Tell us anything else we should know — location, current system age, any questions..." name="message" style="resize:vertical;padding-top:10px"></textarea>
             </div>
-            <button type="submit" class="btn-form">Get my free quote →</button>
+            <button type="submit" class="btn-form" id="hw-submit">Get my free quote →</button>
+            <div id="hw-error" hidden style="margin-top:0.75rem;padding:0.75rem 1rem;background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);border-radius:6px;font-size:0.85rem;color:#fca5a5;"></div>
           </form>
           <div class="form-note">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
@@ -1947,6 +1948,76 @@ function toggleFaq(btn) {
   /* Trigger hero + trust strip immediately */
   document.querySelectorAll('.hero .reveal, .trust-strip .reveal').forEach(function(el) {
     el.classList.add('in');
+  });
+})();
+
+/* ── Lead form — GoHighLevel webhook ── */
+(function () {
+  var form    = document.getElementById('hw-lead-form');
+  var btn     = document.getElementById('hw-submit');
+  var errEl   = document.getElementById('hw-error');
+  var WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/f694ba14-351b-4bca-861a-88c173eae509';
+
+  if (!form) return;
+
+  var params = new URLSearchParams(window.location.search);
+
+  function detectSource() {
+    if (params.get('gclid'))      return 'Google Ads';
+    if (params.get('fbclid'))     return 'Facebook Ads';
+    if (params.get('utm_source')) return params.get('utm_source');
+    var ref = document.referrer;
+    if (!ref)                              return 'Direct';
+    if (/google\./i.test(ref))             return 'Organic Google';
+    if (/facebook\.|instagram\./i.test(ref)) return 'Organic Social';
+    try { return new URL(ref).hostname; } catch (e) { return 'Referral'; }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled    = true;
+    btn.textContent = 'Submitting…';
+    errEl.hidden    = true;
+
+    var payload = {
+      name:           form.elements['name'].value.trim(),
+      phone:          form.elements['phone'].value.trim(),
+      email:          form.elements['email'].value.trim(),
+      current_system: form.elements['current_system'].value,
+      household_size: form.elements['household_size'].value,
+      message:        form.elements['message'].value.trim(),
+      source:         'Hot Water Landing Page',
+      lead_source:    detectSource(),
+      page_url:       window.location.href,
+      utm_source:     params.get('utm_source')   || '',
+      utm_medium:     params.get('utm_medium')   || '',
+      utm_campaign:   params.get('utm_campaign') || '',
+      utm_content:    params.get('utm_content')  || '',
+      utm_term:       params.get('utm_term')     || '',
+      gclid:          params.get('gclid')        || '',
+      fbclid:         params.get('fbclid')       || ''
+    };
+
+    fetch(WEBHOOK, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (res) {
+      if (res.ok) {
+        window.location.href = '/thank-you/hotwater';
+      } else {
+        throw new Error('status ' + res.status);
+      }
+    })
+    .catch(function () {
+      errEl.textContent = 'Something went wrong — please try again or call us on 03 7050 2846.';
+      errEl.hidden      = false;
+      btn.disabled      = false;
+      btn.textContent   = 'Get my free quote →';
+    });
   });
 })();
 </script>
