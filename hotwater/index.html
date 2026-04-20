@@ -655,6 +655,11 @@ section { padding: 5rem 2rem; }
 }
 .prod-sub  { font-size: 0.85rem; color: var(--muted); }
 .prod-feats { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.prod-feat-group-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin: 1rem 0 0.4rem;
+}
+.prod-feat-sep { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0.75rem 0; }
 .prod-feat {
   display: flex; gap: 0.8rem; align-items: flex-start;
   font-size: 0.88rem; color: var(--ink); line-height: 1.55;
@@ -1402,9 +1407,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      ════════════════════════════════════ -->
 <section class="product-sec panel-light">
   <div class="wrap">
-    <div class="eyebrow reveal">Our product</div>
-    <h2 class="section-h2 reveal">Installed by the people who built it —<br>Econova manufacturer-trained</h2>
-    <p class="section-sub reveal">We install Econova heat pump hot water systems — and our installation team is trained directly by the manufacturer. That means every install is done the way the product was designed to be installed.</p>
+    <div class="eyebrow reveal">Sizing guide</div>
+    <h2 class="section-h2 reveal">Which tank is right<br>for your household?</h2>
+    <p class="section-sub reveal">Choose your recommended capacity based on household demand. We still complete a full on-site assessment before installation so you're never left with the wrong size.</p>
     <div class="product-strip reveal">
       <div class="prod-col">
         <div class="prod-img-wrap">
@@ -1412,8 +1417,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="prod-header">
           <div class="prod-name">Econova 290L</div>
-          <div class="prod-sub">Ideal for households of 2–4 people</div>
+          <div class="prod-sub">Best for standard demand</div>
         </div>
+        <div class="prod-feat-group-label">Who it's for</div>
+        <ul class="prod-feats">
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>1–4 people in the household</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Typical shower times and usage patterns</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Limited outdoor installation space</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Best value when usage is predictable</li>
+        </ul>
+        <hr class="prod-feat-sep">
+        <div class="prod-feat-group-label">Key features</div>
         <ul class="prod-feats">
           <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
           <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Up to 75% less energy than conventional electric storage</li>
@@ -1429,8 +1443,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="prod-header">
           <div class="prod-name">Econova 330L</div>
-          <div class="prod-sub">Ideal for households of 4–6+ people</div>
+          <div class="prod-sub">Best for high demand</div>
         </div>
+        <div class="prod-feat-group-label">Who it's for</div>
+        <ul class="prod-feats">
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>4–6+ people at home</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Frequent long showers or regular baths</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Ideal for homes with rooftop solar</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Handles high or variable hot water demand</li>
+          <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Maximum stored capacity and faster recovery</li>
+        </ul>
+        <hr class="prod-feat-sep">
+        <div class="prod-feat-group-label">Key features</div>
         <ul class="prod-feats">
           <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>One of the largest tanks available in the Australian market</li>
           <li class="prod-feat"><span class="feat-tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>Boosted tank — replenishes in 1–2 hours after use</li>
@@ -1440,7 +1464,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
       </div>
     </div>
-    <div class="section-cta reveal" style="margin-top:2.25rem;">
+    <div class="size-note reveal" style="margin-top:2rem;"><strong>Not sure which size suits your home?</strong> We assess every property before quoting — we'll tell you exactly what you need and why, at no cost or obligation.</div>
+    <div class="section-cta reveal" style="margin-top:1.75rem;">
       <a href="#quote" class="btn btn-gold" style="font-size:0.92rem;padding:0.9rem 2.25rem;">Get my free quote</a>
     </div>
   </div>
@@ -1470,59 +1495,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="step-title">Rebate handled, done</div>
         <div class="step-desc">All VEU, Solar Victoria, and STC paperwork is completed by us. The saving comes off your invoice on the day. You don't fill in a single form.</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     SIZING
-     ════════════════════════════════════ -->
-<section class="sizing-sec panel-light">
-  <div class="wrap">
-    <div class="eyebrow reveal">Sizing guide</div>
-    <h2 class="section-h2 reveal">Which tank is right<br>for your household?</h2>
-    <p class="section-sub reveal">Choose your recommended capacity based on household demand. We still complete a full on-site assessment before installation so you're never left with the wrong size.</p>
-    <div class="sizing-grid">
-      <div class="size-card reveal">
-        <div class="size-inner">
-          <div class="size-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3V21M3 12H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="size-name">290L</div>
-          <div class="size-sub">Best for standard demand</div>
-          <ul class="size-rows">
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1–4 people in the household</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Typical shower times and usage patterns</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Limited outdoor installation space</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Best value when usage is predictable</li>
-          </ul>
-        </div>
-      </div>
-      <div class="size-card size-featured reveal reveal-d2">
-        <div class="size-popular">Most popular</div>
-        <div class="size-inner">
-          <div class="size-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M12 4L19 8V16L12 20L5 16V8L12 4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="size-name">330L</div>
-          <div class="size-sub">Best for high demand</div>
-          <ul class="size-rows">
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>4–6+ people at home</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Frequent long showers or regular baths</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ideal for homes with rooftop solar</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Handles high or variable hot water demand</li>
-            <li class="size-row"><span class="size-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17L19 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Maximum stored capacity and faster recovery</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="size-note reveal"><strong>Not sure which size suits your home?</strong> We assess every property before quoting — we'll tell you exactly what you need and why, at no cost or obligation.</div>
-    <div class="section-cta reveal" style="margin-top:1.75rem;">
-      <a href="#quote" class="btn btn-gold" style="font-size:0.92rem;padding:0.9rem 2.25rem;">Get my free quote</a>
     </div>
   </div>
 </section>
