@@ -684,52 +684,39 @@ section { padding: 5rem 2rem; }
 /* ══════════════════════════════════════
    PROCESS
 ══════════════════════════════════════ */
-.process-sec { background: var(--off-white); padding: 3rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.process-sec { background: var(--off-white); padding: 4rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-/* ── Process two-col layout ── */
-.process-layout {
+/* ── Process horizontal steps ── */
+.process-steps {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 2.5rem;
 }
-.process-sticky {
-  position: sticky;
-  top: 6rem;
-}
-.process-sticky-title {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.process-steps { display: flex; flex-direction: column; }
 .step-card {
-  border-top: 1px solid var(--border-mid);
-  padding: 1.25rem 0;
+  padding: 2rem 2.5rem;
+  border-left: 1px solid var(--border-mid);
   position: relative;
+  overflow: hidden;
   cursor: default;
-  transition: border-color 0.3s ease;
 }
-.step-card:last-child { border-bottom: 1px solid var(--border-mid); }
+.step-card:first-child { border-left: none; padding-left: 0; }
+.step-card:last-child { padding-right: 0; }
 .step-card::before {
   content: ''; position: absolute;
-  left: 0; top: 1.25rem; bottom: 1.25rem; width: 2px;
-  background: linear-gradient(180deg, var(--gold-deep), var(--gold-light));
-  transform: scaleY(0); transform-origin: top;
-  transition: transform 0.35s var(--ease-out);
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
 }
-.step-card:hover::before { transform: scaleY(1); }
-.step-card:hover { border-color: var(--gold-bd); }
+.step-card:hover::before { transform: scaleX(1); }
 .step-num {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(3rem, 5.5vw, 4.5rem);
+  font-size: clamp(3.5rem, 5.5vw, 5.5rem);
   line-height: 0.85;
   color: var(--gold);
   opacity: 0.18;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.6rem;
   transition: opacity 0.35s ease;
   user-select: none;
 }
@@ -740,13 +727,13 @@ section { padding: 5rem 2rem; }
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
 }
-.step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; max-width: 48ch; }
-@media (max-width: 800px) {
-  .process-layout { grid-template-columns: 1fr; gap: 1.5rem; }
-  .process-sticky { position: static; }
-  .process-sticky-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+.step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.65; }
+@media (max-width: 700px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .step-card { border-left: none; border-top: 1px solid var(--border-mid); padding: 1.5rem 0; }
+  .step-card:first-child { border-top: none; padding-top: 0; }
 }
 
 /* ══════════════════════════════════════
@@ -1507,26 +1494,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      ════════════════════════════════════ -->
 <section class="process-sec">
   <div class="wrap">
-    <div class="process-layout">
-      <div class="process-sticky">
-        <div class="process-sticky-title">Our<br>Process</div>
+    <div class="eyebrow reveal">Our process</div>
+    <h2 class="section-h2 reveal">From enquiry to hot water —<br>here's exactly what happens</h2>
+    <div class="process-steps">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <div class="step-title">Free in-home assessment</div>
+        <div class="step-desc">We book a free in-home assessment at your property to confirm the right system and ensure everything is suitable before moving forward.</div>
       </div>
-      <div class="process-steps" id="process-steps">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <div class="step-title">Free in-home assessment</div>
-          <div class="step-desc">We book a free in-home assessment at your property to confirm the right system and ensure everything is suitable before moving forward.</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <div class="step-title">Fixed quote provided</div>
-          <div class="step-desc">After the assessment, we send you your quote. Once approved, we prepare the next steps for your installation and rebate support.</div>
-        </div>
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <div class="step-title">Rebate guidance and install</div>
-          <div class="step-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
-        </div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">02</div>
+        <div class="step-title">Fixed quote provided</div>
+        <div class="step-desc">After the assessment, we send you your quote. Once approved, we prepare the next steps for your installation and rebate support.</div>
+      </div>
+      <div class="step-card reveal reveal-d3">
+        <div class="step-num">03</div>
+        <div class="step-title">Rebate guidance and install</div>
+        <div class="step-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
       </div>
     </div>
   </div>
