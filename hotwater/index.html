@@ -1781,25 +1781,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input type="tel" class="form-input" placeholder="Your phone number" name="phone" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Current hot water system</label>
-              <select class="form-select" name="current_system">
-                <option value="">Select your current system</option>
-                <option>Gas storage hot water</option>
-                <option>Gas continuous flow (instantaneous)</option>
-                <option>Electric storage hot water</option>
-                <option>Solar hot water</option>
-                <option>Heat pump (replacing existing)</option>
-                <option>Not sure</option>
-              </select>
+              <label class="form-label">Postcode</label>
+              <input type="text" class="form-input" placeholder="Your postcode" name="postcode" inputmode="numeric" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Household size</label>
-              <select class="form-select" name="household_size">
-                <option value="">Number of people in home</option>
-                <option>1–2 people</option>
-                <option>3–4 people</option>
-                <option>5–6 people</option>
-                <option>7+ people</option>
+              <label class="form-label">Preferred time of call</label>
+              <select class="form-select" name="preferred_time_of_call" required>
+                <option value="" disabled selected>Select a time</option>
+                <option value="AM: 8:00 am – 11:59 am">AM: 8:00 am – 11:59 am</option>
+                <option value="PM: 12:00 pm – 5:00 pm">PM: 12:00 pm – 5:00 pm</option>
               </select>
             </div>
             <div class="form-group">
@@ -1982,12 +1972,12 @@ function toggleFaq(btn) {
     errEl.hidden    = true;
 
     var payload = {
-      name:           form.elements['name'].value.trim(),
-      phone:          form.elements['phone'].value.trim(),
-      email:          form.elements['email'].value.trim(),
-      current_system: form.elements['current_system'].value,
-      household_size: form.elements['household_size'].value,
-      message:        form.elements['message'].value.trim(),
+      name:                   form.elements['name'].value.trim(),
+      phone:                  form.elements['phone'].value.trim(),
+      email:                  form.elements['email'].value.trim(),
+      postcode:               form.elements['postcode'].value.trim(),
+      preferred_time_of_call: form.elements['preferred_time_of_call'].value,
+      message:                form.elements['message'].value.trim(),
       source:         'Hot Water Landing Page',
       lead_source:    detectSource(),
       page_url:       window.location.href,
