@@ -684,14 +684,14 @@ section { padding: 5rem 2rem; }
 /* ══════════════════════════════════════
    PROCESS
 ══════════════════════════════════════ */
-.process-sec { background: var(--off-white); padding: 5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.process-sec { background: var(--off-white); padding: 3rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 /* ── Process two-col layout ── */
 .process-layout {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 5rem;
-  align-items: start;
+  gap: 4rem;
+  align-items: center;
 }
 .process-sticky {
   position: sticky;
@@ -699,7 +699,7 @@ section { padding: 5rem 2rem; }
 }
 .process-sticky-title {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -708,7 +708,7 @@ section { padding: 5rem 2rem; }
 .process-steps { display: flex; flex-direction: column; }
 .step-card {
   border-top: 1px solid var(--border-mid);
-  padding: 2.5rem 0;
+  padding: 1.25rem 0;
   position: relative;
   cursor: default;
   transition: border-color 0.3s ease;
@@ -716,7 +716,7 @@ section { padding: 5rem 2rem; }
 .step-card:last-child { border-bottom: 1px solid var(--border-mid); }
 .step-card::before {
   content: ''; position: absolute;
-  left: 0; top: 2.5rem; bottom: 2.5rem; width: 2px;
+  left: 0; top: 1.25rem; bottom: 1.25rem; width: 2px;
   background: linear-gradient(180deg, var(--gold-deep), var(--gold-light));
   transform: scaleY(0); transform-origin: top;
   transition: transform 0.35s var(--ease-out);
@@ -725,28 +725,28 @@ section { padding: 5rem 2rem; }
 .step-card:hover { border-color: var(--gold-bd); }
 .step-num {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(4.5rem, 8vw, 7rem);
+  font-size: clamp(3rem, 5.5vw, 4.5rem);
   line-height: 0.85;
   color: var(--gold);
   opacity: 0.18;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
   transition: opacity 0.35s ease;
   user-select: none;
 }
 .step-card:hover .step-num { opacity: 1; }
 .step-title {
   font-family: 'Anton', sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.2rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.35rem;
 }
-.step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; max-width: 48ch; }
+.step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; max-width: 48ch; }
 @media (max-width: 800px) {
-  .process-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .process-layout { grid-template-columns: 1fr; gap: 1.5rem; }
   .process-sticky { position: static; }
-  .process-sticky-title { font-size: clamp(3rem, 12vw, 5rem); }
+  .process-sticky-title { font-size: clamp(2.5rem, 12vw, 4rem); }
 }
 
 /* ══════════════════════════════════════
