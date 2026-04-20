@@ -1140,31 +1140,30 @@ footer {
    1rem so cards fill the screen properly.
 ══════════════════════════════════════ */
 @media (max-width: 640px) {
-  .wrap {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  /* All content sections: zero section-level side padding, rely on .wrap */
   .rebate-sec,
   .diff-sec,
   .product-sec,
   .sizing-sec,
   .process-sec,
-  .reviews-sec {
+  .reviews-sec,
+  .faq-sec {
     padding-left: 0;
     padding-right: 0;
   }
-  /* cta-sec uses cta-grid directly (no .wrap), so just reduce rather than zero */
-  .cta-sec {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  /* .wrap provides the single source of horizontal indentation on mobile */
+  .wrap {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
-  /* Give rebate cards a touch more breathing room on mobile */
+  /* cta-sec uses cta-grid directly (no .wrap), match the same 1.5rem */
+  .cta-sec {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
   .r-card { padding: 1.5rem 1.25rem; }
-  /* Diff cards: tighten inner padding slightly */
   .diff-col { padding: 1.5rem 1.25rem; }
-  /* Product strip: reduce inner col padding */
   .prod-col { padding: 2rem 1.25rem; }
-  /* Sizing cards: reduce inner padding */
   .size-card { padding: 1.5rem 1.25rem 1.25rem; }
 }
 
