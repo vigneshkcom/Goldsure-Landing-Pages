@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" href="/assets/gs-favicon-96px.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 
 /* ══════════════════════════════════════
@@ -686,52 +686,68 @@ section { padding: 5rem 2rem; }
 ══════════════════════════════════════ */
 .process-sec { background: var(--off-white); padding: 5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-/* ── Process cards ── */
-.process-steps {
+/* ── Process two-col layout ── */
+.process-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  align-items: stretch;
-  margin-top: 2.5rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
 }
+.process-sticky {
+  position: sticky;
+  top: 6rem;
+}
+.process-sticky-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.process-steps { display: flex; flex-direction: column; }
 .step-card {
-  background: var(--white);
-  border: 1.5px solid var(--border-mid);
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.75rem;
+  border-top: 1px solid var(--border-mid);
+  padding: 2.5rem 0;
   position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out),
-              border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+  transition: border-color 0.3s ease;
 }
-.step-card.visible { opacity: 1; transform: translateY(0); }
-.step-card.visible:hover {
-  transform: translateY(-5px);
-  border-color: var(--gold-bd);
-  box-shadow: 0 12px 40px rgba(201,168,76,0.12), 0 4px 16px rgba(0,0,0,0.2);
-}
+.step-card:last-child { border-bottom: 1px solid var(--border-mid); }
 .step-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.55s var(--ease-out) 0.2s;
+  content: ''; position: absolute;
+  left: 0; top: 2.5rem; bottom: 2.5rem; width: 2px;
+  background: linear-gradient(180deg, var(--gold-deep), var(--gold-light));
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.35s var(--ease-out);
 }
-.step-card.visible::before { transform: scaleX(1); }
+.step-card:hover::before { transform: scaleY(1); }
+.step-card:hover { border-color: var(--gold-bd); }
 .step-num {
-  width: 42px; height: 42px; border-radius: 50%;
-  background: var(--gold-bg); border: 1.5px solid var(--gold-bd);
-  color: var(--gold); font-weight: 800; font-size: 1rem;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.25rem;
-  transform: scale(0.5);
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(4.5rem, 8vw, 7rem);
+  line-height: 0.85;
+  color: var(--gold);
+  opacity: 0.18;
+  margin-bottom: 0.75rem;
+  transition: opacity 0.35s ease;
+  user-select: none;
 }
-.step-card.visible .step-num { transform: scale(1); }
-.step-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.55rem; }
-.step-desc  { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
-@media (max-width: 700px) { .process-steps { grid-template-columns: 1fr; gap: 1rem; } }
+.step-card:hover .step-num { opacity: 1; }
+.step-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.65rem;
+}
+.step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; max-width: 48ch; }
+@media (max-width: 800px) {
+  .process-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .process-sticky { position: static; }
+  .process-sticky-title { font-size: clamp(3rem, 12vw, 5rem); }
+}
 
 /* ══════════════════════════════════════
    SIZING
@@ -1491,24 +1507,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      ════════════════════════════════════ -->
 <section class="process-sec">
   <div class="wrap">
-    <div class="eyebrow reveal">Our process</div>
-    <h2 class="section-h2 reveal">From enquiry to hot water —<br>here's exactly what happens</h2>
-    <p class="section-sub reveal">Straightforward, guided, and fully supported from first contact to final installation.</p>
-    <div class="process-steps" id="process-steps">
-      <div class="step-card">
-        <div class="step-num">1</div>
-        <div class="step-title">Free in-home assessment</div>
-        <div class="step-desc">We book a free in-home assessment at your property to confirm the right system and ensure everything is suitable before moving forward.</div>
+    <div class="process-layout">
+      <div class="process-sticky">
+        <div class="process-sticky-title">Our<br>Process</div>
       </div>
-      <div class="step-card">
-        <div class="step-num">2</div>
-        <div class="step-title">Fixed quote provided</div>
-        <div class="step-desc">After the assessment, we send you your quote. Once approved, we prepare the next steps for your installation and rebate support.</div>
-      </div>
-      <div class="step-card">
-        <div class="step-num">3</div>
-        <div class="step-title">Rebate guidance and install</div>
-        <div class="step-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
+      <div class="process-steps" id="process-steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-title">Free in-home assessment</div>
+          <div class="step-desc">We book a free in-home assessment at your property to confirm the right system and ensure everything is suitable before moving forward.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-title">Fixed quote provided</div>
+          <div class="step-desc">After the assessment, we send you your quote. Once approved, we prepare the next steps for your installation and rebate support.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-title">Rebate guidance and install</div>
+          <div class="step-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1928,21 +1946,6 @@ function toggleFaq(btn) {
   });
 })();
 
-/* ── Process cards stagger ── */
-(function () {
-  var steps = document.getElementById('process-steps');
-  if (!steps) return;
-  var cards = steps.querySelectorAll('.step-card');
-  var obs = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) {
-      cards.forEach(function (card, i) {
-        setTimeout(function () { card.classList.add('visible'); }, i * 150);
-      });
-      obs.disconnect();
-    }
-  }, { threshold: 0.2 });
-  obs.observe(steps);
-})();
 
 /* ── Lead form — GoHighLevel webhook ── */
 (function () {
