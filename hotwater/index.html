@@ -741,6 +741,8 @@ section { padding: 5rem 2rem; }
   .process-steps { grid-template-columns: 1fr; }
   .step-card { border-left: none; border-top: 1px solid var(--border-mid); padding: 1.5rem 0; }
   .step-card:first-child { border-top: none; padding-top: 0; }
+  /* Disable the hover gold-line on mobile — taps can leave it stuck */
+  .step-card::before { display: none; }
 }
 
 /* ══════════════════════════════════════
