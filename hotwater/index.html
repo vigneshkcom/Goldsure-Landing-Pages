@@ -685,39 +685,78 @@ section { padding: 5rem 2rem; }
    PROCESS
 ══════════════════════════════════════ */
 .process-sec { background: var(--off-white); padding: 5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.process-steps {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+
+/* ── Flow timeline ── */
+.flow-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
 }
-.step-card {
-  background: var(--white);
-  border: 1.5px solid var(--border-mid);
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.75rem;
-  position: relative; overflow: hidden;
-  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+.flow-connector {
+  position: absolute;
+  top: 20px;
+  left: calc(100% / 6);
+  width: calc(100% * 2 / 3);
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  pointer-events: none;
 }
-.step-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: var(--shadow);
-}
-.step-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+.flow-connector-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 2px;
   background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.35s ease;
+  transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
-.step-card:hover::before { transform: scaleX(1); }
-.step-num {
+.flow-steps.animate-in .flow-connector-fill { width: 100%; }
+.flow-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.flow-node {
   width: 42px; height: 42px; border-radius: 50%;
-  background: var(--gold-bg); border: 1.5px solid var(--gold-bd);
-  color: var(--gold-deep); font-weight: 800; font-size: 1rem;
+  background: var(--off-white);
+  border: 2px solid var(--gold-bd);
+  color: var(--gold);
+  font-weight: 800; font-size: 0.95rem;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.5rem; flex-shrink: 0;
+  transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
-.step-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
-.step-desc  { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
-@media (max-width: 700px) { .process-steps { grid-template-columns: 1fr; gap: 0.85rem; } }
+.flow-step:nth-child(2) .flow-node { transition-delay: 0.3s; }
+.flow-step:nth-child(3) .flow-node { transition-delay: 0.85s; }
+.flow-step:nth-child(4) .flow-node { transition-delay: 1.4s; }
+.flow-steps.animate-in .flow-node {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--white);
+}
+.flow-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; line-height: 1.3; }
+.flow-desc  { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
+
+@media (max-width: 700px) {
+  .flow-steps { grid-template-columns: 1fr; gap: 0; }
+  .flow-connector { display: none; }
+  .flow-step {
+    flex-direction: row; align-items: flex-start;
+    text-align: left; gap: 1.25rem; padding-bottom: 2.25rem;
+  }
+  .flow-step:not(:last-child)::after {
+    content: ''; position: absolute;
+    top: 42px; left: 20px;
+    width: 2px; height: calc(100% - 42px);
+    background: var(--gold-bd);
+  }
+  .flow-node { margin-bottom: 0; }
+}
 
 /* ══════════════════════════════════════
    SIZING
@@ -1479,22 +1518,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="eyebrow reveal">Our process</div>
     <h2 class="section-h2 reveal">From enquiry to hot water —<br>here's exactly what happens</h2>
-    <p class="section-sub reveal">No surprises. No hidden costs. No forms for you to fill in. We handle everything from first contact to rebate certificate.</p>
-    <div class="process-steps">
-      <div class="step-card reveal">
-        <div class="step-num">1</div>
-        <div class="step-title">We assess your home</div>
-        <div class="step-desc">We confirm tank size, placement, electrical requirements, and rebate eligibility. You receive a fixed price upfront — what we quote is what you pay.</div>
+    <p class="section-sub reveal">Straightforward, guided, and fully supported from first contact to final installation.</p>
+    <div class="flow-steps" id="flow-steps">
+      <div class="flow-connector" aria-hidden="true"><div class="flow-connector-fill"></div></div>
+      <div class="flow-step">
+        <div class="flow-node">1</div>
+        <div class="flow-title">Free in-home assessment</div>
+        <div class="flow-desc">We book a free in-home assessment at your property to confirm the right system and ensure everything is suitable before moving forward.</div>
       </div>
-      <div class="step-card reveal reveal-d2">
-        <div class="step-num">2</div>
-        <div class="step-title">Licensed install</div>
-        <div class="step-desc">Econova's manufacturer-trained plumbers and our licensed electricians complete the full installation. Old system removed and disposed of at no extra charge.</div>
+      <div class="flow-step">
+        <div class="flow-node">2</div>
+        <div class="flow-title">Fixed quote provided</div>
+        <div class="flow-desc">After the assessment, we send you your quote. Once approved, we prepare the next steps for your installation and rebate support.</div>
       </div>
-      <div class="step-card reveal reveal-d3">
-        <div class="step-num">3</div>
-        <div class="step-title">Rebate handled, done</div>
-        <div class="step-desc">All VEU, Solar Victoria, and STC paperwork is completed by us. The saving comes off your invoice on the day. You don't fill in a single form.</div>
+      <div class="flow-step">
+        <div class="flow-node">3</div>
+        <div class="flow-title">Rebate guidance and install</div>
+        <div class="flow-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
       </div>
     </div>
   </div>
@@ -1912,6 +1952,19 @@ function toggleFaq(btn) {
   document.querySelectorAll('.hero .reveal, .trust-strip .reveal').forEach(function(el) {
     el.classList.add('in');
   });
+})();
+
+/* ── Process flow animation ── */
+(function () {
+  var steps = document.getElementById('flow-steps');
+  if (!steps) return;
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      steps.classList.add('animate-in');
+      obs.disconnect();
+    }
+  }, { threshold: 0.3 });
+  obs.observe(steps);
 })();
 
 /* ── Lead form — GoHighLevel webhook ── */
