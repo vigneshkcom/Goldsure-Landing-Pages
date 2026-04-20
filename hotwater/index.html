@@ -163,8 +163,11 @@ section { padding: 5rem 2rem; }
 }
 .marquee-track {
   display: flex; white-space: nowrap;
-  animation: marquee 36s linear infinite;
+  will-change: transform;
+  user-select: none;
 }
+.marquee-bar { cursor: grab; }
+.marquee-bar.dragging { cursor: grabbing; }
 .marquee-item {
   display: inline-flex; align-items: center; gap: 0.9rem;
   padding: 0 2.5rem;
@@ -173,7 +176,6 @@ section { padding: 5rem 2rem; }
   color: var(--ink);
 }
 .marquee-item .m-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(0,0,0,0.35); flex-shrink: 0; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ══════════════════════════════════════
    HEADER
@@ -2144,6 +2146,63 @@ function toggleFaq(btn) {
       btn.textContent   = 'Get my free quote →';
     });
   });
+})();
+
+/* ── Marquee: JS auto-scroll + drag/touch ── */
+(function () {
+  var bar   = document.querySelector('.marquee-bar');
+  var track = document.querySelector('.marquee-track');
+  if (!bar || !track) return;
+
+  var pos      = 0;
+  var speed    = 1.5;   /* px per frame — ~90 px/s at 60 fps */
+  var dragging = false;
+  var startX   = 0;
+  var startPos = 0;
+
+  function halfWidth() { return track.scrollWidth / 2; }
+
+  function wrap(p) {
+    var hw = halfWidth();
+    if (hw <= 0) return p;
+    return ((p % hw) + hw) % hw;
+  }
+
+  function tick() {
+    if (!dragging) {
+      pos = wrap(pos + speed);
+      track.style.transform = 'translateX(' + (-pos) + 'px)';
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* Mouse drag */
+  bar.addEventListener('mousedown', function (e) {
+    dragging = true; startX = e.clientX; startPos = pos;
+    bar.classList.add('dragging');
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    pos = wrap(startPos + (startX - e.clientX));
+    track.style.transform = 'translateX(' + (-pos) + 'px)';
+  });
+  document.addEventListener('mouseup', function () {
+    dragging = false; bar.classList.remove('dragging');
+  });
+
+  /* Touch drag */
+  bar.addEventListener('touchstart', function (e) {
+    dragging = true; startX = e.touches[0].clientX; startPos = pos;
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    pos = wrap(startPos + (startX - e.touches[0].clientX));
+    track.style.transform = 'translateX(' + (-pos) + 'px)';
+  }, { passive: true });
+  document.addEventListener('touchend', function () { dragging = false; });
+
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
