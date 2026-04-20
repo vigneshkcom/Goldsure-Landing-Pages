@@ -1010,6 +1010,18 @@ section { padding: 5rem 2rem; }
 .phone-num { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
 .phone-num a { color: var(--ink); }
 .phone-hours { font-size: 0.7rem; color: var(--muted); }
+.form-call-label { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 1.1rem; margin-bottom: 0.4rem; }
+.btn-call {
+  display: block; width: 100%; padding: 0.9rem 1rem;
+  background: transparent; color: var(--ink);
+  border: 1.5px solid var(--border-mid); border-radius: var(--radius-sm);
+  font-size: 0.9rem; font-weight: 700; font-family: inherit;
+  text-align: center; text-decoration: none; letter-spacing: 0.02em;
+  transition: background 0.15s, border-color 0.15s;
+  box-sizing: border-box;
+}
+.btn-call:hover { background: var(--off-white); border-color: var(--gold-bd); }
+.form-call-hours { font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 0.35rem; }
 @media (max-width: 800px) { .cta-grid { grid-template-columns: 1fr; } }
 
 /* ══════════════════════════════════════
@@ -1789,14 +1801,9 @@ footer {
               <div style="font-size:11px;color:var(--muted);margin-top:1px">Google Rating</div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="phone-block">
-        <div class="phone-icon">📞</div>
-        <div>
-          <div class="phone-label">Prefer to talk? Call us direct</div>
-          <div class="phone-num"><a href="tel:0370502846">03 7050 2846</a></div>
-          <div class="phone-hours">Mon–Fri, 9am–5pm</div>
+          <div class="form-call-label">Prefer to talk? Call us direct</div>
+          <a href="tel:0370502846" class="btn-call">📞 03 7050 2846</a>
+          <div class="form-call-hours">Mon–Fri, 9am–5pm</div>
         </div>
       </div>
     </div>
@@ -1872,7 +1879,6 @@ footer {
   <div class="footer-links">
     <a href="#">Privacy Policy</a>
     <a href="#">Terms</a>
-    <a href="mailto:info@goldsure.com.au">info@goldsure.com.au</a>
   </div>
 </footer>
 
