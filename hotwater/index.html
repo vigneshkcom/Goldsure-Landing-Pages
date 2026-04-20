@@ -1149,10 +1149,14 @@ footer {
   .product-sec,
   .sizing-sec,
   .process-sec,
-  .reviews-sec,
-  .cta-sec {
+  .reviews-sec {
     padding-left: 0;
     padding-right: 0;
+  }
+  /* cta-sec uses cta-grid directly (no .wrap), so just reduce rather than zero */
+  .cta-sec {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   /* Give rebate cards a touch more breathing room on mobile */
   .r-card { padding: 1.5rem 1.25rem; }
