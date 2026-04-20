@@ -58,6 +58,10 @@
     {
       "source": "/thank-you/hotwater/",
       "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/api/hotwater/submit-lead",
+      "destination": "/api/hotwater/submit-lead"
     }
   ]
 }
