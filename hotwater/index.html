@@ -471,12 +471,19 @@ section { padding: 5rem 2rem; }
 .c-badge-amber { background: var(--gold-bg); color: var(--gold-deep); border: 1px solid var(--gold-bd); }
 .c-badge-teal  { background: rgba(21,128,61,0.08); color: #15803D; border: 1px solid rgba(21,128,61,0.18); }
 .c-num {
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800;
+  font-size: clamp(3.5rem, 7vw, 5.5rem); font-weight: 800;
   line-height: 1; display: block; margin-bottom: 0.5rem;
   letter-spacing: -0.03em;
+  transition: transform 0.3s var(--ease-out);
+}
+.c-num.counting { animation: numPulse 0.4s var(--ease-out); }
+@keyframes numPulse {
+  0%   { transform: scale(0.85); opacity: 0.4; }
+  60%  { transform: scale(1.04); }
+  100% { transform: scale(1);    opacity: 1;   }
 }
 .c-num-red   { color: #DC2626; }
-.c-num-amber { color: var(--gold-deep); font-size: clamp(1.5rem, 2.8vw, 2.2rem); padding-top: 0.5rem; }
+.c-num-amber { color: var(--gold-deep); font-size: clamp(2rem, 3.8vw, 3.2rem); padding-top: 0.5rem; }
 .c-num-teal  { color: #15803D; }
 .c-strong { font-size: 0.88rem; font-weight: 600; color: var(--ink); display: block; margin-bottom: 0.25rem; }
 .c-sub    { font-size: 0.75rem; color: var(--muted); line-height: 1.55; }
@@ -1331,7 +1338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="counter-grid">
     <div class="c-block reveal">
       <span class="c-badge c-badge-red">Limited availability</span>
-      <span class="c-num c-num-red">2,490</span>
+      <span class="c-num c-num-red" data-count="2490">2,490</span>
       <span class="c-strong">Hot Water Rebates Remaining</span>
       <span class="c-sub">Solar Victoria allocation — as at 13 April 2026</span>
     </div>
@@ -1343,7 +1350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="c-block reveal reveal-d3">
       <span class="c-badge c-badge-teal">Monthly rate</span>
-      <span class="c-num c-num-teal">~153</span>
+      <span class="c-num c-num-teal" data-count="153" data-prefix="~">~153</span>
       <span class="c-strong">Rebates claimed per month</span>
       <span class="c-sub">At current rate, pool exhausts well before the deadline</span>
     </div>
@@ -1930,6 +1937,39 @@ function toggleFaq(btn) {
   });
 })();
 
+
+/* ── Counter strip count-up ── */
+(function () {
+  var grid = document.querySelector('.counter-grid');
+  if (!grid) return;
+
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  function countUp(el, target, duration, prefix) {
+    el.classList.add('counting');
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var current = Math.round(easeOutQuart(progress) * target);
+      el.textContent = prefix + current.toLocaleString();
+      if (progress < 1) { requestAnimationFrame(step); }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var obs = new IntersectionObserver(function (entries) {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+    grid.querySelectorAll('[data-count]').forEach(function (el) {
+      var target = parseInt(el.dataset.count, 10);
+      var prefix = el.dataset.prefix || '';
+      countUp(el, target, 2000, prefix);
+    });
+  }, { threshold: 0.4 });
+
+  obs.observe(grid);
+})();
 
 /* ── Lead form — GoHighLevel webhook ── */
 (function () {
