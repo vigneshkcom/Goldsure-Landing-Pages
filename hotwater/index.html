@@ -554,7 +554,22 @@ section { padding: 5rem 2rem; }
 .urgency-text strong { color: var(--gold-deep); font-weight: 600; }
 
 .section-cta { text-align: center; margin-top: 2.5rem; }
-@media (max-width: 700px) { .rebate-cards { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .rebate-cards {
+    display: block;
+  }
+  .rebate-cards .r-card {
+    position: sticky;
+    top: 80px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  }
+  .rebate-cards .r-card:nth-child(1) { z-index: 1; }
+  .rebate-cards .r-card:nth-child(2) { z-index: 2; }
+  .rebate-cards .r-card:nth-child(3) { z-index: 3; }
+  /* disable hover lift so sticky positioning isn't disrupted */
+  .rebate-cards .r-card:hover { transform: none; }
+}
 
 /* ══════════════════════════════════════
    DIFFERENTIATOR
