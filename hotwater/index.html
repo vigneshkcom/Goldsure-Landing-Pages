@@ -1209,37 +1209,34 @@ footer {
   box-shadow: var(--shadow);
 }
 #service-map { width: 100%; height: 100%; }
+#service-map .leaflet-tile-pane { filter: grayscale(100%) brightness(0.88) contrast(0.95); }
 .suburb-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0.5rem;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  margin-top: 1.5rem;
 }
 .suburb-pill {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.38rem;
-  padding: 0.45rem 0.8rem;
-  background: var(--off-white);
-  border: 1px solid var(--border-mid);
-  border-radius: 999px;
-  font-size: 0.78rem;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--body-txt);
-  transition: border-color 0.22s ease, color 0.22s ease,
-              background 0.22s ease, transform 0.22s var(--ease-out);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  background: transparent;
+  transition: background 0.18s ease, color 0.18s ease;
   cursor: default;
 }
 .suburb-pill:hover {
-  border-color: var(--gold-bd);
   background: var(--gold-bg);
-  color: var(--gold);
-  transform: translateY(-2px);
+  color: var(--gold-deep);
 }
-.suburb-pill svg { flex-shrink: 0; color: var(--gold-deep); opacity: 0.7; transition: opacity 0.22s; }
-.suburb-pill:hover svg { opacity: 1; }
+.suburb-pill svg { flex-shrink: 0; color: var(--gold-deep); opacity: 0.75; }
 .service-note { margin-top: 1.75rem; font-size: 0.84rem; color: var(--muted); text-align: center; }
 .service-note a { color: var(--gold-deep); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
 @media (max-width: 960px) { .suburb-grid { grid-template-columns: repeat(4, 1fr); } .service-map-wrap { height: 360px; } }
@@ -1247,7 +1244,7 @@ footer {
 @media (max-width: 480px) { .suburb-grid { grid-template-columns: repeat(2, 1fr); } .service-map-wrap { height: 260px; } }
 
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_naSoCXktG1v18VS08tH4mIb0OtGL134&callback=initServiceMap" async defer></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2106,6 +2103,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ════════════════════════════════════
      SCRIPTS
      ════════════════════════════════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 /* FAQ accordion */
 function toggleFaq(btn) {
@@ -2311,7 +2309,8 @@ function toggleFaq(btn) {
 })();
 
 /* ── Service area map ── */
-function initServiceMap() {
+/* ── Service area map (Leaflet / OpenStreetMap) ── */
+(function() {
   var mapEl = document.getElementById('service-map');
   if (!mapEl) return;
 
@@ -2345,45 +2344,27 @@ function initServiceMap() {
     { name: 'Cowes',         lat: -38.4550, lng: 145.2369 },
   ];
 
-  var STYLES = [
-    { featureType: 'all', stylers: [{ saturation: -100 }, { lightness: -20 }] },
-    { featureType: 'road', elementType: 'geometry', stylers: [{ lightness: 10 }] },
-    { featureType: 'water', stylers: [{ lightness: -30 }] },
-    { featureType: 'poi', stylers: [{ visibility: 'off' }] },
-    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
-  ];
+  var map = L.map('service-map', { scrollWheelZoom: false, zoomControl: true });
 
-  var map = new google.maps.Map(mapEl, {
-    zoom: 8,
-    center: { lat: -38.0, lng: 144.9 },
-    styles: STYLES,
-    disableDefaultUI: true,
-    zoomControl: true,
-    scrollwheel: false,
-  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
 
-  var bounds = new google.maps.LatLngBounds();
-
+  var bounds = L.latLngBounds();
   SUBURBS.forEach(function(s) {
-    var pos = { lat: s.lat, lng: s.lng };
-    new google.maps.Marker({
-      position: pos,
-      map: map,
-      title: s.name,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 7,
-        fillColor: '#C9A84C',
-        fillOpacity: 0.9,
-        strokeColor: '#A8892F',
-        strokeWeight: 1.5,
-      }
-    });
-    bounds.extend(pos);
+    L.circleMarker([s.lat, s.lng], {
+      radius: 7,
+      fillColor: '#C9A84C',
+      fillOpacity: 0.92,
+      color: '#A8892F',
+      weight: 1.5
+    }).bindTooltip(s.name, { permanent: false, direction: 'top', offset: [0, -6] }).addTo(map);
+    bounds.extend([s.lat, s.lng]);
   });
 
-  map.fitBounds(bounds);
-}
+  map.fitBounds(bounds, { padding: [30, 30] });
+})();
 </script>
 </body>
 </html>
