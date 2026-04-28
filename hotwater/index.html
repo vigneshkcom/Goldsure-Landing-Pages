@@ -1165,6 +1165,7 @@ footer {
   .product-sec,
   .sizing-sec,
   .process-sec,
+  .service-sec,
   .reviews-sec,
   .faq-sec {
     padding-left: 0;
@@ -1197,7 +1198,56 @@ footer {
   .btn-form { padding: 1rem 1.5rem; font-size: 0.95rem; }
 }
 
+/* ══ AREAS WE SERVICE ══ */
+.service-sec { padding: 5rem 0; }
+.service-map-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1.5px solid var(--border-mid);
+  height: 440px;
+  margin: 2rem 0 2.5rem;
+  box-shadow: var(--shadow);
+}
+#service-map { width: 100%; height: 100%; }
+.suburb-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+.suburb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.45rem 0.8rem;
+  background: var(--off-white);
+  border: 1px solid var(--border-mid);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--body-txt);
+  transition: border-color 0.22s ease, color 0.22s ease,
+              background 0.22s ease, transform 0.22s var(--ease-out);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+.suburb-pill:hover {
+  border-color: var(--gold-bd);
+  background: var(--gold-bg);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+.suburb-pill svg { flex-shrink: 0; color: var(--gold-deep); opacity: 0.7; transition: opacity 0.22s; }
+.suburb-pill:hover svg { opacity: 1; }
+.service-note { margin-top: 1.75rem; font-size: 0.84rem; color: var(--muted); text-align: center; }
+.service-note a { color: var(--gold-deep); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 960px) { .suburb-grid { grid-template-columns: repeat(4, 1fr); } .service-map-wrap { height: 360px; } }
+@media (max-width: 720px) { .suburb-grid { grid-template-columns: repeat(3, 1fr); } .service-map-wrap { height: 300px; } }
+@media (max-width: 480px) { .suburb-grid { grid-template-columns: repeat(2, 1fr); } .service-map-wrap { height: 260px; } }
+
 </style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_naSoCXktG1v18VS08tH4mIb0OtGL134&callback=initServiceMap" async defer></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1584,6 +1634,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="step-desc">We guide you through the Solar Victoria rebate application, which needs to be submitted by the customer. Everything else, including the remaining paperwork and installation process, is managed by us.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     AREAS WE SERVICE
+     ════════════════════════════════════ -->
+<section class="service-sec panel-light">
+  <div class="wrap">
+    <div class="eyebrow reveal">Service area</div>
+    <h2 class="section-h2 reveal">We install across Melbourne,<br>Geelong &amp; the Peninsula</h2>
+    <p class="section-sub reveal">From the Surf Coast to Craigieburn and everywhere in between — our licensed teams cover a wide area of Victoria.</p>
+    <div class="service-map-wrap reveal"><div id="service-map"></div></div>
+    <div class="suburb-grid reveal">
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Melbourne</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>St Kilda</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Brunswick</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Reservoir</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Epping</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Craigieburn</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Sunbury</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Wallan</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Macedon</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Melton</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Tarneit</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Werribee</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Lara</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Corio</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Geelong</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Barwon Heads</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Torquay</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Bells Beach</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Sorrento</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Fingal</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Frankston</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Cranbourne</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Berwick</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Dandenong</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Glen Waverley</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Ringwood</span>
+      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Cowes</span>
+    </div>
+    <p class="service-note reveal">Don't see your suburb? <a href="tel:0370502846">Call 03 7050 2846</a> — we confirm coverage on enquiry.</p>
   </div>
 </section>
 
@@ -2217,6 +2309,81 @@ function toggleFaq(btn) {
 
   requestAnimationFrame(tick);
 })();
+
+/* ── Service area map ── */
+function initServiceMap() {
+  var mapEl = document.getElementById('service-map');
+  if (!mapEl) return;
+
+  var SUBURBS = [
+    { name: 'Melbourne',     lat: -37.8136, lng: 144.9631 },
+    { name: 'St Kilda',      lat: -37.8676, lng: 144.9820 },
+    { name: 'Brunswick',     lat: -37.7671, lng: 144.9630 },
+    { name: 'Reservoir',     lat: -37.7182, lng: 145.0061 },
+    { name: 'Epping',        lat: -37.6463, lng: 145.0128 },
+    { name: 'Craigieburn',   lat: -37.6018, lng: 144.9409 },
+    { name: 'Sunbury',       lat: -37.5779, lng: 144.7281 },
+    { name: 'Wallan',        lat: -37.4122, lng: 144.9783 },
+    { name: 'Macedon',       lat: -37.4038, lng: 144.5628 },
+    { name: 'Melton',        lat: -37.6840, lng: 144.5840 },
+    { name: 'Tarneit',       lat: -37.8464, lng: 144.6866 },
+    { name: 'Werribee',      lat: -37.9033, lng: 144.6637 },
+    { name: 'Lara',          lat: -38.0238, lng: 144.4003 },
+    { name: 'Corio',         lat: -38.0869, lng: 144.3603 },
+    { name: 'Geelong',       lat: -38.1499, lng: 144.3617 },
+    { name: 'Barwon Heads',  lat: -38.2679, lng: 144.4979 },
+    { name: 'Torquay',       lat: -38.3292, lng: 144.3261 },
+    { name: 'Bells Beach',   lat: -38.3678, lng: 144.2836 },
+    { name: 'Sorrento',      lat: -38.3394, lng: 144.7410 },
+    { name: 'Fingal',        lat: -38.4200, lng: 145.0160 },
+    { name: 'Frankston',     lat: -38.1442, lng: 145.1275 },
+    { name: 'Cranbourne',    lat: -38.1022, lng: 145.2831 },
+    { name: 'Berwick',       lat: -38.0363, lng: 145.3425 },
+    { name: 'Dandenong',     lat: -37.9878, lng: 145.2150 },
+    { name: 'Glen Waverley', lat: -37.8790, lng: 145.1641 },
+    { name: 'Ringwood',      lat: -37.8147, lng: 145.2289 },
+    { name: 'Cowes',         lat: -38.4550, lng: 145.2369 },
+  ];
+
+  var STYLES = [
+    { featureType: 'all', stylers: [{ saturation: -100 }, { lightness: -20 }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ lightness: 10 }] },
+    { featureType: 'water', stylers: [{ lightness: -30 }] },
+    { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+    { featureType: 'transit', stylers: [{ visibility: 'off' }] },
+  ];
+
+  var map = new google.maps.Map(mapEl, {
+    zoom: 8,
+    center: { lat: -38.0, lng: 144.9 },
+    styles: STYLES,
+    disableDefaultUI: true,
+    zoomControl: true,
+    scrollwheel: false,
+  });
+
+  var bounds = new google.maps.LatLngBounds();
+
+  SUBURBS.forEach(function(s) {
+    var pos = { lat: s.lat, lng: s.lng };
+    new google.maps.Marker({
+      position: pos,
+      map: map,
+      title: s.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 7,
+        fillColor: '#C9A84C',
+        fillOpacity: 0.9,
+        strokeColor: '#A8892F',
+        strokeWeight: 1.5,
+      }
+    });
+    bounds.extend(pos);
+  });
+
+  map.fitBounds(bounds);
+}
 </script>
 </body>
 </html>
