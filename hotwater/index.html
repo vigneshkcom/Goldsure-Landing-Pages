@@ -1209,7 +1209,6 @@ footer {
   box-shadow: var(--shadow);
 }
 #service-map { width: 100%; height: 100%; }
-#service-map .leaflet-tile-pane { filter: grayscale(100%) brightness(0.88) contrast(0.95); }
 .suburb-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1244,7 +1243,7 @@ footer {
 @media (max-width: 480px) { .suburb-grid { grid-template-columns: repeat(2, 1fr); } .service-map-wrap { height: 260px; } }
 
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_naSoCXktG1v18VS08tH4mIb0OtGL134&callback=initServiceMap" async defer></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2103,7 +2102,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ════════════════════════════════════
      SCRIPTS
      ════════════════════════════════════ -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 /* FAQ accordion */
 function toggleFaq(btn) {
@@ -2308,9 +2306,8 @@ function toggleFaq(btn) {
   requestAnimationFrame(tick);
 })();
 
-/* ── Service area map ── */
-/* ── Service area map (Leaflet / OpenStreetMap) ── */
-(function() {
+/* ── Service area map (Google Maps) ── */
+function initServiceMap() {
   var mapEl = document.getElementById('service-map');
   if (!mapEl) return;
 
@@ -2344,27 +2341,50 @@ function toggleFaq(btn) {
     { name: 'Cowes',         lat: -38.4550, lng: 145.2369 },
   ];
 
-  var map = L.map('service-map', { scrollWheelZoom: false, zoomControl: true });
+  /* geographic centre of all suburbs */
+  var CENTER = { lat: -37.93, lng: 144.81 };
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 18
-  }).addTo(map);
-
-  var bounds = L.latLngBounds();
-  SUBURBS.forEach(function(s) {
-    L.circleMarker([s.lat, s.lng], {
-      radius: 7,
-      fillColor: '#C9A84C',
-      fillOpacity: 0.92,
-      color: '#A8892F',
-      weight: 1.5
-    }).bindTooltip(s.name, { permanent: false, direction: 'top', offset: [0, -6] }).addTo(map);
-    bounds.extend([s.lat, s.lng]);
+  var map = new google.maps.Map(mapEl, {
+    center: CENTER,
+    zoom: 8,
+    scrollwheel: false,
+    disableDefaultUI: false,
   });
 
-  map.fitBounds(bounds, { padding: [30, 30] });
-})();
+  /* service area circle */
+  new google.maps.Circle({
+    map: map,
+    center: CENTER,
+    radius: 82000,
+    fillColor: '#1a4480',
+    fillOpacity: 0.18,
+    strokeColor: '#1a4480',
+    strokeOpacity: 0.55,
+    strokeWeight: 2,
+  });
+
+  /* gold dot markers */
+  var bounds = new google.maps.LatLngBounds();
+  SUBURBS.forEach(function(s) {
+    var pos = { lat: s.lat, lng: s.lng };
+    new google.maps.Marker({
+      position: pos,
+      map: map,
+      title: s.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 7,
+        fillColor: '#C9A84C',
+        fillOpacity: 0.95,
+        strokeColor: '#A8892F',
+        strokeWeight: 1.5,
+      },
+    });
+    bounds.extend(pos);
+  });
+
+  map.fitBounds(bounds, { top: 40, right: 40, bottom: 40, left: 40 });
+}
 </script>
 </body>
 </html>
