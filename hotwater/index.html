@@ -1651,7 +1651,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Craigieburn</span>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Sunbury</span>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Wallan</span>
-      <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Macedon</span>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Melton</span>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Tarneit</span>
       <span class="suburb-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Werribee</span>
@@ -2320,7 +2319,6 @@ function initServiceMap() {
     { name: 'Craigieburn',   lat: -37.6018, lng: 144.9409 },
     { name: 'Sunbury',       lat: -37.5779, lng: 144.7281 },
     { name: 'Wallan',        lat: -37.4122, lng: 144.9783 },
-    { name: 'Macedon',       lat: -37.4038, lng: 144.5628 },
     { name: 'Melton',        lat: -37.6840, lng: 144.5840 },
     { name: 'Tarneit',       lat: -37.8464, lng: 144.6866 },
     { name: 'Werribee',      lat: -37.9033, lng: 144.6637 },
@@ -2342,11 +2340,11 @@ function initServiceMap() {
   ];
 
   /* geographic centre of all suburbs */
-  var CENTER = { lat: -37.93, lng: 144.81 };
+  var CENTER = { lat: -37.90, lng: 144.95 };
 
   var map = new google.maps.Map(mapEl, {
     center: CENTER,
-    zoom: 8,
+    zoom: 9,
     scrollwheel: false,
     disableDefaultUI: false,
   });
@@ -2355,7 +2353,7 @@ function initServiceMap() {
   new google.maps.Circle({
     map: map,
     center: CENTER,
-    radius: 82000,
+    radius: 65000,
     fillColor: '#1a4480',
     fillOpacity: 0.18,
     strokeColor: '#1a4480',
