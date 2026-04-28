@@ -2354,7 +2354,7 @@ function initServiceMap() {
 
   var map = new google.maps.Map(mapEl, {
     center: { lat: -37.84, lng: 144.97 },
-    zoom: 9,
+    zoom: window.innerWidth <= 720 ? 8 : 9,
     scrollwheel: false,
     disableDefaultUI: false,
     zoomControl: true,
