@@ -1204,7 +1204,7 @@ footer {
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1.5px solid var(--border-mid);
-  height: 440px;
+  height: 540px;
   margin: 2rem 0 2.5rem;
   box-shadow: var(--shadow);
 }
@@ -1249,9 +1249,9 @@ footer {
 .suburb-item svg { flex-shrink: 0; color: var(--gold-deep); opacity: 0.8; }
 .service-note { margin-top: 1.75rem; font-size: 0.84rem; color: var(--muted); text-align: center; }
 .service-note a { color: var(--gold-deep); font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
-@media (max-width: 960px) { .suburb-list { grid-template-columns: repeat(4, 1fr); } .service-map-wrap { height: 360px; } }
-@media (max-width: 720px) { .suburb-list { grid-template-columns: repeat(3, 1fr); } .service-map-wrap { height: 300px; } }
-@media (max-width: 480px) { .suburb-list { grid-template-columns: repeat(2, 1fr); } .service-map-wrap { height: 260px; } }
+@media (max-width: 960px) { .suburb-list { grid-template-columns: repeat(4, 1fr); } .service-map-wrap { height: 460px; } }
+@media (max-width: 720px) { .suburb-list { grid-template-columns: repeat(3, 1fr); } .service-map-wrap { height: 380px; } }
+@media (max-width: 480px) { .suburb-list { grid-template-columns: repeat(2, 1fr); } .service-map-wrap { height: 300px; } }
 
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq-5bFtdgCXYPGT7z0cQyHfS3ZQJnNtJM&callback=initServiceMap" async defer></script>
@@ -2354,7 +2354,7 @@ function initServiceMap() {
 
   var map = new google.maps.Map(mapEl, {
     center: { lat: -37.84, lng: 144.97 },
-    zoom: 10,
+    zoom: 9,
     scrollwheel: false,
     disableDefaultUI: false,
     zoomControl: true,
