@@ -69,20 +69,12 @@
       text-align: center;
     }
     .card-logo {
-      height: 80px;
+      height: 100px;
       width: auto;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.85rem;
       display: block;
       margin-left: auto;
       margin-right: auto;
-    }
-    .card-name {
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.035em;
-      line-height: 1;
-      margin-bottom: 0.45rem;
     }
     .card-tagline {
       font-size: 0.64rem;
@@ -126,7 +118,7 @@
     .btn-action:hover  { opacity: 0.82; transform: translateY(-1px); }
     .btn-action:active { opacity: 1; transform: none; }
 
-    .btn-save     { background: #C9A84C; color: #0D0D0D; }
+    .btn-save     { background: transparent; color: var(--text); border: 1.5px solid #D8D4CE; }
     .btn-call-qld { background: #2A6B5E; color: #FFFFFF; }
     .btn-call-vic { background: #1F4A7A; color: #FFFFFF; }
     .btn-email    { background: transparent; color: var(--text); border: 1.5px solid #D8D4CE; }
@@ -276,12 +268,11 @@
           src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png"
           alt="Goldsure"
           class="card-logo"
-          width="240"
-          height="80"
+          width="300"
+          height="100"
           fetchpriority="high"
           loading="eager"
         >
-        <h1 class="card-name">Goldsure</h1>
         <p class="card-tagline">Australia's Home Compliance Experts</p>
       </div>
 
