@@ -437,11 +437,14 @@
           'VERSION:3.0',
           'FN:Goldsure',
           'ORG:Goldsure Pty Ltd',
-          'TEL;TYPE=WORK,VOICE:(07) 2145 5155',
-          'TEL;TYPE=WORK,VOICE:03 7050 2846',
+          'item1.TEL;TYPE=VOICE:(07) 2145 5155',
+          'item1.X-ABLabel:Brisbane Office',
+          'item2.TEL;TYPE=VOICE:03 7050 2846',
+          'item2.X-ABLabel:VIC Office',
           'EMAIL;TYPE=WORK:info@goldsure.com.au',
           'URL:https://www.goldsure.com.au',
-          'ADR;TYPE=WORK:;;5/50 Parker Court;Pinkenba;QLD;4008;Australia',
+          'ADR;TYPE=WORK;LABEL="5/50 Parker Court\\, Pinkenba QLD 4008\\, Australia":;;5/50 Parker Court;Pinkenba;QLD;4008;Australia',
+          'ADR;TYPE=WORK;LABEL="Suite 4\\, Level 1/293 High St\\, Preston VIC 3072\\, Australia":;;Suite 4\\, Level 1/293 High St;Preston;VIC;3072;Australia',
           'NOTE:Australia\'s Home Compliance Experts. Smoke Alarm Compliance (QLD) and Hot Water Systems (VIC).',
           'END:VCARD'
         ].join('\r\n');
