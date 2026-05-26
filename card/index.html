@@ -36,13 +36,13 @@
     html, body {
       min-height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: var(--bg);
+      background: var(--card);
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
 
     .page-bg {
-      min-height: 100vh;
+      min-height: 100dvh;
       background: var(--bg);
       display: flex;
       align-items: center;
@@ -65,13 +65,13 @@
 
     /* ── Header ── */
     .card-header {
-      padding: 2.5rem 2rem 2rem;
+      padding: 1.25rem 1.5rem 0.75rem;
       text-align: center;
     }
     .card-logo {
-      height: 100px;
+      height: 72px;
       width: auto;
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.5rem;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -93,17 +93,17 @@
 
     /* ── Action buttons ── */
     .card-actions {
-      padding: 1.25rem 1.5rem 0.75rem;
+      padding: 0.75rem 1.5rem 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.4rem;
     }
     .btn-action {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 0.9rem 1.25rem;
+      padding: 0.65rem 1.25rem;
       border-radius: 10px;
       font-family: inherit;
       font-size: 0.86rem;
@@ -134,16 +134,16 @@
 
     /* ── Quote CTA buttons ── */
     .card-ctas {
-      padding: 1.25rem 1.5rem 1rem;
+      padding: 0.5rem 1.5rem 0.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.4rem;
     }
     .btn-quote {
       display: flex;
       align-items: center;
       gap: 0.7rem;
-      padding: 0.9rem 1.1rem;
+      padding: 0.65rem 1.1rem;
       border-radius: 10px;
       font-family: inherit;
       font-size: 0.83rem;
@@ -175,11 +175,11 @@
 
     /* ── Share section ── */
     .card-share {
-      padding: 0.75rem 1.5rem 0.5rem;
+      padding: 0.4rem 1.5rem 0.35rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.35rem;
     }
     .share-label {
       font-size: 0.59rem;
@@ -193,7 +193,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.55rem;
-      padding: 0.8rem;
+      padding: 0.6rem;
       border: 1.5px solid var(--border);
       border-radius: 10px;
       background: none;
@@ -209,7 +209,7 @@
     /* ── Footer ── */
     .card-footer {
       text-align: center;
-      padding: 0.75rem 1.5rem 1.75rem;
+      padding: 0.4rem 1.5rem 1rem;
       font-size: 0.59rem;
       color: var(--muted);
       line-height: 1.8;
@@ -249,13 +249,20 @@
       .card { opacity: 1; transform: none; transition: none; }
     }
 
-    @media (max-width: 360px) {
-      .card-header { padding: 2rem 1.5rem 1.75rem; }
-      .card-actions { padding: 0.25rem 1.25rem 0.5rem; }
-      .card-ctas { padding: 1.25rem 1.25rem 1rem; }
-      .card-share { padding: 0.75rem 1.25rem 0.5rem; }
-      .card-footer { padding: 0.75rem 1.25rem 1.5rem; }
-      .section-div { margin: 0 1.25rem; }
+    /* Mobile: fill the screen edge-to-edge, no outer padding */
+    @media (max-width: 480px) {
+      html, body { background: var(--card); }
+      .page-bg {
+        padding: 0;
+        background: var(--card);
+        align-items: flex-start;
+        min-height: 100dvh;
+      }
+      .card {
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
