@@ -62,6 +62,14 @@
     {
       "source": "/api/hotwater/submit-lead",
       "destination": "/api/hotwater/submit-lead"
+    },
+    {
+      "source": "/card",
+      "destination": "/card/index.html"
+    },
+    {
+      "source": "/card/",
+      "destination": "/card/index.html"
     }
   ]
 }
