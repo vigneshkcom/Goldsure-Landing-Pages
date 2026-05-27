@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goldsure</title>
+<script>
+(function () {
+  var host = window.location.hostname;
+  if (host === 'heatpumps.goldsure.com.au') {
+    window.location.replace('/hotwater');
+  } else if (host === 'smokealarms.goldsure.com.au') {
+    window.location.replace('/smoke-alarm');
+  }
+})();
+</script>
+</head>
+<body></body>
+</html>

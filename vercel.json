@@ -28,98 +28,74 @@
       "permanent": true
     }
   ],
-  "rewrites": {
-    "beforeFiles": [
-      {
-        "source": "/thank-you",
-        "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
-        "destination": "/thank-you/hotwater/index.html"
-      },
-      {
-        "source": "/:path*",
-        "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
-        "destination": "/hotwater/index.html"
-      },
-      {
-        "source": "/thank-you",
-        "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
-        "destination": "/thank-you/smoke-alarm/index.html"
-      },
-      {
-        "source": "/:path*",
-        "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
-        "destination": "/smoke-alarm/index.html"
-      }
-    ],
-    "afterFiles": [
-      {
-        "source": "/smoke-alarm",
-        "destination": "/smoke-alarm/index.html"
-      },
-      {
-        "source": "/smoke-alarm/",
-        "destination": "/smoke-alarm/index.html"
-      },
-      {
-        "source": "/thank-you/smoke-alarm",
-        "destination": "/thank-you/smoke-alarm/index.html"
-      },
-      {
-        "source": "/thank-you/smoke-alarm/",
-        "destination": "/thank-you/smoke-alarm/index.html"
-      },
-      {
-        "source": "/smoke-alarm/calculator",
-        "destination": "/smoke-alarm/calculator/index.html"
-      },
-      {
-        "source": "/smoke-alarm/calculator/",
-        "destination": "/smoke-alarm/calculator/index.html"
-      },
-      {
-        "source": "/tracker/smoke-alarm",
-        "destination": "/tracker/smoke-alarm/index.html"
-      },
-      {
-        "source": "/tracker/smoke-alarm/",
-        "destination": "/tracker/smoke-alarm/index.html"
-      },
-      {
-        "source": "/accept-quote/smoke-alarm",
-        "destination": "/api/smoke-alarm/accept-quote"
-      },
-      {
-        "source": "/accept-quote/smoke-alarm/",
-        "destination": "/api/smoke-alarm/accept-quote"
-      },
-      {
-        "source": "/hotwater",
-        "destination": "/hotwater/index.html"
-      },
-      {
-        "source": "/hotwater/",
-        "destination": "/hotwater/index.html"
-      },
-      {
-        "source": "/thank-you/hotwater",
-        "destination": "/thank-you/hotwater/index.html"
-      },
-      {
-        "source": "/thank-you/hotwater/",
-        "destination": "/thank-you/hotwater/index.html"
-      },
-      {
-        "source": "/api/hotwater/submit-lead",
-        "destination": "/api/hotwater/submit-lead"
-      },
-      {
-        "source": "/card",
-        "destination": "/card/index.html"
-      },
-      {
-        "source": "/card/",
-        "destination": "/card/index.html"
-      }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/smoke-alarm",
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/",
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you/smoke-alarm",
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you/smoke-alarm/",
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator",
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator/",
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm",
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm/",
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm",
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm/",
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/hotwater",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/hotwater/",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater",
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater/",
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/api/hotwater/submit-lead",
+      "destination": "/api/hotwater/submit-lead"
+    },
+    {
+      "source": "/card",
+      "destination": "/card/index.html"
+    },
+    {
+      "source": "/card/",
+      "destination": "/card/index.html"
+    }
+  ]
 }
