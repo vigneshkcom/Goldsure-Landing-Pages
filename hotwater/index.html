@@ -2202,7 +2202,7 @@ function toggleFaq(btn) {
   var form    = document.getElementById('hw-lead-form');
   var btn     = document.getElementById('hw-submit');
   var errEl   = document.getElementById('hw-error');
-  var WEBHOOK = '/api/hotwater/submit-lead';
+  var WEBHOOK = 'https://offers.goldsure.com.au/api/hotwater/submit-lead';
 
   if (!form) return;
 
@@ -2253,7 +2253,7 @@ function toggleFaq(btn) {
     })
     .then(function (res) {
       if (res.ok) {
-        window.location.href = '/thank-you/hotwater';
+        window.location.href = '/thank-you';
       } else {
         throw new Error('status ' + res.status);
       }
