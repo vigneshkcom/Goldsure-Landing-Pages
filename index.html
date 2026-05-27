@@ -7,10 +7,23 @@
 <script>
 (function () {
   var host = window.location.hostname;
+  var path = null;
   if (host === 'heatpumps.goldsure.com.au') {
-    window.location.replace('/hotwater');
+    path = '/hotwater';
   } else if (host === 'smokealarms.goldsure.com.au') {
-    window.location.replace('/smoke-alarm');
+    path = '/smoke-alarm';
+  }
+  if (path) {
+    fetch(path)
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        document.open('text/html', 'replace');
+        document.write(html);
+        document.close();
+      })
+      .catch(function () {
+        window.location.replace(path);
+      });
   }
 })();
 </script>
