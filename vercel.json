@@ -2,7 +2,53 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/hotwater",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://heatpumps.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/hotwater/",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://heatpumps.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/smoke-alarm",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://smokealarms.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/smoke-alarm/",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://smokealarms.goldsure.com.au",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
     {
       "source": "/smoke-alarm",
       "destination": "/smoke-alarm/index.html"
