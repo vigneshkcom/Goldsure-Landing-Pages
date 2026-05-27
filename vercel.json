@@ -30,24 +30,24 @@
   ],
   "rewrites": [
     {
-      "source": "/",
-      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
-      "destination": "/hotwater/index.html"
-    },
-    {
       "source": "/thank-you",
       "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
       "destination": "/thank-you/hotwater/index.html"
     },
     {
-      "source": "/",
-      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
-      "destination": "/smoke-alarm/index.html"
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
+      "destination": "/hotwater/index.html"
     },
     {
       "source": "/thank-you",
       "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
       "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/smoke-alarm/index.html"
     },
     {
       "source": "/smoke-alarm",
