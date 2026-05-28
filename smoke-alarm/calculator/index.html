@@ -303,6 +303,39 @@ body {
   border-color: #d92d20;
   background: #fff6f5;
 }
+.pac-container {
+  z-index: 10000 !important;
+  margin-top: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 14px 38px rgba(13,13,13,0.16);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+.pac-item {
+  padding: 0.65rem 0.85rem;
+  border-top: 1px solid #f0ede7;
+  color: var(--ink);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.pac-item:first-child {
+  border-top: none;
+}
+.pac-item:hover,
+.pac-item-selected {
+  background: var(--off-white);
+}
+.pac-item-query,
+.pac-matched {
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.pac-icon {
+  display: none;
+}
 .modal-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .modal-actions { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
 .modal-actions button {
