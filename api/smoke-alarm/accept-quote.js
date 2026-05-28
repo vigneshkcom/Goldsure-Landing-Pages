@@ -83,7 +83,7 @@ async function sendAcceptedInternalEmail(lead) {
   var emailTo = 'info@goldsure.com.au';
   var emailBcc = '';
   var emailFrom = process.env.EMAIL_FROM || 'info@goldsure.com.au';
-  var trackerUrl = 'https://offers.goldsure.com.au/tracker/smoke-alarm';
+  var trackerUrl = 'https://smokealarms.goldsure.com.au/tracker';
 
   if (!resendApiKey) {
     return { ok: false, skipped: true, reason: 'Missing RESEND_API_KEY' };

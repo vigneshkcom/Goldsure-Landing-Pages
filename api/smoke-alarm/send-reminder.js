@@ -33,7 +33,7 @@ function formatFromAddress(value, displayName) {
 }
 
 function getBaseUrl() {
-  return (process.env.PUBLIC_SITE_URL || 'https://offers.goldsure.com.au').replace(/\/$/, '');
+  return (process.env.PUBLIC_SITE_URL || 'https://smokealarms.goldsure.com.au').replace(/\/$/, '');
 }
 
 function buildAcceptUrl(lead) {

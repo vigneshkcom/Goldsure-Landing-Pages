@@ -30,6 +30,56 @@
   ],
   "rewrites": [
     {
+      "source": "/calculator",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/calculator/",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/tracker",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/tracker/",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you/",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/accept-quote",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/accept-quote/",
+      "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }],
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/thank-you",
+      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/",
+      "has": [{ "type": "host", "value": "heatpumps.goldsure.com.au" }],
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
       "source": "/smoke-alarm",
       "destination": "/smoke-alarm/index.html"
     },
