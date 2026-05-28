@@ -303,62 +303,6 @@ body {
   border-color: #d92d20;
   background: #fff6f5;
 }
-.pac-container {
-  z-index: 10000 !important;
-  margin-top: 0.35rem;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  box-shadow: 0 14px 38px rgba(13,13,13,0.16);
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-}
-.pac-container,
-.pac-container * {
-  box-sizing: border-box !important;
-}
-.pac-item {
-  display: block !important;
-  height: auto !important;
-  min-height: 42px !important;
-  padding: 0.65rem 0.85rem;
-  border-top: 1px solid #f0ede7;
-  color: var(--ink);
-  font-size: 0.78rem;
-  line-height: 1.4;
-  cursor: pointer;
-  white-space: normal !important;
-}
-.pac-item:first-child {
-  border-top: none;
-}
-.pac-item:hover,
-.pac-item-selected {
-  background: var(--off-white);
-}
-.pac-item-query,
-.pac-matched {
-  display: inline !important;
-  color: var(--ink);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-.pac-container span {
-  display: inline !important;
-  float: none !important;
-  vertical-align: baseline !important;
-}
-.pac-icon,
-.pac-icon-marker {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  margin: 0 !important;
-  background: none !important;
-  background-image: none !important;
-}
-.pac-logo::after {
-  display: none !important;
-}
 .modal-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 .modal-actions { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
 .modal-actions button {
@@ -798,23 +742,6 @@ function initAddressAutocomplete() {
   var input = document.getElementById('m-address');
   if (!input || !window.google || !window.google.maps || !window.google.maps.places) return;
   if (addressAutocomplete) return;
-
-  if (!document.getElementById('goldsure-places-style')) {
-    var style = document.createElement('style');
-    style.id = 'goldsure-places-style';
-    style.textContent = [
-      '.pac-container{z-index:10000!important;margin-top:6px!important;border:1px solid #e0ddd6!important;border-radius:14px!important;box-shadow:0 14px 38px rgba(13,13,13,.16)!important;font-family:Poppins,Arial,sans-serif!important;overflow:hidden!important;background:#fff!important;}',
-      '.pac-container,.pac-container *{box-sizing:border-box!important;}',
-      '.pac-item{display:block!important;height:auto!important;min-height:42px!important;padding:10px 14px!important;border-top:1px solid #f0ede7!important;color:#0d0d0d!important;font-size:13px!important;line-height:1.4!important;white-space:normal!important;cursor:pointer!important;background:#fff!important;}',
-      '.pac-item:first-child{border-top:none!important;}',
-      '.pac-item:hover,.pac-item-selected{background:#f8f6f1!important;}',
-      '.pac-item-query,.pac-matched{display:inline!important;color:#0d0d0d!important;font-size:13px!important;font-weight:700!important;}',
-      '.pac-container span{display:inline!important;float:none!important;vertical-align:baseline!important;}',
-      '.pac-icon,.pac-icon-marker{display:none!important;width:0!important;height:0!important;margin:0!important;background:none!important;background-image:none!important;}',
-      '.pac-logo:after{display:none!important;}'
-    ].join('');
-    document.head.appendChild(style);
-  }
 
   var qldBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(-29.5, 137.9),
