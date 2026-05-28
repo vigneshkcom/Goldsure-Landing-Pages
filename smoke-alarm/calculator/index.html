@@ -953,10 +953,11 @@ async function generatePDF() {
     }, getCalculatorSnapshot()));
   } catch (error) {
     pushMarketingEvent('calculator_lead_save_failed', {
-      page_path: window.location.pathname
+      page_path: window.location.pathname,
+      error_message: error && error.message ? error.message : 'Failed to save lead'
     });
-    toast('We could not save your details right now. Please try again.');
-    return;
+    console.warn('Lead save failed; continuing PDF generation.', error);
+    toast('Quote PDF generated. Lead saving is temporarily unavailable.');
   }
 
   const beds   = parseInt(document.getElementById('bedrooms').value) || 0;
