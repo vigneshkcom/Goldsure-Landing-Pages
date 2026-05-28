@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goldsure</title>
+<script>
+(function () {
+  var host = window.location.hostname;
+  var path = null;
+  if (host === 'heatpumps.goldsure.com.au') {
+    path = '/hotwater';
+  } else if (host === 'smokealarms.goldsure.com.au') {
+    path = '/smoke-alarm';
+  }
+  if (path) {
+    fetch(path)
+      .then(function (r) { return r.text(); })
+      .then(function (html) {
+        document.open('text/html', 'replace');
+        document.write(html);
+        document.close();
+      })
+      .catch(function () {
+        window.location.replace(path);
+      });
+  }
+})();
+</script>
+</head>
+<body></body>
+</html>

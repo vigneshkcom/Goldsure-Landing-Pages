@@ -1,0 +1,101 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/hotwater",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://heatpumps.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/hotwater/",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://heatpumps.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/smoke-alarm",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://smokealarms.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/smoke-alarm/",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://smokealarms.goldsure.com.au",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/smoke-alarm",
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/",
+      "destination": "/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you/smoke-alarm",
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/thank-you/smoke-alarm/",
+      "destination": "/thank-you/smoke-alarm/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator",
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/smoke-alarm/calculator/",
+      "destination": "/smoke-alarm/calculator/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm",
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/tracker/smoke-alarm/",
+      "destination": "/tracker/smoke-alarm/index.html"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm",
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/accept-quote/smoke-alarm/",
+      "destination": "/api/smoke-alarm/accept-quote"
+    },
+    {
+      "source": "/hotwater",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/hotwater/",
+      "destination": "/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater",
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/thank-you/hotwater/",
+      "destination": "/thank-you/hotwater/index.html"
+    },
+    {
+      "source": "/api/hotwater/submit-lead",
+      "destination": "/api/hotwater/submit-lead"
+    },
+    {
+      "source": "/card",
+      "destination": "/card/index.html"
+    },
+    {
+      "source": "/card/",
+      "destination": "/card/index.html"
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://offers.goldsure.com.au/tracker/smoke-alarm">
+<title>Smoke Alarm Lead Tracker - Goldsure</title>
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-deep: #a8892f;
+  --ink: #101522;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --white: #ffffff;
+  --bg: #f3f4f6;
+  --panel: #f9fafb;
+  --soft-blue: #4f6ac8;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.25rem 2rem;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.topbar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.brand img { height: 32px; width: auto; display: block; }
+.brand-copy { font-weight: 600; font-size: 0.85rem; color: var(--ink); }
+
+.toolbar { display: flex; align-items: center; gap: 0.5rem; }
+
+.btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #374151;
+  border-radius: 6px;
+  padding: 0.38rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn:hover { background: #f9fafb; }
+
+.btn-primary {
+  background: var(--gold);
+  border-color: var(--gold-deep);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--gold-deep); }
+
+/* HERO */
+.hero { padding: 1rem 0 0.75rem; }
+.hero h1 { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.hero p { margin: 0.2rem 0 0; color: var(--muted); font-size: 0.8rem; }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.stat {
+  padding: 0.85rem 1rem;
+  border-left: 3px solid transparent;
+}
+
+.stat-gold  { border-left-color: var(--gold); }
+.stat-green { border-left-color: #41aa84; }
+.stat-blue  { border-left-color: #6b7fd7; }
+.stat-navy  { border-left-color: #202e4d; }
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  margin-top: 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-note {
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+/* FILTERS */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  border-radius: var(--radius);
+}
+
+.filter-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.search { flex: 1 1 180px; min-width: 140px; max-width: 280px; }
+.date-filter { min-width: 130px; }
+
+.search input,
+.date-filter input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  padding: 0.38rem 0.65rem;
+  font-size: 0.78rem;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.search input:focus,
+.date-filter input:focus {
+  outline: none;
+  border-color: var(--soft-blue);
+}
+
+.count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+/* TABLE */
+.table-wrap { overflow: auto; border-radius: var(--radius); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.addr-cell {
+  max-width: 200px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+thead th {
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  white-space: nowrap;
+}
+
+thead th:first-child { padding-left: 1rem; }
+thead th:last-child  { padding-right: 1rem; }
+
+tbody td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  font-size: 0.8rem;
+  color: #374151;
+  white-space: nowrap;
+}
+
+tbody td:first-child { padding-left: 1rem; }
+tbody td:last-child  { padding-right: 1rem; }
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f9fafb; }
+
+.name { font-weight: 600; color: var(--ink); }
+
+.subtle {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin-top: 0.1rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0.18rem 0.5rem;
+  background: rgba(201, 168, 76, 0.12);
+  color: var(--gold-deep);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 4px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-sent       { background: #eff0fc; color: #4c60b7; }
+.status-sent::before { background: #4c60b7; }
+
+.status-downloaded { background: #eff0fc; color: #4c60b7; }
+.status-downloaded::before { background: #4c60b7; }
+
+.status-accepted   { background: #ecfdf5; color: #1f7b59; }
+.status-accepted::before { background: #1f7b59; }
+
+.status-won        { background: #fef9ec; color: #8a6a1f; }
+.status-won::before { background: var(--gold); }
+
+.action-stack { display: flex; gap: 0.35rem; align-items: center; }
+
+.btn-small {
+  padding: 0.26rem 0.6rem;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.btn-secondary {
+  background: #eff0fc;
+  border-color: #c7cdf0;
+  color: #4151a1;
+}
+
+.btn-success {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #1f7b59;
+}
+
+.money {
+  font-weight: 700;
+  color: var(--gold-deep);
+  text-align: right;
+}
+
+thead th.money { text-align: right; }
+
+.empty, .loading, .error {
+  padding: 1rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.error { color: #b42318; }
+
+@media (max-width: 1024px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .stats { grid-template-columns: 1fr; }
+  .count { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="https://assets.cdn.filesafe.space/11epCbQAg9B4rQt5yHjw/media/68bebcb0db3e00c50ec25a0c.png" alt="Goldsure">
+      <div class="brand-copy">Lead Tracker</div>
+    </div>
+    <div class="toolbar">
+      <a class="btn" href="/smoke-alarm">Landing Page</a>
+      <button class="btn" id="exportCsvBtn" type="button">Export CSV</button>
+      <button class="btn btn-primary" id="refreshBtn" type="button">Refresh</button>
+    </div>
+  </div>
+</div>
+
+<main class="shell">
+  <section class="hero">
+    <h1>Smoke Alarm Calculator Leads</h1>
+    <p>These are the customers who downloaded a quote from our landing page.</p>
+  </section>
+
+  <section class="stats">
+    <div class="card stat stat-gold">
+      <div class="stat-label">Total Leads</div>
+      <div class="stat-value" id="statTotalLeads">0</div>
+      <div class="stat-note">All saved calculator submissions</div>
+    </div>
+    <div class="card stat stat-green">
+      <div class="stat-label">Today's Leads</div>
+      <div class="stat-value" id="statTodayLeads">0</div>
+      <div class="stat-note">Submitted today</div>
+    </div>
+    <div class="card stat stat-blue">
+      <div class="stat-label">Avg Alarms / Lead</div>
+      <div class="stat-value" id="statAvgAlarms">0.00</div>
+      <div class="stat-note">Average estimated alarm count</div>
+    </div>
+    <div class="card stat stat-navy">
+      <div class="stat-label">Quoted Total</div>
+      <div class="stat-value money" id="statQuotedTotal">$0</div>
+      <div class="stat-note">Combined quoted value</div>
+    </div>
+  </section>
+
+  <section class="card filters">
+    <div class="filter-label">Filter</div>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="Search name, email, phone, or address">
+    </div>
+    <div class="date-filter">
+      <input id="dateFromInput" type="date" aria-label="Filter from date">
+    </div>
+    <div class="date-filter">
+      <input id="dateToInput" type="date" aria-label="Filter to date">
+    </div>
+    <button class="btn" id="clearFiltersBtn" type="button">Clear</button>
+    <div class="count" id="resultCount">0 leads shown</div>
+  </section>
+
+  <section class="card table-wrap">
+    <div class="loading" id="loadingState">Loading leads...</div>
+    <div class="error" id="errorState" hidden>Could not load leads.</div>
+    <div class="empty" id="emptyState" hidden>No leads found yet.</div>
+    <table id="leadsTable" hidden>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Customer</th>
+          <th>Phone</th>
+          <th>Address &amp; Property</th>
+          <th>Alarms</th>
+          <th>Reminders</th>
+          <th>Actions</th>
+          <th class="money">Total</th>
+        </tr>
+      </thead>
+      <tbody id="leadsTableBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+var allLeads = [];
+
+function normalizeStatus(value) {
+  var status = String(value || '').trim().toLowerCase();
+  if (!status || status === 'sent') return 'downloaded';
+  if (status === 'accepted') return 'accepted';
+  if (status === 'won') return 'won';
+  return 'downloaded';
+}
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('en-AU', {
+    style: 'currency',
+    currency: 'AUD',
+    maximumFractionDigits: 2
+  }).format(Number(value || 0));
+}
+
+function formatDate(value) {
+  if (!value) return '-';
+  var date = new Date(value);
+  if (isNaN(date.getTime())) return value;
+  var day   = String(date.getDate()).padStart(2, '0');
+  var month = String(date.getMonth() + 1).padStart(2, '0');
+  var year  = date.getFullYear();
+  var hours = date.getHours();
+  var mins  = String(date.getMinutes()).padStart(2, '0');
+  var ampm  = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12 || 12;
+  return day + '/' + month + '/' + year + ' ' + hours + ':' + mins + ampm;
+}
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatAge(value) {
+  if (!value) return '-';
+  var created = new Date(value);
+  if (isNaN(created.getTime())) return '-';
+
+  var now = new Date();
+  var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var startOfCreated = new Date(created.getFullYear(), created.getMonth(), created.getDate());
+  var diffDays = Math.floor((startOfToday - startOfCreated) / 86400000);
+
+  return String(Math.max(0, diffDays));
+}
+
+function buildRow(lead) {
+  var status = normalizeStatus(lead.status);
+  var reminderCount = Number(lead.reminder_count || 0);
+  var age = formatAge(lead.created_at);
+
+  // Address + Property merged
+  var addressCell = escapeHtml(lead.property_address || '-')
+    + '<span class="subtle">'
+    + (lead.bedrooms ?? 0) + 'bd &middot; '
+    + (lead.storeys ?? 0) + 'st &middot; '
+    + (lead.hallways ?? 0) + 'hw'
+    + '</span>';
+
+  // Alarms + Controllers merged
+  var alarmsCell = '<span class="badge">' + escapeHtml(String(lead.alarm_qty ?? 0)) + '</span>'
+    + (lead.controller_selected
+        ? '<span class="subtle">' + escapeHtml(String(lead.controller_qty || 0)) + ' ctrl</span>'
+        : '<span class="subtle">No ctrl</span>');
+
+  // Reminders
+  var reminderCell = escapeHtml(reminderCount > 0 ? String(reminderCount) + ' sent' : 'None')
+    + (lead.last_reminder_at
+        ? '<span class="subtle">Last: ' + escapeHtml(formatDate(lead.last_reminder_at)) + '</span>'
+        : '');
+
+  // Action buttons
+  var actionButtons = [];
+  if (status === 'downloaded') {
+    actionButtons.push('<button class="btn btn-small btn-secondary" type="button" data-action="reminder" data-id="' + escapeHtml(lead.id || '') + '">Send Reminder</button>');
+  }
+  if (status !== 'won') {
+    actionButtons.push('<button class="btn btn-small btn-success" type="button" data-action="won" data-id="' + escapeHtml(lead.id || '') + '">Mark Won</button>');
+  }
+
+  return [
+    '<tr>',
+    '<td>' + escapeHtml(formatDate(lead.created_at)) + '<span class="subtle">' + escapeHtml(age) + 'd ago</span></td>',
+    '<td><span class="status-badge status-' + escapeHtml(status) + '">' + escapeHtml(status) + '</span></td>',
+    '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
+    '<td>' + escapeHtml(lead.phone || '-') + '</td>',
+    '<td class="addr-cell">' + addressCell + '</td>',
+    '<td>' + alarmsCell + '</td>',
+    '<td style="color:var(--muted)">' + reminderCell + '</td>',
+    '<td><div class="action-stack">' + (actionButtons.join('') || '<span style="color:var(--muted);font-size:0.72rem">&mdash;</span>') + '</div></td>',
+    '<td class="money">' + escapeHtml(formatCurrency(lead.total_inc_gst || 0)) + '</td>',
+    '</tr>'
+  ].join('');
+}
+
+function updateStats(leads) {
+  var today = new Date();
+  var todayCount = leads.filter(function (lead) {
+    var date = new Date(lead.created_at);
+    return date.toDateString() === today.toDateString();
+  }).length;
+
+  var totalQuoted = leads.reduce(function (sum, lead) {
+    return sum + Number(lead.total_inc_gst || 0);
+  }, 0);
+
+  var avgAlarms = leads.length
+    ? leads.reduce(function (sum, lead) {
+        return sum + Number(lead.alarm_qty || 0);
+      }, 0) / leads.length
+    : 0;
+
+  document.getElementById('statTotalLeads').textContent = String(leads.length);
+  document.getElementById('statTodayLeads').textContent = String(todayCount);
+  document.getElementById('statAvgAlarms').textContent = avgAlarms.toFixed(2);
+  document.getElementById('statQuotedTotal').textContent = formatCurrency(totalQuoted);
+}
+
+function renderTable(leads) {
+  var loadingState = document.getElementById('loadingState');
+  var errorState = document.getElementById('errorState');
+  var emptyState = document.getElementById('emptyState');
+  var table = document.getElementById('leadsTable');
+  var tbody = document.getElementById('leadsTableBody');
+  var resultCount = document.getElementById('resultCount');
+
+  loadingState.hidden = true;
+  errorState.hidden = true;
+
+  if (!leads.length) {
+    emptyState.hidden = false;
+    table.hidden = true;
+    tbody.innerHTML = '';
+    resultCount.textContent = '0 leads shown';
+    updateStats([]);
+    return;
+  }
+
+  emptyState.hidden = true;
+  table.hidden = false;
+  tbody.innerHTML = leads.map(buildRow).join('');
+  resultCount.textContent = leads.length + (leads.length === 1 ? ' lead shown' : ' leads shown');
+  updateStats(leads);
+}
+
+function filterLeads() {
+  var term = document.getElementById('searchInput').value.trim().toLowerCase();
+  var dateFrom = document.getElementById('dateFromInput').value;
+  var dateTo = document.getElementById('dateToInput').value;
+
+  var filtered = allLeads.filter(function (lead) {
+    var haystack = [
+      lead.full_name,
+      lead.email,
+      lead.phone,
+      lead.property_address
+    ].join(' ').toLowerCase();
+
+    var leadDate = new Date(lead.created_at);
+    var matchesText = !term || haystack.indexOf(term) !== -1;
+    var matchesFrom = true;
+    var matchesTo = true;
+
+    if (dateFrom && !isNaN(leadDate.getTime())) {
+      var fromDate = new Date(dateFrom + 'T00:00:00');
+      matchesFrom = leadDate >= fromDate;
+    }
+
+    if (dateTo && !isNaN(leadDate.getTime())) {
+      var toDate = new Date(dateTo + 'T23:59:59');
+      matchesTo = leadDate <= toDate;
+    }
+
+    return matchesText && matchesFrom && matchesTo;
+  });
+
+  renderTable(filtered);
+}
+
+async function loadLeads() {
+  var loadingState = document.getElementById('loadingState');
+  var errorState = document.getElementById('errorState');
+  var emptyState = document.getElementById('emptyState');
+  var table = document.getElementById('leadsTable');
+
+  loadingState.hidden = false;
+  errorState.hidden = true;
+  emptyState.hidden = true;
+  table.hidden = true;
+
+  try {
+    var response = await fetch('/api/smoke-alarm/get-leads', { cache: 'no-store' });
+    var data = await response.json();
+
+    if (!response.ok || !data || !Array.isArray(data.leads)) {
+      throw new Error('Failed to load leads');
+    }
+
+    allLeads = data.leads.slice().sort(function (a, b) {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+    filterLeads();
+  } catch (error) {
+    loadingState.hidden = true;
+    errorState.hidden = false;
+  }
+}
+
+async function postJson(url, payload) {
+  var response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  var data = await response.json().catch(function () {
+    return null;
+  });
+
+  if (!response.ok) {
+    throw new Error((data && data.error) || 'Request failed');
+  }
+
+  return data;
+}
+
+async function handleReminder(id, button) {
+  button.disabled = true;
+  button.textContent = 'Sending...';
+
+  try {
+    await postJson('/api/smoke-alarm/send-reminder', { id: id });
+    await loadLeads();
+  } catch (error) {
+    alert(error.message || 'Could not send reminder.');
+    button.disabled = false;
+    button.textContent = 'Send Reminder';
+  }
+}
+
+async function handleMarkWon(id, button) {
+  button.disabled = true;
+  button.textContent = 'Saving...';
+
+  try {
+    await postJson('/api/smoke-alarm/update-lead-status', {
+      id: id,
+      status: 'won'
+    });
+    await loadLeads();
+  } catch (error) {
+    alert(error.message || 'Could not update lead status.');
+    button.disabled = false;
+    button.textContent = 'Mark Won';
+  }
+}
+
+function exportCsv() {
+  if (!allLeads.length) return;
+
+  var rows = [
+    [
+      'created_at',
+      'status',
+      'accepted_at',
+      'reminder_count',
+      'last_reminder_at',
+      'full_name',
+      'phone',
+      'email',
+      'property_address',
+      'bedrooms',
+      'storeys',
+      'hallways',
+      'controller_selected',
+      'controller_qty',
+      'alarm_qty',
+      'booking_fee',
+      'installation_balance',
+      'total_inc_gst'
+    ]
+  ].concat(allLeads.map(function (lead) {
+    return [
+      lead.created_at || '',
+      normalizeStatus(lead.status),
+      lead.accepted_at || '',
+      lead.reminder_count ?? 0,
+      lead.last_reminder_at || '',
+      lead.full_name || '',
+      lead.phone || '',
+      lead.email || '',
+      lead.property_address || '',
+      lead.bedrooms ?? '',
+      lead.storeys ?? '',
+      lead.hallways ?? '',
+      lead.controller_selected ? 'yes' : 'no',
+      lead.controller_qty ?? '',
+      lead.alarm_qty ?? '',
+      lead.booking_fee ?? '',
+      lead.installation_balance ?? '',
+      lead.total_inc_gst ?? ''
+    ];
+  }));
+
+  var csv = rows.map(function (row) {
+    return row.map(function (cell) {
+      return '"' + String(cell).replace(/"/g, '""') + '"';
+    }).join(',');
+  }).join('\n');
+
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var link = document.createElement('a');
+  link.href = url;
+  link.download = 'smoke-alarm-calculator-leads.csv';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('searchInput').addEventListener('input', filterLeads);
+document.getElementById('dateFromInput').addEventListener('input', filterLeads);
+document.getElementById('dateToInput').addEventListener('input', filterLeads);
+document.getElementById('clearFiltersBtn').addEventListener('click', function () {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('dateFromInput').value = '';
+  document.getElementById('dateToInput').value = '';
+  filterLeads();
+});
+document.getElementById('refreshBtn').addEventListener('click', loadLeads);
+document.getElementById('exportCsvBtn').addEventListener('click', exportCsv);
+document.getElementById('leadsTableBody').addEventListener('click', function (event) {
+  var target = event.target;
+  if (!target || !target.dataset || !target.dataset.action) return;
+
+  var id = target.dataset.id;
+  if (!id) return;
+
+  if (target.dataset.action === 'reminder') {
+    handleReminder(id, target);
+    return;
+  }
+
+  if (target.dataset.action === 'won') {
+    handleMarkWon(id, target);
+  }
+});
+
+loadLeads();
+</script>
+</body>
+</html>
