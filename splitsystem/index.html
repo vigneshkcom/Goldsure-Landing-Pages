@@ -798,10 +798,23 @@ function fireConversion(){
 }
 document.getElementById("lead-form").addEventListener("submit",function(ev){
   ev.preventDefault();
-  /* TODO: POST this form to your CRM/endpoint, include the GCLID from the URL. */
-  fireConversion();
-  this.classList.add("sent");
-  this.innerHTML='<div class="tick">&#10003;</div><h3>Thanks, you&rsquo;re in.</h3><p class="fnote">We&rsquo;ll call you shortly to confirm eligibility and book your free assessment. Need us sooner? Call <a href="tel:0370502846" style="color:var(--cobalt);font-weight:600">03 7050 2846</a>.</p>';
+  var form = this;
+  var data = {
+    name: form.querySelector('[name="name"]') ? form.querySelector('[name="name"]').value : '',
+    phone: form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '',
+    email: form.querySelector('[name="email"]') ? form.querySelector('[name="email"]').value : '',
+    postcode: form.querySelector('[name="postcode"]') ? form.querySelector('[name="postcode"]').value : '',
+    rooms: form.querySelector('[name="rooms"]') ? form.querySelector('[name="rooms"]').value : '',
+    gclid: new URLSearchParams(window.location.search).get('gclid') || ''
+  };
+  fetch('/api/submit-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function(){}).finally(function(){
+    fireConversion();
+    window.location.href = '/thank-you';
+  });
 });
 </script>
 <style>
