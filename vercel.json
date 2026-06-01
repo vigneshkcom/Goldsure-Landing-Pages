@@ -4,6 +4,18 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/splitsystem",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://splitsystem.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/splitsystem/",
+      "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
+      "destination": "https://splitsystem.goldsure.com.au",
+      "permanent": true
+    },
+    {
       "source": "/hotwater",
       "has": [{ "type": "host", "value": "offers.goldsure.com.au" }],
       "destination": "https://heatpumps.goldsure.com.au",
@@ -80,6 +92,21 @@
       "destination": "/thank-you/hotwater/index.html"
     },
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "splitsystem.goldsure.com.au" }],
+      "destination": "/splitsystem/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [{ "type": "host", "value": "splitsystem.goldsure.com.au" }],
+      "destination": "/thank-you/splitsystem/index.html"
+    },
+    {
+      "source": "/thank-you/",
+      "has": [{ "type": "host", "value": "splitsystem.goldsure.com.au" }],
+      "destination": "/thank-you/splitsystem/index.html"
+    },
+    {
       "source": "/smoke-alarm",
       "destination": "/smoke-alarm/index.html"
     },
@@ -146,6 +173,26 @@
     {
       "source": "/card/",
       "destination": "/card/index.html"
+    },
+    {
+      "source": "/splitsystem",
+      "destination": "/splitsystem/index.html"
+    },
+    {
+      "source": "/splitsystem/",
+      "destination": "/splitsystem/index.html"
+    },
+    {
+      "source": "/thank-you/splitsystem",
+      "destination": "/thank-you/splitsystem/index.html"
+    },
+    {
+      "source": "/thank-you/splitsystem/",
+      "destination": "/thank-you/splitsystem/index.html"
+    },
+    {
+      "source": "/api/splitsystem/submit-lead",
+      "destination": "/api/splitsystem/submit-lead"
     }
   ]
 }
