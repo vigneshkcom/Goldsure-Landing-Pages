@@ -375,6 +375,7 @@ footer h4{color:var(--white);font-size:1rem;margin-bottom:14px}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover{transform:none}}
 </style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBq-5bFtdgCXYPGT7z0cQyHfS3ZQJnNtJM&callback=initServiceMap" async defer></script>
 </head>
 <body>
 
@@ -647,9 +648,7 @@ footer h4{color:var(--white);font-size:1rem;margin-bottom:14px}
       <h2>We install across Melbourne, Geelong &amp; the Peninsula</h2>
     </div>
     <div class="map-wrap">
-      <!-- TODO MAP: for a branded map (service-radius ring + suburb pins like the brief) swap this iframe for a Google Maps JavaScript API map using your key. This keyless embed is the interim. -->
-      <iframe title="Goldsure service area, Melbourne and surrounds" src="https://www.google.com/maps?q=Melbourne,Victoria,Australia&amp;z=9&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <div class="map-ring" aria-hidden="true"></div>
+      <div id="service-map"></div>
     </div>
     <h3 class="areas-title">Areas we cover across Melbourne &amp; surrounds</h3>
     <div class="areas-grid">
@@ -789,6 +788,86 @@ document.getElementById("lead-form").addEventListener("submit",function(ev){
   this.classList.add("sent");
   this.innerHTML='<div class="tick">&#10003;</div><h3>Thanks, you&rsquo;re in.</h3><p class="fnote">We&rsquo;ll call you shortly to confirm eligibility and book your free assessment. Need us sooner? Call <a href="tel:0370502846" style="color:var(--cobalt);font-weight:600">03 7050 2846</a>.</p>';
 });
+</script>
+<style>
+.map-wrap { border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,0,0,0.16); box-shadow: 0 30px 60px -34px rgba(0,0,0,0.6); margin-bottom: clamp(30px,4vw,48px); height: 520px; }
+#service-map { width: 100%; height: 100%; }
+@media (max-width: 720px) { .map-wrap { height: 380px; } }
+@media (max-width: 480px) { .map-wrap { height: 300px; } }
+</style>
+<script>
+function initServiceMap() {
+  var mapEl = document.getElementById('service-map');
+  if (!mapEl) return;
+
+  var SUBURBS = [
+    { name: 'Melbourne',     lat: -37.8136, lng: 144.9631 },
+    { name: 'St Kilda',      lat: -37.8676, lng: 144.9820 },
+    { name: 'Brunswick',     lat: -37.7671, lng: 144.9630 },
+    { name: 'Reservoir',     lat: -37.7182, lng: 145.0061 },
+    { name: 'Epping',        lat: -37.6463, lng: 145.0128 },
+    { name: 'Craigieburn',   lat: -37.6018, lng: 144.9409 },
+    { name: 'Sunbury',       lat: -37.5779, lng: 144.7281 },
+    { name: 'Wallan',        lat: -37.4122, lng: 144.9783 },
+    { name: 'Melton',        lat: -37.6840, lng: 144.5840 },
+    { name: 'Tarneit',       lat: -37.8464, lng: 144.6866 },
+    { name: 'Werribee',      lat: -37.9033, lng: 144.6637 },
+    { name: 'Lara',          lat: -38.0238, lng: 144.4003 },
+    { name: 'Corio',         lat: -38.0869, lng: 144.3603 },
+    { name: 'Geelong',       lat: -38.1499, lng: 144.3617 },
+    { name: 'Barwon Heads',  lat: -38.2679, lng: 144.4979 },
+    { name: 'Torquay',       lat: -38.3292, lng: 144.3261 },
+    { name: 'Sorrento',      lat: -38.3394, lng: 144.7410 },
+    { name: 'Fingal',        lat: -38.4200, lng: 145.0160 },
+    { name: 'Frankston',     lat: -38.1442, lng: 145.1275 },
+    { name: 'Cranbourne',    lat: -38.1022, lng: 145.2831 },
+    { name: 'Berwick',       lat: -38.0363, lng: 145.3425 },
+    { name: 'Dandenong',     lat: -37.9878, lng: 145.2150 },
+    { name: 'Glen Waverley', lat: -37.8790, lng: 145.1641 },
+    { name: 'Ringwood',      lat: -37.8147, lng: 145.2289 },
+    { name: 'Pakenham',      lat: -38.0706, lng: 145.4894 },
+  ];
+
+  var CENTER = { lat: -37.91, lng: 144.83 };
+
+  var map = new google.maps.Map(mapEl, {
+    center: { lat: -37.84, lng: 144.97 },
+    zoom: window.innerWidth <= 720 ? 8 : 9,
+    scrollwheel: false,
+    disableDefaultUI: false,
+    zoomControl: true,
+  });
+
+  new google.maps.Circle({
+    map: map,
+    center: CENTER,
+    radius: 62000,
+    fillColor: '#1a4480',
+    fillOpacity: 0.18,
+    strokeColor: '#1a4480',
+    strokeOpacity: 0.55,
+    strokeWeight: 2,
+  });
+
+  var bounds = new google.maps.LatLngBounds();
+  SUBURBS.forEach(function(s) {
+    var pos = { lat: s.lat, lng: s.lng };
+    new google.maps.Marker({
+      position: pos,
+      map: map,
+      title: s.name,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 7,
+        fillColor: '#C9A84C',
+        fillOpacity: 0.95,
+        strokeColor: '#A8892F',
+        strokeWeight: 1.5,
+      },
+    });
+    bounds.extend(pos);
+  });
+}
 </script>
 </body>
 </html>
