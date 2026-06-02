@@ -818,7 +818,8 @@ document.getElementById("lead-form").addEventListener("submit",function(ev){
     email: form.querySelector('[name="email"]') ? form.querySelector('[name="email"]').value : '',
     postcode: form.querySelector('[name="postcode"]') ? form.querySelector('[name="postcode"]').value : '',
     rooms: form.querySelector('[name="rooms"]') ? form.querySelector('[name="rooms"]').value : '',
-    gclid: new URLSearchParams(window.location.search).get('gclid') || ''
+    gclid: new URLSearchParams(window.location.search).get('gclid') || sessionStorage.getItem('gclid') || '',
+    fbclid: new URLSearchParams(window.location.search).get('fbclid') || sessionStorage.getItem('fbclid') || ''
   };
   fetch('/api/submit-lead', {
     method: 'POST',
