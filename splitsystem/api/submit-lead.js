@@ -1,4 +1,4 @@
-var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/611c6d2c-9ca1-491b-8501-a75645c1c632';
+var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/492746c9-4dde-417e-b78e-5a4d773a49a1';
 
 var ALLOWED_ORIGINS = [
   'https://splitsystem.goldsure.com.au',
