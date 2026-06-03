@@ -325,6 +325,15 @@ footer .logo-img{height:46px;margin-bottom:14px}
   .trole-ico{width:46px;height:46px;border-radius:13px}.trole-ico svg{width:22px;height:22px}}
 @media(max-width:380px){.team-grid{grid-template-columns:1fr}}
 .team-band .shead{margin-left:auto;margin-right:auto;text-align:center}
+/* mobile staggered fade-up for role cards */
+@media(max-width:860px){
+  .trole{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
+  .trole.in{opacity:1;transform:none}
+  .trole:nth-child(2){transition-delay:.09s}
+  .trole:nth-child(3){transition-delay:.18s}
+  .trole:nth-child(4){transition-delay:.27s}
+}
+@media(max-width:860px) and (prefers-reduced-motion:reduce){.trole{opacity:1;transform:none;transition:none}}
 
 /* process */
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
@@ -838,6 +847,7 @@ document.querySelectorAll(".acc button").forEach(function(b){
 /* ---- SCROLL REVEAL ---- */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
+document.querySelectorAll(".trole").forEach(function(el){io.observe(el)});
 
 /* ---- FORM ---- */
 function fireConversion(){
