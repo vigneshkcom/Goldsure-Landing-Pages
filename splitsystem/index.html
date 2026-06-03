@@ -226,6 +226,15 @@ footer .logo-img{height:46px;margin-bottom:14px}
 .cmp-band .shead{margin-left:auto;margin-right:auto;text-align:center}
 .band.paper2 .shead{margin-left:auto;margin-right:auto;text-align:center}
 .cmp-cta{display:flex;justify-content:center;margin-top:clamp(28px,4vw,44px)}
+@media(max-width:860px){
+  .cmp{display:block;padding-bottom:3rem}
+  .cmp .col{position:sticky;top:80px;margin-top:1rem;box-shadow:0 18px 34px rgba(0,0,0,0.25)}
+  .cmp .col.us{transform:none}
+  .cmp .col:first-child{margin-top:0;z-index:10}
+  .cmp .col:nth-child(2){z-index:11}
+  .cmp .col:nth-child(3){z-index:12}
+  .cmp .col:nth-child(4){z-index:13}
+}
 
 /* includes / extras */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -501,6 +510,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2>One honest column in a market of &ldquo;up to&rdquo;.</h2>
       <p>Of ten Melbourne competitors we reviewed, not one shows a flat customer-pays number for a whole-home install. Here is the real comparison.</p>
     </div>
+  </div>
+  <div class="wrap">
     <div class="cmp">
       <div class="col us">
         <img class="ctag-logo" src="https://heatpumps.goldsure.com.au/assets/goldsure-logo.png" alt="Goldsure" />
@@ -529,6 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cmp-cta"><a class="btn btn-gold" href="#quote">Check Eligibility <span class="arrow">&rarr;</span></a></div>
   </div>
 </section>
+
 
 <!-- INCLUDES / EXTRAS -->
 <section class="band no-surprises">
