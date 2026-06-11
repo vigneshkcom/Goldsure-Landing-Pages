@@ -115,14 +115,15 @@ fbq('track', 'PageView');
     })(window, document, "clarity", "script", "vg3xq1chsb");
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;810&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
 <style>
 
 /* ══════════════════════════════════════
-   TOKENS — LIGHT SYSTEM ONLY
-   Backgrounds: off-white (#F8F6F1) or white (#FFFFFF)
-   Text: black (#0D0D0D) or gold (#C9A84C)
-   No dark/grey/black backgrounds anywhere
+   TOKENS
+   Light system (off-white/white) for body sections.
+   Dark navy palette is reserved for the hero.
 ══════════════════════════════════════ */
 :root {
   --gold:       #C9A84C;
@@ -130,6 +131,14 @@ fbq('track', 'PageView');
   --gold-light: #DDB95E;
   --gold-bg:    rgba(201,168,76,0.10);
   --gold-bd:    rgba(201,168,76,0.30);
+
+  /* Dark hero palette */
+  --navy-950:  #0B1226;
+  --navy-900:  #101B36;
+  --navy-700:  #1C2F5E;
+  --cobalt:    #2D55C4;
+  --coral:     #E2604A;
+  --ember:     #F2A45C;
 
   --ink:       #0D0D0D;
   --body-txt:  #0D0D0D;
@@ -282,48 +291,70 @@ section { padding: 5rem 2rem; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ══════════════════════════════════════
-   HERO
+   HERO — dark navy, cobalt glow, gold accents
 ══════════════════════════════════════ */
 .hero {
-  background: var(--off-white);
-  padding: 7.5rem 2.5rem 5rem;
   position: relative; overflow: hidden;
-}
-.hero-glow {
-  position: absolute; top: -80px; right: -60px;
-  width: 520px; height: 520px; pointer-events: none;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.18) 0%, transparent 72%);
+  padding: 8rem 2.5rem 5rem;
+  color: var(--white);
+  background:
+    radial-gradient(110% 90% at -8% -25%, rgba(62,115,232,0.42) 0%, transparent 55%),
+    radial-gradient(95% 75% at 108% 112%, rgba(62,115,232,0.30) 0%, transparent 58%),
+    radial-gradient(60% 50% at -6% 110%, rgba(201,168,76,0.14) 0%, transparent 60%),
+    linear-gradient(168deg, var(--navy-700) 0%, var(--navy-900) 55%, var(--navy-950) 100%);
 }
 .hero-inner {
   max-width: 1160px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr minmax(0, 480px);
+  display: grid; grid-template-columns: 1fr minmax(0, 460px);
   gap: 3.5rem; align-items: start;
 }
 
 /* Hero left */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.35rem 0.9rem;
-  border: 1px solid rgba(201,168,76,0.35);
-  border-left: 3px solid var(--gold);
-  background: rgba(201,168,76,0.08);
-  font-size: 0.70rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gold-deep); margin-bottom: 1.25rem;
-}
-.hero-badge .pulse {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold);
-  animation: pulse 2s ease infinite; flex-shrink: 0;
-}
-@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.3; transform:scale(1.4); } }
+.hero .eyebrow { color: var(--gold-light); }
 
-.hero h1 { margin-bottom: 1rem; max-width: 520px; }
-.hero h1 .gold { color: var(--gold); }
+.hero-deadline {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.5rem 1rem; margin-bottom: 1.4rem;
+  border: 1px solid rgba(226,96,74,0.45);
+  border-radius: 999px;
+  background: rgba(226,96,74,0.12);
+  font-size: 0.8rem; font-weight: 500;
+  color: #F3E8D8;
+}
+.hero-deadline svg { width: 16px; height: 16px; color: var(--coral); flex-shrink: 0; }
+.hero-deadline b { font-weight: 700; color: var(--white); }
+
+.hero h1 {
+  font-family: 'Clash Display', 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 1.55rem + 3.2vw, 4.3rem);
+  font-weight: 700; line-height: 1.04; letter-spacing: -0.015em;
+  color: var(--white);
+  max-width: 620px; margin-bottom: 1.25rem;
+}
+.hero h1 .gold { color: var(--gold-light); }
 .hero-sub {
-  color: var(--muted); font-size: 0.97rem;
-  font-weight: 400; max-width: 460px;
-  margin-bottom: 2rem; line-height: 1.85;
+  color: rgba(255,255,255,0.82); font-size: 1rem;
+  font-weight: 400; max-width: 480px;
+  margin-bottom: 1.75rem; line-height: 1.75;
+}
+
+/* Google rating badge */
+.hero-gbadge {
+  display: inline-flex; align-items: center; gap: 0.9rem;
+  padding: 0.7rem 1.15rem; margin-bottom: 1.75rem;
+  background: var(--white); border-radius: 12px;
+  box-shadow: 0 18px 40px -22px rgba(4,10,30,0.85);
+}
+.hero-gbadge .gb-logo { width: 30px; height: 30px; flex-shrink: 0; }
+.hero-gbadge .gb-score { display: flex; flex-direction: column; line-height: 1.05; }
+.hero-gbadge .gb-rating { font-size: 0.95rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.hero-gbadge .gb-rating b { font-family: 'Clash Display', 'Poppins', sans-serif; font-size: 1.35rem; font-weight: 600; }
+.hero-gbadge .gb-stars { color: #E8A33D; font-size: 0.85rem; letter-spacing: 2px; margin-top: 2px; }
+.hero-gbadge .gb-label {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); line-height: 1.25;
+  padding-left: 0.9rem; border-left: 1px solid var(--border);
 }
 
 /* Hero checklist */
@@ -331,13 +362,16 @@ section { padding: 5rem 2rem; }
 .hero-list-item {
   display: flex; align-items: center; gap: 0.65rem;
   font-size: 0.9rem; font-weight: 500;
-  color: var(--ink);
+  color: rgba(255,255,255,0.92);
 }
-.hero-list-item svg { color: var(--gold); flex-shrink: 0; }
+.hero-list-item svg { color: var(--gold-light); flex-shrink: 0; }
 
 .hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
-/* Hero form card — clean white card on off-white bg */
+/* Hero right column — form + penalty + trust stack */
+.hero-right { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+
+/* Hero form card — clean white card on dark hero */
 .hero-form-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -348,7 +382,7 @@ section { padding: 5rem 2rem; }
 }
 .hero-form-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+  background: linear-gradient(90deg, var(--cobalt), var(--gold));
   z-index: 2; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 .hfc-body {
@@ -383,23 +417,64 @@ section { padding: 5rem 2rem; }
 .hnf-submit:hover { background: var(--gold-deep); color: #fff; }
 .hnf-submit:disabled { opacity: 0.65; cursor: not-allowed; }
 
-/* ── Risk callout ── */
-.hero-risk-callout {
-  display: flex; align-items: flex-start; gap: 0.55rem;
-  padding: 0.5rem 0.9rem;
-  border: 1px solid rgba(201,168,76,0.35);
-  border-left: 3px solid var(--gold);
-  background: rgba(201,168,76,0.08);
-  margin-top: 0.9rem; margin-bottom: 0.75rem;
-  max-width: 28rem;
+/* ── Penalty card — cost of non-compliance ── */
+.hero-penalty {
+  display: flex; align-items: center; gap: 1.1rem;
+  padding: 1.05rem 1.2rem;
+  border: 1px solid rgba(226,96,74,0.35);
+  border-radius: var(--radius-lg);
+  background: rgba(226,96,74,0.13);
 }
-.hero-risk-callout .pulse-tri {
-  flex-shrink: 0; margin-top: 2px;
-  color: var(--gold-deep);
-  animation: pulse 2s ease infinite;
+.hero-penalty .hp-num {
+  font-family: 'Clash Display', 'Poppins', sans-serif;
+  font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.5rem);
+  font-weight: 700; line-height: 0.9;
+  color: var(--ember); flex-shrink: 0;
 }
-.hero-risk-callout p { font-size: 0.82rem; color: var(--text); margin: 0; line-height: 1.5; }
-.hero-risk-callout strong { color: var(--gold-deep); font-weight: 600; }
+.hero-penalty .hp-text { font-size: 0.8rem; line-height: 1.55; color: rgba(255,255,255,0.85); margin: 0; }
+.hero-penalty .hp-text b { color: var(--white); font-weight: 600; }
+
+/* ── Trust card — certification, warranty, proof points ── */
+.hero-trust {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem 1.15rem;
+  padding: 1.05rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.06);
+}
+.ht-badges { display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0; }
+.ht-cert { height: 72px; width: auto; background: var(--white); border-radius: 8px; padding: 5px 8px; }
+.ht-seal {
+  width: 76px; height: 76px; flex-shrink: 0;
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at 50% 30%, #FFFDF6, #EFE7D2);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(201,168,76,0.18);
+}
+.ht-seal b {
+  font-family: 'Clash Display', 'Poppins', sans-serif;
+  font-size: 1.6rem; font-weight: 700; line-height: 0.85;
+  color: var(--cobalt);
+}
+.ht-seal span {
+  font-size: 0.5rem; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--gold-deep); line-height: 1.2; margin-top: 3px;
+}
+.ht-points {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  flex: 1 1 150px; min-width: 150px;
+}
+.ht-points li {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.82rem; font-weight: 500;
+  color: rgba(255,255,255,0.92);
+}
+.ht-points li svg { width: 15px; height: 15px; color: var(--gold-light); flex-shrink: 0; }
+.ht-tc { flex-basis: 100%; font-size: 0.68rem; color: rgba(255,255,255,0.5); margin: -0.1rem 0 0; }
 
 /* ── Price anchor pill ── */
 .hfc-price-pill {
@@ -423,7 +498,7 @@ section { padding: 5rem 2rem; }
 
 /* Form card header */
 .hfc-header { padding-bottom: 1rem; }
-.hfc-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.hfc-title { font-family: 'Clash Display', 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 0.3rem; }
 .hfc-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
 
 /* Form note */
@@ -1198,8 +1273,16 @@ section { padding: 5rem 2rem; }
   .hero { padding: 5rem 1rem 2.25rem; }
   h1 { font-size: clamp(1.6rem, 6.5vw, 1.9rem); }
   h2 { font-size: clamp(1.35rem, 5.5vw, 1.6rem); }
-  .hero-badge { font-size: 0.66rem; }
+  .hero h1 { font-size: clamp(2.05rem, 8.6vw, 2.55rem); }
+  .hero-deadline { font-size: 0.72rem; padding: 0.42rem 0.8rem; }
   .hero-sub   { font-size: 0.90rem; }
+  .hero-gbadge { padding: 0.6rem 0.95rem; gap: 0.7rem; }
+  .hero-gbadge .gb-rating b { font-size: 1.2rem; }
+  .hero-penalty .hp-num { font-size: 1.8rem; }
+  .hero-trust { padding: 0.95rem 1rem; }
+  .ht-cert { height: 60px; }
+  .ht-seal { width: 66px; height: 66px; }
+  .ht-seal b { font-size: 1.35rem; }
 
   /* Hero CTAs — hide Call Us on mobile, form is the CTA */
   .hero-list-item { font-size: 0.86rem; }
@@ -1478,32 +1561,6 @@ section { padding: 5rem 2rem; }
   background: rgba(34,197,94,0.06) !important;
 }
 
-/* ── Typing Headline ── */
-#hero-headline { min-height: 1.15em; }
-.type-cursor {
-  display: inline-block;
-  width: 2px; height: 0.88em;
-  background: var(--ink);
-  vertical-align: middle;
-  margin-left: 2px;
-  border-radius: 1px;
-  animation: cursorBlink 0.7s step-end infinite;
-}
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-.type-qmark {
-  display: inline-block;
-  animation: qmarkBeep 0.55s ease-in-out 3;
-  animation-fill-mode: forwards;
-}
-@keyframes qmarkBeep {
-  0%   { transform: scale(1);    color: inherit; }
-  30%  { transform: scale(1.45); color: var(--gold); }
-  60%  { transform: scale(0.9);  color: var(--gold-deep); }
-  100% { transform: scale(1);    color: inherit; }
-}
 </style>
 </head>
 <body>
@@ -1533,19 +1590,27 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="book">
-  <div class="hero-glow"></div>
   <div class="hero-inner">
 
     <!-- Left -->
     <div class="hero-left">
       <div class="eyebrow">Queensland's Trusted Smoke Alarm Specialists</div>
-      <div class="hero-badge">
-        <span class="pulse"></span>
-        QLD Compliance Deadline: 1 January 2027
+      <div class="hero-deadline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5"/><path d="M5 3 2.5 5.5"/><path d="m19 3 2.5 2.5"/></svg>
+        <span>QLD compliance deadline <b>1 January 2027</b></span>
       </div>
 
-      <h1 id="hero-headline">Goldsure Smoke Alarms — <span class="gold">QLD Compliant Installation</span></h1>
-      <p class="hero-sub">Most Queensland homes still have the wrong type of smoke alarm. Goldsure has helped over 1,000 Queensland homeowners get compliant — licensed electrician, correct placement throughout your home, and a Certificate of Compliance issued on the same day.</p>
+      <h1>QLD Smoke Alarm Compliance, <span class="gold">Done in One Visit.</span></h1>
+      <p class="hero-sub">Most Queensland homes still have the wrong type of smoke alarm. Goldsure has made over 1,000 QLD homes compliant: licensed electricians, correct placement throughout the home, and a Certificate of Compliance issued the same day.</p>
+
+      <div class="hero-gbadge">
+        <svg class="gb-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+        <span class="gb-score">
+          <span class="gb-rating"><b>4.8</b> out of 5</span>
+          <span class="gb-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </span>
+        <span class="gb-label">Google<br>Reviews</span>
+      </div>
 
       <div class="hero-list">
         <div class="hero-list-item">
@@ -1562,11 +1627,6 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
         </div>
        </div>
 
-      <div class="hero-risk-callout">
-        <svg class="pulse-tri" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <p>Non-compliant sellers face a <strong>0.15% purchase price reduction at settlement</strong> — that's <strong>$1,125 on a $750k home</strong>, legally deducted by the buyer.</p>
-      </div>
-
       <div class="hero-ctas">
         <a href="tel:0721455155" class="btn btn-gold" data-track="phone_click_hero">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013 10.81 19.8 19.8 0 01-.07 2.17 2 2 0 011.91 0h3a2 2 0 012 1.72 12.8 12.8 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.8 12.8 0 002.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1575,7 +1635,9 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <!-- Right: Form -->
+    <!-- Right: form + penalty + trust -->
+    <div class="hero-right">
+
     <div class="hero-form-card">
       <div class="hfc-body">
         <div class="hfc-header">
@@ -1639,7 +1701,27 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 
         </form>
       </div>
+    </div><!-- /hero-form-card -->
+
+    <aside class="hero-penalty">
+      <div class="hp-num">$1,125</div>
+      <p class="hp-text">A buyer can legally deduct <b>0.15% of your sale price</b> at settlement if your alarms aren't compliant. On a $750k home, that is $1,125 gone.</p>
+    </aside>
+
+    <div class="hero-trust">
+      <div class="ht-badges">
+        <img class="ht-cert" src="/assets/as3786-certified.jpg" width="159" height="276" alt="Australian Standard AS 3786:2014 certified product, Licence SMK41401" decoding="async">
+        <div class="ht-seal" role="img" aria-label="10 year workmanship warranty"><b>10</b><span>Year<br>Warranty</span></div>
+      </div>
+      <ul class="ht-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Licensed QLD electricians</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Same-day compliance certificate</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Correct placement, every room</li>
+      </ul>
+      <p class="ht-tc">*10-year workmanship warranty, terms &amp; conditions apply.</p>
     </div>
+
+    </div><!-- /hero-right -->
 
   </div>
 </section>
@@ -2584,72 +2666,6 @@ function closePlacementModalOutside(e) {
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') closePlacementModal();
 });
-/* ── Typing Headline Animation ── */
-(function () {
-  var el = document.getElementById('hero-headline');
-  if (!el) return;
-
-  // Clear static fallback before typing begins
-  el.innerHTML = '';
-
-  var segments = [
-    { text: 'QLD Smoke Alarm ' },
-    { text: 'Deadline Approaching', cls: 'gold' },
-    { text: ' — Is Your Home Ready?' },
-  ];
-
-  var chars = [];
-  segments.forEach(function (seg) {
-    seg.text.split('').forEach(function (ch) {
-      chars.push({ ch: ch, cls: seg.cls || null });
-    });
-  });
-
-  var cursor = document.createElement('span');
-  cursor.className = 'type-cursor';
-  cursor.setAttribute('aria-hidden', 'true');
-  el.appendChild(cursor);
-
-  var idx = 0;
-
-  function typeNext() {
-    if (idx < chars.length) {
-      var item = chars[idx];
-      if (item.cls) {
-        var span = el.querySelector('span.' + item.cls + ':last-of-type');
-        if (!span || span._done) {
-          span = document.createElement('span');
-          span.className = item.cls;
-          el.insertBefore(span, cursor);
-        }
-        span.textContent += item.ch;
-      } else {
-        var prev = cursor.previousSibling;
-        if (prev && prev.nodeType === 3 && prev._typed) {
-          prev.textContent += item.ch;
-        } else {
-          var tn = document.createTextNode(item.ch);
-          tn._typed = true;
-          el.insertBefore(tn, cursor);
-        }
-      }
-      idx++;
-      setTimeout(typeNext, 50);
-    } else {
-      el.querySelectorAll('span.gold').forEach(function (s) { s._done = true; });
-      var qm = document.createElement('span');
-      qm.className = 'type-qmark';
-      qm.textContent = '?';
-      el.insertBefore(qm, cursor);
-      setTimeout(function () {
-        if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
-      }, 1700);
-    }
-  }
-
-  setTimeout(typeNext, 320);
-})();
-
 /* ── Interactive compliance checklist ── */
 (function () {
   var CHECK_SVG = '<svg width="13" height="13" fill="none" stroke="#0D0D0D" stroke-width="2.8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
