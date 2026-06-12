@@ -154,9 +154,17 @@ footer .logo-img{height:46px;margin-bottom:14px}
 .hero .lede{font-size:var(--step-1);color:oklch(1 0 0 / .86);max-width:30ch;line-height:1.25;font-weight:400}
 .hero .sub{margin-top:12px;color:oklch(1 0 0 / .72);max-width:46ch;font-size:var(--step-0)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-.hero-trust{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid oklch(1 0 0 /.16)}
-.hero-trust div{font-size:var(--step--1);color:oklch(1 0 0 /.82)}
-.hero-trust b{display:block;font-family:var(--font-sans);font-size:var(--step-0);color:var(--white)}
+.hero-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.hero-trust div{background:oklch(1 0 0 / .07);border:1px solid oklch(1 0 0 / .16);border-radius:12px;padding:12px 14px;
+  font-size:var(--step--1);color:oklch(1 0 0 / .72);line-height:1.4;backdrop-filter:blur(6px)}
+.hero-trust b{display:block;font-family:var(--font-sans);font-weight:700;font-size:var(--step-0);color:var(--white);margin-bottom:2px}
+.hero-trust .star{color:var(--gold)}
+.final .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:680px){
+  .hero-trust{grid-template-columns:1fr 1fr;gap:8px}
+  .final .hero-trust{grid-template-columns:1fr 1fr}
+  .hero-trust div:last-child:nth-child(odd){grid-column:1/-1}
+}
 .hero-card{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 /.7);transform:rotate(1.2deg)}
 .hero-card{align-self:stretch}
 .hero-card img{width:100%;height:100%;min-height:clamp(300px,42vw,540px);object-fit:cover}
@@ -443,11 +451,6 @@ footer h4{color:var(--white);font-size:var(--step-0);font-weight:700;margin-bott
 .hero .lede{animation:m-rise .8s var(--ease-out) .55s both}
 .hero .sub{animation:m-rise .8s var(--ease-out) .68s both}
 .hero .hero-cta{animation:m-rise .8s var(--ease-out) .8s both}
-.hero .hero-trust div{animation:m-rise .7s var(--ease-out) both}
-.hero .hero-trust div:nth-child(1){animation-delay:.95s}
-.hero .hero-trust div:nth-child(2){animation-delay:1.03s}
-.hero .hero-trust div:nth-child(3){animation-delay:1.11s}
-.hero .hero-trust div:nth-child(4){animation-delay:1.19s}
 .hero-card{animation:m-fade .9s ease .35s backwards}
 html.js .hero-card img{transform:scale(1.1);animation:m-kenburns 1.6s var(--ease-out) .35s backwards}
 .hero-tag{animation:m-tag-pop .8s var(--ease-spring) 1.15s backwards,m-tag-float 6s ease-in-out 2.2s infinite}
@@ -463,6 +466,8 @@ html.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(
 html.js .reveal.in{opacity:1;transform:none}
 html.js .sr{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease-out),transform .75s var(--ease-out);transition-delay:var(--d,0s)}
 html.js .sr.in{opacity:1;transform:none}
+html.js .sr-pop{opacity:0;transform:translateY(18px) scale(.92);transition:opacity .6s var(--ease-out),transform .6s var(--ease-spring);transition-delay:var(--d,0s)}
+html.js .sr-pop.in{opacity:1;transform:none}
 
 /* eyebrow rule draws in with its section */
 .shead .eyebrow{display:inline-flex;align-items:center;gap:10px}
@@ -498,7 +503,7 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 /* reduced motion: collapse the lot */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  html.js .reveal,html.js .sr{opacity:1;transform:none}
+  html.js .reveal,html.js .sr,html.js .sr-pop{opacity:1;transform:none}
   html.js .hero-card img{transform:none;animation:none}
   .btn:hover{transform:none}
 }
@@ -551,10 +556,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-tag"><span>Customer Upfront Cost</span><b>ONLY $1,000</b></div>
     </div>
     <div class="hero-trust">
-      <div><b>4.8&#9733;</b> Google rating</div>
-      <div><b>VEU Partner</b> · Eco Light Up</div>
-      <div><b>5-Year</b> ECONOVA warranty</div>
-      <div><b>Licensed</b> sparkies + plumbers</div>
+      <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
+      <div><b>VEU Partner</b>Eco Light Up</div>
+      <div><b>5-Year</b>ECONOVA warranty</div>
+      <div><b>Licensed</b>Sparkies + plumbers</div>
     </div>
   </div>
 </section>
@@ -863,10 +868,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="eyebrow on-dark">Install must be done before 31 July</span>
         <h2>Lock the rebate. <span class="price">$1,000</span>, the honest price.</h2>
         <p class="lede">When the rebate value drops, you&rsquo;ll hear it from the Essential Services Commission, not from us the day before your install. Check your eligibility now and we&rsquo;ll get you a fixed-price quote.</p>
-        <div class="hero-trust" style="border-color:oklch(1 0 0 /.18)">
-          <div><b>VEU Partner</b> · Eco Light Up</div>
-          <div><b>4.8&#9733;</b> Google</div>
-          <div><b>Licensed</b> trades only</div>
+        <div class="hero-trust">
+          <div><b>VEU Partner</b>Eco Light Up</div>
+          <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
+          <div><b>Licensed</b>Trades only</div>
         </div>
       </div>
       <form class="form" id="lead-form">
@@ -966,10 +971,26 @@ document.querySelectorAll(".acc button").forEach(function(b){
       });
     });
   });
+  document.querySelectorAll(".hero-trust").forEach(function(g){
+    Array.prototype.forEach.call(g.children,function(child,i){
+      child.classList.add("sr-pop");
+      child.style.setProperty("--d",i*90+"ms");
+    });
+  });
   var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}});
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target;
+      el.classList.add("in");
+      io.unobserve(el);
+      /* drop the stagger delay once revealed so hover transitions stay instant */
+      el.addEventListener("transitionend",function done(){
+        el.style.transitionDelay="0s";
+        el.removeEventListener("transitionend",done);
+      });
+    });
   },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
-  document.querySelectorAll(".reveal,.sr").forEach(function(el){io.observe(el)});
+  document.querySelectorAll(".reveal,.sr,.sr-pop").forEach(function(el){io.observe(el)});
 
   /* numbers count up the first time they're seen */
   function countUp(el,to,fmt,dur){
