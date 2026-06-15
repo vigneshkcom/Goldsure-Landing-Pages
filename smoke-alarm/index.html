@@ -941,7 +941,9 @@ section { padding: 5rem 2rem; }
 }
 
 /* Self-check action column — deadline card + stacked CTAs (right side) */
-.act-cta-col { align-self: center; }
+.act-cta-col { display: flex; flex-direction: column; }
+.act-cta-col .act-img-wrap { margin-bottom: 1.25rem; }
+.act-cta-col .act-img-wrap img { max-height: 300px; object-position: center 22%; }
 .act-cta-col .deadline-rows { margin-bottom: 1.25rem; }
 .act-cta { display: flex; flex-direction: column; gap: 0.75rem; }
 .act-cta .btn { width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.95rem 1.5rem; }
@@ -1874,6 +1876,9 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
       </div>
 
       <div class="act-cta-col reveal">
+        <div class="act-img-wrap">
+          <img src="/assets/goldsure-technician.png" alt="Goldsure licensed electrician holding Raptor smoke alarm outside Queensland home" loading="lazy">
+        </div>
         <div class="deadline-rows">
           <div class="deadline-row active">
             <div class="dl-icon">
