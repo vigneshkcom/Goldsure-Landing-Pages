@@ -836,9 +836,9 @@ section { padding: 5rem 2rem; }
   opacity: 0.72;
 }
 .deadline-row.active {
-  background: var(--white);
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.10);
+  background: rgba(229,72,77,0.05);
+  border-color: rgba(229,72,77,0.38);
+  box-shadow: 0 0 0 3px rgba(229,72,77,0.08);
 }
 
 /* State icon on left */
@@ -853,9 +853,9 @@ section { padding: 5rem 2rem; }
   border: 1.5px solid var(--border);
 }
 .deadline-row.active .dl-icon {
-  background: var(--gold);
-  color: var(--ink);
-  border: 1.5px solid var(--gold-deep);
+  background: #E5484D;
+  color: #fff;
+  border: 1.5px solid #C9383D;
 }
 
 .dl-content { flex: 1; min-width: 0; }
@@ -865,7 +865,7 @@ section { padding: 5rem 2rem; }
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 0.1rem;
 }
-.deadline-row.active .dl-year { color: var(--gold-deep); }
+.deadline-row.active .dl-year { color: #D23A3F; }
 .dl-desc {
   display: block;
   color: var(--ink); font-weight: 600;
@@ -879,7 +879,7 @@ section { padding: 5rem 2rem; }
   border-radius: var(--radius-sm); flex-shrink: 0;
 }
 .dl-tag-passed { background: var(--gray-100); color: var(--muted); border: 1px solid var(--border); }
-.dl-tag-active { background: var(--gold); color: var(--ink); border: 1px solid var(--gold-deep); font-weight: 810; }
+.dl-tag-active { background: #E5484D; color: #fff; border: 1px solid #C9383D; font-weight: 810; }
 
 .act-points {
   display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem;
@@ -927,7 +927,7 @@ section { padding: 5rem 2rem; }
   border: 1.5px solid var(--gold-bd);
   border-left: 4px solid var(--gold);
   padding: 1.15rem 1.25rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
   margin-top: 1.5rem;
 }
 .act-alert-text {
@@ -941,11 +941,12 @@ section { padding: 5rem 2rem; }
 }
 
 /* Self-check action column — deadline card + stacked CTAs (right side) */
-.act-cta-col { display: flex; flex-direction: column; }
-.act-cta-col .act-img-wrap { margin-bottom: 1.25rem; }
+.act-cta-col { display: flex; flex-direction: column; gap: 1.1rem; }
+.act-cta-col .act-img-wrap { margin-bottom: 0; }
 .act-cta-col .act-img-wrap img { max-height: 300px; object-position: center 22%; }
-.act-cta-col .deadline-rows { margin-bottom: 1.25rem; }
-.act-cta { display: flex; flex-direction: column; gap: 0.75rem; }
+.act-cta-col .act-alert { margin-top: 0; }
+.act-cta-col .deadline-rows { margin-bottom: 0; }
+.act-cta { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.3rem; }
 .act-cta .btn { width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.95rem 1.5rem; }
 
 /* ══════════════════════════════════════
@@ -1867,18 +1868,19 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
             </div>
           </div>
         </div>
-
-        <div class="act-alert" id="compliance-alert">
-          <div class="act-alert-text" id="compliance-result-text">
-            <strong>If you answered "No" to any of the above, your home is currently non-compliant.</strong>
-          </div>
-        </div>
       </div>
 
       <div class="act-cta-col reveal">
         <div class="act-img-wrap">
           <img src="/assets/goldsure-technician.png" alt="Goldsure licensed electrician holding Raptor smoke alarm outside Queensland home" loading="lazy">
         </div>
+
+        <div class="act-alert" id="compliance-alert">
+          <div class="act-alert-text" id="compliance-result-text">
+            <strong>If you answered "No" to any of the above, your home is currently non-compliant.</strong>
+          </div>
+        </div>
+
         <div class="deadline-rows">
           <div class="deadline-row active">
             <div class="dl-icon">
