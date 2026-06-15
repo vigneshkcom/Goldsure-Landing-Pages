@@ -139,6 +139,12 @@ fbq('track', 'PageView');
   --cobalt:    #2D55C4;
   --coral:     #E2604A;
   --ember:     #F2A45C;
+  --cobalt-deep: oklch(0.30 0.11 264);
+  --night-2:    oklch(0.205 0.045 264);
+  --coral-deep: oklch(0.55 0.20 25);
+  --step--1:    clamp(0.82rem,0.78rem + 0.2vw,0.92rem);
+  --step-0:     clamp(1rem,0.95rem + 0.25vw,1.12rem);
+  --step-1:     clamp(1.3rem,1.1rem + 0.9vw,1.7rem);
 
   --ink:       #0D0D0D;
   --body-txt:  #0D0D0D;
@@ -1667,6 +1673,71 @@ section { padding: 5rem 2rem; }
   background: rgba(34,197,94,0.06) !important;
 }
 
+
+/* ════════════════════════════════════════════════════════════
+   PROCESS-AND-BELOW sections imported from source file
+   (DIY trap, dark guarantee + badges, process band, areas map).
+   Display font mapped to Poppins.
+════════════════════════════════════════════════════════════ */
+.diy-trap{background:var(--white);}
+.diy-trap .diy-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;}
+.diy-trap .diy-copy h2{color:var(--ink);margin-bottom:1rem;}
+.diy-trap .diy-copy p{color:var(--muted);font-size:var(--step-0);line-height:1.75;max-width:60ch;}
+.diy-trap .diy-compare{display:grid;gap:1rem;}
+.diy-trap .dc{display:flex;gap:.85rem;align-items:flex-start;padding:1.1rem 1.2rem;border-radius:var(--radius);border:1px solid var(--border);}
+.diy-trap .dc.bad{background:oklch(0.64 0.21 25 / .06);border-color:oklch(0.72 0.16 28 / .3);}
+.diy-trap .dc.good{background:oklch(0.48 0.17 262 / .05);border-color:oklch(0.48 0.17 262 / .25);}
+.diy-trap .dc-ic{flex:0 0 auto;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.diy-trap .dc.bad .dc-ic{background:oklch(0.64 0.21 25 / .15);color:var(--coral-deep);}
+.diy-trap .dc.good .dc-ic{background:oklch(0.48 0.17 262 / .12);color:var(--cobalt);}
+.diy-trap .dc b{display:block;color:var(--ink);font-size:0.95rem;margin-bottom:.2rem;}
+.diy-trap .dc span{font-size:0.85rem;color:var(--muted);line-height:1.5;}
+@media(max-width:760px){.diy-trap .diy-inner{grid-template-columns:1fr;}}
+.guarantee-section{background:linear-gradient(168deg,var(--cobalt-deep),var(--night-2))!important;}
+.guarantee-section::before{display:none!important;}
+.guarantee-header .eyebrow{color:var(--gold)!important;}
+.guarantee-header h2{color:var(--white)!important;}
+.guarantee-header p{color:oklch(1 0 0 / .75)!important;}
+.gu-card{background:oklch(1 0 0 / .05)!important;border:1px solid oklch(1 0 0 / .12)!important;}
+.gu-card h3{color:var(--white)!important;}
+.gu-card p{color:oklch(1 0 0 / .8)!important;}
+.gu-icon{background:oklch(1 0 0 / .06)!important;color:var(--gold)!important;}
+.gu-footer-label{color:oklch(1 0 0 / .72)!important;}
+.gu-pill{background:oklch(1 0 0 / .08)!important;border:1px solid oklch(1 0 0 / .16)!important;color:oklch(1 0 0 / .9)!important;}
+.gu-pill svg{color:var(--gold);}
+.gu-tc{color:oklch(1 0 0 / .55)!important;}
+.process-section{background:linear-gradient(180deg,oklch(0.955 0.018 262),oklch(0.925 0.027 262));padding:clamp(2.75rem,5.5vw,4.75rem) clamp(1rem,3vw,2.5rem);}
+.process-track::before{top:37px;background:linear-gradient(90deg,transparent,oklch(0.48 0.17 262 / .3),oklch(0.48 0.17 262 / .5),oklch(0.48 0.17 262 / .3),transparent);}
+.ps-circle{width:74px;height:74px;background:var(--cobalt);border:none;box-shadow:0 16px 30px -14px oklch(0.30 0.11 264 / .7),0 0 0 6px oklch(0.99 0.004 85 / .65);transition:transform .3s,box-shadow .3s;}
+.process-step:hover .ps-circle{border:none;transform:translateY(-3px);box-shadow:0 20px 36px -14px oklch(0.30 0.11 264 / .8),0 0 0 6px var(--gold-bg);}
+.ps-num{font-family:"Poppins",sans-serif;font-size:1.65rem;font-weight:700;color:var(--white);letter-spacing:0;}
+.guarantee-header{max-width:none;display:flex;align-items:center;justify-content:space-between;gap:1.5rem 2.5rem;flex-wrap:wrap;}
+.gu-head-text{max-width:560px;}
+.gu-head-badges{display:flex;align-items:center;gap:1.15rem;flex:0 0 auto;}
+.gu-head-badges .gu-cert{height:86px;width:auto;background:var(--white);border-radius:10px;padding:6px 9px;display:block;}
+.gu-seal{width:94px;height:94px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 30%,oklch(0.99 0.01 85),oklch(0.93 0.02 85));border:2px solid var(--gold);box-shadow:0 0 0 5px oklch(0.80 0.12 85 / .18);flex:0 0 auto;}
+.gu-seal b{font-family:"Poppins",sans-serif;font-size:2rem;line-height:.85;color:var(--cobalt);}
+.gu-seal span{font-size:0.57rem;font-weight:700;letter-spacing:0.09em;color:var(--gold-deep);text-transform:uppercase;line-height:1.15;margin-top:3px;}
+.gu-footer{background:oklch(1 0 0 / .05)!important;border:1px solid oklch(1 0 0 / .15)!important;border-radius:var(--radius);}
+.gu-pill{font-size:0.8rem;padding:0.42rem 0.95rem;border-radius:999px;}
+.gu-pill--warranty{background:var(--gold-bg)!important;border-color:var(--gold-bd)!important;color:var(--gold)!important;font-weight:700!important;}
+@media(max-width:760px){.guarantee-header{justify-content:flex-start;}.gu-head-badges .gu-cert{height:72px;}.gu-seal{width:80px;height:80px;}.gu-seal b{font-size:1.7rem;}}
+.areas-band{background:linear-gradient(168deg,var(--cobalt-deep) 0%,var(--night-2) 80%);padding:clamp(3rem,6vw,5.25rem) clamp(1rem,3vw,2.5rem);color:var(--white);}
+.areas-inner{max-width:1160px;margin:0 auto;}
+.areas-head{text-align:center;max-width:680px;margin:0 auto clamp(1.9rem,3.5vw,2.75rem);}
+.areas-head .eyebrow{color:var(--gold);}
+.areas-head h2{color:var(--white);}
+.map-wrap{position:relative;z-index:0;border-radius:18px;overflow:hidden;border:1px solid oklch(1 0 0 / .16);box-shadow:0 30px 60px -34px oklch(0 0 0 / .6);margin-bottom:clamp(1.9rem,3vw,3rem);height:520px;}
+#service-map{width:100%;height:100%;}
+@media(max-width:720px){.map-wrap{height:380px;}}
+@media(max-width:480px){.map-wrap{height:300px;}}
+.areas-title{text-align:center;font-size:var(--step-1);margin-bottom:clamp(1.1rem,2.5vw,1.75rem);color:var(--white);}
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px 24px;max-width:960px;margin:0 auto;}
+@media(max-width:520px){.areas-grid{grid-template-columns:1fr 1fr;}}
+.area-item{display:flex;align-items:center;gap:9px;color:oklch(1 0 0 / .85);font-weight:500;font-size:0.92rem;}
+.area-item svg{width:15px;height:18px;color:var(--gold);flex:0 0 auto;}
+.areas-note{text-align:center;margin-top:clamp(1.4rem,3vw,2rem);color:oklch(1 0 0 / .72);font-size:var(--step--1);}
+.areas-note a{color:var(--gold);font-weight:600;}
 </style>
 </head>
 <body>
@@ -2038,7 +2109,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 </section>
 
 <!-- ══ PROCESS ══ -->
-<section class="process-section">
+<section class="process-section" id="process">
   <div class="process-inner">
     <div class="process-header reveal">
       <div class="eyebrow">Our Process</div>
@@ -2076,7 +2147,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 </section>
 
 <!-- ══ TESTIMONIALS ══ -->
-<section class="testimonials-section">
+<section class="testimonials-section" id="reviews">
   <div class="testimonials-inner">
 
     <div class="testimonials-header reveal">
@@ -2109,7 +2180,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking — cost was very reasonable."</p>
+        <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking - cost was very reasonable."</p>
         <div class="review-footer">
           <span class="review-name">Alastair Anderson</span>
           <span class="review-source"><span class="g-badge">G</span>Google Review</span>
@@ -2139,7 +2210,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <p class="review-text">"Goldsure made getting our smoke alarms installed super easy — great communication, quick install, top job. Highly recommend!"</p>
+        <p class="review-text">"Goldsure made getting our smoke alarms installed super easy - great communication, quick install, top job. Highly recommend!"</p>
         <div class="review-footer">
           <span class="review-name">Samantha Maristela</span>
           <span class="review-source"><span class="g-badge">G</span>Google Review</span>
@@ -2193,7 +2264,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 
     </div><!-- /.reviews-grid -->
 
-    <!-- Mobile auto-flip carousel — shows 2 cards per frame -->
+    <!-- Mobile auto-flip carousel - shows 2 cards per frame -->
     <div class="reviews-carousel" aria-label="Customer reviews carousel">
       <div class="reviews-carousel-track" id="reviewsTrack">
 
@@ -2207,7 +2278,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking — cost was very reasonable."</p>
+            <p class="review-text">"Couldn't be happier with the install. Whole process was easy from placing order to booking - cost was very reasonable."</p>
             <div class="review-footer">
               <span class="review-name">Alastair Anderson</span>
               <span class="review-source"><span class="g-badge">G</span>Google</span>
@@ -2239,7 +2310,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <p class="review-text">"Goldsure made getting our smoke alarms installed super easy — great communication, quick install, top job. Highly recommend!"</p>
+            <p class="review-text">"Goldsure made getting our smoke alarms installed super easy - great communication, quick install, top job. Highly recommend!"</p>
             <div class="review-footer">
               <span class="review-name">Samantha Maristela</span>
               <span class="review-source"><span class="g-badge">G</span>Google</span>
@@ -2305,7 +2376,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
   <!-- Post-testimonials CTA -->
   <div style="text-align:center;padding:2rem 2rem 3.5rem;">
     <div class="eyebrow" style="color:var(--gold)">Ready to join them?</div>
-    <p style="color:var(--muted);font-size:0.92rem;margin:0.5rem auto 1.5rem;max-width:420px;line-height:1.7;">Get your instant compliance quote — takes 2 minutes.</p>
+    <p style="color:var(--muted);font-size:0.92rem;margin:0.5rem auto 1.5rem;max-width:420px;line-height:1.7;">Get your instant compliance quote - takes 2 minutes.</p>
     <div style="display:flex;gap:0.85rem;justify-content:center;flex-wrap:wrap;">
       <a href="#book" class="btn btn-gold" data-track="book_installation_click">
         Check My Home's Compliance
@@ -2320,12 +2391,18 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 </section>
 
 <!-- ══ GUARANTEE ══ -->
-<section class="guarantee-section">
+<section class="guarantee-section" id="guarantee">
   <div class="guarantee-inner">
     <div class="guarantee-header reveal">
-      <div class="eyebrow" style="color:var(--gold)">Peace of Mind</div>
-      <h2>The Goldsure Guarantee</h2>
-      <p style="font-size:0.95rem;margin-top:0.6rem;color:var(--muted);">Every Goldsure installation comes with a clear set of commitments to you.</p>
+      <div class="gu-head-text">
+        <div class="eyebrow" style="color:var(--gold)">Peace of Mind</div>
+        <h2>The Goldsure Guarantee</h2>
+        <p style="font-size:0.95rem;margin-top:0.6rem;color:var(--muted);">Every Goldsure installation comes with a clear set of commitments to you.</p>
+      </div>
+      <div class="gu-head-badges">
+        <img class="gu-cert" src="data:image/jpeg;base64,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" alt="Australian Standard AS 3786:2014 certified product, Licence SMK41401" loading="lazy">
+        <div class="gu-seal" role="img" aria-label="10 year workmanship warranty"><b>10</b><span>Year<br>Warranty*</span></div>
+      </div>
     </div>
 
     <div class="guarantee-layout stagger">
@@ -2347,18 +2424,41 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
         <div class="gu-icon">
           <svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <h3>The Professional Install Promise</h3>
-        <p>Licensed professionals only. Installed correctly the first time. We do not cut corners and we do not subcontract to unlicensed operators.</p>
+        <h3>We Turn Up When We Say We Will</h3>
+        <p>Licensed Goldsure electricians only, never unlicensed subcontractors. We call before we arrive, install at every required location, clean up after ourselves, and hand you the Certificate of Compliance before we leave.</p>
       </div>
     </div><!-- /.guarantee-layout -->
 
     <div class="gu-footer reveal">
       <span class="gu-footer-label">Every installation includes:</span>
       <div class="gu-pills">
+        <span class="gu-pill gu-pill--warranty"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>10-Year Workmanship Warranty*</span>
         <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Certified Products</span>
         <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Licensed Electricians</span>
         <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Same-Day Certificate</span>
         <span class="gu-pill"><svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>QLD-Specific Assessment</span>
+      </div>
+      <p class="gu-tc">*Workmanship warranty, terms &amp; conditions apply.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIY TRAP ══ -->
+<section class="diy-trap" id="diy">
+  <div class="diy-inner">
+    <div class="diy-copy reveal">
+      <div class="eyebrow" style="color:var(--gold-deep)">Before you buy a kit</div>
+      <h2>Can't I just buy alarms and fit them myself?</h2>
+      <p>If your home has hard-wired (240V) alarms, replacing them is electrical work that must be done by a licensed electrician under Queensland law. A cheap DIY kit will not make a hard-wired home compliant, and unlicensed electrical work can void your insurance. Goldsure's licensed electricians install to AS 3786 and issue your Certificate of Compliance the same day, so it is done once and done right.</p>
+    </div>
+    <div class="diy-compare reveal">
+      <div class="dc bad">
+        <span class="dc-ic"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+        <div><b>An $80 DIY battery kit</b><span>Will not make a hard-wired home compliant. No certificate, and unlicensed 240V work can void your insurance.</span></div>
+      </div>
+      <div class="dc good">
+        <span class="dc-ic"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <div><b>Goldsure, $98 per alarm</b><span>Licensed electricians, installed to AS 3786, Certificate of Compliance the same day. Compliant and covered.</span></div>
       </div>
     </div>
   </div>
@@ -2368,7 +2468,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
 <section style="background:var(--off-white);padding:4rem 2.5rem;">
   <div style="max-width:820px;margin:0 auto;text-align:center;">
     <div class="eyebrow" style="color:var(--gold)">Don't Wait</div>
-    <h2 style="color:var(--ink);margin-bottom:0.75rem;">Most homeowners leave this until the last minute — don't.</h2>
+    <h2 style="color:var(--ink);margin-bottom:0.75rem;">Most homeowners leave this until the last minute - don't.</h2>
     <p style="color:var(--muted);font-size:0.95rem;max-width:540px;margin:0 auto 2rem;line-height:1.75;">Installation slots fill up as the 2027 deadline approaches. Get your instant quote now and lock in a time that suits you.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#book" class="btn btn-gold" data-track="book_installation_click">
@@ -2383,8 +2483,44 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
   </div>
 </section>
 
+<!-- ══ WHERE WE INSTALL ══ -->
+<section class="areas-band" id="areas">
+  <div class="areas-inner">
+    <div class="areas-head reveal">
+      <span class="eyebrow">Where we install</span>
+      <h2>We install across Brisbane, Logan, Ipswich &amp; the Gold Coast</h2>
+    </div>
+    <div class="map-wrap reveal">
+      <div id="service-map"></div>
+    </div>
+    <h3 class="areas-title">Areas we cover across South East Queensland</h3>
+    <div class="areas-grid">
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Brisbane</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Gold Coast</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Ipswich</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Beenleigh</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Browns Plains</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Coomera</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Eagleby</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Ormeau</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Pimpama</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shailer Park</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Slacks Creek</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Springwood</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Yatala</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Gatton</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Laidley</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Lowood</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Marburg</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Helidon</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Canungra</span>
+    </div>
+    <p class="areas-note">Don't see your suburb? <a href="tel:0721455155" data-track="phone_click_areas">Call (07) 2145 5155</a>, we confirm coverage on enquiry.</p>
+  </div>
+</section>
+
 <!-- ══ FAQ ══ -->
-<section class="faq-section">
+<section class="faq-section" id="faq">
   <div class="faq-inner">
     <div class="faq-header reveal">
       <div class="eyebrow">FAQ</div>
@@ -2402,7 +2538,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="faq-check-list">
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be photoelectric (not ionisation type)</div>
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Comply with AS 3786-2014 or AS 3786-2023</div>
-            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be interconnected — when one alarm sounds, all alarms sound</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Be interconnected - when one alarm sounds, all alarms sound</div>
           </div>
           <div class="faq-sub-label">Be installed:</div>
           <div class="faq-check-list">
@@ -2510,7 +2646,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <div class="faq-toggle"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
         </div>
         <div class="faq-body"><div class="faq-body-inner">
-          <p>Yes. Smoke alarms that are hard-wired at 240V must be installed by a licensed electrician under Queensland law. All Goldsure installations are completed by fully licensed electricians — no exceptions.</p>
+          <p>Yes. Smoke alarms that are hard-wired at 240V must be installed by a licensed electrician under Queensland law. All Goldsure installations are completed by fully licensed electricians - no exceptions.</p>
         </div></div>
       </div>
 
@@ -2538,7 +2674,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
           <p style="margin-bottom:0.6rem;">You can check:</p>
           <div class="faq-check-list">
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether alarms are photoelectric</div>
-            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>The date of manufacture — must be less than 10 years old</div>
+            <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>The date of manufacture - must be less than 10 years old</div>
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether alarms are interconnected</div>
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Whether placement meets legislative requirements</div>
             <div class="faq-check-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>A licensed installer can assess compliance and provide documentation where required</div>
@@ -2948,5 +3084,78 @@ document.addEventListener('keydown', function (e) {
 })();
 </script>
 
+<!-- Areas-we-service map: Leaflet + OSM/CARTO tiles (no API key needed, works locally and in production) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function initServiceMap() {
+  var mapEl = document.getElementById('service-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  /* Radius targets (mi -> m): Brisbane 20, Gold Coast 20, Ipswich 10, Marburg 10, Gatton/Helidon/Laidley/Lowood 5 */
+  var ZONES = [
+    { lat: -27.4698, lng: 153.0251, r: 32187 },
+    { lat: -28.0023, lng: 153.4145, r: 32187 },
+    { lat: -27.6171, lng: 152.7610, r: 16093 },
+    { lat: -27.5640, lng: 152.5950, r: 16093 },
+    { lat: -27.5614, lng: 152.2767, r: 8047 },
+    { lat: -27.5500, lng: 152.1240, r: 8047 },
+    { lat: -27.6320, lng: 152.3920, r: 8047 },
+    { lat: -27.4640, lng: 152.5780, r: 8047 },
+  ];
+
+  var SUBURBS = [
+    { name: 'Beenleigh',     lat: -27.7146, lng: 153.2034 },
+    { name: 'Browns Plains', lat: -27.6614, lng: 153.0387 },
+    { name: 'Coomera',       lat: -27.8849, lng: 153.3320 },
+    { name: 'Eagleby',       lat: -27.7350, lng: 153.2150 },
+    { name: 'Ormeau',        lat: -27.7676, lng: 153.2440 },
+    { name: 'Pimpama',       lat: -27.8244, lng: 153.3070 },
+    { name: 'Shailer Park',  lat: -27.6471, lng: 153.1820 },
+    { name: 'Slacks Creek',  lat: -27.6428, lng: 153.1438 },
+    { name: 'Springwood',    lat: -27.6128, lng: 153.1320 },
+    { name: 'Yatala',        lat: -27.7370, lng: 153.2190 },
+    { name: 'Canungra',      lat: -28.0152, lng: 153.1665 },
+  ];
+
+  var map = L.map(mapEl, {
+    center: [-27.73, 152.93],
+    zoom: window.innerWidth <= 720 ? 8 : 9,
+    scrollWheelZoom: false,
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
+
+  ZONES.forEach(function(z) {
+    L.circle([z.lat, z.lng], {
+      radius: z.r,
+      color: '#1a4480',
+      weight: 2,
+      opacity: 0.55,
+      fillColor: '#1a4480',
+      fillOpacity: 0.18,
+    }).addTo(map);
+  });
+
+  SUBURBS.forEach(function(s) {
+    L.circleMarker([s.lat, s.lng], {
+      radius: 7,
+      color: '#A8892F',
+      weight: 1.5,
+      fillColor: '#C9A84C',
+      fillOpacity: 0.95,
+    }).addTo(map).bindTooltip(s.name);
+  });
+
+  /* The map sits inside a .reveal block; re-measure once everything has settled */
+  window.addEventListener('load', function() {
+    setTimeout(function() { map.invalidateSize(); }, 400);
+  });
+})();
+</script>
 </body>
 </html>
