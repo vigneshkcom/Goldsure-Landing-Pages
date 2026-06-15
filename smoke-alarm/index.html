@@ -972,10 +972,10 @@ section { padding: 5rem 2rem; }
 
 /* ── Price clarity: dark navy panel floating on the off-white canvas ── */
 .price-clarity { background: var(--off-white); padding: 0 clamp(1rem,3vw,2.5rem) clamp(3rem,5vw,4.5rem); }
-.price-clarity .pc-panel { max-width: 1160px; margin: 0 auto; background: linear-gradient(165deg, var(--navy-900), var(--navy-950)); border-radius: var(--radius-lg); padding: clamp(2rem,4vw,3.5rem); box-shadow: 0 34px 64px -34px rgba(8,14,32,0.6); }
+.price-clarity .pc-panel { max-width: 1160px; margin: 0 auto; background: linear-gradient(165deg, oklch(0.30 0.11 264), oklch(0.205 0.045 264)); border-radius: var(--radius-lg); padding: clamp(2rem,4vw,3.5rem); box-shadow: 0 34px 64px -34px oklch(0.205 0.045 264 / 0.6); }
 .price-clarity .pc-inner { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem,4vw,3.5rem); align-items: center; }
 .price-clarity .pc-price { display: flex; flex-direction: column; line-height: 0.82; }
-.price-clarity .pc-amt { font-family: 'Clash Display','Poppins',sans-serif; font-weight: 700; font-size: clamp(3.6rem, 2rem + 7vw, 6.5rem); color: var(--gold-light); }
+.price-clarity .pc-amt { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: clamp(3.6rem, 2rem + 7vw, 6.5rem); color: var(--gold-light); }
 .price-clarity .pc-unit { font-size: 1rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem; }
 .price-clarity .pc-copy .eyebrow { color: var(--gold-light); margin-bottom: 0.5rem; }
 .price-clarity .pc-copy h2 { color: var(--white); margin-bottom: 0.6rem; }
