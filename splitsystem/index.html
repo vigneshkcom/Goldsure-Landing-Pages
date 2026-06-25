@@ -39,10 +39,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ============================================================================
 -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://api.fontshare.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Claude/Anthropic-style pairing: Source Serif 4 (~Tiempos/Copernicus) + Inter (~Styrene) -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<!-- Goldsure brand pairing: Clash Display (headings) + General Sans (body) -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
 
 <style>
 :root{
@@ -67,8 +67,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --step-2:clamp(1.8rem,1.4rem + 1.9vw,2.9rem);
   --step-3:clamp(2.4rem,1.7rem + 3.4vw,4.4rem);
   --step-4:clamp(3.4rem,2rem + 7vw,8rem);
-  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --font-serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-sans:"General Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-serif:"Clash Display","General Sans",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -77,7 +77,7 @@ body{
   font-size:var(--step-0);line-height:1.6;color:var(--ink);background:var(--paper);
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-h1,h2,h3,h4,.display{font-family:var(--font-serif);line-height:1.12;letter-spacing:-0.01em;font-weight:600}
+h1,h2,h3,h4,.display{font-family:var(--font-serif);line-height:1.04;letter-spacing:-0.02em;font-weight:700}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
@@ -143,8 +143,10 @@ footer .logo-img{height:46px;margin-bottom:14px}
 
 /* HERO */
 .hero{background:linear-gradient(160deg,var(--cobalt-deep),var(--cobalt));color:var(--white);overflow:hidden;position:relative}
-.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 85% 10%,oklch(0.59 0.18 258 /.5),transparent 60%);pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.02fr .98fr;grid-template-areas:"text card" "trust card";gap:0 clamp(20px,3vw,40px);
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,oklch(0.14 0 0 /.90) 0%,oklch(0.16 0 0 /.78) 30%,oklch(0.18 0 0 /.46) 48%,oklch(0.20 0 0 /.15) 64%,oklch(0.20 0 0 /0) 80%);pointer-events:none}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;z-index:0}
+@media(max-width:860px){.hero::after{background:linear-gradient(180deg,oklch(0.13 0 0 /.88) 0%,oklch(0.16 0 0 /.64) 52%,oklch(0.18 0 0 /.38) 100%)}}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;grid-template-areas:"text card" "trust card";gap:0 clamp(20px,3vw,40px);
   align-items:center;padding-top:clamp(26px,3.5vw,46px);padding-bottom:clamp(30px,4vw,56px)}
 .hero-text{grid-area:text}
 .hero-trust{grid-area:trust;align-self:start}
@@ -166,13 +168,13 @@ footer .logo-img{height:46px;margin-bottom:14px}
   .hero-trust div:last-child:nth-child(odd){grid-column:1/-1}
 }
 .hero-card{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 /.7);transform:rotate(1.2deg)}
-.hero-card{align-self:stretch}
-.hero-card img{width:100%;height:100%;min-height:clamp(300px,42vw,540px);object-fit:cover}
-.hero-tag{position:absolute;left:-10px;bottom:22px;background:var(--gold);color:var(--ink);font-family:var(--font-sans);
+.hero-card{align-self:center}
+.hero-card img{width:100%;height:auto;display:block}
+.hero-tag{position:absolute;left:-10px;bottom:22px;background:#a8be4f;color:var(--ink);font-family:var(--font-sans);
   font-weight:700;padding:12px 18px;border-radius:12px;transform:rotate(-2deg);box-shadow:0 12px 24px -10px oklch(0 0 0 /.5)}
 .hero-tag span{display:block;font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
 .hero-tag b{font-size:var(--step-2)}
-@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;grid-template-areas:"text" "card" "trust"}.hero-card{transform:none;margin:16px 0}.hero-card img{height:230px;min-height:0;object-position:center 12%}.hero-trust{margin-top:14px}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;grid-template-areas:"text" "card" "trust"}.hero-card{transform:none;margin:16px 0}.hero-card img{height:auto}.hero-trust{margin-top:14px}
   .hero-tag{top:14px;bottom:auto;left:-6px;padding:9px 14px}.hero-tag span{font-size:var(--step--1)}.hero-tag b{font-size:var(--step-1)}}
 
 /* generic section spacing */
@@ -318,7 +320,7 @@ footer .logo-img{height:46px;margin-bottom:14px}
 @media(max-width:740px){.comfort{grid-template-columns:1fr}}
 
 /* team */
-/* === THE PEOPLE — role cards === */
+/* === THE PEOPLE - team photos === */
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(28px,3.2vw,46px)}
 .trole{position:relative;background:var(--white);border:1px solid var(--line);border-radius:18px;
   padding:22px 20px 18px;display:flex;flex-direction:column;gap:10px;overflow:hidden;
@@ -341,6 +343,15 @@ footer .logo-img{height:46px;margin-bottom:14px}
   .trole-ico{width:46px;height:46px;border-radius:13px}.trole-ico svg{width:22px;height:22px}}
 @media(max-width:380px){.team-grid{grid-template-columns:1fr}}
 .team-band .shead{margin-left:auto;margin-right:auto;text-align:center}
+.tphoto{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:0 14px 30px -22px oklch(0.4 0.02 264 /.5)}
+.tphoto img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block}
+.team-cap{text-align:center;max-width:62ch;margin:clamp(20px,3vw,30px) auto 0;color:var(--ink-soft);font-size:var(--step-0)}
+.team-proof{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);margin-top:clamp(26px,3.5vw,44px)}
+.tproof{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:0 18px 40px -26px oklch(0.4 0.02 264 /.55);display:flex;flex-direction:column}
+.tproof img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;display:block}
+.tproof figcaption{padding:15px 20px;font-size:var(--step--1);color:var(--ink-soft);line-height:1.42}
+.tproof figcaption b{color:var(--ink);font-weight:600}
+@media(max-width:860px){.team-proof{grid-template-columns:1fr}}
 
 /* process */
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(28px,3.2vw,46px)}
@@ -404,7 +415,10 @@ footer .logo-img{height:46px;margin-bottom:14px}
 
 /* final cta + form */
 .final{background:linear-gradient(160deg,var(--cobalt),var(--cobalt-deep));color:var(--white)}
-.final .grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(28px,5vw,60px);align-items:center}
+.final .grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(28px,5vw,60px);align-items:stretch}
+.final-left{display:flex;flex-direction:column}
+.final-team{margin-top:clamp(20px,3vw,28px);flex:1 1 auto;min-height:240px;border-radius:16px;overflow:hidden;box-shadow:0 24px 50px -28px oklch(0 0 0 /.6)}
+.final-team img{width:100%;height:100%;object-fit:cover;object-position:center 26%;display:block}
 .final h2{font-size:var(--step-2)}
 .final h2 .price{color:var(--gold)}
 .final .lede{color:oklch(1 0 0 /.82);margin-top:14px;max-width:42ch}
@@ -454,7 +468,7 @@ footer h4{color:var(--white);font-size:var(--step-0);font-weight:700;margin-bott
 .hero-card{animation:m-fade .9s ease .35s backwards}
 html.js .hero-card img{transform:scale(1.1);animation:m-kenburns 1.6s var(--ease-out) .35s backwards}
 .hero-tag{animation:m-tag-pop .8s var(--ease-spring) 1.15s backwards,m-tag-float 6s ease-in-out 2.2s infinite}
-.hero::after{animation:m-aurora 16s ease-in-out infinite}
+.hero::after{animation:none}
 
 /* hero headline: masked word-by-word reveal (applied only once JS splits it) */
 h1.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em;margin-bottom:-.12em}
@@ -539,6 +553,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <img class="hero-bg" src="/assets/team-hero.jpg" alt="" aria-hidden="true" />
   <div class="wrap">
     <div class="hero-text">
       <span class="eyebrow on-dark">VEU Multi-Split Air Conditioning &middot; Melbourne</span>
@@ -552,7 +567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="hero-card">
       <!-- IMAGE: client-supplied ECONOVA family photo at assets/hero-family.png -->
-      <img data-swap="hero" src="/assets/Image 1.png" alt="A comfortable Melbourne family home with ECONOVA reverse-cycle air conditioning" />
+      <img data-swap="hero" src="/assets/Image 3.png" alt="ECONOVA EcoComfort reverse-cycle split system, the unit Goldsure installs in your home" />
       <div class="hero-tag"><span>Customer Upfront Cost</span><b>ONLY $1,000</b></div>
     </div>
     <div class="hero-trust">
@@ -597,7 +612,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="explain-photo">
         <!-- IMAGE: interim generated visual at assets/aircon-control.png. Swap for a real ECONOVA install / shoot photo on deploy. The launching team keeps the /assets folder. -->
-        <img data-swap="explain" src="/assets/Image 2.png" alt="A wall-mounted reverse-cycle split system keeping a modern living room comfortable" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')" />
+        <img data-swap="explain" src="/assets/handshake.jpg" alt="Goldsure installer shaking hands with a Melbourne homeowner after an honest, no-surprises quote" onerror="this.style.display='none';this.parentElement.classList.add('img-missing')" />
       </div>
     </div>
     <ul class="explain-points">
@@ -732,33 +747,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="shead">
       <span class="eyebrow">The people</span>
       <h2>The team that quotes your job is the team that installs it.</h2>
-      <p>Licensed electricians and plumbers, full-time and in-house. No disappearing subbies.</p>
+      <p>Licensed electricians and plumbers, full-time and in-house. No disappearing subbies, no call centre. The faces below are the people who show up at your door.</p>
     </div>
     <div class="team-grid">
-      <div class="trole">
-        <div class="trole-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h4>Your installer</h4>
-        <p>A-grade licensed electrician does the install.</p>
-        <span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>In-house, full-time</span>
-      </div>
-      <div class="trole">
-        <div class="trole-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-        <h4>Your plumber</h4>
-        <p>Licensed plumber handles condensate and drainage.</p>
-        <span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Licensed &amp; in-house</span>
-      </div>
-      <div class="trole">
-        <div class="trole-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 15l2 2 4-4"/></svg></div>
-        <h4>Your coordinator</h4>
-        <p>Books the job and lodges your VEU paperwork.</p>
-        <span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No forms for you</span>
-      </div>
-      <div class="trole">
-        <div class="trole-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
-        <h4>Your aftercare</h4>
-        <p>Real support after install, when you need it.</p>
-        <span class="ttag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ongoing support</span>
-      </div>
+      <figure class="tphoto"><img src="/assets/team-01.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-02.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-03.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-04.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-05.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-06.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-07.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+      <figure class="tphoto"><img src="/assets/team-08.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
+    </div>
+    <p class="team-cap">Licensed A-grade electricians, licensed plumbers and in-house coordinators - one team, from your first call through to the after-install service window.</p>
+    <div class="team-proof">
+      <figure class="tproof"><img src="/assets/proof-tablet.jpg" alt="Goldsure team member with a Certificate of Compliance for a completed install" loading="lazy" decoding="async" /><figcaption><b>Done by the book.</b> Licensed work, certified on completion, with every VEU rebate form lodged for you.</figcaption></figure>
+      <figure class="tproof"><img src="/assets/proof-van.jpg" alt="Goldsure crew and work van out across Melbourne" loading="lazy" decoding="async" /><figcaption><b>Real local crews.</b> Our own vans and people on the road across Melbourne, Geelong and the Peninsula.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -864,7 +868,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="band final" id="quote">
   <div class="wrap reveal">
     <div class="grid">
-      <div>
+      <div class="final-left">
         <span class="eyebrow on-dark">Install must be done before 31 July</span>
         <h2>Lock the rebate. <span class="price">$1,000</span>, the honest price.</h2>
         <p class="lede">When the rebate value drops, you&rsquo;ll hear it from the Essential Services Commission, not from us the day before your install. Check your eligibility now and we&rsquo;ll get you a fixed-price quote.</p>
@@ -873,6 +877,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
           <div><b>Licensed</b>Trades only</div>
         </div>
+        <figure class="final-team"><img src="/assets/team-hero.jpg" alt="The Goldsure team, licensed Melbourne electricians and plumbers" loading="lazy" decoding="async" /></figure>
       </div>
       <form class="form" id="lead-form">
         <h3>Check Eligibility</h3>
