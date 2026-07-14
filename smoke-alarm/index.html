@@ -192,6 +192,12 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 @media(max-width:740px){.locale-grid{grid-template-columns:1fr}.locale-grid img{height:190px}}
 .areas-lede{color:oklch(1 0 0 /.78);font-size:var(--step--1);margin:-4px 0 16px}
 
+/* QLD scenery banners in content bands */
+.band-photo{border-radius:16px;overflow:hidden;margin:0 0 clamp(24px,3.5vw,36px);position:relative;box-shadow:0 22px 44px -28px oklch(0 0 0 /.55)}
+.band-photo img{width:100%;height:clamp(190px,23vw,310px);object-fit:cover;display:block}
+.band-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;background:linear-gradient(180deg,transparent,oklch(0 0 0 /.6));color:#fff;font-size:var(--step--1);font-weight:600;line-height:1.35}
+.band-photo.mt{margin:clamp(24px,3.5vw,36px) 0 0}
+
 /* bands */
 .band{padding:clamp(56px,8vw,104px) 0}
 .band.cobalt{background:var(--cobalt-deep);color:var(--white)}
@@ -514,8 +520,8 @@ html.js .sr-pop.in{opacity:1;transform:none}
 <div class="qld-strip" aria-label="Queensland owned and operated">
   <div class="wrap">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Queensland owned &amp; operated</b></span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>Brisbane office in Pinkenba</span>
-    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Servicing the Southside to the Gold Coast</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><b>Brisbane office in Pinkenba</b></span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><b>Servicing the Southside to the Gold Coast</b></span>
   </div>
 </div>
 
@@ -529,7 +535,8 @@ html.js .sr-pop.in{opacity:1;transform:none}
         <p>From 1 January 2027, every QLD home needs interconnected photoelectric alarms in each bedroom, the connecting hallways, and on every storey. Most homes need more alarms than the owner thinks. As the deadline nears, stock and electricians get harder to book, and prices climb. Ours do not.</p>
       </div>
       <div class="dl-photo">
-        <img src="/assets/sa/img/detail.jpg" alt="Goldsure licensed electrician fitting a compliant photoelectric smoke alarm" loading="lazy" decoding="async" />
+        <!-- Photo: Wade Johanson (Wikimedia Commons, CC BY 2.0) -->
+        <img src="/assets/sa/img/locale-queenslander.jpg" alt="A classic white Queenslander home with wraparound verandah - the kind of Queensland house the 2027 law covers" loading="lazy" decoding="async" />
       </div>
     </div>
     <div class="rr-grid">
@@ -553,6 +560,10 @@ html.js .sr-pop.in{opacity:1;transform:none}
       <h2>You have probably heard the horror stories. That is exactly why we are different.</h2>
       <p>Queensland homeowners keep warning each other about the smoke alarm trade. These are real words from people who got burned.</p>
     </div>
+    <figure class="band-photo">
+      <img src="/assets/sa/img/locale-brisbane-river.jpg" alt="The Brisbane river and city skyline on a clear day" loading="lazy" decoding="async" />
+      <figcaption>From Brisbane to the Gold Coast, the warnings are the same. Here is what your neighbours say.</figcaption>
+    </figure>
   </div>
   <div class="wrap">
     <div class="quote-grid">
@@ -594,6 +605,10 @@ html.js .sr-pop.in{opacity:1;transform:none}
       </div>
       <div class="promise">One price, every alarm. The price we quote is the price you pay, <b>told to you up front, never sprung on you on the day.</b></div>
     </div>
+    <figure class="band-photo mt">
+      <img src="/assets/sa/img/locale-goldcoast-dusk.jpg" alt="The Gold Coast skyline at dusk seen from above the beach" loading="lazy" decoding="async" />
+      <figcaption>$98 per alarm, everywhere we service. The same price in Springwood as in Surfers Paradise.</figcaption>
+    </figure>
   </div>
 </section>
 
