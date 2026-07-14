@@ -21,6 +21,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:url" content="https://smokealarms.goldsure.com.au" />
 <meta property="og:title" content="Goldsure Smoke Alarm Compliance | $98 per Alarm, QLD" />
 <meta property="og:description" content="$98 per alarm, flat and all-in. Local licensed QLD electricians, same-day Certificate of Compliance. Sorted before the 2027 deadline." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Goldsure",
+  "url": "https://smokealarms.goldsure.com.au",
+  "telephone": "+61 7 2145 5155",
+  "image": "https://smokealarms.goldsure.com.au/assets/sa/img/team-hero.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "30 Parker Court",
+    "addressLocality": "Pinkenba",
+    "addressRegion": "QLD",
+    "postalCode": "4008",
+    "addressCountry": "AU"
+  },
+  "areaServed": ["Beenleigh","Browns Plains","Coomera","Eagleby","Ormeau","Pimpama","Shailer Park","Slacks Creek","Springwood","Yatala","Brisbane Southside","Logan","Gold Coast"],
+  "description": "QLD smoke alarm compliance by local licensed electricians. $98 per alarm all-in, same-day Certificate of Compliance. Brisbane Southside and the Gold Coast corridor."
+}
+</script>
 
 <!--
   ============================================================================
@@ -153,6 +173,24 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .hero-tag span{display:block;font-size:var(--step--1);letter-spacing:.10em;text-transform:uppercase;font-weight:600}
 .hero-tag b{font-size:var(--step-1)}
 @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;grid-template-areas:"text" "card" "trust"}.hero-card{transform:none;margin:16px 0}.hero-trust{margin-top:14px}.hero-tag{top:14px;bottom:auto;left:-6px;padding:9px 14px}.hero-tag b{font-size:var(--step-0)}}
+
+/* QLD local strip */
+.qld-strip{background:var(--paper-2);border-bottom:1px solid var(--line);padding:13px 0}
+.qld-strip .wrap{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,34px);flex-wrap:wrap}
+.qld-strip span{display:inline-flex;align-items:center;gap:8px;font-size:var(--step--1);font-weight:600;color:var(--ink-soft);line-height:1.3}
+.qld-strip svg{width:15px;height:15px;color:var(--gold-deep);flex:0 0 auto}
+.qld-strip b{color:var(--ink)}
+
+/* locale tiles (areas band) */
+.locale-intro{color:oklch(1 0 0 /.8);font-size:var(--step-0);margin:-10px 0 22px;max-width:58ch}
+.locale-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:clamp(26px,4vw,38px)}
+.locale-grid figure{border-radius:14px;overflow:hidden;background:oklch(1 0 0 /.06);border:1px solid oklch(1 0 0 /.14)}
+.locale-grid img{width:100%;height:clamp(170px,18vw,230px);object-fit:cover;display:block;transition:transform 1.1s var(--ease-out)}
+.locale-grid figure:hover img{transform:scale(1.05)}
+.locale-grid figcaption{padding:12px 16px;font-size:var(--step--1);color:oklch(1 0 0 /.75);line-height:1.45}
+.locale-grid figcaption b{display:block;color:var(--white);font-size:var(--step-0)}
+@media(max-width:740px){.locale-grid{grid-template-columns:1fr}.locale-grid img{height:190px}}
+.areas-lede{color:oklch(1 0 0 /.78);font-size:var(--step--1);margin:-4px 0 16px}
 
 /* bands */
 .band{padding:clamp(56px,8vw,104px) 0}
@@ -447,7 +485,7 @@ html.js .sr-pop.in{opacity:1;transform:none}
   <img class="hero-bg" src="/assets/sa/img/hero-bg.jpg" alt="" aria-hidden="true" />
   <div class="wrap">
     <div class="hero-text">
-      <span class="eyebrow on-dark">QLD Smoke Alarm Compliance &middot; Brisbane &amp; Gold Coast</span>
+      <span class="eyebrow on-dark">Queensland Owned &amp; Operated &middot; Brisbane &amp; Gold Coast</span>
       <h1>Smoke alarm installation, done by a <span class="gold">qualified team</span> to get your home compliant.</h1>
       <ul class="hero-points">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>$98 per alarm. Flat, all-in.</b> No tiers, no asterisk. The price you see is the price you pay (plus a one-off $33 booking fee).</li>
@@ -471,6 +509,15 @@ html.js .sr-pop.in{opacity:1;transform:none}
     </div>
   </div>
 </section>
+
+<!-- QLD LOCAL STRIP -->
+<div class="qld-strip" aria-label="Queensland owned and operated">
+  <div class="wrap">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><b>Queensland owned &amp; operated</b></span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>Brisbane office in Pinkenba</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Servicing the Southside to the Gold Coast</span>
+  </div>
+</div>
 
 <!-- DEADLINE / 2027 -->
 <section class="band" id="deadline">
@@ -640,7 +687,7 @@ html.js .sr-pop.in{opacity:1;transform:none}
       <figure class="tphoto"><img src="/assets/sa/img/team-07.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
       <figure class="tphoto"><img src="/assets/sa/img/team-08.jpg" alt="Goldsure team member" loading="lazy" decoding="async" /></figure>
     </div>
-    <p class="team-cap">1,000+ Queensland homes already made compliant. One team, from your first call through to your certificate.</p>
+    <p class="team-cap">1,000+ Queensland homes already made compliant. Run from our Brisbane office in Pinkenba - one team, from your first call through to your certificate.</p>
     <div class="team-proof">
       <figure class="tproof"><img src="/assets/sa/img/proof-1.jpg" alt="Goldsure electrician installing a smoke alarm at a Brisbane home" loading="lazy" decoding="async" /><figcaption><b>On the tools, on time.</b> Our own licensed electricians across Brisbane Southside and the Gold Coast.</figcaption></figure>
       <figure class="tproof"><img src="/assets/sa/img/proof-2.jpg" alt="A neatly installed compliant photoelectric smoke alarm" loading="lazy" decoding="async" /><figcaption><b>Done by the book.</b> Correct placement, interconnected, certified to AS 3786, certificate the same day.</figcaption></figure>
@@ -726,19 +773,43 @@ html.js .sr-pop.in{opacity:1;transform:none}
 <section class="band cobalt areas-band" id="areas">
   <div class="wrap reveal">
     <div class="shead"><span class="eyebrow">Where we service</span><h2>Brisbane Southside &amp; the Gold Coast corridor</h2></div>
+    <p class="locale-intro">We're not a southern franchise working out of a call centre. This is home - from the Southside, down the M1, to the Gold Coast.</p>
+    <div class="locale-grid">
+      <figure>
+        <img src="/assets/sa/img/locale-brisbane.jpg" alt="Brisbane city and the river seen from the Kangaroo Point cliffs" loading="lazy" decoding="async" />
+        <figcaption><b>The Southside view.</b> Brisbane from the Kangaroo Point cliffs - our side of the river.</figcaption>
+      </figure>
+      <figure>
+        <!-- Photo: Wade Johanson (Wikimedia Commons, CC BY 2.0) - see PR notes -->
+        <img src="/assets/sa/img/locale-queenslander.jpg" alt="A classic white Queenslander home with wraparound verandah and picket fence" loading="lazy" decoding="async" />
+        <figcaption><b>Homes like yours.</b> Queenslanders and brick-and-tile, from Springwood to Beenleigh. We know how they're wired.</figcaption>
+      </figure>
+      <figure>
+        <img src="/assets/sa/img/locale-goldcoast.jpg" alt="Surfers Paradise beach and skyline on the Gold Coast at sunrise" loading="lazy" decoding="async" />
+        <figcaption><b>Down the M1.</b> The Gold Coast corridor, Coomera to Southport, covered every week.</figcaption>
+      </figure>
+    </div>
     <div class="map-wrap"><div id="service-map"></div></div>
     <h3 class="areas-title">Suburbs we cover across South East Queensland</h3>
+    <p class="areas-lede">Chances are we've installed in your street this month.</p>
     <div class="areas-grid">
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Beenleigh</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Browns Plains</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Coomera</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Eagleby</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Ormeau</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Pimpama</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Shailer Park</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Slacks Creek</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Springwood</span>
+      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Yatala</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Brisbane</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Logan</span>
-      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Springwood</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Carindale</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Redlands</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Capalaba</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Cleveland</span>
-      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Beenleigh</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Ipswich</span>
-      <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Coomera</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Southport</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Surfers Paradise</span>
       <span class="area-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Robina</span>
@@ -832,8 +903,8 @@ html.js .sr-pop.in{opacity:1;transform:none}
 <footer>
   <div class="wrap">
     <div class="foot-bottom">
-      <span>&copy; 2026 Goldsure Pty Ltd &middot; QLD smoke alarm compliance &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></span>
-      <span>Licensed Queensland electricians &middot; Brisbane Southside &amp; Gold Coast &middot; *10-year workmanship warranty, terms and conditions apply</span>
+      <span>&copy; 2026 Goldsure Pty Ltd &middot; 30 Parker Court, Pinkenba QLD 4008 &middot; <a href="tel:0721455155">(07) 2145 5155</a> &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></span>
+      <span>Queensland owned &amp; operated &middot; Licensed Queensland electricians &middot; Brisbane Southside &amp; Gold Coast &middot; *10-year workmanship warranty, terms and conditions apply</span>
     </div>
   </div>
 </footer>
