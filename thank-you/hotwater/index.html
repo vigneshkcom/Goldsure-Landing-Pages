@@ -189,6 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main class="hero">
   <div class="hero-inner">
     <section class="content-panel">
+      <div id="eligResult"></div>
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
         Enquiry Received
@@ -231,6 +232,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     });
   });
+})();
+</script>
+<script>
+(function(){
+  var msgs = {
+    A: "Good news: your answers suggest you qualify for both the VEU discount and the Solar Victoria rebate, plus federal incentives. Estimated combined saving is roughly $2,000 to $2,700. We'll confirm the exact figure with your quote.",
+    B: "Your answers suggest you qualify for the VEU discount and federal incentives (typically $1,000 to $1,800 off). The Solar Victoria rebate doesn't apply in your case - we'll explain why with your quote.",
+    C: "Because you already have a heat pump, the standard rebates don't apply to a like-for-like swap - but there are still options worth talking through. We'll be in touch.",
+    D: "Based on your answers the current rebate schemes don't apply to your property. We'll confirm when we contact you - sometimes a detail changes the answer."
+  };
+  var el = new URLSearchParams(window.location.search).get('el');
+  var box = document.getElementById('eligResult');
+  if (!box || !el || !msgs[el]) return;
+  box.style.cssText = 'background:oklch(0.48 0.17 262/0.08);border:1px solid oklch(0.48 0.17 262);border-radius:10px;padding:16px 18px;margin-bottom:18px;font-size:15px;line-height:1.5';
+  box.textContent = msgs[el];
 })();
 </script>
 </body>
