@@ -255,7 +255,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="f-row"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
         <div class="f-row"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
         <div class="f-row"><label for="f-postcode">Postcode</label><input id="f-postcode" name="postcode" type="text" inputmode="numeric" required autocomplete="postal-code"></div>
-        <p class="privacy-line">Your details are confidential and only used to respond to your enquiry.</p>
+        <p class="privacy-line">Your details are confidential and only used to send back your eligibility verdict.</p>
         <button type="submit" class="btn-primary" id="submitBtn">See my result</button>
       </form>
       <div class="quiz-foot">No obligation. Checking costs nothing and takes about a minute.</div>
@@ -327,8 +327,7 @@ var QUESTIONS = [
   ]},
   {key:'income_band', text:'Combined yearly income of everyone who owns the property?', options:[
     {label:'Under $150,000', value:'under150k'},
-    {label:'$150,000 or more', value:'over150k'},
-    {label:'Prefer not to say', value:'unsure'}
+    {label:'$150,000 or more', value:'over150k'}
   ], note:'<b>This one matters.</b> Household income is part of the official criteria for the biggest rebate, so we do need an answer here to give you an accurate result. Whichever way you answer, there is usually still a rebate we can match you to.'},
   {key:'property_value_band', text:'Property value roughly?', options:[
     {label:'Under $3 million', value:'under3m'},
