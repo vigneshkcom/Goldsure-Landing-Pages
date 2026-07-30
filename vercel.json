@@ -167,6 +167,10 @@
       "destination": "/api/hotwater/submit-lead"
     },
     {
+      "source": "/api/hotwater/eligibility-lead",
+      "destination": "/api/hotwater/eligibility-lead"
+    },
+    {
       "source": "/card",
       "destination": "/card/index.html"
     },

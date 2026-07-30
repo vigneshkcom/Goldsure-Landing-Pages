@@ -509,7 +509,7 @@ function computeOutcome(a){
       source_page: 'eligibility-checker'
     };
 
-    fetch('/api/submit-lead', {
+    fetch('/api/hotwater/eligibility-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
