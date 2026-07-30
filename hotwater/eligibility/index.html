@@ -471,6 +471,20 @@ function computeOutcome(a){
   return sv ? 'A' : 'B';
 }
 
+var OUTCOME_LABELS = {
+  A: 'Likely eligible - full rebates (VEU + Solar Victoria + federal incentives)',
+  B: 'Likely eligible - VEU and federal incentives',
+  C: 'Existing heat pump - standard rebates may not apply',
+  D: 'Likely ineligible under current rebate schemes'
+};
+
+function answerLabel(key, value){
+  var question = QUESTIONS.find(function(q){ return q.key === key; });
+  if (!question) return value || '';
+  var option = question.options.find(function(opt){ return opt.value === value; });
+  return option ? option.label : (value || '');
+}
+
 (function(){
   var detailForm = document.getElementById('detailForm');
   var btn = document.getElementById('submitBtn');
@@ -498,14 +512,15 @@ function computeOutcome(a){
       utm_content: window.gsTracked('utm_content'),
       utm_term: window.gsTracked('utm_term'),
       gclid: window.gsTracked('gclid'),
-      owner_status: a.owner_status || '',
-      property_type: a.property_type || '',
-      building_age: a.building_age || '',
-      current_system: a.current_system || '',
-      system_age: a.system_age || '',
-      income_band: a.income_band || '',
-      property_value_band: a.property_value_band || '',
-      eligibility_outcome: outcome,
+      owner_status: answerLabel('owner_status', a.owner_status),
+      property_type: answerLabel('property_type', a.property_type),
+      building_age: answerLabel('building_age', a.building_age),
+      current_system: answerLabel('current_system', a.current_system),
+      system_age: answerLabel('system_age', a.system_age),
+      income_band: answerLabel('income_band', a.income_band),
+      property_value_band: answerLabel('property_value_band', a.property_value_band),
+      eligibility_outcome: OUTCOME_LABELS[outcome] || outcome,
+      eligibility_code: outcome,
       source_page: 'eligibility-checker'
     };
 
