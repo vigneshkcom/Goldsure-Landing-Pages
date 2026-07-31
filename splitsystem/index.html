@@ -152,6 +152,10 @@ footer .logo-img{height:46px;margin-bottom:14px}
 .hero-trust{grid-area:trust;align-self:start}
 .hero-card{grid-area:card}
 .hero h1{font-size:clamp(1.85rem,1.3rem + 2.3vw,3rem);margin:.1em 0 .24em}
+.hero h1 .h1-line{display:block;white-space:nowrap}
+/* Below 360px the phrase can no longer fit on one line, and forcing it there
+   makes the whole page scroll sideways, so let it wrap on the smallest phones. */
+@media(max-width:359px){.hero h1 .h1-line{white-space:normal}}
 .hero h1 .price{display:block;font-size:clamp(3rem,2.1rem + 5vw,5.8rem);color:var(--gold);line-height:.85;margin:.18em 0}
 .hero .lede{font-size:var(--step-1);color:oklch(1 0 0 / .86);max-width:30ch;line-height:1.25;font-weight:400}
 .hero .terms{margin-top:10px;color:oklch(0.74 0.20 30);max-width:46ch;font-size:var(--step--1);line-height:1.4;font-weight:700}
@@ -560,7 +564,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="hero-text">
       <span class="eyebrow on-dark">VEU Multi-Split Air Conditioning &middot; Melbourne</span>
-      <h1>Whole-home comfort for <span class="price">$1,000.</span> That&rsquo;s what you pay.</h1>
+      <h1><span class="h1-line">Whole-home comfort for</span> <span class="price">$1,000.</span> That&rsquo;s what you pay.</h1>
       <p class="lede">The legal VEU minimum. No &ldquo;up to $8,000&rdquo;. No surprises on install day.</p>
       <p class="terms">Aircon upgrade offer available only for eligible customers with existing ducted heating.</p>
       <p class="sub">Reverse-cycle heating and cooling for the whole house, installed by licensed Melbourne electricians under the VEU rebate.</p>
@@ -960,18 +964,24 @@ document.querySelectorAll(".acc button").forEach(function(b){
   var h1=document.querySelector(".hero h1");
   if(h1&&!prefersReduced){
     var idx=0;
-    Array.prototype.slice.call(h1.childNodes).forEach(function(node){
-      if(node.nodeType!==3||!node.textContent.trim())return;
-      var frag=document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(function(part){
-        if(!part)return;
-        if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return}
-        var w=document.createElement("span");w.className="w";
-        var inner=document.createElement("span");inner.textContent=part;inner.style.setProperty("--i",idx++);
-        w.appendChild(inner);frag.appendChild(w);
+    /* Walks in document order so the stagger stays left-to-right. Recurses into
+       .h1-line, which is a forced single line, so its words still animate. */
+    function splitWords(host){
+      Array.prototype.slice.call(host.childNodes).forEach(function(node){
+        if(node.nodeType===1&&node.classList.contains("h1-line")){splitWords(node);return}
+        if(node.nodeType!==3||!node.textContent.trim())return;
+        var frag=document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(function(part){
+          if(!part)return;
+          if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return}
+          var w=document.createElement("span");w.className="w";
+          var inner=document.createElement("span");inner.textContent=part;inner.style.setProperty("--i",idx++);
+          w.appendChild(inner);frag.appendChild(w);
+        });
+        host.replaceChild(frag,node);
       });
-      h1.replaceChild(frag,node);
-    });
+    }
+    splitWords(h1);
     h1.classList.add("split");
   }
 
