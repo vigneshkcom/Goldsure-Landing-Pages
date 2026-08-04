@@ -36,8 +36,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window, document, "clarity", "script", "vg3xq1chsb");
 </script>
 <!-- End Microsoft Clarity -->
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel Code (skipped in ?demo=1 preview so demo views never record a Lead) -->
 <script>
+if (!/(^|[?&])demo=1(&|$)/.test(window.location.search)) {
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -49,10 +50,8 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2053062162312869');
 fbq('track', 'PageView');
 fbq('track', 'Lead');
+}
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2053062162312869&ev=Lead&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 
 <!--
