@@ -153,50 +153,73 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 }
 
 /* ============ HERO ============
-   The background is the whole Goldsure team. Readable text is only ever
-   allowed in the sky above their heads, or on the near-solid scrim at the
-   very bottom. Nothing readable may sit across a face. */
-.hero{position:relative;overflow:hidden;color:var(--white);background:var(--cobalt-deep);
-  min-height:clamp(640px,88vh,900px);display:flex;flex-direction:column;justify-content:flex-start}
+   Two columns, mirroring the Melbourne page: copy on the left, a tall product
+   card on the right. The whole-team photo is BACKGROUND ONLY - pulled up so the
+   faces band sits low in the frame and the bodies run off the bottom edge, with
+   no empty sky gap through the middle. Everything readable sits on the dark
+   scrim, never across a face. */
+.hero{position:relative;overflow:hidden;color:var(--white);
+  background:linear-gradient(160deg,var(--cobalt-deep),var(--cobalt))}
 .hero>picture{display:contents}
-.hero .wrap{width:100%}
-.hero-bottom{margin-top:auto}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%;z-index:0}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 4%;z-index:0}
 .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,
-    oklch(0.21 0.055 264 /.88) 0%,
-    oklch(0.22 0.055 264 /.70) 15%,
-    oklch(0.24 0.055 264 /.26) 33%,
-    oklch(0.26 0.055 264 /.04) 45%,
-    oklch(0.22 0.055 264 /.16) 60%,
-    oklch(0.19 0.055 264 /.74) 80%,
-    oklch(0.16 0.050 264 /.95) 100%)}
-.hero-top{position:relative;z-index:2;padding-top:clamp(32px,5vw,58px)}
-.hero-bottom{position:relative;z-index:2;padding-bottom:clamp(28px,3.6vw,44px)}
-.hero h1{font-size:clamp(1.9rem,1.15rem + 2.5vw,3.1rem);margin:.16em 0 .34em;max-width:26ch}
+  background:linear-gradient(95deg,
+    oklch(0.14 0.03 264 /.93) 0%,
+    oklch(0.15 0.03 264 /.88) 30%,
+    oklch(0.17 0.04 264 /.62) 48%,
+    oklch(0.19 0.045 264 /.34) 64%,
+    oklch(0.20 0.05 264 /.20) 82%,
+    oklch(0.20 0.05 264 /.14) 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;
+  grid-template-areas:"text card" "trust card";gap:0 clamp(20px,3vw,40px);align-items:start;
+  padding-top:clamp(26px,3.5vw,46px);padding-bottom:clamp(30px,4vw,56px)}
+.hero-text{grid-area:text}
+.hero-card{grid-area:card;align-self:start}
+.hero-trust{grid-area:trust;align-self:start}
+.hero h1{font-size:clamp(1.9rem,1.2rem + 2.5vw,3.1rem);margin:.12em 0 .34em;max-width:19ch}
 .hero h1 .gold{color:var(--gold)}
-.hero-sub{color:oklch(1 0 0 / .90);font-size:var(--step-0);line-height:1.55;max-width:50ch;
-  text-shadow:0 1px 14px oklch(0.16 0.05 264 / .55)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
-@media(max-width:640px){
-  .hero{min-height:clamp(560px,82vh,780px)}
-  .hero-bg{object-position:50% 50%}
-  .hero-cta .btn{flex:1 1 100%;justify-content:center}
-}
+.hero-points{list-style:none;display:grid;gap:12px;margin:0 0 22px;max-width:44ch}
+.hero-points li{position:relative;padding-left:32px;color:oklch(1 0 0 / .9);font-size:var(--step-0);line-height:1.45}
+.hero-points li svg{position:absolute;left:0;top:3px;width:21px;height:21px;color:var(--gold)}
+.hero-points li b{color:var(--white);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
 
-/* trust strip - solid band under the photo, so chips never sit on a face */
-.trust-band{background:var(--cobalt-deep);color:var(--white);padding:clamp(18px,2.4vw,26px) 0;
-  border-bottom:1px solid oklch(1 0 0 /.10)}
-.hero-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.hero-trust div{background:oklch(1 0 0 / .07);border:1px solid oklch(1 0 0 / .16);border-radius:12px;padding:13px 15px;
-  font-size:var(--step--1);color:oklch(1 0 0 / .74);line-height:1.4}
-.hero-trust b{display:block;font-family:var(--font-sans);font-weight:700;font-size:var(--step-0);color:var(--white);margin-bottom:3px}
+/* the tall photo card, with the green promise badge over its bottom-left corner */
+.hero-card{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 /.7);
+  transform:rotate(1.2deg)}
+.hero-card img{width:100%;height:auto;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 42%}
+.hero-tag{position:absolute;left:-10px;bottom:22px;background:oklch(0.52 0.14 142);color:#fff;font-family:var(--font-sans);
+  font-weight:700;padding:12px 18px;border-radius:12px;transform:rotate(-2deg);box-shadow:0 12px 24px -10px oklch(0.42 0.12 142 /.55)}
+.hero-tag span{display:block;font-size:var(--step--1);letter-spacing:.10em;text-transform:uppercase;font-weight:600}
+.hero-tag b{font-size:var(--step-1)}
+
+/* trust chips - dark translucent row, inside the hero */
+.hero-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:24px}
+.hero-trust div{background:oklch(1 0 0 / .07);border:1px solid oklch(1 0 0 / .16);border-radius:12px;padding:12px 14px;
+  font-size:var(--step--1);color:oklch(1 0 0 / .74);line-height:1.4;backdrop-filter:blur(6px)}
+.hero-trust b{display:block;font-family:var(--font-sans);font-weight:700;font-size:var(--step-0);color:var(--white);margin-bottom:2px}
 .hero-trust .star{color:var(--gold)}
 .final .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;grid-template-areas:"text" "card" "trust"}
+  .hero-card{transform:none;margin:18px 0 0;max-width:520px}
+  .hero-trust{margin-top:18px}
+  .hero::after{background:linear-gradient(180deg,
+    oklch(0.14 0.03 264 /.90) 0%,
+    oklch(0.15 0.03 264 /.84) 26%,
+    oklch(0.16 0.04 264 /.76) 55%,
+    oklch(0.16 0.04 264 /.84) 100%)}
+  .hero-bg{object-position:50% 6%}
+}
 @media(max-width:680px){
   .hero-trust{grid-template-columns:1fr 1fr;gap:9px}
   .final .hero-trust{grid-template-columns:1fr 1fr}
   .hero-trust div:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media(max-width:640px){
+  .hero-cta .btn{flex:1 1 100%;justify-content:center}
+  .hero-tag{top:14px;bottom:auto;left:-6px;padding:9px 14px}
+  .hero-tag b{font-size:var(--step-0)}
 }
 
 /* generic section spacing */
@@ -209,6 +232,19 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .shead p{color:var(--ink-soft);font-size:var(--step-1);font-weight:400;line-height:1.35}
 .band.cobalt .shead p{color:oklch(1 0 0 /.8)}
 .shead.centred{margin-left:auto;margin-right:auto;text-align:center}
+
+/* photo-backed band: a heavily dimmed photograph under a dark cobalt wash, with
+   every readable element floating above it on its own solid card */
+.photo-band{position:relative;overflow:hidden;background:var(--cobalt-deep);color:var(--white)}
+.photo-band .band-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.photo-band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(165deg,oklch(0.20 0.055 264 /.90) 0%,oklch(0.17 0.05 264 /.93) 55%,oklch(0.15 0.045 264 /.95) 100%)}
+.photo-band>.wrap{position:relative;z-index:2}
+.photo-band .shead p{color:oklch(1 0 0 /.82)}
+/* the band is white-on-dark, so any light card sitting on it has to put the
+   ink colour back or its headings inherit white and disappear */
+.photo-band .sum-row,.photo-band .alt-pay,.photo-band .elig .card{color:var(--ink)}
+.photo-band .sum-row.pay{color:var(--white)}
 
 /* ============ WHAT YOU ACTUALLY PAY ============ */
 .sum{counter-reset:sm;display:grid;gap:14px}
@@ -232,11 +268,25 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
   .sum-row::before{width:46px;height:46px;border-radius:13px;font-size:var(--step--1)}
   .sum-row .val{grid-column:2;text-align:left;margin-top:8px}
 }
+/* this section's heading runs one size step below every other section heading */
+#what-you-pay .shead h2{font-size:var(--step-1)}
+/* hover: a small lift and the number chip filling gold. Hover-capable pointers
+   only, so a touch device gets the identical, fully readable card. */
+@media(hover:hover){
+  .sum-row{transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out)}
+  .sum-row::before{transition:background .17s ease,color .17s ease,box-shadow .17s ease}
+  .sum-row:hover{transform:translateY(-4px);box-shadow:0 28px 48px -26px oklch(0 0 0 /.62)}
+  .sum-row:hover::before{background:linear-gradient(155deg,var(--gold),var(--gold-deep));color:var(--ink);
+    box-shadow:0 14px 26px -14px oklch(0.66 0.11 80 /.85)}
+}
 .alt-pay{margin-top:18px;display:flex;gap:16px;align-items:flex-start;
   background:oklch(0.80 0.12 85 / .16);border:1px solid var(--gold-deep);border-radius:16px;padding:20px 24px}
 .alt-pay svg{width:26px;height:26px;color:var(--gold-deep);flex:0 0 auto;margin-top:2px}
 .alt-pay p{color:var(--ink-soft);font-size:var(--step-0);line-height:1.5}
 .alt-pay b{color:var(--ink)}
+/* on the photo band the tinted panel needs its own solid base to stay readable */
+.photo-band .alt-pay{background:linear-gradient(0deg,oklch(0.80 0.12 85 /.16),oklch(0.80 0.12 85 /.16)),var(--white)}
+.photo-band .promise{border:1px solid oklch(1 0 0 /.14)}
 .promise{margin-top:22px;background:var(--ink);color:var(--white);border-radius:var(--r);padding:26px 30px;
   font-family:var(--font-serif);font-weight:600;font-size:var(--step-1);line-height:1.32}
 .promise b{color:var(--gold)}
@@ -246,8 +296,8 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 /* ============ FAQ ============ */
 .faq{max-width:820px;margin:0 auto}
 .acc{border-bottom:1px solid var(--line)}
-.acc button{width:100%;text-align:left;background:none;border:0;padding:22px 44px 22px 0;cursor:pointer;position:relative;
-  font-family:var(--font-serif);font-weight:600;font-size:var(--step-1);color:var(--ink);line-height:1.25}
+.acc button{width:100%;text-align:left;background:none;border:0;padding:20px 44px 20px 0;cursor:pointer;position:relative;
+  font-family:var(--font-serif);font-weight:600;font-size:var(--step-0);color:var(--ink);line-height:1.3}
 .acc button::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:var(--step-2);color:var(--cobalt);transition:transform .3s}
 .acc.open button::after{transform:translateY(-50%) rotate(45deg)}
 .acc .panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.2,.8,.2,1)}
@@ -255,21 +305,24 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .acc .panel>div{overflow:hidden}
 .acc .panel p{padding:0 0 22px;color:var(--ink-soft);max-width:72ch}
 
-/* ============ HOW IT WORKS ============ */
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(28px,3.2vw,46px)}
-.step{counter-increment:s;position:relative;background:var(--white);border:1px solid var(--line);border-radius:18px;
-  padding:24px 22px 20px;display:flex;flex-direction:column;gap:12px;overflow:hidden;
+/* ============ HOW IT WORKS ============
+   Compact: the number chip sits inline to the left of the title, on one line,
+   with the sentence tucked underneath it. No dead white space in the card. */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(22px,2.6vw,32px)}
+.step{counter-increment:s;position:relative;background:var(--white);border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 13px;
+  align-items:center;align-content:center;overflow:hidden;
   transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .3s}
-.step::before{content:counter(s);font-family:var(--font-sans);font-weight:700;font-size:var(--step-0);
-  width:54px;height:54px;border-radius:15px;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);display:grid;place-items:center;flex:0 0 auto;
-  box-shadow:0 14px 26px -14px oklch(0.48 0.17 262 /.85)}
+.step::before{content:counter(s);grid-column:1;grid-row:1;font-family:var(--font-sans);font-weight:700;font-size:var(--step--1);
+  width:38px;height:38px;border-radius:11px;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);display:grid;place-items:center;
+  box-shadow:0 10px 20px -12px oklch(0.48 0.17 262 /.85)}
 .step::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,var(--gold-deep),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
-.step:hover{transform:translateY(-6px);box-shadow:0 28px 52px -30px oklch(0.33 0.12 264 /.55);border-color:transparent}
+.step:hover{transform:translateY(-4px);box-shadow:0 24px 44px -30px oklch(0.33 0.12 264 /.55);border-color:transparent}
 .step:hover::after{transform:scaleX(1)}
-.step h4{font-size:var(--step-0);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
-.step p{font-size:var(--step--1);color:var(--ink-soft);line-height:1.55;margin:0}
-@media(max-width:860px){.steps{grid-template-columns:1fr;gap:12px}.step{padding:20px 18px}.step::before{width:46px;height:46px;border-radius:13px;font-size:var(--step--1)}}
+.step h4{grid-column:2;grid-row:1;font-size:var(--step-0);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
+.step p{grid-column:2;grid-row:2;font-size:var(--step--1);color:var(--ink-soft);line-height:1.5;margin:0}
+@media(max-width:860px){.steps{grid-template-columns:1fr;gap:10px}.step{padding:14px 16px}}
 
 /* ============ PRODUCT ============ */
 .product-band{background:#d4e193}
@@ -310,28 +363,56 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .proof p{color:var(--ink-soft);font-size:var(--step--1);line-height:1.55}
 .proof a{color:var(--cobalt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:820px){.proofs{grid-template-columns:1fr}}
+/* the eight faces, same pattern as the Melbourne page */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(26px,3.2vw,42px)}
+.tphoto{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--white);
+  box-shadow:0 14px 30px -22px oklch(0.4 0.02 264 /.5)}
+.tphoto img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;display:block}
+.team-cap{text-align:center;max-width:64ch;margin:clamp(18px,2.6vw,26px) auto 0;color:var(--ink-soft);font-size:var(--step--1)}
+@media(max-width:860px){.team-grid{grid-template-columns:1fr 1fr;gap:12px}}
+@media(max-width:380px){.team-grid{grid-template-columns:1fr}}
 
-/* ============ REVIEWS ============ */
-.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.rev{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+/* ============ REVIEWS ============
+   A single scroll-snapping row. The browser gives us the swipe on a phone; the
+   script only nudges it along every four seconds and keeps the dots in step.
+   All eight cards are always in the DOM at full height, so nothing shifts. */
+.reviews-band{padding:clamp(30px,4.2vw,54px) 0}
+.reviews-band .shead{margin-bottom:clamp(16px,2vw,22px)}
+.rev-carousel{position:relative}
+.rev-track{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;padding:2px 2px 6px}
+.rev-track::-webkit-scrollbar{display:none}
+.rev{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;
+  display:flex;flex-direction:column}
 .stars{color:var(--gold-deep);letter-spacing:2px;font-size:var(--step-0)}
-.rev p{margin:10px 0 16px;color:var(--ink)}
+.rev p{margin:10px 0 16px;color:var(--ink);flex:1}
 .rev .who{display:flex;align-items:center;gap:10px;font-size:var(--step--1);color:var(--ink-soft)}
 .rev .who b{color:var(--ink);font-weight:700}
 .rev .who .g-mini{width:20px;height:20px;flex:0 0 auto}
-.gbadge{display:inline-flex;align-items:center;gap:16px;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:13px 22px;margin-bottom:clamp(22px,3vw,34px);box-shadow:0 16px 32px -24px oklch(0.4 0.02 264 /.6)}
-.gbadge .g-logo{width:34px;height:34px;flex:0 0 auto}
+.rev-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:clamp(16px,2vw,22px)}
+.rev-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;cursor:pointer;background:oklch(0.84 0.014 264);
+  transition:background .25s,transform .25s}
+.rev-dot.on{background:var(--cobalt);transform:scale(1.3)}
+@media(max-width:960px){.rev{flex-basis:calc((100% - 18px)/2)}}
+@media(max-width:640px){.rev{flex-basis:100%}}
+.gbadge{display:inline-flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:9px 16px;margin-bottom:clamp(16px,2vw,22px);box-shadow:0 14px 28px -24px oklch(0.4 0.02 264 /.6)}
+.gbadge .g-logo{width:26px;height:26px;flex:0 0 auto}
 .gbadge .gb-mid{display:flex;flex-direction:column;line-height:1.05}
-.gbadge .gb-rating{font-weight:600;color:var(--ink);font-size:var(--step-0)}
-.gbadge .gb-rating b{font-size:var(--step-2)}
-.gbadge .stars{font-size:.92rem;margin-top:3px}
-.gbadge .gb-label{font-size:var(--step--1);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:700;line-height:1.25;padding-left:16px;border-left:1px solid var(--line)}
+.gbadge .gb-rating{font-weight:600;color:var(--ink);font-size:var(--step--1)}
+.gbadge .gb-rating b{font-size:var(--step-1)}
+.gbadge .stars{font-size:.82rem;margin-top:2px}
+.gbadge .gb-label{font-size:var(--step--1);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:700;line-height:1.25;padding-left:14px;border-left:1px solid var(--line)}
 
 /* ============ ELIGIBILITY ============ */
 .elig{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .elig .card{border-radius:var(--r);padding:30px 28px}
 .elig .inc{background:oklch(0.55 0.13 150 / .12);border:1px solid oklch(0.55 0.13 150 / .4)}
 .elig .ask{background:var(--white);border:1px solid var(--line)}
+/* over the photo, both cards need a solid base so every word stays readable */
+.photo-band .elig .card{box-shadow:0 26px 52px -30px oklch(0 0 0 /.7)}
+.photo-band .elig .inc{background:linear-gradient(0deg,oklch(0.55 0.13 150 /.12),oklch(0.55 0.13 150 /.12)),var(--white)}
 .elig h3{font-size:var(--step-1);margin-bottom:16px}
 .elig ul{list-style:none;display:grid;gap:12px}
 .elig li{padding-left:28px;position:relative;color:var(--ink-soft);line-height:1.45}
@@ -380,9 +461,11 @@ footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:30px 0 96px}
 @keyframes m-word{from{opacity:0;transform:translateY(108%)}to{opacity:1;transform:translateY(0)}}
 @keyframes m-bar-rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
 .hero .eyebrow{animation:m-rise .8s var(--ease-out) .1s both}
-.hero-sub{animation:m-rise .8s var(--ease-out) .55s both}
+.hero-points{animation:m-rise .8s var(--ease-out) .55s both}
 .hero .hero-cta{animation:m-rise .8s var(--ease-out) .8s both}
 .hero-bg{animation:m-fade 1.2s ease .05s backwards}
+.hero-card{animation:m-fade .9s ease .35s backwards}
+.hero-tag{animation:m-rise .7s var(--ease-spring) 1.1s backwards}
 h1.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em;margin-bottom:-.12em}
 h1.split .w>span{display:inline-block;animation:m-word .85s var(--ease-out) both;animation-delay:calc(.18s + var(--i)*.05s)}
 html.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
@@ -449,39 +532,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- 1. HERO -->
 <section class="hero" id="top">
   <picture>
-    <source media="(max-width:640px)" srcset="/assets/img/hero-team-mobile.jpg" />
-    <img class="hero-bg" src="/assets/img/hero-team.jpg" alt="" aria-hidden="true" width="1920" height="1893" fetchpriority="high" />
+    <source media="(max-width:900px)" srcset="/assets/img/hero-team-mobile.jpg" />
+    <img class="hero-bg" src="/assets/img/hero-team.jpg" alt="" aria-hidden="true" width="1920" height="921" fetchpriority="high" />
   </picture>
-  <div class="wrap hero-top">
-    <span class="eyebrow on-dark">Sydney&rsquo;s newest NSW Government-backed hot water offer</span>
-    <h1>A New Hot Water Heat Pump. Fully Installed. <span class="gold">$200 To Get Started.</span></h1>
-    <p class="hero-sub">The rest goes on a zero-interest plan over up to 10 years, around $4 a week. Installed by our own licensed plumbers and electricians. And the quote we give you is the price you pay.</p>
-  </div>
-  <div class="wrap hero-bottom">
-    <div class="hero-cta">
-      <a class="btn btn-gold" href="#quote">Get a Free Quote <span class="arrow">&rarr;</span></a>
-      <a class="btn btn-ghost" href="tel:0370502846">Call 03 7050 2846</a>
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow on-dark">Sydney&rsquo;s newest NSW Government-backed hot water offer</span>
+      <h1>A New Hot Water Heat Pump. Fully Installed. <span class="gold">$200 To Get Started.</span></h1>
+      <ul class="hero-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>The price we quote is the price you pay.</b> No surprise bills on installation day.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Licensed, in-house heat pump specialists.</b> Our own plumbers and electricians, not subbies.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>NSW Government incentives handled for you</b> and applied straight to your quote.</li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#quote">Get a Free Quote <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost" href="tel:0370502846">Call 03 7050 2846</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="/assets/img/hero-card.jpg" alt="A Goldsure plumber connecting an Econova hot water heat pump at a home" width="1000" height="1250" fetchpriority="high" />
+      <div class="hero-tag"><span>Quoted, then honoured</span><b>No surprises</b></div>
+    </div>
+    <div class="hero-trust">
+      <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
+      <div><b>Licensed</b>Plumbers + sparkies</div>
+      <div><b>Rebates</b>Handled for you</div>
+      <div><b>After-care</b>We pick up the phone</div>
     </div>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-band">
-  <div class="wrap">
-    <div class="hero-trust">
-      <div><b>NSW Gov.</b>Incentives applied to your quote</div>
-      <div><b>5-year</b>Whole-of-system warranty</div>
-      <div><b>Our own team</b>Licensed, no subcontractors</div>
-      <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
-    </div>
-  </div>
-</div>
-
 <!-- 2. WHAT YOU ACTUALLY PAY -->
-<section class="band" id="what-you-pay">
+<section class="band photo-band" id="what-you-pay">
+  <img class="band-bg" src="/assets/img/pay-bg.jpg" alt="" aria-hidden="true" width="1600" height="1067" loading="lazy" decoding="async" />
   <div class="wrap reveal">
     <div class="shead">
-      <span class="eyebrow">The honest sum</span>
+      <span class="eyebrow on-dark">The honest sum</span>
       <h2>What you actually pay.</h2>
       <p>Most hot water companies advertise a discount and hide the rest. Here is the whole sum, before you enquire.</p>
     </div>
@@ -524,16 +610,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="faq">
       <div class="acc open"><button>How does a hot water heat pump actually work?</button><div class="panel"><div><p>Think of it as a giant thermos with a small air conditioner attached. It pulls warmth out of the air to heat the water in the tank, instead of burning power to heat it directly. That is why it runs on about a quarter of the electricity of an old electric tank.</p></div></div></div>
       <div class="acc"><button>What do I actually pay?</button><div class="panel"><div><p>$200 up front. The rest sits on a zero-interest plan over up to 10 years, around $4 a week for most homes. Prefer no finance? Pay $1,500 up front with all incentives applied and that is the end of it. No interest, no ongoing account fees.</p></div></div></div>
-      <div class="acc"><button>Will it still work on cold Sydney mornings?</button><div class="panel"><div><p>Yes. These units keep working down to around minus 8 degrees. Sydney&rsquo;s coldest mornings sit around 3 to 5 degrees, nowhere near the limit. They heat water in Canberra winters, so a Sydney July is easy.</p></div></div></div>
-      <div class="acc"><button>This sounds too good to be true. How do I know it&rsquo;s not a scam?</button><div class="panel"><div><p>Good, you should check. Goldsure is an accredited provider under the NSW Government schemes, and you can look us up on the official government registers yourself before you talk to us. We link them on this page. Any installer who can&rsquo;t show you that, walk away from.</p></div></div></div>
+      <div class="acc"><button>Will the heat pump work on cold Sydney mornings?</button><div class="panel"><div><p>Yes. These units keep working down to around minus 8 degrees. Sydney&rsquo;s coldest mornings sit around 3 to 5 degrees, nowhere near the limit. They heat water in Canberra winters, so a Sydney July is easy.</p></div></div></div>
+      <div class="acc"><button>How do I know this offer is not a scam?</button><div class="panel"><div><p>Good, you should check. Goldsure is an accredited provider under the NSW Government schemes, and you can look us up on the official government registers yourself before you talk to us. We link them on this page. Any installer who can&rsquo;t show you that, walk away from.</p></div></div></div>
       <div class="acc"><button>Will the price change on install day?</button><div class="panel"><div><p>No, and this is the thing we&rsquo;re known for. We confirm your fixed quote after seeing photos of your current system and your switchboard. The number on the quote is the number on the invoice. If your home genuinely needs something extra, you hear about it before you book.</p></div></div></div>
       <div class="acc"><button>What size do I need, 290L or 330L?</button><div class="panel"><div><p>290L suits most homes of 2 to 4 people. 330L suits bigger households of 4 or more, or homes that run multiple showers back to back. We confirm the right size when we quote.</p></div></div></div>
-      <div class="acc"><button>What&rsquo;s the difference between the split system and the all-in-one?</button><div class="panel"><div><p>The all-in-one has the tank and the heat pump in a single unit, simplest install, one footprint. The split system separates the tank from the compressor, which gives more flexibility on placement and keeps the unit even quieter near living areas. We recommend the right one for your home layout.</p></div></div></div>
+      <div class="acc"><button>Split system or all-in-one - what&rsquo;s the difference?</button><div class="panel"><div><p>The all-in-one has the tank and the heat pump in a single unit, simplest install, one footprint. The split system separates the tank from the compressor, which gives more flexibility on placement and keeps the unit even quieter near living areas. We recommend the right one for your home layout.</p></div></div></div>
       <div class="acc"><button>How long does the installation take?</button><div class="panel"><div><p>Most installs are done in a single visit of a few hours. You&rsquo;ll have hot water again the same day.</p></div></div></div>
-      <div class="acc"><button>What happens to my old system?</button><div class="panel"><div><p>We disconnect it and take it away as part of the job. No skip bin, no extra charge.</p></div></div></div>
-      <div class="acc"><button>Is it noisy?</button><div class="panel"><div><p>About as loud as your fridge, and it lives outside. Most people stop noticing it within a day.</p></div></div></div>
-      <div class="acc"><button>What warranty do I get?</button><div class="panel"><div><p>A minimum 5-year whole-of-system warranty, that&rsquo;s a NSW requirement we&rsquo;re happy to be held to, with up to 7 years on the tank on split-system models. And our own licensed team is who you call, not a call centre.</p></div></div></div>
+      <div class="acc"><button>What happens to my old hot water system?</button><div class="panel"><div><p>We disconnect it and take it away as part of the job. No skip bin, no extra charge.</p></div></div></div>
+      <div class="acc"><button>Is the heat pump noisy?</button><div class="panel"><div><p>About as loud as your fridge, and it lives outside. Most people stop noticing it within a day.</p></div></div></div>
+      <div class="acc"><button>What warranty comes with the heat pump?</button><div class="panel"><div><p>A minimum 5-year whole-of-system warranty, that&rsquo;s a NSW requirement we&rsquo;re happy to be held to, with up to 7 years on the tank on split-system models. And our own licensed team is who you call, not a call centre.</p></div></div></div>
       <div class="acc"><button>Who actually turns up to do the job?</button><div class="panel"><div><p>Goldsure&rsquo;s own licensed plumbers and electricians. No subcontractors, no marketplace labour. The people on this page are the people who come to your home.</p></div></div></div>
+      <div class="acc"><button>What does a heat pump cost to run?</button><div class="panel"><div><p>For most homes, roughly a quarter of what an old electric tank costs to run - the heat pump pulls warmth out of the air instead of burning power to make it. Most households see the difference on their first full bill.</p></div></div></div>
+      <div class="acc"><button>How long does a heat pump last?</button><div class="panel"><div><p>Some plumbers are wary of heat pumps because of cheap early models that failed young. Fair enough - we saw them too. It is why we only install units we are happy to put a 5-year whole-of-system warranty behind, with up to 7 years on the tank, and why our own team services everything we install.</p></div></div></div>
+      <div class="acc"><button>Do I need solar panels for it to work?</button><div class="panel"><div><p>No. A heat pump runs off your normal household power and cuts the bill on its own. If you have solar, you can set it to heat during the day and run it on sunshine. And if you are thinking about adding solar later, the same interest-free finance can cover that too.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -550,7 +639,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="step"><h4>We confirm your fixed price</h4><p>From photos of your system and switchboard. The quote is the invoice.</p></div>
       <div class="step"><h4>We install, usually in one visit</h4><p>Our own licensed team, old unit taken away, 5-year warranty in writing.</p></div>
     </div>
-    <div style="display:flex;justify-content:center;margin-top:clamp(28px,4vw,44px)"><a class="btn btn-gold" href="#quote">Get a Free Quote <span class="arrow">&rarr;</span></a></div>
   </div>
 </section>
 
@@ -649,11 +737,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>That is how many homes our people have worked in. It is also why we sit at a 4.8 rating on Google.</p>
       </div>
     </div>
+    <div class="team-grid">
+      <figure class="tphoto"><img src="/assets/img/team-01.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-02.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-03.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-04.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-05.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-06.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-07.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+      <figure class="tphoto"><img src="/assets/img/team-08.jpg" alt="Goldsure team member" loading="lazy" decoding="async" width="600" height="900" /></figure>
+    </div>
+    <p class="team-cap">One team, from your first call through to the after-install service. Licensed, in-house, and still here when you need us.</p>
   </div>
 </section>
 
-<!-- 7. REVIEWS - structure only. Real, verified Google reviews get injected here. -->
-<section class="band paper2" id="reviews">
+<!-- 7. REVIEWS - eight real Google reviews, auto-sliding carousel -->
+<section class="band paper2 reviews-band" id="reviews">
   <div class="wrap reveal">
     <div class="shead centred">
       <span class="eyebrow">Proof</span>
@@ -664,31 +763,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="gb-mid"><span class="gb-rating"><b>4.8</b> out of 5</span><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span>
       <span class="gb-label">Google<br/>Reviews</span>
     </div>
-    <div class="rev-grid" id="reviewGrid">
-      <figure class="rev">
-        <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p>&ldquo;Very impressed with the communication throughout the process... The hot water system is up and running, the water is nice and hot and clean, very happy with Goldsure.&rdquo;</p>
-        <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Margaret Matthews</b> &middot; Google review</span></figcaption>
-      </figure>
-      <figure class="rev">
-        <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p>&ldquo;Sales Team (John) &amp; the install team were professional and all too happy to answer any questions/concerns we may have had. Highly recommend Goldsure for anyone wanting to install a hot water unit.&rdquo;</p>
-        <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Theo Pouw</b> &middot; Google review</span></figcaption>
-      </figure>
-      <figure class="rev">
-        <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p>&ldquo;Cannot fault them. Ordered, scheduled and installation was done within a week. Nino, the electrician who did the work was punctual, very helpful and knowledgeable, professional and friendly. An excellent price too. Highly recommended!&rdquo;</p>
-        <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Beverley Langham</b> &middot; Google review</span></figcaption>
-      </figure>
+    <div class="rev-carousel">
+      <div class="rev-track" id="revTrack" tabindex="0" role="group" aria-label="Google reviews, scroll sideways for more">
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;Very impressed with the communication throughout the process... The hot water system is up and running, the water is nice and hot and clean, very happy with Goldsure.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Margaret Matthews</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;Sales Team (John) &amp; the install team were professional and all too happy to answer any questions/concerns we may have had. Highly recommend Goldsure for anyone wanting to install a hot water unit.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Theo Pouw</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;Cannot fault them. Ordered, scheduled and installation was done within a week. Nino, the electrician who did the work was punctual, very helpful and knowledgeable, professional and friendly. An excellent price too. Highly recommended!&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Beverley Langham</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;I love my new hot water system it is amazing so much better. Thank you so much&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Anna Giannitis</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;Great installation of new hot water system and removal of old service. Very happy.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>John Abela</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;The electrician, Munesh was very efficient... The job was completed quickly at more than a reasonable price. Thank you Goldsure.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Ian McNulty</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;I highly recommend this company for their expertise, efficiency and professionalism... He was polite, pleasant, highly competent and an asset for his company. The emails, text and communications were all outstanding.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>SunnyBlueSkye</b> &middot; Google review</span></figcaption>
+        </figure>
+        <figure class="rev">
+          <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <p>&ldquo;From the first contact, professional advice, patience and politeness were prominent... the installer arrived on time. He was courteous, obliging, neat and quick.&rdquo;</p>
+          <figcaption class="who"><svg class="g-mini" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg><span><b>Barry Noble</b> &middot; Google review</span></figcaption>
+        </figure>
+      </div>
+      <div class="rev-dots" id="revDots"></div>
     </div>
   </div>
 </section>
 
 <!-- 8. ELIGIBILITY -->
-<section class="band paper2" id="eligibility">
+<section class="band photo-band" id="eligibility">
+  <img class="band-bg" src="/assets/img/qualify-bg.jpg" alt="" aria-hidden="true" width="1600" height="1067" loading="lazy" decoding="async" />
   <div class="wrap reveal">
     <div class="shead centred">
-      <span class="eyebrow">Eligibility</span>
+      <span class="eyebrow on-dark">Eligibility</span>
       <h2>Do I qualify?</h2>
     </div>
     <div class="elig">
@@ -848,7 +976,10 @@ document.querySelectorAll(".acc button").forEach(function(b){
     h1.classList.add("split");
   }
 
-  [".sum",".steps",".prods",".team-shots",".proofs",".rev-grid",".elig"].forEach(function(sel){
+  /* NOTE: .sum is deliberately NOT in this list. The stagger sets a transform on
+     each row, which outranks the hover lift and would kill it. The section still
+     fades in as a whole via .reveal on its wrap. */
+  [".steps",".prods",".team-shots",".proofs",".team-grid",".elig"].forEach(function(sel){
     document.querySelectorAll(sel).forEach(function(g){
       Array.prototype.forEach.call(g.children,function(child,i){
         child.classList.add("sr");child.style.setProperty("--d",Math.min(i*70,560)+"ms");
@@ -872,6 +1003,83 @@ document.querySelectorAll(".acc button").forEach(function(b){
   var nav=document.querySelector("header.nav");
   function navState(){nav.classList.toggle("scrolled",window.scrollY>8)}
   addEventListener("scroll",navState,{passive:true});navState();
+})();
+
+/* REVIEWS CAROUSEL - a scroll-snapping row that nudges itself along every 4s.
+   Swipe works natively on a phone. Hovering (or touching) it stops the timer.
+   With prefers-reduced-motion it never moves on its own and never smooth-scrolls. */
+(function(){
+  var track = document.getElementById('revTrack');
+  var dotsWrap = document.getElementById('revDots');
+  if (!track || !dotsWrap) return;
+
+  var cards = Array.prototype.slice.call(track.children);
+  if (!cards.length) return;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var idx = 0, timer = null, paused = false, resumeTimer = null, syncTimer = null;
+
+  cards.forEach(function (c, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'rev-dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', 'Show review ' + (i + 1));
+    b.addEventListener('click', function () { go(i); start(); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function offsetOf(i) { return cards[i].offsetLeft - cards[0].offsetLeft; }
+  function maxScroll() { return track.scrollWidth - track.clientWidth; }
+
+  function go(i) {
+    idx = i;
+    var left = Math.min(offsetOf(i), maxScroll());
+    if (track.scrollTo) { track.scrollTo({ left: left, behavior: reduced ? 'auto' : 'smooth' }); }
+    else { track.scrollLeft = left; }
+  }
+
+  function next() {
+    var n = idx + 1;
+    if (n >= cards.length || offsetOf(n) > maxScroll() + 1) n = 0;
+    go(n);
+  }
+
+  function sync() {
+    var l = track.scrollLeft, best = 0, bestD = Infinity;
+    cards.forEach(function (c, i) {
+      var d = Math.abs(offsetOf(i) - l);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    idx = best;
+    dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
+  }
+
+  function start() { stop(); if (reduced) return; timer = setInterval(function () { if (!paused) next(); }, 4000); }
+  function stop()  { if (timer) clearInterval(timer); timer = null; }
+
+  track.addEventListener('scroll', function () {
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(sync, 90);
+  }, { passive: true });
+
+  track.addEventListener('mouseenter', function () { paused = true; });
+  track.addEventListener('mouseleave', function () { paused = false; });
+  dotsWrap.addEventListener('mouseenter', function () { paused = true; });
+  dotsWrap.addEventListener('mouseleave', function () { paused = false; });
+  track.addEventListener('focusin',  function () { paused = true; });
+  track.addEventListener('focusout', function () { paused = false; });
+  track.addEventListener('touchstart', function () {
+    paused = true; clearTimeout(resumeTimer);
+  }, { passive: true });
+  track.addEventListener('touchend', function () {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () { paused = false; }, 5000);
+  }, { passive: true });
+  document.addEventListener('visibilitychange', function () { paused = document.hidden; });
+  addEventListener('resize', function () { clearTimeout(syncTimer); syncTimer = setTimeout(sync, 150); }, { passive: true });
+
+  sync();
+  start();
 })();
 
 /* LEAD FORM - posts to the Sydney webhook proxy, then hands the visitor
