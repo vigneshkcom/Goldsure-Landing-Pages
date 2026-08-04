@@ -125,7 +125,7 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 /* survey band - team photo, cobalt overlay, white card floating on it */
 .ty{position:relative;overflow:hidden;background:var(--cobalt-deep);
   padding:clamp(40px,6vw,76px) 0 clamp(48px,7vw,86px)}
-.ty-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%;z-index:0}
+.ty-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;z-index:0}
 .ty::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(165deg,oklch(0.33 0.12 264 /.93),oklch(0.26 0.10 264 /.90) 55%,oklch(0.20 0.07 264 /.94))}
 .ty .wrap{position:relative;z-index:2}
@@ -133,6 +133,11 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
   box-shadow:0 40px 80px -40px oklch(0 0 0 /.7)}
 .ty-card .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
 .ty-card .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor}
+/* ?demo=1 - lets the page be previewed without a real enquiry behind it */
+.demo-tag{display:inline-block;margin-left:12px;vertical-align:middle;font-family:var(--font-sans);
+  font-size:0.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;background:oklch(0.80 0.12 85 /.22);color:var(--gold-deep);
+  border:1px solid var(--gold-deep)}
 .ty-card h1{font-size:var(--step-2);margin-bottom:.4em}
 .ty-card .sub{color:var(--ink-soft);font-size:var(--step-0);line-height:1.6;max-width:60ch}
 
@@ -217,12 +222,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- SURVEY BAND -->
 <section class="ty">
-  <img class="ty-bg" src="/assets/img/hero-team.jpg" alt="" aria-hidden="true" width="1920" height="1893" />
+  <img class="ty-bg" src="/assets/img/hero-team.jpg" alt="" aria-hidden="true" width="1920" height="921" />
   <div class="wrap">
 
     <!-- shown when the visitor came through the form -->
     <div class="ty-card" id="surveyCard" hidden>
-      <span class="eyebrow">Enquiry received</span>
+      <span class="eyebrow">Enquiry received</span><span class="demo-tag" id="demoTag" hidden>Demo view</span>
       <h1>Thank you for your submission. Before you go&hellip;</h1>
       <p class="sub">Take 1 minute to answer four quick questions. The same interest-free finance can cover more than hot water, so your answers help us check everything you&rsquo;re eligible for before we call you with your quote.</p>
 
@@ -346,12 +351,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var surveyCard = document.getElementById('surveyCard');
   var minCard    = document.getElementById('minCard');
 
+  /* ?demo=1 shows the survey card with nothing in sessionStorage, so the page
+     can be previewed. It is marked "Demo view" and sending is switched off, so
+     a preview can never post a made-up answer set to the CRM. */
+  var DEMO = /(^|[?&])demo=1(&|$)/.test(window.location.search);
+
   /* Identity is handed over by the lead form. No identity, no survey. */
   var lead = null;
   try { lead = JSON.parse(sessionStorage.getItem('gs_lead') || 'null'); } catch (e) { lead = null; }
   if (!lead || (!lead.email && !lead.phone)) {
-    minCard.hidden = false;
-    return;
+    if (!DEMO) {
+      minCard.hidden = false;
+      return;
+    }
+    lead = { name: '', phone: '', email: '' };
   }
   surveyCard.hidden = false;
 
@@ -361,6 +374,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var doneEl  = document.getElementById('surveyDone');
   var otherWrap = document.getElementById('otherWrap');
   var otherText = document.getElementById('otherText');
+  var demoTag   = document.getElementById('demoTag');
+
+  if (DEMO) {
+    if (demoTag) demoTag.hidden = false;
+    btn.disabled = true;
+    btn.textContent = 'Sending is off in demo view';
+  }
 
   /* selected-state styling, and the Other box only when Other is chosen */
   function syncStates() {
@@ -388,6 +408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    if (DEMO) { return; }
 
     var describes = radioValue('describes_you');
     var other     = (otherText.value || '').trim();
