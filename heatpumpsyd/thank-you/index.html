@@ -121,56 +121,94 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 .nav-phone:hover{background:var(--gold-deep);transform:translateY(-2px)}
 .phone-ico{width:16px;height:16px;flex:0 0 auto}
 
-/* survey band - team photo, cobalt overlay, white card floating on it */
+/* survey band - team photo, cobalt overlay, white card floating on it.
+   Paddings here are deliberately tight: the whole card has to sit above the
+   fold on a 1440x900 desktop and a 390x844 phone. */
 .ty{position:relative;overflow:hidden;background:var(--cobalt-deep);
-  padding:clamp(40px,6vw,76px) 0 clamp(48px,7vw,86px)}
+  padding:clamp(24px,3.2vw,44px) 0 clamp(28px,4vw,56px)}
 .ty-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;z-index:0}
 .ty::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(165deg,oklch(0.33 0.12 264 /.93),oklch(0.26 0.10 264 /.90) 55%,oklch(0.20 0.07 264 /.94))}
 .ty .wrap{position:relative;z-index:2}
-.ty-card{background:var(--white);border-radius:20px;padding:clamp(26px,4vw,46px);max-width:760px;margin:0 auto;
+.ty-card{background:var(--white);border-radius:20px;padding:clamp(20px,2.6vw,30px);max-width:720px;margin:0 auto;
   box-shadow:0 40px 80px -40px oklch(0 0 0 /.7)}
-.ty-card .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px}
+.ty-head{text-align:center}
+.ty-card .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:8px}
 .ty-card .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor}
 /* ?demo=1 - lets the page be previewed without a real enquiry behind it */
 .demo-tag{display:inline-block;margin-left:12px;vertical-align:middle;font-family:var(--font-sans);
   font-size:0.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
   padding:4px 10px;border-radius:999px;background:oklch(0.80 0.12 85 /.22);color:var(--gold-deep);
   border:1px solid var(--gold-deep)}
-.ty-card h1{font-size:var(--step-2);margin-bottom:.4em}
-.ty-card .sub{color:var(--ink-soft);font-size:var(--step-0);line-height:1.6;max-width:60ch}
+.ty-card h1{font-size:clamp(1.35rem,1rem + 1.4vw,2rem);margin-bottom:.4em}
+.ty-card .sub{color:var(--ink-soft);font-size:var(--step--1);line-height:1.5;max-width:58ch;margin:0 auto}
 
-/* survey */
-.survey{margin-top:clamp(26px,3.4vw,38px);border-top:1px solid var(--line);padding-top:clamp(24px,3vw,34px)}
-.q + .q{margin-top:clamp(26px,3.2vw,34px)}
-.q-title{font-family:var(--font-serif);font-weight:600;font-size:var(--step-1);line-height:1.25;margin-bottom:14px}
-.q-hint{display:block;font-family:var(--font-sans);font-weight:400;font-size:var(--step--1);
-  color:var(--ink-soft);margin-top:6px;line-height:1.45}
-.opts{display:grid;gap:10px}
+/* survey - one question at a time */
+.survey{margin-top:clamp(15px,1.9vw,18px);border-top:1px solid var(--line);padding-top:clamp(15px,1.9vw,18px)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* progress - "Question 2 of 4" over a slim gold track, centred under the header */
+.q-prog{display:flex;flex-direction:column;align-items:center;gap:7px;margin-bottom:clamp(13px,1.7vw,19px)}
+.q-prog-label{font-size:0.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt)}
+.q-prog-track{width:100%;max-width:200px;height:4px;border-radius:999px;background:var(--line);overflow:hidden}
+.q-prog-fill{display:block;height:100%;width:25%;border-radius:999px;background:var(--gold-deep);
+  transition:width .25s var(--ease-out)}
+
+/* every step shares one grid cell, so the area is always as tall as the
+   TALLEST step and the card never changes height between questions */
+.q-stack{display:grid;align-items:start}
+.q-stack > .q{grid-area:1/1;min-width:0;opacity:0;visibility:hidden;
+  transform:translateX(var(--q-in,14px));
+  transition:opacity .2s var(--ease-out),transform .2s var(--ease-out),visibility 0s linear .2s}
+.q-stack > .q.is-leaving{transform:translateX(var(--q-out,-14px))}
+.q-stack > .q.is-current{opacity:1;visibility:visible;transform:none;
+  transition:opacity .2s var(--ease-out),transform .2s var(--ease-out),visibility 0s}
+.q-title{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.02rem,0.92rem + 0.42vw,1.28rem);
+  line-height:1.25;margin-bottom:11px}
+.q-hint{display:block;font-family:var(--font-sans);font-weight:400;font-size:0.78rem;
+  color:var(--ink-soft);margin-top:5px;line-height:1.4}
+.opts{display:grid;gap:8px}
 .opts.two{grid-template-columns:1fr 1fr}
 @media(max-width:560px){.opts.two{grid-template-columns:1fr}}
-.opt{display:flex;align-items:center;gap:13px;padding:15px 17px;border:1px solid var(--line);border-radius:12px;
-  background:var(--paper);cursor:pointer;line-height:1.35;
+.opt{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;
+  background:var(--paper);cursor:pointer;line-height:1.3;font-size:var(--step--1);
   transition:border-color .2s,background .2s,box-shadow .2s}
 .opt:hover{border-color:var(--cobalt-bright);background:var(--white)}
-.opt input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--cobalt);margin:0;cursor:pointer}
+.opt input{width:18px;height:18px;flex:0 0 auto;accent-color:var(--cobalt);margin:0;cursor:pointer}
 .opt.is-on{border-color:var(--cobalt);background:oklch(0.48 0.17 262 /.08);box-shadow:inset 0 0 0 1px var(--cobalt)}
-.other-wrap{margin-top:10px}
-.other-wrap input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font:inherit;
-  background:var(--paper);color:var(--ink)}
+/* the Other box keeps its space at all times (visibility, not display), so
+   revealing it can never grow step 1 and shove the card down the page */
+.other-wrap{margin-top:8px;visibility:hidden}
+.other-wrap.is-shown{visibility:visible}
+.other-wrap input{width:100%;padding:10px 13px;border:1px solid var(--line);border-radius:12px;
+  font:inherit;font-size:var(--step--1);background:var(--paper);color:var(--ink)}
 .other-wrap input:focus{outline:2px solid var(--cobalt);border-color:var(--cobalt)}
-.small-note{margin-top:12px;font-size:var(--step--1);color:var(--ink-soft);line-height:1.5;max-width:62ch}
-.btn-form{width:100%;justify-content:center;margin-top:clamp(26px,3.2vw,34px);display:inline-flex;align-items:center;
-  gap:.5em;font-family:var(--font-sans);font-weight:600;font-size:var(--step-0);padding:.95em 1.5em;border-radius:999px;
+.small-note{margin-top:10px;font-size:0.76rem;color:var(--ink-soft);line-height:1.45;max-width:62ch}
+
+/* action row - Back on the left, Next or Send on the right. Always present, so
+   revealing a button never moves anything */
+.q-nav{display:flex;align-items:center;gap:12px;min-height:48px;margin-top:clamp(11px,1.5vw,17px)}
+.q-back{background:none;border:0;cursor:pointer;font-family:var(--font-sans);font-size:var(--step--1);
+  font-weight:600;color:var(--ink-soft);padding:9px 2px;border-radius:8px;transition:color .2s}
+.q-back:hover{color:var(--cobalt)}
+.q-next{margin-left:auto;display:inline-flex;align-items:center;gap:.45em;font-family:var(--font-sans);
+  font-weight:600;font-size:var(--step--1);padding:.78em 1.4em;border-radius:999px;cursor:pointer;
+  border:1px solid var(--cobalt);background:var(--white);color:var(--cobalt);
+  transition:background .2s,color .2s,transform .2s}
+.q-next:hover{background:var(--cobalt);color:var(--white);transform:translateY(-1px)}
+.btn-form{margin-left:auto;justify-content:center;display:inline-flex;align-items:center;
+  gap:.5em;font-family:var(--font-sans);font-weight:600;font-size:var(--step--1);padding:.82em 1.5em;border-radius:999px;
   border:0;cursor:pointer;background:var(--gold);color:var(--ink);
   box-shadow:0 10px 30px -12px oklch(0.66 0.11 80 / .8);transition:background .25s,transform .25s}
 .btn-form:hover{background:var(--gold-deep);transform:translateY(-2px)}
 .btn-form:disabled{opacity:.7;cursor:default;transform:none}
-.form-err{margin-top:14px;padding:.75rem 1rem;background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);
-  border-radius:10px;font-size:0.85rem;color:#b91c1c}
+.q-back:focus-visible,.q-next:focus-visible,.btn-form:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.form-err{margin-top:12px;padding:.7rem 1rem;background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);
+  border-radius:10px;font-size:0.82rem;color:#b91c1c}
 
 /* survey success, replaces the form in place */
-.survey-done{margin-top:clamp(26px,3.4vw,38px);border-top:1px solid var(--line);padding-top:clamp(28px,3.4vw,38px);
+.survey-done{margin-top:clamp(18px,2.4vw,28px);border-top:1px solid var(--line);padding-top:clamp(20px,2.6vw,30px);
   display:flex;gap:18px;align-items:flex-start}
 .survey-done .tick{width:52px;height:52px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
   background:oklch(0.52 0.14 150 /.14);color:var(--green)}
@@ -203,6 +241,9 @@ footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:28px 0}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  /* steps swap instantly instead of sliding, and the outgoing one must not
+     linger behind a 200ms visibility delay */
+  .q-stack > .q{transform:none!important;transition-delay:0s!important}
 }
 </style>
 </head>
@@ -226,12 +267,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- shown when the visitor came through the form -->
     <div class="ty-card" id="surveyCard" hidden>
-      <span class="eyebrow">Enquiry received</span><span class="demo-tag" id="demoTag" hidden>Demo view</span>
-      <h1>Thank you for your submission. Before you go&hellip;</h1>
-      <p class="sub">Take 1 minute to answer four quick questions. The same interest-free finance can cover more than hot water, so your answers help us check everything you&rsquo;re eligible for before we call you with your quote.</p>
+      <div class="ty-head">
+        <span class="eyebrow">Enquiry received</span><span class="demo-tag" id="demoTag" hidden>Demo view</span>
+        <h1>Thank you for your submission. Before you go&hellip;</h1>
+        <p class="sub">Take 1 minute to answer four quick questions. The same interest-free finance can cover more than hot water, so your answers help us check everything you&rsquo;re eligible for before we call you with your quote.</p>
+      </div>
 
       <form class="survey" id="surveyForm">
-        <div class="q">
+        <div class="q-prog" aria-hidden="true">
+          <span class="q-prog-label" id="qProgLabel">Question 1 of 4</span>
+          <span class="q-prog-track"><span class="q-prog-fill" id="qProgFill"></span></span>
+        </div>
+        <p class="sr-only" id="qLive" role="status" aria-live="polite">Question 1 of 4</p>
+
+        <div class="q-stack" id="qStack">
+        <div class="q is-current" data-step="1">
           <h2 class="q-title">1. What best describes you?</h2>
           <div class="opts two">
             <label class="opt"><input type="radio" name="describes_you" value="Renting"> Renting</label>
@@ -239,13 +289,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label class="opt"><input type="radio" name="describes_you" value="Home Owner"> Home Owner</label>
             <label class="opt"><input type="radio" name="describes_you" value="Other" id="optOther"> Other</label>
           </div>
-          <div class="other-wrap" id="otherWrap" hidden>
+          <div class="other-wrap" id="otherWrap">
             <label class="q-hint" for="otherText">Tell us in a few words</label>
             <input type="text" id="otherText" name="describes_you_other" placeholder="Your situation" maxlength="120">
           </div>
         </div>
 
-        <div class="q">
+        <div class="q" data-step="2">
           <h2 class="q-title">2. How many bedrooms are in the home?</h2>
           <div class="opts two">
             <label class="opt"><input type="radio" name="bedrooms" value="1 Bedroom"> 1 Bedroom</label>
@@ -255,7 +305,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="q">
+        <div class="q" data-step="3">
           <h2 class="q-title">3. Would the home benefit from any of the following?
             <span class="q-hint">Tick any that apply. These can go on the same interest-free finance.</span>
           </h2>
@@ -265,7 +315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="q">
+        <div class="q" data-step="4">
           <h2 class="q-title">4. What is your combined household income?</h2>
           <div class="opts">
             <label class="opt"><input type="radio" name="household_income" value="Less than $80,000 a year"> Less than $80,000 a year (total household)</label>
@@ -274,8 +324,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <p class="small-note">We know income is a personal question. The NSW incentives are income-based, so knowing the band helps us claim you the maximum you&rsquo;re entitled to. That is the only reason we ask.</p>
         </div>
+        </div>
 
-        <button type="submit" class="btn-form" id="surveySubmit">Send my answers &rarr;</button>
+        <div class="q-nav">
+          <button type="button" class="q-back" id="qBack" hidden>&larr; Back</button>
+          <button type="button" class="q-next" id="qNext" hidden>Next &rarr;</button>
+          <button type="submit" class="btn-form" id="surveySubmit" hidden>Send my answers &rarr;</button>
+        </div>
         <div class="form-err" id="surveyError" hidden></div>
       </form>
 
@@ -342,10 +397,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 
-/* SURVEY */
+/* SURVEY - one question at a time */
 (function () {
   var CAMPAIGN = 'heat-pumps-sydney';
   var ENDPOINT = '/api/submit-survey';
+  var TOTAL = 4;
+  var ADVANCE_MS = 250;
 
   var surveyCard = document.getElementById('surveyCard');
   var minCard    = document.getElementById('minCard');
@@ -373,26 +430,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var doneEl  = document.getElementById('surveyDone');
   var otherWrap = document.getElementById('otherWrap');
   var otherText = document.getElementById('otherText');
+  var optOther  = document.getElementById('optOther');
   var demoTag   = document.getElementById('demoTag');
+  var stack     = document.getElementById('qStack');
+  var steps     = Array.prototype.slice.call(stack.querySelectorAll('.q'));
+  var nextBtn   = document.getElementById('qNext');
+  var backBtn   = document.getElementById('qBack');
+  var progLabel = document.getElementById('qProgLabel');
+  var progFill  = document.getElementById('qProgFill');
+  var liveEl    = document.getElementById('qLive');
+
+  var current = 1;
+  var pendingAdvance = null;
+
+  /* Auto-advance is for people clicking or tapping. Arrow keys move through a
+     radio group by firing change on every option, so auto-advancing on those
+     would trap a keyboard user on the first option they land on - they get a
+     Next button instead. */
+  var pointerish = false;
+  document.addEventListener('pointerdown', function () { pointerish = true; }, true);
+  document.addEventListener('keydown',     function () { pointerish = false; }, true);
 
   if (DEMO) {
     if (demoTag) demoTag.hidden = false;
     btn.disabled = true;
     btn.textContent = 'Sending is off in demo view';
   }
-
-  /* selected-state styling, and the Other box only when Other is chosen */
-  function syncStates() {
-    form.querySelectorAll('.opt').forEach(function (label) {
-      var input = label.querySelector('input');
-      label.classList.toggle('is-on', !!(input && input.checked));
-    });
-    var otherOn = document.getElementById('optOther').checked;
-    otherWrap.hidden = !otherOn;
-    if (!otherOn) { otherText.value = ''; }
-  }
-  form.addEventListener('change', syncStates);
-  syncStates();
 
   function radioValue(name) {
     var el = form.querySelector('input[name="' + name + '"]:checked');
@@ -404,10 +467,113 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       function (el) { return el.value; }
     );
   }
+  function isAnswered(n) {
+    if (n === 1) return radioValue('describes_you') !== '';
+    if (n === 2) return radioValue('bedrooms') !== '';
+    if (n === 3) return true;                       /* ticking nothing is a valid answer */
+    return radioValue('household_income') !== '';
+  }
+
+  /* selected-state styling, and the Other box only when Other is chosen */
+  function syncStates() {
+    form.querySelectorAll('.opt').forEach(function (label) {
+      var input = label.querySelector('input');
+      label.classList.toggle('is-on', !!(input && input.checked));
+    });
+    var otherOn = optOther.checked;
+    otherWrap.classList.toggle('is-shown', otherOn);
+    if (!otherOn) { otherText.value = ''; }
+  }
+
+  /* Back on the left from step 2 on. On the right: Next on step 3 and on any
+     answered step, or the submit button once step 4 is answered. */
+  function navState() {
+    backBtn.hidden = current === 1;
+    var answered = isAnswered(current);
+    var otherOn  = current === 1 && optOther.checked;
+    if (current === TOTAL) {
+      nextBtn.hidden = true;
+      btn.hidden = !answered;
+    } else {
+      btn.hidden = true;
+      nextBtn.hidden = !(current === 3 || otherOn || (answered && !pendingAdvance));
+    }
+  }
+
+  function focusStep() {
+    var el = steps[current - 1].querySelector('input');
+    if (!el) { return; }
+    try { el.focus({ preventScroll: true }); } catch (err) { el.focus(); }
+  }
+
+  function show(n, dir) {
+    if (pendingAdvance) { clearTimeout(pendingAdvance); pendingAdvance = null; }
+    var prev = current;
+    current = Math.min(TOTAL, Math.max(1, n));
+    stack.style.setProperty('--q-in',  dir === 'back' ? '-14px' : '14px');
+    stack.style.setProperty('--q-out', dir === 'back' ? '14px'  : '-14px');
+    steps.forEach(function (el, i) {
+      var s = i + 1;
+      el.classList.toggle('is-current', s === current);
+      el.classList.toggle('is-leaving', s === prev && s !== current);
+    });
+    progLabel.textContent = 'Question ' + current + ' of ' + TOTAL;
+    progFill.style.width  = Math.round((current / TOTAL) * 100) + '%';
+    liveEl.textContent    = 'Question ' + current + ' of ' + TOTAL;
+    navState();
+  }
+
+  form.addEventListener('change', function (e) {
+    syncStates();
+    if (pendingAdvance) { clearTimeout(pendingAdvance); pendingAdvance = null; }
+
+    var t = e.target;
+    var host = t && t.closest ? t.closest('.q') : null;
+    var step = host ? parseInt(host.getAttribute('data-step'), 10) : 0;
+
+    if (t && t.type === 'radio' && step === current && current !== TOTAL) {
+      if (current === 1 && t.value === 'Other') {
+        /* Other needs typing, so no auto-advance - the text box and Next appear */
+        try { otherText.focus({ preventScroll: true }); } catch (err) { otherText.focus(); }
+      } else if (pointerish) {
+        pendingAdvance = setTimeout(function () {
+          pendingAdvance = null;
+          show(current + 1, 'fwd');
+          focusStep();
+        }, ADVANCE_MS);
+      }
+    }
+    navState();
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (current < TOTAL) { show(current + 1, 'fwd'); focusStep(); }
+  });
+  backBtn.addEventListener('click', function () {
+    if (current > 1) { show(current - 1, 'back'); focusStep(); }
+  });
+
+  /* Enter inside the form must never submit from an early step. Buttons keep
+     their own native Enter behaviour. */
+  form.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') { return; }
+    var t = e.target;
+    if (!t || t.tagName !== 'INPUT') { return; }
+    e.preventDefault();
+    if (current < TOTAL) {
+      if (isAnswered(current)) { show(current + 1, 'fwd'); focusStep(); }
+    } else if (isAnswered(TOTAL) && !btn.hidden && !btn.disabled) {
+      btn.click();
+    }
+  });
+
+  syncStates();
+  show(1, 'fwd');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (DEMO) { return; }
+    if (current !== TOTAL || !isAnswered(TOTAL)) { return; }
 
     var describes = radioValue('describes_you');
     var other     = (otherText.value || '').trim();
