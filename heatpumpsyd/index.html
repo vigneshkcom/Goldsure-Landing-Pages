@@ -195,11 +195,22 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .hero-tag span{display:block;font-size:var(--step--1);letter-spacing:.10em;text-transform:uppercase;font-weight:600}
 .hero-tag b{font-size:var(--step-1)}
 
-/* trust chips - dark translucent row, inside the hero */
+/* trust chips - dark translucent row, inside the hero. The gold stroke icon
+   sits on the LABEL line rather than to the left of the whole chip: at four
+   across the chip is only ~130px wide, and an icon in its own column stole
+   enough of that to break "After-care" and "Plumbers + sparkies" across three
+   ragged lines. On the label line the icon costs the chip nothing.
+   NOTE: the final CTA section reuses .hero-trust with three iconless chips, so
+   every rule here has to still read correctly with no .tl and no .ti. */
 .hero-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:24px}
-.hero-trust div{background:oklch(1 0 0 / .07);border:1px solid oklch(1 0 0 / .16);border-radius:12px;padding:12px 14px;
-  font-size:var(--step--1);color:oklch(1 0 0 / .74);line-height:1.4;backdrop-filter:blur(6px)}
+.hero-trust>div{background:oklch(1 0 0 / .07);border:1px solid oklch(1 0 0 / .16);border-radius:12px;padding:11px 13px;
+  font-size:var(--step--1);color:oklch(1 0 0 / .74);line-height:1.38;text-wrap:balance;backdrop-filter:blur(6px)}
+.hero-trust .tl{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.hero-trust .ti{width:16px;height:16px;flex:0 0 auto;color:var(--gold)}
 .hero-trust b{display:block;font-family:var(--font-sans);font-weight:700;font-size:var(--step-0);color:var(--white);margin-bottom:2px}
+/* fixed, not var(--step-0): at 1440 the scale tops out at 1.12rem and
+   "After-care" then breaks across two lines inside a ~130px chip */
+.hero-trust .tl b{font-size:0.95rem;margin-bottom:0;min-width:0}
 .hero-trust .star{color:var(--gold)}
 .final .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:900px){
@@ -216,6 +227,10 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 @media(max-width:680px){
   .hero-trust{grid-template-columns:1fr 1fr;gap:9px}
   .final .hero-trust{grid-template-columns:1fr 1fr}
+  .hero-trust>div{padding:10px 11px;font-size:0.79rem}
+  .hero-trust .tl{gap:6px}
+  .hero-trust .ti{width:16px;height:16px}
+  .hero-trust .tl b{font-size:0.95rem}
   .hero-trust div:last-child:nth-child(odd){grid-column:1/-1}
 }
 @media(max-width:640px){
@@ -235,12 +250,15 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .band.cobalt .shead p{color:oklch(1 0 0 /.8)}
 .shead.centred{margin-left:auto;margin-right:auto;text-align:center}
 
-/* photo-backed band: a heavily dimmed photograph under a dark cobalt wash, with
-   every readable element floating above it on its own solid card */
+/* photo-backed band: a dimmed photograph under a cobalt wash, with every
+   readable element floating above it on its own solid card. The wash was
+   lifted ~17 points on 05/08/2026 - the photographs were barely visible under
+   it. The cards carry all the small text, so the gaps between them are free to
+   show more of the picture; only the section heading sits on bare photo. */
 .photo-band{position:relative;overflow:hidden;background:var(--cobalt-deep);color:var(--white)}
 .photo-band .band-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .photo-band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(165deg,oklch(0.20 0.055 264 /.90) 0%,oklch(0.17 0.05 264 /.93) 55%,oklch(0.15 0.045 264 /.95) 100%)}
+  background:linear-gradient(165deg,oklch(0.20 0.055 264 /.73) 0%,oklch(0.17 0.05 264 /.76) 55%,oklch(0.15 0.045 264 /.78) 100%)}
 .photo-band>.wrap{position:relative;z-index:2}
 .photo-band .shead p{color:oklch(1 0 0 /.82)}
 /* the band is white-on-dark, so any light card sitting on it has to put the
@@ -308,23 +326,71 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .acc .panel p{padding:0 0 22px;color:var(--ink-soft);max-width:72ch}
 
 /* ============ HOW IT WORKS ============
-   Compact: the number chip sits inline to the left of the title, on one line,
-   with the sentence tucked underneath it. No dead white space in the card. */
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(22px,2.6vw,32px)}
-.step{counter-increment:s;position:relative;background:var(--white);border:1px solid var(--line);border-radius:14px;
-  padding:16px 18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 13px;
-  align-items:center;align-content:center;overflow:hidden;
-  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .3s}
-.step::before{content:counter(s);grid-column:1;grid-row:1;font-family:var(--font-sans);font-weight:700;font-size:var(--step--1);
-  width:38px;height:38px;border-radius:11px;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);display:grid;place-items:center;
-  box-shadow:0 10px 20px -12px oklch(0.48 0.17 262 /.85)}
-.step::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--gold-deep),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
-.step:hover{transform:translateY(-4px);box-shadow:0 24px 44px -30px oklch(0.33 0.12 264 /.55);border-color:transparent}
-.step:hover::after{transform:scaleX(1)}
-.step h4{grid-column:2;grid-row:1;font-size:var(--step-0);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
-.step p{grid-column:2;grid-row:2;font-size:var(--step--1);color:var(--ink-soft);line-height:1.5;margin:0}
-@media(max-width:860px){.steps{grid-template-columns:1fr;gap:10px}.step{padding:14px 16px}}
+   A three-stop timeline: a circular action photo per step, a numbered chip
+   sitting on a gold line that threads all three together, then the white card
+   with the words. Kept tight vertically - no dead space anywhere.
+
+   TWO ELEMENTS, TWO JOBS, and this is deliberate. The scroll-in stagger sets a
+   transform on .step (the JS adds .sr to it), so the hover lift MUST live on a
+   different element or the two transforms fight and the hover silently dies -
+   the same conflict that already keeps .sum out of the stagger list. So:
+     .step       = the reveal target (opacity + translateY, owned by .sr)
+     .step-card  = the hover target  (translateY lift, owned by :hover)
+   They never touch the same property on the same element, so hover works
+   during the reveal and after it. */
+.steps{--sp-media:114px;--sp-num:38px;--sp-gap:18px;
+  position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-gap);
+  margin-top:clamp(24px,2.6vw,32px)}
+/* the gold thread: centre of the first chip to centre of the last. The chip is
+   pinned to bottom:-8px of the photo, so its centre sits at
+   media height + 8 - (chip / 2) down from the top of the row. */
+.steps::before{content:"";position:absolute;z-index:0;height:3px;border-radius:3px;
+  top:calc(var(--sp-media) + 8px - var(--sp-num) / 2 - 1.5px);
+  left:calc((100% - 2 * var(--sp-gap)) / 6);right:calc((100% - 2 * var(--sp-gap)) / 6);
+  background:linear-gradient(90deg,oklch(0.74 0.115 82 /.82),var(--gold) 50%,oklch(0.74 0.115 82 /.82))}
+.step{position:relative;z-index:1;display:grid;grid-template-rows:auto minmax(0,1fr);justify-items:center}
+.step-media{position:relative;z-index:1;width:var(--sp-media);height:var(--sp-media);border-radius:50%;
+  box-shadow:0 0 0 3px oklch(1 0 0 /.17),0 16px 30px -18px oklch(0 0 0 /.8);
+  transition:box-shadow .35s ease,opacity .35s ease,filter .35s ease}
+.step-media img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.step-num{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);z-index:2;
+  width:var(--sp-num);height:var(--sp-num);border-radius:50%;display:grid;place-items:center;
+  font-family:var(--font-sans);font-weight:700;font-size:var(--step--1);line-height:1;
+  background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);
+  box-shadow:0 0 0 3px var(--cobalt-deep),0 8px 18px -10px oklch(0.48 0.17 262 /.9);
+  transition:background .35s ease,color .35s ease,box-shadow .35s ease}
+.step-card{margin-top:calc(var(--sp-num) / 2 + 8px);width:100%;border:1px solid var(--line);
+  background:linear-gradient(178deg,var(--white),oklch(0.96 0.012 85));
+  border-radius:14px;padding:15px 18px 16px;text-align:center;
+  box-shadow:0 16px 34px -26px oklch(0 0 0 /.65);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .3s,opacity .35s ease,filter .35s ease}
+.step h4{font-size:var(--step-0);font-weight:700;color:var(--ink);margin:0 0 5px;line-height:1.22}
+.step p{font-size:var(--step--1);color:var(--ink-soft);line-height:1.5;margin:0}
+
+/* hover only where there is a real pointer. On touch all three render fully. */
+@media(hover:hover){
+  .steps:hover .step-media,.steps:hover .step-card{opacity:.58;filter:saturate(.75)}
+  .steps .step:hover .step-media,.steps .step:hover .step-card{opacity:1;filter:none}
+  .step:hover .step-card{transform:translateY(-5px);border-color:transparent;
+    box-shadow:0 26px 46px -28px oklch(0 0 0 /.6)}
+  .step:hover .step-media{box-shadow:0 0 0 3px var(--gold),0 18px 32px -16px oklch(0 0 0 /.85)}
+  .step:hover .step-num{background:linear-gradient(155deg,var(--gold),var(--gold-deep));color:var(--ink);
+    box-shadow:0 0 0 3px var(--cobalt-deep),0 8px 18px -8px oklch(0.66 0.11 80 /.95)}
+}
+
+/* stacked: photo on the left, card on the right, with the gold thread turned
+   on its side so it still runs through every chip */
+@media(max-width:860px){
+  .steps{--sp-media:78px;--sp-num:32px;--sp-gap:14px;grid-template-columns:1fr}
+  .steps::before{display:none}
+  .step{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto;align-items:center;
+    justify-items:stretch;gap:16px}
+  .step::after{content:"";position:absolute;z-index:0;width:2px;border-radius:2px;
+    left:calc(var(--sp-media) / 2 - 1px);top:6px;bottom:calc(-1 * var(--sp-gap) - 6px);
+    background:linear-gradient(180deg,oklch(0.66 0.11 80 /.55),oklch(0.80 0.12 85 /.85) 50%,oklch(0.66 0.11 80 /.55))}
+  .step:last-child::after{display:none}
+  .step-card{margin-top:0;padding:13px 15px 14px;text-align:left}
+}
 
 /* ============ PRODUCT ============ */
 .product-band{background:#d4e193}
@@ -408,7 +474,9 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .gbadge .gb-label{font-size:var(--step--1);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);font-weight:700;line-height:1.25;padding-left:14px;border-left:1px solid var(--line)}
 
 /* ============ ELIGIBILITY ============ */
-.elig{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+/* stretch, not start, so the two cards bottom out level at every width where
+   they sit side by side */
+.elig{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
 .elig .card{border-radius:var(--r);padding:30px 28px}
 .elig .inc{background:oklch(0.55 0.13 150 / .12);border:1px solid oklch(0.55 0.13 150 / .4)}
 .elig .ask{background:var(--white);border:1px solid var(--line)}
@@ -556,10 +624,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-tag"><span>Quoted, then honoured</span><b>No surprises</b></div>
     </div>
     <div class="hero-trust">
-      <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
-      <div><b>Licensed</b>Plumbers + sparkies</div>
-      <div><b>Rebates</b>Handled for you</div>
-      <div><b>After-care</b>We pick up the phone</div>
+      <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 12h-7.4"/></svg><b>4.8<span class="star">&#9733;</span></b></span>Google rating</div>
+      <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.8s7.4-3.5 7.4-9.4V5.5L12 2.8 4.6 5.5v6.9c0 5.9 7.4 9.4 7.4 9.4z"/><path d="m8.9 12 2.2 2.2 4.1-4.4"/></svg><b>Licensed</b></span>Plumbers + sparkies</div>
+      <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13 21a2 2 0 0 1-2.9 0l-7-7a2 2 0 0 1-.6-1.4V4.5a2 2 0 0 1 2-2h8.1a2 2 0 0 1 1.4.6l6.6 6.6a2 2 0 0 1 0 2.7z"/><path d="M7.4 7.4h.01"/></svg><b>Rebates</b></span>Handled for you</div>
+      <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="2" y="14" width="4.6" height="6" rx="1.8"/><rect x="17.4" y="14" width="4.6" height="6" rx="1.8"/><path d="M19.7 19.6v.4a2.4 2.4 0 0 1-2.4 2.4H14"/></svg><b>After-care</b></span>We pick up the phone</div>
     </div>
   </div>
 </section>
@@ -637,9 +705,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2>Three steps. No mystery.</h2>
     </div>
     <div class="steps">
-      <div class="step"><h4>Request your free quote</h4><p>60 seconds, no obligation.</p></div>
-      <div class="step"><h4>We confirm your fixed price</h4><p>From photos of your system and switchboard. The quote is the invoice.</p></div>
-      <div class="step"><h4>We install, usually in one visit</h4><p>Our own licensed team, old unit taken away, 5-year warranty in writing.</p></div>
+      <div class="step">
+        <div class="step-media">
+          <img src="/assets/img/qualify-bg.jpg" alt="A Goldsure estimator shaking hands with a homeowner after showing the quote on a tablet" loading="lazy" decoding="async" width="1600" height="1067" style="object-position:44% 46%" />
+          <span class="step-num">1</span>
+        </div>
+        <div class="step-card"><h4>Request your free quote</h4><p>60 seconds, no obligation.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-media">
+          <img src="/assets/img/install-controls.jpg" alt="A Goldsure plumber checking the controls on an installed Econova heat pump" loading="lazy" decoding="async" width="800" height="1200" style="object-position:46% 20%" />
+          <span class="step-num">2</span>
+        </div>
+        <div class="step-card"><h4>We confirm your fixed price</h4><p>From photos of your system and switchboard. The quote is the invoice.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-media">
+          <img src="/assets/img/install-valve.jpg" alt="A Goldsure plumber connecting the pipework on a hot water heat pump install" loading="lazy" decoding="async" width="1200" height="800" style="object-position:36% 52%" />
+          <span class="step-num">3</span>
+        </div>
+        <div class="step-card"><h4>We install, usually in one visit</h4><p>Our own licensed team, old unit taken away, 5-year warranty in writing.</p></div>
+      </div>
     </div>
   </div>
 </section>

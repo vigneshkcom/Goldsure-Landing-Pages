@@ -121,30 +121,43 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 .nav-phone:hover{background:var(--gold-deep);transform:translateY(-2px)}
 .phone-ico{width:16px;height:16px;flex:0 0 auto}
 
-/* survey band - team photo, cobalt overlay, white card floating on it.
-   Paddings here are deliberately tight: the whole card has to sit above the
-   fold on a 1440x900 desktop and a 390x844 phone. */
+/* survey band - team photo, cobalt wash, white card floating on it. The wash
+   was lifted ~18 points on 05/08/2026 so the team photograph actually reads.
+   Paddings here are deliberately tight: the header block AND the card together
+   have to sit above the fold on a 1440x900 desktop and a 390x844 phone. */
 .ty{position:relative;overflow:hidden;background:var(--cobalt-deep);
-  padding:clamp(24px,3.2vw,44px) 0 clamp(28px,4vw,56px)}
+  padding:clamp(18px,2.4vw,30px) 0 clamp(22px,3vw,38px)}
 .ty-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;z-index:0}
 .ty::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(165deg,oklch(0.33 0.12 264 /.93),oklch(0.26 0.10 264 /.90) 55%,oklch(0.20 0.07 264 /.94))}
+  background:linear-gradient(165deg,oklch(0.33 0.12 264 /.76),oklch(0.26 0.10 264 /.72) 55%,oklch(0.20 0.07 264 /.77))}
 .ty .wrap{position:relative;z-index:2}
-.ty-card{background:var(--white);border-radius:20px;padding:clamp(20px,2.6vw,30px);max-width:720px;margin:0 auto;
+
+/* the header, standing on the photo above the card. White on dark, and a wide
+   measure on the sub so it wraps to as few lines as possible. */
+.ty-header{text-align:center;max-width:900px;margin:0 auto clamp(14px,1.8vw,20px);color:var(--white)}
+.ty-header .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:7px;color:var(--gold)}
+.ty-header .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor}
+.ty-header h1{color:var(--white);font-size:clamp(1.4rem,1.02rem + 1.5vw,2.1rem);line-height:1.16;margin-bottom:.36em;
+  text-shadow:0 2px 18px oklch(0.15 0.04 264 /.55)}
+.ty-header .sub{color:oklch(1 0 0 /.88);font-size:var(--step--1);line-height:1.5;max-width:80ch;margin:0 auto;
+  text-shadow:0 1px 12px oklch(0.15 0.04 264 /.5)}
+/* ?demo=1 - lets the page be previewed without a real enquiry behind it */
+.demo-tag{display:inline-block;margin-left:12px;vertical-align:middle;font-family:var(--font-sans);
+  font-size:0.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;background:oklch(0.80 0.12 85 /.22);color:var(--gold);
+  border:1px solid var(--gold)}
+
+.ty-card{background:var(--white);border-radius:20px;padding:clamp(17px,2.1vw,24px);max-width:720px;margin:0 auto;
   box-shadow:0 40px 80px -40px oklch(0 0 0 /.7)}
 .ty-head{text-align:center}
 .ty-card .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:8px}
 .ty-card .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor}
-/* ?demo=1 - lets the page be previewed without a real enquiry behind it */
-.demo-tag{display:inline-block;margin-left:12px;vertical-align:middle;font-family:var(--font-sans);
-  font-size:0.68rem;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
-  padding:4px 10px;border-radius:999px;background:oklch(0.80 0.12 85 /.22);color:var(--gold-deep);
-  border:1px solid var(--gold-deep)}
 .ty-card h1{font-size:clamp(1.35rem,1rem + 1.4vw,2rem);margin-bottom:.4em}
 .ty-card .sub{color:var(--ink-soft);font-size:var(--step--1);line-height:1.5;max-width:58ch;margin:0 auto}
 
-/* survey - one question at a time */
-.survey{margin-top:clamp(15px,1.9vw,18px);border-top:1px solid var(--line);padding-top:clamp(15px,1.9vw,18px)}
+/* survey - one question at a time. The card now starts here, so no rule and no
+   top gap: the progress bar is the first thing in it. */
+.survey{margin-top:0;padding-top:0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
@@ -164,14 +177,14 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 .q-stack > .q.is-leaving{transform:translateX(var(--q-out,-14px))}
 .q-stack > .q.is-current{opacity:1;visibility:visible;transform:none;
   transition:opacity .2s var(--ease-out),transform .2s var(--ease-out),visibility 0s}
-.q-title{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.02rem,0.92rem + 0.42vw,1.28rem);
-  line-height:1.25;margin-bottom:11px}
+.q-title{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.02rem,0.92rem + 0.42vw,1.24rem);
+  line-height:1.24;margin-bottom:9px}
 .q-hint{display:block;font-family:var(--font-sans);font-weight:400;font-size:0.78rem;
-  color:var(--ink-soft);margin-top:5px;line-height:1.4}
-.opts{display:grid;gap:8px}
+  color:var(--ink-soft);margin-top:4px;line-height:1.4}
+.opts{display:grid;gap:7px}
 .opts.two{grid-template-columns:1fr 1fr}
 @media(max-width:560px){.opts.two{grid-template-columns:1fr}}
-.opt{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);border-radius:12px;
+.opt{display:flex;align-items:center;gap:11px;padding:9px 13px;border:1px solid var(--line);border-radius:12px;
   background:var(--paper);cursor:pointer;line-height:1.3;font-size:var(--step--1);
   transition:border-color .2s,background .2s,box-shadow .2s}
 .opt:hover{border-color:var(--cobalt-bright);background:var(--white)}
@@ -184,11 +197,11 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 .other-wrap input{width:100%;padding:10px 13px;border:1px solid var(--line);border-radius:12px;
   font:inherit;font-size:var(--step--1);background:var(--paper);color:var(--ink)}
 .other-wrap input:focus{outline:2px solid var(--cobalt);border-color:var(--cobalt)}
-.small-note{margin-top:10px;font-size:0.76rem;color:var(--ink-soft);line-height:1.45;max-width:62ch}
+.small-note{margin-top:8px;font-size:0.74rem;color:var(--ink-soft);line-height:1.42;max-width:70ch}
 
 /* action row - Back on the left, Next or Send on the right. Always present, so
    revealing a button never moves anything */
-.q-nav{display:flex;align-items:center;gap:12px;min-height:48px;margin-top:clamp(11px,1.5vw,17px)}
+.q-nav{display:flex;align-items:center;gap:12px;min-height:44px;margin-top:clamp(9px,1.2vw,14px)}
 .q-back{background:none;border:0;cursor:pointer;font-family:var(--font-sans);font-size:var(--step--1);
   font-weight:600;color:var(--ink-soft);padding:9px 2px;border-radius:8px;transition:color .2s}
 .q-back:hover{color:var(--cobalt)}
@@ -207,9 +220,9 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .95
 .form-err{margin-top:12px;padding:.7rem 1rem;background:rgba(220,38,38,0.12);border:1px solid rgba(220,38,38,0.3);
   border-radius:10px;font-size:0.82rem;color:#b91c1c}
 
-/* survey success, replaces the form in place */
-.survey-done{margin-top:clamp(18px,2.4vw,28px);border-top:1px solid var(--line);padding-top:clamp(20px,2.6vw,30px);
-  display:flex;gap:18px;align-items:flex-start}
+/* survey success, replaces the form in place - and the form is the only thing
+   in the card now, so no top rule or gap either */
+.survey-done{display:flex;gap:18px;align-items:flex-start}
 .survey-done .tick{width:52px;height:52px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
   background:oklch(0.52 0.14 150 /.14);color:var(--green)}
 .survey-done .tick svg{width:26px;height:26px}
@@ -262,14 +275,16 @@ footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:28px 0}
   <img class="ty-bg" src="/assets/img/hero-team.jpg" alt="" aria-hidden="true" width="1920" height="921" />
   <div class="wrap">
 
+    <!-- the header sits on the photo, NOT inside the card. The card below holds
+         only the progress bar, the stepper and its buttons. -->
+    <div class="ty-header" id="tyHeader" hidden>
+      <span class="eyebrow">Enquiry received</span><span class="demo-tag" id="demoTag" hidden>Demo view</span>
+      <h1>Thank you for your submission. Before you go&hellip;</h1>
+      <p class="sub">Take 1 minute to answer four quick questions. The same interest-free finance can cover more than hot water, so your answers help us check everything you&rsquo;re eligible for before we call you with your quote.</p>
+    </div>
+
     <!-- shown when the visitor came through the form -->
     <div class="ty-card" id="surveyCard" hidden>
-      <div class="ty-head">
-        <span class="eyebrow">Enquiry received</span><span class="demo-tag" id="demoTag" hidden>Demo view</span>
-        <h1>Thank you for your submission. Before you go&hellip;</h1>
-        <p class="sub">Take 1 minute to answer four quick questions. The same interest-free finance can cover more than hot water, so your answers help us check everything you&rsquo;re eligible for before we call you with your quote.</p>
-      </div>
-
       <form class="survey" id="surveyForm">
         <div class="q-prog" aria-hidden="true">
           <span class="q-prog-label" id="qProgLabel">Question 1 of 4</span>
@@ -420,6 +435,8 @@ footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:28px 0}
     lead = { name: '', phone: '', email: '' };
   }
   surveyCard.hidden = false;
+  var tyHeader = document.getElementById('tyHeader');
+  if (tyHeader) tyHeader.hidden = false;
 
   var form    = document.getElementById('surveyForm');
   var btn     = document.getElementById('surveySubmit');
