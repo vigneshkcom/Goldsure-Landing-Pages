@@ -228,7 +228,13 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 }
 @media(max-width:680px){
   .hero-trust{grid-template-columns:1fr 1fr;gap:9px}
-  .final .hero-trust{grid-template-columns:1fr 1fr}
+  /* final section: three thin chips on ONE row */
+  .final .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .final .hero-trust>div{padding:8px 9px;font-size:0.72rem}
+  .final .hero-trust .tl{gap:5px;margin-bottom:2px}
+  .final .hero-trust .tl b{font-size:0.84rem}
+  .final .hero-trust .ti{width:14px;height:14px}
+  .final .hero-trust div:last-child:nth-child(odd){grid-column:auto}
   .hero-trust>div{padding:10px 11px;font-size:0.79rem}
   .hero-trust .tl{gap:6px}
   .hero-trust .ti{width:16px;height:16px}
@@ -523,7 +529,17 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .form-call-label{font-size:var(--step--1);color:var(--ink-soft);margin-top:16px;text-align:center}
 .btn-call{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px;padding:12px;border:1px solid var(--line);border-radius:10px;font-weight:700;color:var(--ink);font-size:var(--step-0)}
 .form-call-hours{font-size:var(--step--1);color:var(--ink-soft);text-align:center;margin-top:6px}
-@media(max-width:860px){.final .grid{grid-template-columns:1fr}}
+@media(max-width:860px){
+  /* stacked quote section: heading > thin badge row > FORM (so the #quote anchor
+     lands on it) > team photo. display:contents lets the left column's children
+     be reordered around the form. */
+  .final .grid{grid-template-columns:1fr;gap:0}
+  .final .final-left{display:contents}
+  .final .hero-trust{grid-area:auto;margin:16px 0 0}
+  .final .form{order:5;margin-top:22px}
+  .final .final-team{order:6;margin-top:24px}
+  #quote{scroll-margin-top:76px}
+}
 
 /* footer */
 footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:30px 0 96px}
@@ -942,9 +958,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Get your fixed-price quote.</h2>
         <p class="lede">60 seconds. No obligation. The price we quote is the price you pay.</p>
         <div class="hero-trust">
-          <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
-          <div><b>Licensed</b>In-house trades</div>
-          <div><b>$200</b>Upfront</div>
+          <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 12h-7.4"/></svg><b>4.8<span class="star">&#9733;</span></b></span>Google rating</div>
+          <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.8s7.4-3.5 7.4-9.4V5.5L12 2.8 4.6 5.5v6.9c0 5.9 7.4 9.4 7.4 9.4z"/><path d="m8.9 12 2.2 2.2 4.1-4.4"/></svg><b>Licensed</b></span>In-house trades</div>
+          <div><span class="tl"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13 21a2 2 0 0 1-2.9 0l-7-7a2 2 0 0 1-.6-1.4V4.5a2 2 0 0 1 2-2h8.1a2 2 0 0 1 1.4.6l6.6 6.6a2 2 0 0 1 0 2.7z"/><path d="M7.4 7.4h.01"/></svg><b>$200</b></span>Upfront</div>
         </div>
         <figure class="final-team"><img src="/assets/img/team-goldsure.jpg" alt="The Goldsure team, licensed plumbers and electricians" loading="lazy" decoding="async" width="1200" height="800" /></figure>
       </div>
