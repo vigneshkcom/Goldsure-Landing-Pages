@@ -1,12 +1,8 @@
 /* ===========================================================================
    HEAT PUMPS SYDNEY - lead form proxy  (heatpumpsyd.goldsure.com.au)
    Same shape as hotwater/api/submit-lead.js.
-
-   TODO: swap for the Sydney webhook. This is still the MELBOURNE hot water
-   GoHighLevel webhook, used as a placeholder so the form works end to end.
-   Changing it is a one-line edit on the constant below.
    =========================================================================== */
-var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/75acb356-a9c6-40b7-afcc-0ba5a87d5701';
+var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/07271b48-bf69-4a10-a36e-cbe4bb71f740';
 
 var ALLOWED_ORIGINS = [
   'https://heatpumpsyd.goldsure.com.au',
