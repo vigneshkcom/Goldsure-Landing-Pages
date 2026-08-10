@@ -211,22 +211,55 @@ footer .logo-img{height:46px;margin-bottom:14px}
 .callout b{color:var(--ink)}
 .callout p{color:var(--ink-soft);font-size:var(--step-0);line-height:1.45}
 
-/* burned quotes */
-.quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-.q{background:#e1b85c;border:1px solid oklch(0.6 0.12 75 /.5);border-radius:var(--r);padding:26px 24px;
-  box-shadow:0 18px 36px -22px oklch(0 0 0 /.5);position:relative}
-.q::before{content:"\201C";position:absolute;top:2px;right:16px;font-family:var(--font-serif);font-weight:700;font-size:var(--step-3);color:oklch(0.32 0.06 70 /.4);line-height:1}
-.q p{font-weight:600;font-size:var(--step-0);line-height:1.35;color:var(--ink)}
-.q cite{display:block;margin-top:12px;font-style:normal;font-size:var(--step--1);color:oklch(0.34 0.05 72 /.85)}
-@media(max-width:860px){
-  .quote-grid{display:block;padding-bottom:3rem}
-  .q{position:sticky;top:80px;margin-top:1rem;box-shadow:0 18px 34px rgba(0,0,0,0.15)}
-  .q:first-child{margin-top:0;z-index:10}.q:nth-child(2){z-index:11}.q:nth-child(3){z-index:12}.q:nth-child(4){z-index:13}
-}
-.turn{margin-top:30px;font-size:var(--step-1);font-weight:500;color:var(--white);max-width:48ch}
+/* burned - the receipts wall */
+.burned{position:relative;overflow:hidden;
+  background:
+    radial-gradient(760px 340px at 80% -6%, oklch(0.70 0.10 85 /.09), transparent 65%),
+    radial-gradient(900px 460px at 10% 108%, oklch(0.42 0.14 262 /.45), transparent 70%),
+    linear-gradient(178deg, var(--cobalt-deep), oklch(0.25 0.09 264))}
+.burned::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:160px 160px}
+.burned::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--spot,0);
+  background:radial-gradient(560px 560px at var(--mx,-20%) var(--my,-20%), oklch(0.62 0.16 258 /.16), transparent 62%);
+  transition:opacity .6s var(--ease-out)}
+.burn-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);
+  grid-template-areas:"copy wall" "turn wall";grid-template-rows:auto 1fr;
+  column-gap:clamp(28px,4.5vw,64px)}
+.burn-copy{grid-area:copy}
+.burn-copy .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+.burn-copy .eyebrow::before{content:"";width:26px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease-out) .25s}
+.reveal.in .burn-copy .eyebrow::before{transform:scaleX(1)}
+.burn-copy h2{font-size:var(--step-2);margin:0 0 .4em;max-width:20ch}
+.burn-lede{color:oklch(1 0 0 /.78);font-size:var(--step-1);font-weight:400;line-height:1.4;max-width:44ch}
+.turn{grid-area:turn;align-self:start;margin-top:clamp(24px,3vw,38px);padding-top:clamp(20px,2.5vw,30px);
+  border-top:1px solid oklch(1 0 0 /.16);font-size:var(--step-0);font-weight:500;line-height:1.55;
+  color:oklch(1 0 0 /.85);max-width:48ch}
 .turn b{color:var(--gold)}
-.burned .shead{margin-left:auto;margin-right:auto;text-align:center}
-.burned .turn{margin-left:auto;margin-right:auto;max-width:56ch;text-align:center}
+.quote-wall{grid-area:wall;align-self:center;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,22px)}
+.quote-wall .q:nth-child(even){--ty:26px}
+.q{margin:0;background:var(--paper);color:var(--ink);border-radius:14px;padding:clamp(18px,2vw,24px);
+  box-shadow:0 30px 60px -28px oklch(0 0 0 /.75), inset 0 1px 0 oklch(1 0 0 /.7);
+  transform:translateY(calc(var(--ty,0px) + var(--rise,0px))) rotate(var(--r,0deg));
+  transition:transform .6s var(--ease-out),box-shadow .5s var(--ease-out)}
+html.js .qr{opacity:0;--rise:36px;transition:opacity .8s var(--ease-out) var(--d,0s),transform .8s var(--ease-out) var(--d,0s),box-shadow .5s var(--ease-out)}
+html.js .qr.in{opacity:1;--rise:0px}
+@media(hover:hover) and (pointer:fine){
+  .q:hover{transform:translateY(calc(var(--ty,0px) - 6px)) rotate(0deg);box-shadow:0 42px 74px -30px oklch(0 0 0 /.8), inset 0 1px 0 oklch(1 0 0 /.7)}
+}
+.q figcaption{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;padding-bottom:11px;border-bottom:1px dashed oklch(0.86 0.015 264)}
+.q-src{font-size:var(--step--1);font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.q-src::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--coral);margin-right:8px;vertical-align:1px}
+.q-when{font-size:var(--step--1);color:var(--ink-soft);text-align:right}
+.q blockquote{margin:0;font-size:var(--step-0);font-weight:500;line-height:1.5;color:var(--ink)}
+.sting{font-style:normal;font-weight:700;color:var(--coral-deep);background:oklch(0.64 0.21 25 /.12);padding:.05em .3em;border-radius:6px}
+@media(max-width:860px){
+  .burn-grid{grid-template-columns:1fr;grid-template-areas:"copy" "wall" "turn";grid-template-rows:auto}
+  .quote-wall{display:block;padding-bottom:2.5rem;margin-top:clamp(20px,4vw,30px)}
+  .q{--ty:0px;--r:0deg;position:sticky;top:84px;margin-top:1rem}
+  .q:first-child{margin-top:0;z-index:10}.q:nth-child(2){z-index:11}.q:nth-child(3){z-index:12}.q:nth-child(4){z-index:13}
+  .turn{align-self:auto}
+}
 
 /* includes / extras */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -447,7 +480,7 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .form-input:focus,.form-select:focus{transform:translateY(-1px);box-shadow:0 6px 18px -10px oklch(0.48 0.17 262 / .55)}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  html.js .reveal,html.js .sr,html.js .sr-pop{opacity:1;transform:none}
+  html.js .reveal,html.js .sr,html.js .sr-pop,html.js .qr{opacity:1;transform:none}
   html.js .hero-card img{transform:none;animation:none}.btn:hover{transform:none}
 }
 
@@ -602,22 +635,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- BURNED / NO SURPRISES -->
-<section class="band cobalt burned">
+<section class="band cobalt burned" id="burned">
   <div class="wrap reveal">
-    <div class="shead">
-      <span class="eyebrow">If you have been quoting around</span>
-      <h2>The rebate brought out a lot of cowboys. You have probably heard the stories.</h2>
-      <p>Melbourne homeowners keep warning each other about rebate-driven installers. These are real words from people who got burned.</p>
+    <div class="burn-grid">
+      <div class="burn-copy">
+        <span class="eyebrow">If you have been quoting around</span>
+        <h2>The rebate brought out a lot of cowboys. You have probably heard the stories.</h2>
+        <p class="burn-lede">Melbourne homeowners keep warning each other about rebate-driven installers. These are real words from people who got burned.</p>
+      </div>
+      <div class="quote-wall">
+        <figure class="q qr" style="--r:-1.4deg;--d:.05s">
+          <figcaption><span class="q-src">SolarChoice review</span><span class="q-when">2025</span></figcaption>
+          <blockquote>&ldquo;They quote for the heat pump including installation, but on the installation day they screw you for another <em class="sting">$600</em> for the actual install.&rdquo;</blockquote>
+        </figure>
+        <figure class="q qr" style="--r:1deg;--d:.15s">
+          <figcaption><span class="q-src">SolarChoice review</span><span class="q-when">2025</span></figcaption>
+          <blockquote>&ldquo;Increased the quote on the day of installation by <em class="sting">$800</em> with a bogus reason, and threatened to cancel if I refused to pay.&rdquo;</blockquote>
+        </figure>
+        <figure class="q qr" style="--r:1.2deg;--d:.25s">
+          <figcaption><span class="q-src">OzBargain</span><span class="q-when">Melbourne homeowner</span></figcaption>
+          <blockquote>&ldquo;These companies are formed to take advantage of the rebates, then disappear and leave you to sort out any issues yourself.&rdquo;</blockquote>
+        </figure>
+        <figure class="q qr" style="--r:-1deg;--d:.35s">
+          <figcaption><span class="q-src">OzBargain</span><span class="q-when">Melbourne homeowner</span></figcaption>
+          <blockquote>&ldquo;No in-house team, offloading every job onto contractors. If things go south, will they take responsibility?&rdquo;</blockquote>
+        </figure>
+      </div>
+      <p class="turn">If you have heard the horror stories, <b>that is exactly why we do it differently.</b> One honest quote, in writing, before you commit. Our own licensed team on the tools. And the same people on the phone if you ever need us again.</p>
     </div>
-  </div>
-  <div class="wrap">
-    <div class="quote-grid">
-      <div class="q"><p>&ldquo;They quote for the heat pump including installation, but on the installation day they screw you for another $600 for the actual install.&rdquo;</p><cite>SolarChoice review, 2025</cite></div>
-      <div class="q"><p>&ldquo;Increased the quote on the day of installation by $800 with a bogus reason, and threatened to cancel if I refused to pay.&rdquo;</p><cite>SolarChoice review, 2025</cite></div>
-      <div class="q"><p>&ldquo;These companies are formed to take advantage of the rebates, then disappear and leave you to sort out any issues yourself.&rdquo;</p><cite>OzBargain, Melbourne homeowner</cite></div>
-      <div class="q"><p>&ldquo;No in-house team, offloading every job onto contractors. If things go south, will they take responsibility?&rdquo;</p><cite>OzBargain, Melbourne homeowner</cite></div>
-    </div>
-    <p class="turn">If you have heard the horror stories, <b>that is exactly why we do it differently.</b> One honest quote, in writing, before you commit. Our own licensed team on the tools. And the same people on the phone if you ever need us again.</p>
   </div>
 </section>
 
@@ -1063,7 +1108,7 @@ document.querySelectorAll(".acc button").forEach(function(b){
       el.addEventListener("transitionend",function done(){el.style.transitionDelay="0s";el.removeEventListener("transitionend",done)});
     });
   },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
-  document.querySelectorAll(".reveal,.sr,.sr-pop").forEach(function(el){io.observe(el)});
+  document.querySelectorAll(".reveal,.sr,.sr-pop,.qr").forEach(function(el){io.observe(el)});
   document.querySelectorAll(".hero .reveal").forEach(function(el){el.classList.add("in")});
 
   /* count-ups */
@@ -1079,6 +1124,23 @@ document.querySelectorAll(".acc button").forEach(function(b){
     var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(el);o.unobserve(e.target)}})},{threshold:.6});
     o.observe(el);
   });
+
+  /* torchlight on the burned band */
+  var burned=document.querySelector(".burned");
+  if(burned&&!prefersReduced&&window.matchMedia&&matchMedia("(pointer:fine)").matches){
+    var spotRaf=null;
+    burned.addEventListener("pointermove",function(e){
+      if(spotRaf)return;
+      spotRaf=requestAnimationFrame(function(){
+        var r=burned.getBoundingClientRect();
+        burned.style.setProperty("--mx",(e.clientX-r.left)+"px");
+        burned.style.setProperty("--my",(e.clientY-r.top)+"px");
+        burned.style.setProperty("--spot","1");
+        spotRaf=null;
+      });
+    });
+    burned.addEventListener("pointerleave",function(){burned.style.setProperty("--spot","0")});
+  }
 
   /* nav elevation */
   var nav=document.querySelector("header.nav");
