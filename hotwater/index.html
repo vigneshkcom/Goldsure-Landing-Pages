@@ -146,12 +146,14 @@ footer .logo-img{height:46px;margin-bottom:14px}
 
 /* HERO */
 .hero{background:linear-gradient(160deg,var(--cobalt-deep),var(--cobalt));color:var(--white);overflow:hidden;position:relative}
-.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,oklch(0.14 0 0 /.90) 0%,oklch(0.16 0 0 /.78) 30%,oklch(0.18 0 0 /.46) 48%,oklch(0.20 0 0 /.15) 64%,oklch(0.20 0 0 /0) 80%);pointer-events:none}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:42% 50%;z-index:0}
-@media(max-width:860px){.hero::after{background:linear-gradient(180deg,oklch(0.13 0 0 /.86) 0%,oklch(0.14 0 0 /.72) 22%,oklch(0.15 0 0 /.50) 45%,oklch(0.16 0 0 /.44) 62%,oklch(0.18 0 0 /.58) 100%)}
-  .hero-bg{object-position:48% 42%}}
-/* phones get a portrait crop of the same scene, so the whole unit stays in frame */
-@media(max-width:700px){.hero-bg{object-position:50% 50%}}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,oklch(0.14 0.03 264 /.93) 0%,oklch(0.15 0.03 264 /.88) 30%,oklch(0.17 0.04 264 /.62) 48%,oklch(0.19 0.045 264 /.34) 64%,oklch(0.20 0.045 264 /.12) 80%);pointer-events:none}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 6%;z-index:0}
+@media(max-width:860px){.hero::after{background:linear-gradient(180deg,oklch(0.14 0.03 264 /.58) 0%,oklch(0.15 0.03 264 /.62) 22%,oklch(0.16 0.04 264 /.76) 55%,oklch(0.16 0.04 264 /.84) 100%)}
+  /* phone: pin the whole team lineup to the top at its natural shape and fade
+     it into the cobalt below, instead of cover-cropping to one zoomed face */
+  .hero-bg{inset:0 0 auto 0;height:auto;object-fit:fill;
+    -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 97%);
+    mask-image:linear-gradient(180deg,#000 55%,transparent 97%)}}
 .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;grid-template-areas:"text card" "trust card";gap:0 clamp(20px,3vw,40px);
   align-items:center;padding-top:clamp(26px,3.5vw,46px);padding-bottom:clamp(30px,4vw,56px)}
 .hero-text{grid-area:text}
@@ -557,8 +559,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HERO -->
 <section class="hero" id="top">
   <picture>
-    <source media="(max-width:700px)" srcset="/assets/hotwater/img/hero-bg-mobile.jpg" />
-    <img class="hero-bg" src="/assets/hotwater/img/hero-bg.jpg" alt="" aria-hidden="true" />
+    <source media="(max-width:860px)" srcset="/assets/hotwater/img/hero-team-bg-mobile.jpg" />
+    <img class="hero-bg" src="/assets/hotwater/img/hero-team-bg.jpg" alt="" aria-hidden="true" />
   </picture>
   <div class="wrap">
     <div class="hero-text">
