@@ -465,10 +465,16 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .reviews-band .shead{margin-bottom:clamp(16px,2vw,22px)}
 .rev-carousel{position:relative}
 .rev-track{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none;-ms-overflow-style:none;padding:2px 2px 6px}
+  scroll-behavior:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;-ms-overflow-style:none;padding:2px 2px 6px;
+  /* the row drifts continuously, so soften both edges - a half-cut card at the
+     boundary should read as movement, not as clipping */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34px,#000 calc(100% - 34px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 34px,#000 calc(100% - 34px),transparent 100%)}
+@media(prefers-reduced-motion:reduce){.rev-track{-webkit-mask-image:none;mask-image:none;scroll-snap-type:x mandatory}
+  .rev{scroll-snap-align:start}}
 .rev-track::-webkit-scrollbar{display:none}
-.rev{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start;
+.rev{flex:0 0 calc((100% - 36px)/3);
   background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:24px;
   display:flex;flex-direction:column}
 .stars{color:var(--gold-deep);letter-spacing:2px;font-size:var(--step-0)}
@@ -721,7 +727,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="acc"><button>What happens to my old hot water system?</button><div class="panel"><div><p>We disconnect it and take it away as part of the job. No skip bin, no extra charge.</p></div></div></div>
       <div class="acc"><button>Is the heat pump noisy?</button><div class="panel"><div><p>About as loud as your fridge, and it lives outside. Most people stop noticing it within a day.</p></div></div></div>
       <div class="acc"><button>What warranty comes with the heat pump?</button><div class="panel"><div><p>A minimum 5-year whole-of-system warranty, that&rsquo;s a NSW requirement we&rsquo;re happy to be held to, with up to 7 years on the tank on split-system models. And our own licensed team is who you call, not a call centre.</p></div></div></div>
-      <div class="acc"><button>Who actually turns up to do the job?</button><div class="panel"><div><p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work. The people on this page are the people who come to your home. Installation is carried out under NSW Contractor Licence 397621C (Ecogenica Pty Ltd), and your plumbing Certificate of Compliance (CoC) is issued after installation, along with a Certificate of Compliance for Electrical Work (CCEW) where the job calls for one.</p></div></div></div>
+      <div class="acc"><button>Who actually turns up to do the job?</button><div class="panel"><div><p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work. Installation is carried out under NSW Contractor Licence 397621C (Ecogenica Pty Ltd), and your plumbing Certificate of Compliance (CoC) is issued after installation, along with a Certificate of Compliance for Electrical Work (CCEW) where the job calls for one.</p></div></div></div>
       <div class="acc"><button>What does a heat pump cost to run?</button><div class="panel"><div><p>For most homes, roughly a quarter of what an old electric tank costs to run - the heat pump pulls warmth out of the air instead of burning power to make it. Most households see the difference on their first full bill.</p></div></div></div>
       <div class="acc"><button>How long does a heat pump last?</button><div class="panel"><div><p>Some plumbers are wary of heat pumps because of cheap early models that failed young. Fair enough - we saw them too. It is why we only install units we are happy to put a 5-year whole-of-system warranty behind, with up to 7 years on the tank, and why our own team services everything we install.</p></div></div></div>
       <div class="acc"><button>Do I need solar panels for it to work?</button><div class="panel"><div><p>No. A heat pump runs off your normal household power and cuts the bill on its own. If you have solar, you can set it to heat during the day and run it on sunshine. And if you are thinking about adding solar later, the same interest-free finance can cover that too.</p></div></div></div>
@@ -824,7 +830,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="shead centred">
       <span class="eyebrow">The people</span>
       <h2>The team you can actually check up on.</h2>
-      <p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work. The people in these photos are the people who turn up at your door.</p>
+      <p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work.</p>
     </div>
     <div class="team-shots">
       <figure class="tshot">
@@ -1128,9 +1134,10 @@ document.querySelectorAll(".acc button").forEach(function(b){
   addEventListener("scroll",navState,{passive:true});navState();
 })();
 
-/* REVIEWS CAROUSEL - a scroll-snapping row that nudges itself along every 4s.
-   Swipe works natively on a phone. Hovering (or touching) it stops the timer.
-   With prefers-reduced-motion it never moves on its own and never smooth-scrolls. */
+/* REVIEWS CAROUSEL - drifts continuously and smoothly rather than jumping a card
+   every few seconds. The set of cards is cloned once so the drift wraps with no
+   visible seam. Hover, focus, touch or a hidden tab pauses it; swipe still works
+   natively; with prefers-reduced-motion it never moves on its own. */
 (function(){
   var track = document.getElementById('revTrack');
   var dotsWrap = document.getElementById('revDots');
@@ -1138,71 +1145,101 @@ document.querySelectorAll(".acc button").forEach(function(b){
 
   var cards = Array.prototype.slice.call(track.children);
   if (!cards.length) return;
+
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var idx = 0, timer = null, paused = false, resumeTimer = null, syncTimer = null;
+  var SPEED = 55;               /* pixels a second */
+  var paused = false, raf = null, last = 0, dotTick = 0, resumeTimer = null, loopW = 0;
 
   cards.forEach(function (c, i) {
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'rev-dot' + (i === 0 ? ' on' : '');
     b.setAttribute('aria-label', 'Show review ' + (i + 1));
-    b.addEventListener('click', function () { go(i); start(); });
+    b.addEventListener('click', function () { go(i); });
     dotsWrap.appendChild(b);
   });
   var dots = Array.prototype.slice.call(dotsWrap.children);
 
-  function offsetOf(i) { return cards[i].offsetLeft - cards[0].offsetLeft; }
-  function maxScroll() { return track.scrollWidth - track.clientWidth; }
+  /* the clones only exist to make the wrap invisible, so keep them out of the
+     accessibility tree */
+  var firstClone = null;
+  if (!reduced) {
+    cards.forEach(function (c) {
+      var clone = c.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+      if (!firstClone) firstClone = clone;
+    });
+  }
+
+  function measure() {
+    loopW = firstClone ? (firstClone.offsetLeft - cards[0].offsetLeft) : 0;
+  }
 
   function go(i) {
-    idx = i;
-    var left = Math.min(offsetOf(i), maxScroll());
+    var left = cards[i].offsetLeft - cards[0].offsetLeft;
     if (track.scrollTo) { track.scrollTo({ left: left, behavior: reduced ? 'auto' : 'smooth' }); }
     else { track.scrollLeft = left; }
+    /* let the smooth jump finish before the drift takes over again */
+    paused = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(function () { paused = false; }, 900);
   }
 
-  function next() {
-    var n = idx + 1;
-    if (n >= cards.length || offsetOf(n) > maxScroll() + 1) n = 0;
-    go(n);
-  }
-
-  function sync() {
-    var l = track.scrollLeft, best = 0, bestD = Infinity;
+  function syncDots() {
+    var l = loopW > 0 ? (track.scrollLeft % loopW) : track.scrollLeft;
+    var best = 0, bestD = Infinity;
     cards.forEach(function (c, i) {
-      var d = Math.abs(offsetOf(i) - l);
+      var d = Math.abs((c.offsetLeft - cards[0].offsetLeft) - l);
       if (d < bestD) { bestD = d; best = i; }
     });
-    idx = best;
     dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
   }
 
-  function start() { stop(); if (reduced) return; timer = setInterval(function () { if (!paused) next(); }, 4000); }
-  function stop()  { if (timer) clearInterval(timer); timer = null; }
+  function frame(ts) {
+    if (!last) last = ts;
+    var dt = Math.min(ts - last, 60);
+    last = ts;
+    if (!paused && loopW > 0) {
+      track.scrollLeft += SPEED * dt / 1000;
+      if (track.scrollLeft >= loopW) track.scrollLeft -= loopW;
+    }
+    dotTick += dt;
+    if (dotTick >= 250) { dotTick = 0; syncDots(); }
+    raf = requestAnimationFrame(frame);
+  }
 
-  track.addEventListener('scroll', function () {
-    clearTimeout(syncTimer);
-    syncTimer = setTimeout(sync, 90);
-  }, { passive: true });
-
-  track.addEventListener('mouseenter', function () { paused = true; });
-  track.addEventListener('mouseleave', function () { paused = false; });
-  dotsWrap.addEventListener('mouseenter', function () { paused = true; });
-  dotsWrap.addEventListener('mouseleave', function () { paused = false; });
-  track.addEventListener('focusin',  function () { paused = true; });
-  track.addEventListener('focusout', function () { paused = false; });
+  function hold(v) { return function () { paused = v; }; }
+  track.addEventListener('mouseenter', hold(true));
+  track.addEventListener('mouseleave', hold(false));
+  dotsWrap.addEventListener('mouseenter', hold(true));
+  dotsWrap.addEventListener('mouseleave', hold(false));
+  track.addEventListener('focusin',  hold(true));
+  track.addEventListener('focusout', hold(false));
   track.addEventListener('touchstart', function () {
     paused = true; clearTimeout(resumeTimer);
   }, { passive: true });
   track.addEventListener('touchend', function () {
     clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(function () { paused = false; }, 5000);
+    resumeTimer = setTimeout(function () { paused = false; }, 4000);
   }, { passive: true });
-  document.addEventListener('visibilitychange', function () { paused = document.hidden; });
-  addEventListener('resize', function () { clearTimeout(syncTimer); syncTimer = setTimeout(sync, 150); }, { passive: true });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { paused = true; last = 0; } else { paused = false; }
+  });
 
-  sync();
-  start();
+  var reTimer = null;
+  addEventListener('resize', function () {
+    clearTimeout(reTimer);
+    reTimer = setTimeout(function () { measure(); syncDots(); }, 150);
+  }, { passive: true });
+
+  measure();
+  syncDots();
+  /* fonts and images can land after this runs and change the widths */
+  addEventListener('load', function () { measure(); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(measure); }
+
+  if (!reduced) raf = requestAnimationFrame(frame);
 })();
 
 /* LEAD FORM - posts to the Sydney webhook proxy, then hands the visitor
