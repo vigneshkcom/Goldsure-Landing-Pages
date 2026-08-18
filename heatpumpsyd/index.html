@@ -183,6 +183,9 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .hero-points li svg{position:absolute;left:0;top:3px;width:21px;height:21px;color:var(--gold)}
 .hero-points li b{color:var(--white);font-weight:600}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+.hero-lic{display:flex;align-items:flex-start;gap:9px;margin-top:22px;font-size:var(--step--1);line-height:1.45;color:oklch(1 0 0 / .74)}
+.hero-lic svg{width:17px;height:17px;flex:none;color:var(--gold);margin-top:2px}
+.hero-lic b{color:var(--white);font-weight:600}
 
 /* the tall photo card, with the green promise badge over its bottom-left corner */
 .hero-card{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 /.7);
@@ -215,6 +218,7 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
   .hero .wrap{grid-template-columns:1fr;grid-template-areas:"text" "trust" "card"}
   .hero-card{transform:none;margin:18px 0 0;max-width:520px}
   .hero-trust{margin-top:18px}
+  .hero-lic{margin-top:18px}
   .hero::after{background:linear-gradient(180deg,
     oklch(0.14 0.03 264 /.58) 0%,
     oklch(0.15 0.03 264 /.62) 22%,
@@ -524,6 +528,8 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 .btn-form:hover{background:var(--gold-deep);transform:translateY(-2px)}
 .btn-form:disabled{opacity:.7;cursor:default}
 .form-note{display:flex;align-items:center;gap:8px;font-size:var(--step--1);color:var(--ink-soft);margin-top:14px}
+.form-lic{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:var(--step--1);line-height:1.5;color:var(--ink-soft)}
+.form-lic b{display:block;color:var(--ink);font-weight:600}
 .google-badge-light{display:flex;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
 .google-badge-divider{width:1px;height:28px;background:var(--line)}
 .form-call-label{font-size:var(--step--1);color:var(--ink-soft);margin-top:16px;text-align:center}
@@ -543,6 +549,8 @@ header.nav{position:sticky;top:0;z-index:50;background:oklch(0.33 0.12 264 / .92
 
 /* footer */
 footer{background:var(--ink);color:oklch(1 0 0 /.75);padding:30px 0 96px}
+.foot-lic{padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid oklch(1 0 0 / .16);font-size:var(--step--1);line-height:1.5;color:oklch(1 0 0 / .8)}
+.foot-lic b{display:block;margin-bottom:3px;color:var(--white);font-weight:600}
 .foot-bottom{padding-top:6px;font-size:var(--step--1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .foot-bottom a{color:var(--gold)}
 @media(max-width:740px){.foot-bottom{flex-direction:column}}
@@ -641,6 +649,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-gold" href="#quote">Get a Free Quote <span class="arrow">&rarr;</span></a>
         <a class="btn btn-ghost" href="tel:0272510007">Call 02 7251 0007</a>
       </div>
+      <p class="hero-lic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.8s7.4-3.5 7.4-9.4V5.5L12 2.8 4.6 5.5v6.9c0 5.9 7.4 9.4 7.4 9.4z"/><path d="m8.9 12 2.2 2.2 4.1-4.4"/></svg><span>Installation by Ecogenica Pty Ltd &middot; <b>NSW Contractor Licence 397621C</b></span></p>
     </div>
     <div class="hero-card">
       <img src="/assets/img/hero-card.jpg" alt="An installed Econova hot water heat pump against a brick wall at a Sydney home" width="933" height="1400" fetchpriority="high" />
@@ -712,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="acc"><button>What happens to my old hot water system?</button><div class="panel"><div><p>We disconnect it and take it away as part of the job. No skip bin, no extra charge.</p></div></div></div>
       <div class="acc"><button>Is the heat pump noisy?</button><div class="panel"><div><p>About as loud as your fridge, and it lives outside. Most people stop noticing it within a day.</p></div></div></div>
       <div class="acc"><button>What warranty comes with the heat pump?</button><div class="panel"><div><p>A minimum 5-year whole-of-system warranty, that&rsquo;s a NSW requirement we&rsquo;re happy to be held to, with up to 7 years on the tank on split-system models. And our own licensed team is who you call, not a call centre.</p></div></div></div>
-      <div class="acc"><button>Who actually turns up to do the job?</button><div class="panel"><div><p>Goldsure&rsquo;s own licensed plumbers and electricians. No subcontractors, no marketplace labour. The people on this page are the people who come to your home.</p></div></div></div>
+      <div class="acc"><button>Who actually turns up to do the job?</button><div class="panel"><div><p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work. The people on this page are the people who come to your home. Installation is carried out under NSW Contractor Licence 397621C (Ecogenica Pty Ltd), and your plumbing Certificate of Compliance (CoC) is issued after installation, along with a Certificate of Compliance for Electrical Work (CCEW) where the job calls for one.</p></div></div></div>
       <div class="acc"><button>What does a heat pump cost to run?</button><div class="panel"><div><p>For most homes, roughly a quarter of what an old electric tank costs to run - the heat pump pulls warmth out of the air instead of burning power to make it. Most households see the difference on their first full bill.</p></div></div></div>
       <div class="acc"><button>How long does a heat pump last?</button><div class="panel"><div><p>Some plumbers are wary of heat pumps because of cheap early models that failed young. Fair enough - we saw them too. It is why we only install units we are happy to put a 5-year whole-of-system warranty behind, with up to 7 years on the tank, and why our own team services everything we install.</p></div></div></div>
       <div class="acc"><button>Do I need solar panels for it to work?</button><div class="panel"><div><p>No. A heat pump runs off your normal household power and cuts the bill on its own. If you have solar, you can set it to heat during the day and run it on sunshine. And if you are thinking about adding solar later, the same interest-free finance can cover that too.</p></div></div></div>
@@ -815,7 +824,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="shead centred">
       <span class="eyebrow">The people</span>
       <h2>The team you can actually check up on.</h2>
-      <p>Our own licensed plumbers and electricians, on our payroll, in our own vans. The people in these photos are the people who turn up at your door.</p>
+      <p>We have our own dedicated and experienced team of fully licensed plumbers and electricians who carry out the work. The people in these photos are the people who turn up at your door.</p>
     </div>
     <div class="team-shots">
       <figure class="tshot">
@@ -841,7 +850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="proof">
         <span class="proof-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></span>
         <h3>Our own trades</h3>
-        <p>Licensed plumbers and electricians on our payroll. No subcontractors, no marketplace labour. The same team quotes the job, installs it, and answers the phone afterwards.</p>
+        <p>Our own dedicated and experienced team of fully licensed plumbers and electricians carries out the work. The same team quotes the job, installs it, and answers the phone afterwards. Your plumbing Certificate of Compliance (CoC) is issued after installation, along with a Certificate of Compliance for Electrical Work (CCEW) where the job calls for one.</p>
       </div>
       <div class="proof">
         <span class="proof-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span>
@@ -1005,6 +1014,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           Your details are confidential and will only be used to respond to your enquiry.
         </div>
+        <div class="form-lic"><b>Installation by Ecogenica Pty Ltd</b>NSW Contractor Licence: 397621C</div>
         <div class="google-badge-light">
           <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           <div class="google-badge-divider"></div>
@@ -1027,9 +1037,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
+    <div class="foot-lic"><b>Installation by Ecogenica Pty Ltd &middot; NSW Contractor Licence: 397621C</b>Our own dedicated and experienced team of fully licensed plumbers and electricians carries out the work. Hot water heat pumps across Sydney and NSW.</div>
     <div class="foot-bottom">
       <span>&copy; 2026 Goldsure Pty Ltd &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></span>
-      <span>Licensed plumbers and electricians &middot; Hot water heat pumps across Sydney and NSW</span>
+      <span>Ph 02 7251 0007</span>
     </div>
   </div>
 </footer>
