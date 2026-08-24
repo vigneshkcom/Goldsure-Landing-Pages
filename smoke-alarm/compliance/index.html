@@ -433,6 +433,8 @@ h1 em{
 
   function showVerdict(){
     var gaps = buildGaps();
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event:'checker_verdict', checker_outcome: gaps.length === 0 ? 'compliant' : 'not_compliant', checker_gaps: gaps.length});
     quiz.style.display = 'none';
     verdict.classList.add('show');
     var flag  = document.getElementById('v-flag');
@@ -514,10 +516,7 @@ h1 em{
     fetch(WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
       .then(function(r){
         if(!r.ok) throw new Error(r.status);
-        formW.classList.remove('show');
-        sent.classList.add('show');
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({event:'compliance_checker_lead', checker_gaps: payload.checker_gaps});
+        window.location.href = '/thank-you';
       })
       .catch(function(){
         err.style.display = 'block';
