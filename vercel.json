@@ -202,6 +202,34 @@
       "destination": "/thank-you/splitsystem/index.html"
     },
     {
+      "source": "/compliance-v2",
+      "has": [
+        {
+          "type": "host",
+          "value": "smokealarms.goldsure.com.au"
+        }
+      ],
+      "destination": "/smoke-alarm/compliance-v2/index.html"
+    },
+    {
+      "source": "/compliance-v2/",
+      "has": [
+        {
+          "type": "host",
+          "value": "smokealarms.goldsure.com.au"
+        }
+      ],
+      "destination": "/smoke-alarm/compliance-v2/index.html"
+    },
+    {
+      "source": "/smoke-alarm/compliance-v2",
+      "destination": "/smoke-alarm/compliance-v2/index.html"
+    },
+    {
+      "source": "/smoke-alarm/compliance-v2/",
+      "destination": "/smoke-alarm/compliance-v2/index.html"
+    },
+    {
       "source": "/compliance",
       "has": [
         {
