@@ -132,6 +132,7 @@ h1 em{font-style:normal;color:var(--gold-deep)}
 .secure{display:flex;flex-direction:column;align-items:center;gap:7px;margin-top:16px}
 .secure-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#15803d;background:#22c55e1a;border:1px solid #22c55e66;border-radius:99px;padding:7px 14px}
 .secure-badge svg{width:15px;height:15px}
+.secure-badge .lock{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
 .secure-txt{font-size:13.5px;font-weight:700;color:var(--ink)}
 .team{max-width:1080px;margin:0 auto;padding:44px 20px 10px}
 .team img{display:block;width:100%;height:auto;border-radius:var(--radius);box-shadow:0 14px 40px oklch(0.23 0.03 264 / .12)}
@@ -287,7 +288,7 @@ h1 em{font-style:normal;color:var(--gold-deep)}
 
   </div>
   <div class="secure">
-    <span class="secure-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>100% Secure</span>
+    <span class="secure-badge"><svg class="lock" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lk-s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a8f99"/><stop offset=".35" stop-color="#e9ecf1"/><stop offset=".6" stop-color="#b8bec8"/><stop offset="1" stop-color="#6f7480"/></linearGradient><linearGradient id="lk-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe89a"/><stop offset=".45" stop-color="#e6b422"/><stop offset="1" stop-color="#a8780c"/></linearGradient><linearGradient id="lk-hi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M7.6 11V7.6a4.4 4.4 0 018.8 0V11" fill="none" stroke="url(#lk-s)" stroke-width="2.6" stroke-linecap="round"/><path d="M7.6 11V7.6a4.4 4.4 0 018.8 0V11" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round"/><rect x="4.2" y="10.4" width="15.6" height="11.6" rx="2.4" fill="url(#lk-b)"/><rect x="4.2" y="10.4" width="15.6" height="11.6" rx="2.4" fill="none" stroke="#8a6410" stroke-opacity=".55" stroke-width=".7"/><rect x="5.2" y="11.2" width="6" height="9.8" rx="2" fill="url(#lk-hi)"/><circle cx="12" cy="15.4" r="1.55" fill="#4a3608"/><path d="M11.15 16.4h1.7l.45 3h-2.6z" fill="#4a3608"/></svg>100% Secure</span>
     <span class="secure-txt">No pressure, no obligation.</span>
   </div>
 </section>
