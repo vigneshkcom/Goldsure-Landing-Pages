@@ -171,13 +171,14 @@ h1 em{font-style:normal;color:var(--gold-deep)}
 /* ── Why Goldsure ── */
 .why{background:var(--sky);border-top:1px solid var(--line);padding:56px 20px 30px}
 .why h2{font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--cobalt-deep);margin-bottom:30px}
-.why .row{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why .item{display:flex;gap:16px;align-items:flex-start;text-align:left;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.why .item .ico{width:64px;height:64px}
-.why .item .ico::before{width:46px;height:46px;left:12px;top:14px}
-.why .item .ico svg{width:64px;height:64px}
-.why h3{font-size:18px;font-weight:600;color:var(--cobalt-deep);margin-bottom:4px}
-.why p{font-size:14px;color:var(--ink-soft);line-height:1.5;text-wrap:pretty}
+.why .row{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.why .item{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 28px;background:none;border:0;border-radius:0}
+.why .item + .item{border-left:1px solid var(--line)}
+.why .item .ico{width:72px;height:72px;margin-bottom:12px}
+.why .item .ico::before{width:72px;height:72px;left:0;top:0;background:var(--gold-tint)}
+.why .item .ico svg{width:44px;height:44px;margin:14px}
+.why h3{font-size:18px;font-weight:600;color:var(--cobalt-deep);margin-bottom:6px}
+.why p{font-size:14px;color:var(--ink-soft);line-height:1.55;text-wrap:pretty;max-width:30ch}
 
 /* ── Footer ── */
 .foot{max-width:760px;margin:0 auto;padding:30px 20px 44px;color:var(--ink-soft);font-size:12.5px;line-height:1.65;text-wrap:pretty}
@@ -220,8 +221,13 @@ h1 em{font-style:normal;color:var(--gold-deep)}
   .consent{font-size:12.5px;margin-top:12px}
   .why{padding:44px 16px 24px}
   .why h2{margin-bottom:20px}
-  .why .row{grid-template-columns:1fr;gap:12px}
-  .why .item{padding:16px}
+  .why .row{grid-template-columns:1fr;gap:0}
+  .why .item{flex-direction:row;text-align:left;align-items:center;gap:16px;padding:16px 4px}
+  .why .item + .item{border-left:0;border-top:1px solid var(--line)}
+  .why .item .ico{width:60px;height:60px;margin:0;flex:none}
+  .why .item .ico::before{width:60px;height:60px}
+  .why .item .ico svg{width:36px;height:36px;margin:12px}
+  .why p{max-width:none}
   .team{padding:30px 14px 6px}
   .team img{border-radius:10px}
   .team p{font-size:13px}
