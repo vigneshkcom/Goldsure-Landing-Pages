@@ -661,8 +661,17 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
   .hero-trust .stars5{font-size:11px}
 }
 @media(max-width:420px){.hero .hero-cta .btn{font-size:13.5px;padding:12px 8px}}
+/* final-section chips: bold on top, label under, centred, equal boxes */
+.final .hero-trust{grid-auto-rows:1fr;gap:10px}
+.final .hero-trust div{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:10px 8px;white-space:nowrap;min-width:0}
+.final .hero-trust div b{margin:0}
+.final .hero-trust .stars5{color:var(--gold);font-size:12px;letter-spacing:1px;font-weight:400}
+@media(max-width:680px){.final .hero-trust{grid-template-columns:repeat(3,1fr);gap:8px}.final .hero-trust div{padding:9px 4px;font-size:12px}.final .hero-trust div:last-child:nth-child(odd){grid-column:auto}}
+/* sticky bar countdown */
+#bar .cd{align-items:center}
+#bar .cd b{min-width:2ch;text-align:center}
+@media(max-width:600px){#bar .cd{gap:4px}#bar .cd b{padding:2px 6px;font-size:12px}}
 </style>
-</head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7N25BRL"
@@ -952,7 +961,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="extension-note">New installations are scheduled after 30 September. Your quote confirms the applicable rebate, installation timing and your contribution. An enquiry does not reserve an earlier rebate rate.</p>
         <div class="hero-trust">
           <div><b>VEU Partner</b>Eco Light Up</div>
-          <div><b>4.8<span class="star">&#9733;</span></b>Google rating</div>
+          <div><b>4.8 <span class="stars5" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></b>Google rating</div>
           <div><b>Licensed</b>Trades only</div>
         </div>
         <figure class="final-team"><img src="/assets/team-hero.jpg" alt="The Goldsure team, licensed Melbourne electricians and plumbers" loading="lazy" decoding="async" /></figure>
@@ -985,7 +994,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- STICKY ELIGIBILITY BAR -->
 <div id="bar">
-  <span class="bar-msg"><strong>Rebates are changing.</strong> <span class="long">Check your options now.</span></span>
+  <span class="bar-msg"><strong>Rebates are changing in</strong> <span class="cd" id="cd" aria-label="Time until the rebate rules change on 30 September"><b id="cd-d">--</b>d <b id="cd-h">--</b>h <b id="cd-m">--</b>m <b id="cd-s">--</b>s</span></span>
   <a class="btn btn-ink" href="#quote">Check Eligibility</a>
 </div>
 
@@ -1001,6 +1010,21 @@ document.querySelectorAll(".acc button").forEach(function(b){
   b.addEventListener("click",function(){b.parentElement.classList.toggle("open")});
 });
 
+/* ---- COUNTDOWN to 30 September 2026 23:59:59 AEST (UTC+10): the date the VEU multi-split rules change ---- */
+(function(){
+  var deadline=new Date("2026-09-30T23:59:59+10:00").getTime();
+  var d=document.getElementById("cd-d"),h=document.getElementById("cd-h"),m=document.getElementById("cd-m"),s=document.getElementById("cd-s");
+  if(!d||!h||!m||!s)return;
+  function pad(n){return n<10?"0"+n:""+n}
+  function set(el,val){val=String(val);if(el.textContent===val)return;el.textContent=val;el.classList.remove("tick");void el.offsetWidth;el.classList.add("tick")}
+  function tick(){
+    var t=deadline-Date.now();
+    if(t<0){document.querySelector("#bar .bar-msg").innerHTML="<strong>Rebate rules have changed.</strong> Check what applies to your home now.";return}
+    set(d,Math.floor(t/86400000));set(h,pad(Math.floor(t/3600000)%24));set(m,pad(Math.floor(t/60000)%60));set(s,pad(Math.floor(t/1000)%60));
+    setTimeout(tick,1000);
+  }
+  tick();
+})();
 /* ---- MOTION: headline split, staggered reveals, counters, parallax ---- */
 (function(){
   var prefersReduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
