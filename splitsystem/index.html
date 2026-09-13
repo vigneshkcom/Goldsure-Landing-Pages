@@ -682,7 +682,8 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
   .hero .hero-trust .tb-ic .scallop{width:28px;height:28px}
   .hero .hero-trust .tb-ic .glyph{left:7px;top:7px;width:14px;height:14px}
   .hero .hero-trust .tb-t b{font-size:14px}
-  .hero .hero-trust .tb-t span:not(.stars5){font-size:12px}
+  .hero .hero-trust{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero .hero-trust .tb-t span:not(.stars5){font-size:12px;white-space:normal;text-wrap:balance}
 }
 /* sticky bar countdown */
 #bar .cd{align-items:center}
