@@ -689,6 +689,22 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 #bar .cd{align-items:center}
 #bar .cd b{min-width:2ch;text-align:center}
 @media(max-width:600px){#bar .cd{gap:4px}#bar .cd b{padding:2px 6px;font-size:12px}}
+
+/* Final-section trust chips beside the form: same seal-icon design as the hero (13/09/2026) */
+.final .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;grid-auto-rows:1fr;align-self:stretch;width:100%}
+.final .hero-trust div{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;text-align:left;gap:8px;padding:10px 10px;white-space:normal;min-width:0;font-size:13px}
+.final .hero-trust .tb-ic{position:relative;flex:0 0 auto;width:28px;height:28px;color:var(--gold);padding-right:9px;box-sizing:content-box;border-right:1px solid oklch(1 0 0 / .18)}
+.final .hero-trust .tb-ic .scallop{position:absolute;left:0;top:0;width:28px;height:28px;filter:drop-shadow(0 1px 2px oklch(0 0 0 / .25))}
+.final .hero-trust .tb-ic .glyph{position:absolute;left:7px;top:7px;width:14px;height:14px;color:var(--cobalt-deep)}
+.final .hero-trust .tb-t{display:flex;flex-direction:column;min-width:0;line-height:1.2;text-align:left}
+.final .hero-trust .tb-t b{margin:0;white-space:nowrap;font-size:15px}
+.final .hero-trust .tb-t span:not(.stars5){font-size:12px;opacity:.88;white-space:normal;text-wrap:balance}
+.final .hero-trust .stars5{color:var(--gold);font-size:11px;letter-spacing:1px;font-weight:400}
+@media(max-width:680px){
+  .final .hero-trust{grid-template-columns:minmax(0,1fr);gap:8px}
+  .final .hero-trust div{padding:9px 10px;font-size:13px}
+  .final .hero-trust div:last-child:nth-child(odd){grid-column:auto}
+}
 </style>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -978,9 +994,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="lede">Tell us about your home. We will check eligibility, explain the applicable rebate and provide a clear quote before you decide.</p>
         <p class="extension-note">New installations are scheduled after 30 September. Your quote confirms the applicable rebate, installation timing and your contribution. An enquiry does not reserve an earlier rebate rate.</p>
         <div class="hero-trust">
-          <div><b>VEU Partner</b>Eco Light Up</div>
-          <div><b>4.8 <span class="stars5" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></b>Google rating</div>
-          <div><b>Licensed</b>Trades only</div>
+          <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12.5 10 17.5 19 7.5"/></svg></span><span class="tb-t"><b>VEU Partner</b><span>Eco Light Up</span></span></div>
+          <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" ><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span><span class="tb-t"><b>4.8 <span class="stars5" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></b><span>Google rating</span></span></div>
+          <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z"/><polyline points="9 12 11.2 14.2 15.2 9.8"/></svg></span><span class="tb-t"><b>Licensed</b><span>Trades only</span></span></div>
         </div>
         <figure class="final-team"><img src="/assets/team-hero.jpg" alt="The Goldsure team, licensed Melbourne electricians and plumbers" loading="lazy" decoding="async" /></figure>
       </div>
