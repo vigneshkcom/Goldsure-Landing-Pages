@@ -72,6 +72,40 @@
   ],
   "rewrites": [
     {
+      "source": "/smoke-alarm/promo",
+      "destination": "/smoke-alarm/promo/index.html"
+    },
+    {
+      "source": "/thank-you/",
+      "has": [
+        {
+          "type": "host",
+          "value": "smokealarmpromo.goldsure.com.au"
+        }
+      ],
+      "destination": "/thank-you/smoke-alarm-promo/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [
+        {
+          "type": "host",
+          "value": "smokealarmpromo.goldsure.com.au"
+        }
+      ],
+      "destination": "/thank-you/smoke-alarm-promo/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "smokealarmpromo.goldsure.com.au"
+        }
+      ],
+      "destination": "/smoke-alarm/promo/index.html"
+    },
+    {
       "source": "/calculator",
       "has": [
         {
