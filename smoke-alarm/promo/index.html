@@ -45,8 +45,8 @@ fbq('track', 'PageView');
   with down arrows beside a team-and-certificate photo, proof photo levelled with its text, FAQ (5% questions + main-page questions) sits before
   the form, promotion terms removed, team photo under the form button, service area Caloundra to the Gold Coast incl. Bribie Island, Brisbane, Logan.
   Offer copy locked: "We beat any written smoke alarm quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
-  every pending item renders as a dashed "draft" chip so reviewers can see where it lands. Remove #preview-note and fill PROMO
-  in the config block below before launch.
+  16/09/2026 (Ben): review bar and every "to be confirmed" chip removed; hero ghost button and the form card now carry the phone number.
+  Fill PROMO in the config block below before launch.
   Form: PROMO.live=false in this draft, so submit shows an honest preview notice and sends NOTHING. Fields and payload now match the
   main smoke alarm page's form (name, phone, email, postcode, preferred time of call, competitor quote upload OR what you were quoted;
   JSON to PROMO.webhook with the file as base64, one resend without the file if refused). Never claim receipt on a timeout; success only on 2xx.
@@ -83,8 +83,6 @@ img{display:block;max-width:100%;height:auto}
 .btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
 .btn-ghost{background:oklch(1 0 0 / .08);color:var(--white);border:1px solid oklch(1 0 0 / .25)}
 .btn-ghost:hover{background:oklch(1 0 0 / .14)}
-/* preview notice */
-#preview-note{background:#FFF3CD;color:#5C4400;border-bottom:1px solid #E6C766;font-size:14px;font-weight:600;text-align:center;padding:9px 16px;line-height:1.4}
 /* nav */
 .nav{position:sticky;top:0;z-index:50;background:var(--cobalt-deep);color:var(--white)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
@@ -112,9 +110,8 @@ img{display:block;max-width:100%;height:auto}
 .gbadge-hero .gb-top span{color:#FBBC04;font-size:12px;letter-spacing:1px;line-height:1}
 .gbadge-hero .gb-sub{display:block;font-size:11px;color:var(--ink-soft);margin:0;line-height:1}
 @media(max-width:560px){.lt-tag{height:46px}.gbadge-hero{height:46px}}
-.draft{display:inline-block;border:1.5px dashed oklch(1 0 0 / .5);border-radius:14px;padding:6px 12px;font-size:13px;font-weight:600;color:oklch(1 0 0 / .8);line-height:1.35}
-.on-light .draft{border-color:oklch(0.43 0.03 264 / .5);color:var(--ink-soft)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:560px){.hero-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hero-cta .btn{padding:.9em .6em;font-size:15px;white-space:nowrap}.hero-cta .btn .arrow{display:none}}
 .hero-card{position:relative;background:var(--white);border-radius:22px;padding:18px;box-shadow:0 30px 60px -30px oklch(0 0 0 / .6);transform:rotate(1.2deg)}
 .hero-card img{border-radius:14px;width:100%;aspect-ratio:1/1;object-fit:cover}
 .hero-tag{position:absolute;left:-8px;bottom:22px;background:var(--cobalt-deep);color:var(--white);border-radius:12px;padding:10px 16px;box-shadow:0 12px 24px -12px oklch(0 0 0 / .7);font-size:var(--step--1);line-height:1.25}
@@ -215,7 +212,10 @@ img{display:block;max-width:100%;height:auto}
 .claim-team{margin:6px 0 0}
 .claim-team img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:16px;box-shadow:0 24px 50px -28px oklch(0 0 0 / .6)}
 .claim-team figcaption{font-size:13px;color:oklch(1 0 0 / .78);margin-top:10px;line-height:1.4}
-.google-badge-light{display:flex;align-items:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.google-badge-light{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.btn-call{margin-left:auto;display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 16px;border:1.5px solid var(--line);border-radius:12px;font-weight:700;color:var(--ink);font-size:var(--step--1);white-space:nowrap;transition:border-color .2s,background .2s}
+.btn-call:hover{border-color:var(--cobalt);background:var(--paper)}
+@media(max-width:420px){.btn-call{margin-left:0;width:100%}}
 .google-badge-light svg{width:22px;height:22px;flex:0 0 auto}
 .google-badge-divider{width:1px;height:28px;background:var(--line)}
 .hnf-group select{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);transition:border-color .2s,box-shadow .2s}
@@ -261,7 +261,6 @@ html.anim .reveal.in{opacity:1;transform:none}
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQ47CNZX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1" alt=""/></noscript>
-<div id="preview-note">Review draft. Offer dates and full promotion terms are still to be confirmed. This page is not live and the form does not send anything yet.</div>
 
 <header class="nav">
   <div class="wrap">
@@ -279,7 +278,7 @@ html.anim .reveal.in{opacity:1;transform:none}
       <div class="stamp-row"><img class="lt-tag" src="/promo/assets/limited-time-tag-flat.svg" alt="Limited time only" width="1579" height="474" /><span class="gbadge-hero" aria-label="4.8 out of 5 Google rating"><svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg><span class="gb-div"></span><span class="gb-txt"><span class="gb-top"><b>4.8</b><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></span><span class="gb-sub">Google rating</span></span></span></div>
       <div class="hero-cta">
         <a class="btn btn-gold" href="#promo-form-card" data-track="hero_cta">Get a Free Quote <span class="arrow">&rarr;</span></a>
-        <a class="btn btn-ghost" href="#how">How it works</a>
+        <a class="btn btn-ghost" href="tel:0721455155" data-track="hero_call">Call (07) 2145 5155</a>
       </div>
       <div class="ended"><b>This promotion has ended.</b><p>Thanks for your interest. You can still request a standard smoke alarm installation quote on our main page.</p><a class="btn btn-gold" href="https://smokealarms.goldsure.com.au/">Request a standard quote</a></div>
     </div>
@@ -338,11 +337,11 @@ html.anim .reveal.in{opacity:1;transform:none}
     <div class="shead centre"><span class="eyebrow">Questions</span><h2>Straight answers <span class="two">before you send&nbsp;it.</span></h2></div>
     <div class="acc faq-list">
       <details open><summary>What counts as a written quote?</summary><div class="a">A quote in writing from another provider for smoke alarm installation at your property. A PDF, an email or a clear photo of a paper quote all work. A verbal price does not.</div></details>
-      <details><summary>Do you compare the whole price?</summary><div class="a">We compare the full installed total on your quote with the same installation from Goldsure, then take 5% off. <span class="draft" data-pending="terms">Quote age, fee and GST treatment to be confirmed</span></div></details>
+      <details><summary>Do you compare the whole price?</summary><div class="a">We compare the full installed total on your quote with the same installation from Goldsure, then take 5% off.</div></details>
       <details><summary>What if I do not have a quote yet?</summary><div class="a">You can still send the form. We mark your enquiry "quote still required" and the 5% beat applies once we receive a qualifying written quote.</div></details>
       <details><summary>What happens after I submit?</summary><div class="a">Goldsure reviews your quote, confirms it qualifies, and sends you our price in writing at 5% under your quote. You decide whether to book.</div></details>
       <details><summary>Which areas do you cover?</summary><div class="a">Caloundra to the Gold Coast, including Bribie Island, Brisbane and Logan. Enter your postcode on the form and we will confirm it.</div></details>
-      <details><summary>When does the offer end?</summary><div class="a">This is a limited time offer. <span class="draft" data-pending="end-date">End date to be confirmed</span></div></details>
+      <details><summary>When does the offer end?</summary><div class="a">This is a limited time offer, so send your quote through now. We confirm your beaten price in writing.</div></details>
       <details><summary>Is the price really all-in?</summary><div class="a">Yes. Our price covers the compliant photoelectric alarms, installation and interconnection by a licensed electrician, correct placement, testing, and your Certificate of Compliance. No good, better or best tiers. You know the price before we book.</div></details>
       <details><summary>What does the 2027 law actually require?</summary><div class="a">From 1 January 2027, every Queensland home needs photoelectric, interconnected smoke alarms (AS 3786) in every bedroom, in the hallways connecting bedrooms, and on every storey. Most homes need more alarms than the owner expects, often four to six. We assess and confirm exactly how many before we book.</div></details>
       <details><summary>How long does it take, and will you show up?</summary><div class="a">Most installs take about an hour. We book a specific time, not a four-hour window, and we call before we arrive. A licensed Goldsure electrician does the work, never an unlicensed subcontractor, and you get your certificate before we leave.</div></details>
@@ -402,6 +401,7 @@ html.anim .reveal.in{opacity:1;transform:none}
           <div style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:700;color:var(--ink)">4.8</span><span style="color:#FBBC04;font-size:12px;letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
           <div style="font-size:11px;color:var(--ink-soft);margin-top:1px">Google Rating</div>
         </div>
+        <a href="tel:0721455155" class="btn-call" data-track="form_call">&#9742; (07) 2145 5155</a>
       </div>
     </div>
   </div>
