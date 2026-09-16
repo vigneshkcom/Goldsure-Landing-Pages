@@ -175,7 +175,7 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 /* C: ink card, gold border, pill overlapping the top edge */
 .hero-promo.v-c{padding:20px 22px 20px;background:var(--ink);border:1.5px solid var(--gold);border-radius:16px;box-shadow:0 24px 50px -30px oklch(0 0 0 /.9)}
 .hero-promo .promo-tag{display:block;width:210px;height:auto}
-.hero-promo.v-c{margin-bottom:58px}
+.hero-promo.v-c{margin-bottom:52px}
 .hero-promo.v-c .promo-tag{position:absolute;bottom:-38px;right:14px;width:190px;filter:drop-shadow(0 10px 16px oklch(0 0 0 /.45))}
 .hero-promo.v-c strong{margin-top:0}
 @media(max-width:560px){.hero-promo strong{font-size:1.32rem}.hero-promo.v-a{padding:16px 16px 16px 20px}.hero-promo.v-c .promo-tag{width:160px;bottom:-30px;right:10px}.hero-promo.v-c{margin-bottom:50px;padding:16px}}
@@ -551,6 +551,23 @@ html.js .sr-pop.in{opacity:1;transform:none}
   .product-top .product-intro p{font-size:1.05rem;line-height:1.6;margin:0}
   .product-photo{position:relative;height:100%;min-height:300px}.product-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 }
+/* Hero on phones (Ben, 16/09/2026): centred text, tag under the text, buttons side by side, no float on the green tag */
+@media(max-width:860px){
+  .hero-text{text-align:center}
+  .hero h1{margin-left:auto;margin-right:auto;margin-bottom:12px}
+  .hero-points{margin-left:auto;margin-right:auto;width:fit-content;max-width:100%;text-align:left}
+  .hero-cta{justify-content:center;flex-wrap:nowrap;gap:10px}
+  .hero-cta .btn{flex:1 1 0;justify-content:center;padding:13px 8px;font-size:.88rem;white-space:nowrap;min-width:0}
+  .hero-promo{margin-left:auto;margin-right:auto;text-align:center}
+  .hero-promo p{margin-left:auto;margin-right:auto}
+  .hero-promo.v-c .promo-tag{position:static;width:150px;margin:12px 0 -42px auto;filter:drop-shadow(0 8px 14px oklch(0 0 0 /.45))}
+  .hero-promo.v-c{margin-bottom:37px}
+}
+@media(max-width:380px){
+  .hero-cta .btn .arrow{display:none}
+  .hero-tag{animation:m-tag-pop .8s var(--ease-spring) 1.15s backwards}
+  .hero-card img{transform:translateZ(0);backface-visibility:hidden}
+}
 </style>
 </head>
 <body>
@@ -584,9 +601,9 @@ html.js .sr-pop.in{opacity:1;transform:none}
       <span class="eyebrow on-dark">Queensland Owned &amp; Operated &middot; Caloundra to Brisbane</span>
       <h1>Smoke alarm installation, done by a <span class="gold">qualified team</span> to get your home compliant.</h1>
       <div class="hero-promo v-c">
-        <img class="promo-tag" src="/assets/sa/img/limited-time-tag.svg" alt="Limited time only" width="210" height="72" />
         <strong>We beat any written smoke alarms quote by&nbsp;<em>5%</em></strong>
         <p>Got a quote from another company? <a href="#quote">Upload it below</a>, or tell us what you were quoted, and we will beat&nbsp;it.</p>
+        <img class="promo-tag" src="/assets/sa/img/limited-time-tag.svg" alt="Limited time only" width="210" height="72" />
       </div>
       <ul class="hero-points">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Licensed QLD electricians, not an offshore call centre.</b> We call before we arrive, and we show up.</li>
