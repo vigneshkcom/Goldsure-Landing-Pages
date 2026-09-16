@@ -36,10 +36,10 @@ fbq('track', 'PageView');
 <meta property="og:url" content="https://smokealarmpromo.goldsure.com.au/" />
 <meta property="og:title" content="We Beat Any Written Smoke Alarm Quote by 5% | Goldsure" />
 <meta property="og:description" content="Submit your written smoke alarm installation quote and Goldsure beats it by 5%. Limited time only." />
-<meta property="og:image" content="https://smokealarmpromo.goldsure.com.au/smoke-alarm/promo/assets/alarm-hero.jpg" />
+<meta property="og:image" content="https://smokealarmpromo.goldsure.com.au/promo/assets/alarm-hero.jpg" />
 <!--
   GOLDSURE SMOKE ALARMS - QUOTE BEAT PROMOTION PAGE (review draft, built 15/09/2026, Fable 5.1)
-  Host: smokealarmpromo.goldsure.com.au -> /smoke-alarm/promo/index.html (vercel.json rewrite added on branch smokealarmpromo-15.09.26).
+  Served by the goldsure-smokealarms Vercel project (root directory smoke-alarm): live path /promo, thank-you /promo/thank-you. Asset paths are /promo/... for that reason.
   Offer copy locked: "We beat any written quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
   every pending item renders as a dashed "draft" chip so reviewers can see where it lands. Remove #preview-note and fill PROMO
   in the config block below before launch.
@@ -50,11 +50,11 @@ fbq('track', 'PageView');
   rule (old exact /thank-you URL) need a launch check for this new hostname. Clarity not added (hostname-restricted, confirm first).
 -->
 <style>
-@font-face{font-family:'Clash Display';src:url('/smoke-alarm/promo/assets/fonts/ClashDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
-@font-face{font-family:'Clash Display';src:url('/smoke-alarm/promo/assets/fonts/ClashDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/smoke-alarm/promo/assets/fonts/GeneralSans-500.woff2') format('woff2');font-weight:400 500;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/smoke-alarm/promo/assets/fonts/GeneralSans-600.woff2') format('woff2');font-weight:600;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/smoke-alarm/promo/assets/fonts/GeneralSans-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Clash Display';src:url('/promo/assets/fonts/ClashDisplay-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Clash Display';src:url('/promo/assets/fonts/ClashDisplay-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'General Sans';src:url('/promo/assets/fonts/GeneralSans-500.woff2') format('woff2');font-weight:400 500;font-display:swap}
+@font-face{font-family:'General Sans';src:url('/promo/assets/fonts/GeneralSans-600.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'General Sans';src:url('/promo/assets/fonts/GeneralSans-700.woff2') format('woff2');font-weight:700;font-display:swap}
 :root{
   --cobalt:oklch(0.48 0.17 262);--cobalt-deep:oklch(0.33 0.12 264);--cobalt-bright:oklch(0.59 0.18 258);
   --gold:oklch(0.80 0.12 85);--gold-deep:oklch(0.66 0.11 80);--gold-hex:#C9A84C;
@@ -245,7 +245,7 @@ html.anim .reveal.in{opacity:1;transform:none}
 
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Goldsure"><img src="/smoke-alarm/promo/assets/goldsure-logo.png" alt="Goldsure" width="1200" height="299" /></a>
+    <a class="logo" href="#top" aria-label="Goldsure"><img src="/promo/assets/goldsure-logo.png" alt="Goldsure" width="1200" height="299" /></a>
     <a class="btn btn-gold" href="#promo-form-card">Submit My Written Quote</a>
   </div>
 </header>
@@ -264,7 +264,7 @@ html.anim .reveal.in{opacity:1;transform:none}
       <div class="ended"><b>This promotion has ended.</b><p>Thanks for your interest. You can still request a standard smoke alarm installation quote on our main page.</p><a class="btn btn-gold" href="https://smokealarms.goldsure.com.au/">Request a standard quote</a></div>
     </div>
     <div class="hero-card">
-      <img src="/smoke-alarm/promo/assets/alarm-hero.jpg" alt="The photoelectric smoke alarm Goldsure installs in Queensland homes" width="1100" height="1080" />
+      <img src="/promo/assets/alarm-hero.jpg" alt="The photoelectric smoke alarm Goldsure installs in Queensland homes" width="1100" height="1080" />
       <div class="hero-tag"><span>Installed by licensed QLD electricians</span><b>Beat by 5%</b></div>
     </div>
     <div class="hero-trust"><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z"/><polyline points="9 12 11.2 14.2 15.2 9.8"/></svg></span><span class="tb-t"><b>Licensed electricians</b><span>Queensland licensed, every job</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span><span class="tb-t"><b>Queensland owned</b><span>Brisbane office in Pinkenba</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="tb-t"><b>Compliance certificate</b><span>Issued for the installation</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="tb-t"><b>Caloundra to Brisbane</b><span>Including Bribie Island</span></span></div></div>
@@ -290,7 +290,7 @@ html.anim .reveal.in{opacity:1;transform:none}
 <section class="band cobalt" id="proof">
   <div class="wrap reveal two">
     <div class="proof-photo">
-      <img src="/smoke-alarm/promo/assets/install-proof.jpg" alt="A Goldsure electrician wiring a smoke alarm into a ceiling in a Queensland home" loading="lazy" decoding="async" width="1476" height="1152" />
+      <img src="/promo/assets/install-proof.jpg" alt="A Goldsure electrician wiring a smoke alarm into a ceiling in a Queensland home" loading="lazy" decoding="async" width="1476" height="1152" />
       <div class="proof-cap">A real Goldsure installation. Licensed electrician, hard-wired alarm.</div>
     </div>
     <div>
@@ -384,7 +384,7 @@ html.anim .reveal.in{opacity:1;transform:none}
 
 <footer>
   <div class="wrap">
-    <div><a class="logo" href="#top"><img src="/smoke-alarm/promo/assets/goldsure-logo.png" alt="Goldsure" /></a>&copy; 2026 Goldsure Pty Ltd &middot; 30 Parker Court, Pinkenba QLD 4008 &middot; <a href="tel:0721455155">(07) 2145 5155</a> &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></div>
+    <div><a class="logo" href="#top"><img src="/promo/assets/goldsure-logo.png" alt="Goldsure" /></a>&copy; 2026 Goldsure Pty Ltd &middot; 30 Parker Court, Pinkenba QLD 4008 &middot; <a href="tel:0721455155">(07) 2145 5155</a> &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></div>
     <div>Queensland owned &amp; operated &middot; Licensed Queensland electricians &middot; Caloundra to Brisbane, including Bribie Island</div>
   </div>
 </footer>
@@ -402,7 +402,7 @@ var PROMO = {
   offer_id: 'smoke_alarm_quote_beat_5',
   offer_version: 'draft-2026-09-15',
   end_iso: null,                   /* e.g. '2026-10-31T23:59:59+10:00' (Australia/Brisbane, no daylight saving) */
-  thank_you: '/thank-you'
+  thank_you: '/promo/thank-you'
 };
 /* ---------- expiry ---------- */
 (function(){

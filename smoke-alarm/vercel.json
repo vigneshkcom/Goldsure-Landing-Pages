@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "smokealarmpromo.goldsure.com.au" }], "destination": "/promo/index.html" },
+    { "source": "/thank-you", "has": [{ "type": "host", "value": "smokealarmpromo.goldsure.com.au" }], "destination": "/promo/thank-you/index.html" }
+  ]
+}
