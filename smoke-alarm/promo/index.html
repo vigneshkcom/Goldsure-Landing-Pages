@@ -26,7 +26,7 @@ fbq('track', 'PageView');
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script>document.documentElement.classList.add('js');if(!/[?&]noanim/.test(location.search)&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')</script>
 <title>We Beat Any Written Smoke Alarm Quote by 5% | Goldsure</title>
-<meta name="description" content="Already have a written quote for smoke alarm installation? Submit it to Goldsure and we beat it by 5%. Limited time only. Licensed QLD electricians, Caloundra to Brisbane including Bribie Island." />
+<meta name="description" content="Already have a written quote for smoke alarm installation? Submit it to Goldsure and we beat it by 5%. Limited time only. Licensed QLD electricians, Caloundra to the Gold Coast, including Bribie Island, Brisbane and Logan." />
 <meta name="robots" content="noindex, nofollow" />
 <link rel="canonical" href="https://smokealarmpromo.goldsure.com.au/" />
 <link rel="icon" type="image/png" href="/assets/gs-favicon-96px.png" />
@@ -40,7 +40,11 @@ fbq('track', 'PageView');
 <!--
   GOLDSURE SMOKE ALARMS - QUOTE BEAT PROMOTION PAGE (review draft, built 15/09/2026, Fable 5.1)
   Served by the goldsure-smokealarms Vercel project (root directory smoke-alarm). Live at https://smokealarmpromo.goldsure.com.au/ (vercel.json routes / and /thank-you on that host to the files in /promo; the old smokealarms.goldsure.com.au/promo address redirects there). Asset paths stay /promo/... because that is where the files sit.
-  Offer copy locked: "We beat any written quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
+  16/09/2026 rebuild (Ben): H1 "We beat any written smoke alarm quote by 5%", red designed "Limited time only" ticket tag (same file as the main page,
+  /assets/sa/img/limited-time-tag.svg) in the hero and on the form card, every CTA reads "Get a Free Quote", How-it-works = three vertical steps
+  with down arrows beside a team-and-certificate photo, proof photo levelled with its text, FAQ (5% questions + main-page questions) sits before
+  the form, promotion terms removed, team photo under the form button, service area Caloundra to the Gold Coast incl. Bribie Island, Brisbane, Logan.
+  Offer copy locked: "We beat any written smoke alarm quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
   every pending item renders as a dashed "draft" chip so reviewers can see where it lands. Remove #preview-note and fill PROMO
   in the config block below before launch.
   Form: PROMO.live=false in this draft, so submit shows an honest preview notice and sends NOTHING. The live path (multipart POST
@@ -90,14 +94,15 @@ img{display:block;max-width:100%;height:auto}
 .hero{background:linear-gradient(160deg,var(--cobalt-deep),var(--cobalt));color:var(--white);position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:auto -10% -40% auto;width:60vw;height:60vw;max-width:760px;max-height:760px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.59 0.18 258 / .55),transparent 70%);pointer-events:none}
 .hero::after{content:"";position:absolute;left:-15%;top:-30%;width:40vw;height:40vw;max-width:520px;max-height:520px;border-radius:50%;background:radial-gradient(closest-side,oklch(0.80 0.12 85 / .18),transparent 70%);pointer-events:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-areas:"text card" "trust trust";gap:28px 48px;align-items:start;padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(40px,6vw,64px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-areas:"text card" "trust trust";gap:28px 48px;align-items:center;padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(40px,6vw,64px)}
 .hero-text{grid-area:text}.hero-card{grid-area:card}.hero-trust{grid-area:trust}
-.hero h1{font-size:var(--step-3);margin:14px 0 18px;max-width:14ch}
+.hero h1{font-size:var(--step-3);margin:14px 0 18px;max-width:none}
 .hero h1 .gold{color:var(--gold)}
 .hero .lead{font-size:var(--step-1);line-height:1.4;color:oklch(1 0 0 / .86);max-width:34ch;margin-bottom:22px}
-.stamp{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#0D0D0D;border-radius:999px;padding:10px 18px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;font-size:14px;line-height:1}
-.stamp svg{width:18px;height:18px;flex:0 0 auto}
-.stamp-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+/* designed red "Limited time only" ticket (same file as the main page) */
+.lt-tag{display:block;width:176px;height:auto;filter:drop-shadow(0 10px 16px oklch(0 0 0 / .45))}
+.stamp-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+@media(max-width:560px){.lt-tag{width:150px}}
 .draft{display:inline-block;border:1.5px dashed oklch(1 0 0 / .5);border-radius:14px;padding:6px 12px;font-size:13px;font-weight:600;color:oklch(1 0 0 / .8);line-height:1.35}
 .on-light .draft{border-color:oklch(0.43 0.03 264 / .5);color:var(--ink-soft)}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
@@ -128,22 +133,26 @@ img{display:block;max-width:100%;height:auto}
 .band.cobalt .shead h2 .two{color:var(--gold)}
 .shead p{color:var(--ink-soft);font-size:var(--step-0)}
 .band.cobalt .shead p{color:oklch(1 0 0 / .8)}
-/* qualify cards */
-.qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;position:relative}
-.qcard{background:linear-gradient(160deg,oklch(0.99 0.004 85),oklch(0.95 0.02 262));border:1px solid var(--line);border-radius:18px;padding:24px 22px 22px;position:relative;box-shadow:0 18px 40px -30px oklch(0.33 0.12 264 / .5)}
-.qcard .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:var(--white);background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));box-shadow:0 10px 20px -10px oklch(0.48 0.17 262 / .8);margin-bottom:16px}
-.qcard .ic svg{width:26px;height:26px}
-.qcard h3{font-size:var(--step-1);margin-bottom:8px}
-.qcard p{color:var(--ink-soft);font-size:var(--step--1)}
-.qcard .tick{position:absolute;right:18px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#0D0D0D}
-.qcard .tick svg{width:16px;height:16px}
-.qnote{margin-top:22px;display:flex;gap:14px;align-items:flex-start;background:oklch(0.95 0.02 262);border-left:4px solid var(--gold-deep);border-radius:0 14px 14px 0;padding:16px 18px;color:var(--ink-soft);font-size:var(--step--1)}
-.qnote b{color:var(--ink)}
-@media(max-width:860px){.qgrid{grid-template-columns:1fr}}
+/* how it works: three vertical steps beside the certificate photo */
+.shead.wide{max-width:none}
+.shead.wide p{max-width:60ch}
+.how-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,56px);align-items:stretch}
+.vsteps{display:flex;flex-direction:column;justify-content:space-between;gap:0}
+.vstep{display:flex;gap:18px;align-items:flex-start;background:linear-gradient(160deg,oklch(0.99 0.004 85),oklch(0.95 0.02 262));border:1px solid var(--line);border-radius:18px;padding:22px 22px;box-shadow:0 18px 40px -30px oklch(0.33 0.12 264 / .5)}
+.vs-n{flex:0 0 auto;width:54px;height:54px;border-radius:15px;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);font-family:var(--font-serif);font-weight:700;font-size:var(--step-1);display:grid;place-items:center;box-shadow:0 14px 26px -14px oklch(0.48 0.17 262 / .85)}
+.vstep h3{font-size:var(--step-1);margin-bottom:6px}
+.vstep p{color:var(--ink-soft);font-size:var(--step--1)}
+.vs-arrow{display:flex;justify-content:center;padding:8px 0}
+.vs-arrow span{width:38px;height:38px;border-radius:50%;background:var(--gold);color:#0D0D0D;display:grid;place-items:center;box-shadow:0 8px 16px -8px oklch(0 0 0 / .5)}
+.vs-arrow svg{width:18px;height:18px}
+.how-photo{position:relative;border-radius:22px;overflow:hidden;min-height:560px;box-shadow:0 30px 60px -30px oklch(0 0 0 / .55)}
+.how-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+@media(max-width:860px){.how-grid{grid-template-columns:1fr}.vsteps{gap:0}.how-photo{min-height:0;aspect-ratio:4/5;max-width:520px}}
 /* proof */
-.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
-.proof-photo{border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 / .7);position:relative}
-.proof-photo img{width:100%;aspect-ratio:4/3.3;object-fit:cover;object-position:50% 30%}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:stretch}
+.proof-photo{border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -30px oklch(0 0 0 / .7);position:relative;min-height:300px}
+.proof-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+@media(max-width:860px){.proof-photo{min-height:0;aspect-ratio:4/3.3}}
 .proof-cap{position:absolute;left:16px;bottom:16px;background:oklch(0.99 0.004 85 / .92);color:var(--ink);border-radius:12px;padding:10px 14px;font-size:13px;font-weight:600;line-height:1.3;backdrop-filter:blur(4px)}
 .ticks{list-style:none;display:grid;gap:14px;margin-top:22px}
 .ticks li{display:flex;gap:14px;align-items:flex-start;background:oklch(1 0 0 / .06);border:1px solid oklch(1 0 0 / .14);border-radius:14px;padding:14px 16px}
@@ -151,28 +160,22 @@ img{display:block;max-width:100%;height:auto}
 .ticks .tk svg{width:18px;height:18px}
 .ticks b{display:block;font-weight:700;color:var(--white);margin-bottom:2px}
 .ticks span{color:oklch(1 0 0 / .8);font-size:var(--step--1)}
-@media(max-width:860px){.two{grid-template-columns:1fr}.faqgrid{grid-template-columns:1fr}}
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:s;position:relative}
-.step{counter-increment:s;background:linear-gradient(160deg,oklch(0.99 0.004 85),oklch(0.95 0.013 85));border:1px solid var(--line);border-radius:18px;padding:24px 22px;position:relative;box-shadow:0 18px 40px -30px oklch(0.33 0.12 264 / .5)}
-.step::before{content:counter(s);font-family:var(--font-serif);font-weight:700;font-size:var(--step-1);width:54px;height:54px;border-radius:15px;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));color:var(--white);display:grid;place-items:center;margin-bottom:16px;box-shadow:0 14px 26px -14px oklch(0.48 0.17 262 / .85)}
-.step h3{font-size:var(--step-1);margin-bottom:8px}
-.step p{color:var(--ink-soft);font-size:var(--step--1)}
-.step .arrow{position:absolute;right:-19px;top:36px;width:38px;height:38px;border-radius:50%;background:var(--gold);color:#0D0D0D;display:grid;place-items:center;z-index:2;box-shadow:0 8px 16px -8px oklch(0 0 0 / .5)}
-.step .arrow svg{width:18px;height:18px}
-.step:last-child .arrow{display:none}
-@media(max-width:860px){.steps{grid-template-columns:1fr}.step .arrow{right:auto;left:50%;top:auto;bottom:-28px;transform:translateX(-50%) rotate(90deg)}}
-.big5{font-family:var(--font-serif);font-weight:700;color:var(--cobalt)}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+/* faq */
+.shead.centre{text-align:center;margin-left:auto;margin-right:auto}
+.faq-list{max-width:860px;margin:0 auto}
 /* form section */
 .claim{background:linear-gradient(160deg,var(--cobalt),var(--cobalt-deep));color:var(--white)}
 .claim .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.claim-text{position:sticky;top:96px}
+@media(max-width:860px){.claim-text{position:static}}
 .claim h2{font-size:var(--step-2);margin:10px 0 14px}
 .claim h2 .gold{color:var(--gold)}
 .claim .lead{color:oklch(1 0 0 / .85);margin-bottom:18px}
 .claim-points{list-style:none;display:grid;gap:10px;margin:18px 0 22px}
 .claim-points li{text-wrap:pretty;display:flex;gap:10px;align-items:flex-start;color:oklch(1 0 0 / .86);font-size:var(--step--1)}
 .claim-points svg{flex:0 0 auto;width:20px;height:20px;color:var(--gold);margin-top:2px}
-.form{scroll-margin-top:96px;background:var(--white);color:var(--ink);border-radius:22px;padding:clamp(20px,3vw,32px);box-shadow:0 30px 60px -30px oklch(0 0 0 / .7)}
+.form{position:relative;scroll-margin-top:96px;background:var(--white);color:var(--ink);border-radius:22px;padding:clamp(20px,3vw,32px);box-shadow:0 30px 60px -30px oklch(0 0 0 / .7)}
 .form-title{font-family:var(--font-serif);font-weight:700;font-size:var(--step-1);line-height:1.1;margin-bottom:6px}
 .form-sub{color:var(--ink-soft);font-size:var(--step--1);margin-bottom:18px}
 .hnf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -198,11 +201,15 @@ img{display:block;max-width:100%;height:auto}
 .hnf-preview{margin-top:12px;background:#FFF3CD;color:#5C4400;border:1px solid #E6C766;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45}
 .hnf-fine{font-size:12px;color:var(--ink-soft);margin-top:12px;text-align:center;line-height:1.45}
 .hnf-fine a{color:var(--cobalt);font-weight:600}
-.form .stamp{margin-bottom:14px}
+.form-tag{position:absolute;top:-38px;right:16px;width:150px;height:auto;filter:drop-shadow(0 10px 16px oklch(0 0 0 / .45));margin:0}
+.form-title{padding-right:150px}
+.form-team{margin:18px 0 0}
+.form-team img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px}
+.form-team figcaption{font-size:13px;color:var(--ink-soft);margin-top:8px;text-align:center;line-height:1.4}
+@media(max-width:520px){.form-tag{width:124px;top:-36px;right:12px}.form-title{padding-right:118px}}
 @media(max-width:860px){.claim .wrap{grid-template-columns:1fr}}
 @media(max-width:520px){.hnf-grid{grid-template-columns:1fr}}
-/* faq + terms */
-.faqgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:start}
+/* faq accordion */
 .acc{border-top:1px solid var(--line)}
 .acc details{border-bottom:1px solid var(--line)}
 .acc summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;font-weight:600;font-size:var(--step-0);position:relative;text-wrap:pretty}
@@ -210,11 +217,6 @@ img{display:block;max-width:100%;height:auto}
 .acc summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:var(--step-2);color:var(--cobalt);line-height:1;transition:transform .3s}
 .acc details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
 .acc .a{padding:0 0 18px;color:var(--ink-soft);font-size:var(--step--1);text-wrap:pretty}
-@media(max-width:860px){.faqgrid{grid-template-columns:1fr}}
-.terms{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:0 18px 40px -30px oklch(0.33 0.12 264 / .5)}
-.terms h3{font-size:var(--step-1);margin-bottom:10px}
-.terms ol{padding-left:20px;color:var(--ink-soft);font-size:var(--step--1);display:grid;gap:8px}
-.terms .draft{margin-top:14px}
 /* footer */
 footer{background:var(--cobalt-deep);color:oklch(1 0 0 / .78);padding:36px 0 40px;font-size:var(--step--1)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -228,7 +230,7 @@ footer .logo img{height:40px;width:auto;margin-bottom:12px}
 #bar .btn{padding:.7em 1.2em;font-size:14px}
 #bar .short{display:none}@media(max-width:560px){#bar .bar-msg .long{display:none}#bar .short{display:inline}}
 /* expired state */
-body.expired .hero .lead,body.expired .hero-cta,body.expired .stamp-row,body.expired #bar,body.expired .claim,body.expired #qualify,body.expired #how,body.expired #faq{display:none}
+body.expired .hero .lead,body.expired .hero-cta,body.expired .stamp-row,body.expired #bar,body.expired .claim,body.expired #how,body.expired #faq{display:none}
 .ended{display:none;background:var(--white);color:var(--ink);border-radius:18px;padding:22px 24px;margin-top:8px;max-width:52ch;box-shadow:0 18px 40px -30px oklch(0 0 0 / .6)}
 .ended p{color:var(--ink-soft);margin:6px 0 14px}
 body.expired .ended{display:block}
@@ -246,19 +248,19 @@ html.anim .reveal.in{opacity:1;transform:none}
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="Goldsure"><img src="/promo/assets/goldsure-logo.png" alt="Goldsure" width="1200" height="299" /></a>
-    <a class="btn btn-gold" href="#promo-form-card">Submit My Written Quote</a>
+    <a class="btn btn-gold" href="#promo-form-card">Get a Free Quote</a>
   </div>
 </header>
 
 <section class="hero" id="top">
   <div class="wrap">
     <div class="hero-text">
-      <span class="eyebrow on-dark">Smoke alarm installation &middot; Caloundra to Brisbane</span>
-      <h1>We beat any written quote by <span class="gold">5%.</span></h1>
+      <span class="eyebrow on-dark">Smoke alarms &middot; Caloundra to the Gold Coast</span>
+      <h1>We beat any written smoke alarm quote by <span class="gold">5%.</span></h1>
       <p class="lead">Already have a written quote for smoke alarm installation? Send it to Goldsure. If it qualifies, we beat it by 5%.</p>
-      <div class="stamp-row"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><span>Limited time only</span></span><span class="draft" data-pending="end-date">Ends: date to be confirmed</span></div>
+      <div class="stamp-row"><img class="lt-tag" src="/assets/sa/img/limited-time-tag.svg" alt="Limited time only" width="1622" height="710" /><span class="draft" data-pending="end-date">Ends: date to be confirmed</span></div>
       <div class="hero-cta">
-        <a class="btn btn-gold" href="#promo-form-card" data-track="hero_cta">Submit My Written Quote <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-gold" href="#promo-form-card" data-track="hero_cta">Get a Free Quote <span class="arrow">&rarr;</span></a>
         <a class="btn btn-ghost" href="#how">How it works</a>
       </div>
       <div class="ended"><b>This promotion has ended.</b><p>Thanks for your interest. You can still request a standard smoke alarm installation quote on our main page.</p><a class="btn btn-gold" href="https://smokealarms.goldsure.com.au/">Request a standard quote</a></div>
@@ -267,28 +269,35 @@ html.anim .reveal.in{opacity:1;transform:none}
       <img src="/promo/assets/alarm-hero.jpg" alt="The photoelectric smoke alarm Goldsure installs in Queensland homes" width="1100" height="1080" />
       <div class="hero-tag"><span>Installed by licensed QLD electricians</span><b>Beat by 5%</b></div>
     </div>
-    <div class="hero-trust"><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z"/><polyline points="9 12 11.2 14.2 15.2 9.8"/></svg></span><span class="tb-t"><b>Licensed electricians</b><span>Queensland licensed, every job</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span><span class="tb-t"><b>Queensland owned</b><span>Brisbane office in Pinkenba</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="tb-t"><b>Compliance certificate</b><span>Issued for the installation</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="tb-t"><b>Caloundra to Brisbane</b><span>Including Bribie Island</span></span></div></div>
+    <div class="hero-trust"><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z"/><polyline points="9 12 11.2 14.2 15.2 9.8"/></svg></span><span class="tb-t"><b>Licensed electricians</b><span>Queensland licensed, every job</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span><span class="tb-t"><b>Queensland owned</b><span>Brisbane office in Pinkenba</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="tb-t"><b>Compliance certificate</b><span>Issued for the installation</span></span></div><div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="tb-t"><b>Caloundra to the Gold Coast</b><span>Bribie Island, Brisbane and Logan</span></span></div></div>
   </div>
 </section>
 
-<section class="band paper2 on-light" id="qualify">
+<section class="band paper2 on-light" id="how">
   <div class="wrap reveal">
-    <div class="shead">
-      <span class="eyebrow">Does my quote qualify?</span>
-      <h2>Three things we check <span class="two">before we beat&nbsp;it.</span></h2>
-      <p>Send us the quote you already have. We look at these three things first.</p>
+    <div class="shead wide">
+      <span class="eyebrow">Send us the quote you already have</span>
+      <h2>How it works</h2>
+      <p>Three quick steps from the quote you already have to compliant smoke alarms in your home.</p>
     </div>
-    <div class="qgrid">
-      <div class="qcard"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></div><h3>It is in writing</h3><p>A PDF or a clear photo of the quote from another provider. A price someone told you over the phone does not count.</p></div>
-      <div class="qcard"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M9 12h6"/></svg></div><h3>It is for smoke alarm installation</h3><p>The quote covers installing smoke alarms at your property. We compare it with the same installation from Goldsure.</p></div>
-      <div class="qcard"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>The property is in our service area</h3><p>Caloundra to Brisbane, including Bribie Island. Enter your postcode on the form and we will confirm it.</p></div>
+    <div class="how-grid">
+      <div class="vsteps">
+        <div class="vstep"><div class="vs-n">1</div><div><h3>Submit the quote you received.</h3><p>Fill in the short form below and attach the quote as a PDF or a photo from your phone.</p></div></div>
+        <div class="vs-arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></div>
+        <div class="vstep"><div class="vs-n">2</div><div><h3>We review your quote.</h3><p>We confirm it is a written smoke alarm installation quote for a property in our service area, then compare it with the same installation from Goldsure.</p></div></div>
+        <div class="vs-arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span></div>
+        <div class="vstep"><div class="vs-n">3</div><div><h3>We beat it by 5% and install your compliant smoke alarms for your Queensland home.</h3><p>Photoelectric, interconnected alarms fitted by licensed Queensland electricians, with a Certificate of Compliance for the work.</p></div></div>
+      </div>
+      <div class="how-photo">
+        <img src="/promo/assets/team-compliance.jpg" alt="A smiling Goldsure electrician holding a tablet that shows the Certificate of Compliance, in a customer's home" loading="lazy" decoding="async" width="1000" height="1250" />
+        <div class="proof-cap">Your Certificate of Compliance, issued for the install.</div>
+      </div>
     </div>
-    <div class="qnote"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><div><b>What we compare.</b> We compare the full installed total on your quote with the same installation from Goldsure, then take 5% off. <span class="draft" data-pending="terms">Quote age, fee and GST treatment to be confirmed</span></div></div>
   </div>
 </section>
 
 <section class="band cobalt" id="proof">
-  <div class="wrap reveal two">
+  <div class="wrap reveal split">
     <div class="proof-photo">
       <img src="/promo/assets/install-proof.jpg" alt="A Goldsure electrician wiring a smoke alarm into a ceiling in a Queensland home" loading="lazy" decoding="async" width="1476" height="1152" />
       <div class="proof-cap">A real Goldsure installation. Licensed electrician, hard-wired alarm.</div>
@@ -306,23 +315,26 @@ html.anim .reveal.in{opacity:1;transform:none}
   </div>
 </section>
 
-<section class="band white on-light" id="how">
+<section class="band white on-light" id="faq">
   <div class="wrap reveal">
-    <div class="shead">
-      <span class="eyebrow">How it works</span>
-      <h2>Three steps. <span class="two">About a minute of your&nbsp;time.</span></h2>
-    </div>
-    <div class="steps">
-      <div class="step"><h3>Submit your written quote</h3><p>Fill in the short form below and attach the quote as a PDF or a photo from your phone.</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-      <div class="step"><h3>Goldsure checks it</h3><p>We confirm the quote qualifies and compare its full installed total with the same installation from us.</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-      <div class="step"><h3>You get our written price, 5% under</h3><p>We send you the beaten price in writing. You decide whether to go ahead.</p></div>
+    <div class="shead centre"><span class="eyebrow">Questions</span><h2>Straight answers <span class="two">before you send&nbsp;it.</span></h2></div>
+    <div class="acc faq-list">
+      <details open><summary>What counts as a written quote?</summary><div class="a">A quote in writing from another provider for smoke alarm installation at your property. A PDF, an email or a clear photo of a paper quote all work. A verbal price does not.</div></details>
+      <details><summary>Do you compare the whole price?</summary><div class="a">We compare the full installed total on your quote with the same installation from Goldsure, then take 5% off. <span class="draft" data-pending="terms">Quote age, fee and GST treatment to be confirmed</span></div></details>
+      <details><summary>What if I do not have a quote yet?</summary><div class="a">You can still send the form. We mark your enquiry "quote still required" and the 5% beat applies once we receive a qualifying written quote.</div></details>
+      <details><summary>What happens after I submit?</summary><div class="a">Goldsure reviews your quote, confirms it qualifies, and sends you our price in writing at 5% under your quote. You decide whether to book.</div></details>
+      <details><summary>Which areas do you cover?</summary><div class="a">Caloundra to the Gold Coast, including Bribie Island, Brisbane and Logan. Enter your postcode on the form and we will confirm it.</div></details>
+      <details><summary>When does the offer end?</summary><div class="a">This is a limited time offer. <span class="draft" data-pending="end-date">End date to be confirmed</span></div></details>
+      <details><summary>Is the price really all-in?</summary><div class="a">Yes. Our price covers the compliant photoelectric alarms, installation and interconnection by a licensed electrician, correct placement, testing, and your Certificate of Compliance. No good, better or best tiers. You know the price before we book.</div></details>
+      <details><summary>What does the 2027 law actually require?</summary><div class="a">From 1 January 2027, every Queensland home needs photoelectric, interconnected smoke alarms (AS 3786) in every bedroom, in the hallways connecting bedrooms, and on every storey. Most homes need more alarms than the owner expects, often four to six. We assess and confirm exactly how many before we book.</div></details>
+      <details><summary>How long does it take, and will you show up?</summary><div class="a">Most installs take about an hour. We book a specific time, not a four-hour window, and we call before we arrive. A licensed Goldsure electrician does the work, never an unlicensed subcontractor, and you get your certificate before we leave.</div></details>
     </div>
   </div>
 </section>
 
 <section class="band claim" id="claim">
   <div class="wrap reveal">
-    <div>
+    <div class="claim-text">
       <span class="eyebrow on-dark">Limited time only</span>
       <h2>Submit your written quote and <span class="gold">we beat it by 5%.</span></h2>
       <p class="lead">Name, email, mobile, postcode and your quote. That is all we need to get started.</p>
@@ -333,9 +345,9 @@ html.anim .reveal.in{opacity:1;transform:none}
       </ul>
     </div>
     <div class="form" id="promo-form-card">
-      <span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><span>Limited time only</span></span>
-      <div class="form-title">Submit My Written Quote</div>
-      <div class="form-sub">We review it and reply in writing.</div>
+      <img class="form-tag" src="/assets/sa/img/limited-time-tag.svg" alt="Limited time only" width="1622" height="710" />
+      <div class="form-title">Get a free quote</div>
+      <div class="form-sub">Attach your written quote and we beat it by 5%. We reply in writing.</div>
       <form id="promo-form" novalidate enctype="multipart/form-data">
         <div class="hnf-grid">
           <div class="hnf-group"><label for="pf-name">Full name</label><input type="text" id="pf-name" name="name" placeholder="Full name" required autocomplete="name"></div>
@@ -350,48 +362,28 @@ html.anim .reveal.in{opacity:1;transform:none}
         </div>
         <div id="pf-error" class="hnf-error" hidden></div>
         <div id="pf-preview" class="hnf-preview" hidden></div>
-        <button type="submit" class="hnf-submit" id="pf-submit">Submit My Written Quote &rarr;</button>
+        <button type="submit" class="hnf-submit" id="pf-submit">Get a Free Quote &rarr;</button>
         <p class="hnf-fine">Limited time only. By submitting you agree to our <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">privacy and terms</a>.</p>
       </form>
+      <figure class="form-team">
+        <img src="/assets/sa/img/team-hero.jpg" alt="The Goldsure team" loading="lazy" decoding="async" width="1500" height="1000" />
+        <figcaption>The Goldsure team. Queensland owned and operated, Brisbane office in Pinkenba.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="band paper2 on-light" id="faq">
-  <div class="wrap reveal faqgrid">
-    <div>
-      <div class="shead"><span class="eyebrow">Questions</span><h2>Straight answers <span class="two">before you send&nbsp;it.</span></h2></div>
-      <div class="acc">
-        <details><summary>What counts as a written quote?</summary><div class="a">A quote in writing from another provider for smoke alarm installation at your property. A PDF, an email or a clear photo of a paper quote all work. A verbal price does not.</div></details>
-        <details><summary>Do you compare the whole price?</summary><div class="a">We compare the full installed total on your quote with the same installation from Goldsure. <span class="draft" data-pending="terms">Fee and GST treatment to be confirmed</span></div></details>
-        <details><summary>What if I do not have a quote yet?</summary><div class="a">You can still send the form. We mark your enquiry "quote still required" and the 5% beat applies once we receive a qualifying written quote.</div></details>
-        <details><summary>When does the offer end?</summary><div class="a">This is a limited time offer. <span class="draft" data-pending="end-date">End date to be confirmed</span></div></details>
-        <details><summary>What happens after I submit?</summary><div class="a">Goldsure reviews your quote, confirms it qualifies, and sends you our price in writing at 5% under your quote. You decide whether to book.</div></details>
-      </div>
-    </div>
-    <div class="terms">
-      <h3>Promotion&nbsp;terms</h3>
-      <ol>
-        <li>Offer: Goldsure beats a qualifying written quote for smoke alarm installation by 5%.</li>
-        <li>The quote must be in writing and for a property in our service area, Caloundra to Brisbane including Bribie Island.</li>
-        <li>Limited time only. <span class="draft" data-pending="end-date">Start and end dates to be confirmed</span></li>
-        <li><span class="draft" data-pending="terms">Quote age, comparable installation scope, fee and GST treatment, and any exclusions to be confirmed</span></li>
-        <li>Full terms will be published here before launch.</li>
-      </ol>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
     <div><a class="logo" href="#top"><img src="/promo/assets/goldsure-logo.png" alt="Goldsure" /></a>&copy; 2026 Goldsure Pty Ltd &middot; 30 Parker Court, Pinkenba QLD 4008 &middot; <a href="tel:0721455155">(07) 2145 5155</a> &middot; <a href="https://www.goldsure.com.au/privacy-terms" target="_blank" rel="noopener">Privacy and Terms</a></div>
-    <div>Queensland owned &amp; operated &middot; Licensed Queensland electricians &middot; Caloundra to Brisbane, including Bribie Island</div>
+    <div>Queensland owned &amp; operated &middot; Licensed Queensland electricians &middot; Caloundra to the Gold Coast, including Bribie Island, Brisbane and Logan</div>
   </div>
 </footer>
 
 <div id="bar">
-  <span class="bar-msg"><b><span class="long">We beat any written quote by 5%.</span><span class="short">Beat by 5%.</span></b> Limited time only.</span>
-  <a class="btn btn-gold" href="#promo-form-card" data-track="bar_cta">Submit My Written Quote</a>
+  <span class="bar-msg"><b><span class="long">We beat any written smoke alarm quote by 5%.</span><span class="short">Beat by 5%.</span></b> Limited time only.</span>
+  <a class="btn btn-gold" href="#promo-form-card" data-track="bar_cta">Get a Free Quote</a>
 </div>
 
 <script>
@@ -458,7 +450,7 @@ function attribution(){try{return JSON.parse(sessionStorage.getItem('promo_attr'
     fetch(PROMO.webhook,{method:'POST',body:fd,signal:ctrl.signal}).then(function(res){clearTimeout(t);
       if(res.ok){try{sessionStorage.setItem('promo_sid',payload.submission_id);}catch(x){}track('promo_submit_accepted',{has_file:hasFile});location.href=PROMO.thank_you+'?sid='+encodeURIComponent(payload.submission_id);}
       else{throw new Error('status '+res.status);}
-    }).catch(function(x){clearTimeout(t);track('promo_submit_failed');err.textContent='That did not go through. Your details are still here, please try again.';err.hidden=false;btn.disabled=false;btn.innerHTML='Submit My Written Quote &rarr;';});
+    }).catch(function(x){clearTimeout(t);track('promo_submit_failed');err.textContent='That did not go through. Your details are still here, please try again.';err.hidden=false;btn.disabled=false;btn.innerHTML='Get a Free Quote &rarr;';});
   });
 })();
 </script>
