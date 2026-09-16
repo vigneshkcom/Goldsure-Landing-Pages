@@ -12,7 +12,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script>document.documentElement.classList.add('js')</script>
 <title>Goldsure Smoke Alarm Compliance | Licensed Electricians, Caloundra to Brisbane</title>
-<meta name="description" content="QLD smoke alarm compliance done by local licensed electricians. One honest price, installed by our team. Same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island. Sorted before the 2027 deadline." />
+<meta name="description" content="QLD smoke alarm compliance done by local licensed electricians. We beat any written smoke alarms quote by 5%, limited time only. Same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island. Sorted before the 2027 deadline." />
 <link rel="canonical" href="https://smokealarms.goldsure.com.au" />
 <link rel="icon" type="image/png" href="/assets/gs-favicon-96px.png" />
 <link rel="apple-touch-icon" href="/assets/gs-favicon-96px.png" />
@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://smokealarms.goldsure.com.au" />
 <meta property="og:title" content="Goldsure Smoke Alarm Compliance | Licensed Electricians, Caloundra to Brisbane" />
-<meta property="og:description" content="One honest price, installed by our team. Local licensed QLD electricians, same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island." />
+<meta property="og:description" content="We beat any written smoke alarms quote by 5%, limited time only. Local licensed QLD electricians, same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island." />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "addressCountry": "AU"
   },
   "areaServed": ["Caloundra","Beerwah","Glass House Mountains","Bribie Island","Caboolture","Morayfield","Burpengary","Narangba","North Lakes","Kallangur","Strathpine","Bald Hills","Chermside","Aspley","Brisbane CBD"],
-  "description": "QLD smoke alarm compliance by local licensed electricians. One honest price, same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island."
+  "description": "QLD smoke alarm compliance by local licensed electricians. We beat any written smoke alarms quote by 5% (limited time only), same-day Certificate of Compliance. Caloundra to Brisbane, including Bribie Island."
 }
 </script>
 
@@ -51,6 +51,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   Messaging per master-analysis.md (26/06 refresh) + Ben's calls:
    - honest local sparky, NOT an offshore franchise
    - 16/09/2026 (Ben): ALL $98 / $33 pricing removed from the page; "one honest price, installed by our team"
+   - 16/09/2026 later (Ben): 5% quote-beat promo replaces every "honest price" line; hero promo panel + badge, optional competitor-quote upload / "What were you quoted?" on the form
    - 16/09/2026 (Ben): service area is now Caloundra to Brisbane incl. Bribie Island (the nine ad pins); Gold Coast/Logan removed; map on OSM tiles (CARTO started watermarking "API key required")
    - the DIY trap (hard-wired homes legally need a licensed electrician)
    - reliability guarantee (we call before we arrive, we show up, no subbies)
@@ -159,6 +160,14 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .hero-text{grid-area:text}.hero-trust{grid-area:trust;align-self:start}.hero-card{grid-area:card}
 .hero h1{font-size:clamp(1.95rem,1.3rem + 2.6vw,3.2rem);margin:.1em 0 .3em;max-width:17ch}
 .hero h1 .gold{color:var(--gold)}
+.hero-promo{display:flex;align-items:center;gap:20px;background:var(--white);color:var(--ink);border:2px solid var(--gold);border-radius:18px;padding:16px 20px;margin:0 0 22px;max-width:560px;box-shadow:0 24px 48px -28px oklch(0 0 0 /.7)}
+.hero-promo img{width:168px;height:auto;flex:0 0 auto;display:block}
+.hero-promo .eyebrow{display:block;margin-bottom:6px}
+.hero-promo strong{display:block;font-family:var(--font-serif);font-weight:700;font-size:clamp(1.15rem,1rem + .8vw,1.5rem);line-height:1.18;text-wrap:balance}
+.hero-promo strong em{font-style:normal;color:var(--gold-deep)}
+.hero-promo p{margin:8px 0 0;font-size:var(--step--1);color:var(--ink-soft);line-height:1.45;text-wrap:pretty}
+.hero-promo p a{color:var(--cobalt);font-weight:600}
+@media(max-width:560px){.hero-promo{gap:14px;padding:14px}.hero-promo img{width:108px}.hero-promo strong{font-size:1.08rem}.hero-promo p{font-size:.86rem;margin-top:6px}}
 .hero-points{list-style:none;display:grid;gap:12px;margin:0 0 22px;max-width:44ch}
 .hero-points li{position:relative;padding-left:32px;color:oklch(1 0 0 / .9);font-size:var(--step-0);line-height:1.4}
 .hero-points li svg{position:absolute;left:0;top:2px;width:21px;height:21px;color:var(--gold)}
@@ -301,14 +310,15 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .product-intro p{color:var(--ink-soft);font-size:var(--step-1);font-weight:400;line-height:1.35;max-width:46ch}
 .product-photo{border-radius:18px;overflow:hidden;background:var(--white);box-shadow:0 26px 54px -30px oklch(0.4 0.06 130 /.6)}
 .product-photo img{width:100%;height:clamp(300px,34vw,440px);object-fit:cover;display:block}
-.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .spec{display:flex;gap:13px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px}
 .spec-tick{flex:0 0 auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(155deg,var(--cobalt),var(--cobalt-bright));box-shadow:0 8px 18px -8px oklch(0.48 0.17 262 /.75)}
 .spec-tick svg{width:18px;height:18px}
 .spec-body b{display:block;font-weight:700;font-size:var(--step-0);line-height:1.2}
 .spec-body span{font-size:var(--step--1);color:var(--ink-soft);line-height:1.35}
-@media(max-width:820px){.product-top{grid-template-columns:1fr}.specs{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.specs{grid-template-columns:1fr 1fr;gap:10px}.spec{padding:13px}}
+@media(max-width:820px){.product-top{grid-template-columns:1fr}.specs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:520px){.specs{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}.spec{padding:13px}}
+.spec-body{min-width:0}
 
 /* team */
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(28px,3.2vw,46px)}
@@ -412,6 +422,12 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .hnf-group{margin-bottom:14px}
 .hnf-group label{display:block;font-size:var(--step--1);font-weight:600;margin-bottom:6px}
 .hnf-group input,.hnf-group select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;background:var(--paper);color:var(--ink);transition:border-color .25s,box-shadow .25s,transform .25s}
+.hnf-group label em{font-style:normal;font-weight:500;color:var(--ink-soft)}
+.hnf-group input[type=file]{padding:10px 12px;cursor:pointer;background:var(--paper-2);border-style:dashed}
+.hnf-group input[type=file]::file-selector-button{font:inherit;font-weight:600;font-size:var(--step--1);border:0;border-radius:8px;background:var(--cobalt-deep);color:var(--white);padding:8px 12px;margin-right:10px;cursor:pointer}
+.hnf-hint{display:block;margin-top:5px;font-size:12px;color:var(--ink-soft)}
+.hnf-or{display:flex;align-items:center;gap:12px;margin:2px 0 14px;font-size:var(--step--1);font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.12em}
+.hnf-or::before,.hnf-or::after{content:"";flex:1;height:1px;background:var(--line)}
 .hnf-group input:focus,.hnf-group select:focus{outline:2px solid var(--cobalt);border-color:var(--cobalt);transform:translateY(-1px);box-shadow:0 6px 18px -10px oklch(0.48 0.17 262 / .55)}
 .hnf-submit{width:100%;justify-content:center;margin-top:6px;display:inline-flex;align-items:center;gap:.5em;font-family:var(--font-sans);font-weight:600;font-size:var(--step-0);padding:.95em 1.5em;border-radius:999px;border:0;cursor:pointer;background:var(--gold);color:var(--ink);box-shadow:0 10px 30px -12px oklch(0.66 0.11 80 / .8);transition:background .25s,transform .25s}
 .hnf-submit:hover{background:var(--gold-deep);transform:translateY(-2px)}
@@ -535,6 +551,14 @@ html.js .sr-pop.in{opacity:1;transform:none}
     <div class="hero-text">
       <span class="eyebrow on-dark">Queensland Owned &amp; Operated &middot; Caloundra to Brisbane</span>
       <h1>Smoke alarm installation, done by a <span class="gold">qualified team</span> to get your home compliant.</h1>
+      <div class="hero-promo">
+        <img src="/assets/sa/img/quote-beat-badge.svg" alt="We beat any written smoke alarms quote by 5%. Limited time only." width="168" height="132" />
+        <div>
+          <span class="eyebrow">Limited time only</span>
+          <strong>We beat any written smoke alarms quote by&nbsp;<em>5%</em></strong>
+          <p>Got a quote from another company? <a href="#quote">Upload it below</a>, or tell us what you were quoted, and we will beat it.</p>
+        </div>
+      </div>
       <ul class="hero-points">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Licensed QLD electricians, not an offshore call centre.</b> We call before we arrive, and we show up.</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Same-day Certificate of Compliance.</b> Sorted before the 2027 rush.</li>
@@ -546,7 +570,7 @@ html.js .sr-pop.in{opacity:1;transform:none}
     </div>
     <div class="hero-card">
       <img src="/assets/sa/img/hero-card.jpg" alt="A licensed Goldsure electrician installing a compliant smoke alarm in a Queensland home" />
-      <div class="hero-tag"><span>One honest price</span><b>Installed by our&nbsp;team</b></div>
+      <div class="hero-tag"><span>Limited time only</span><b>We beat any quote by&nbsp;5%</b></div>
     </div>
     <div class="hero-trust">
       <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" ><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span><span class="tb-t"><b>4.8 <span class="stars5" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></b><span>Google rating</span></span></div>
@@ -614,17 +638,17 @@ html.js .sr-pop.in{opacity:1;transform:none}
       <div class="q"><p>&ldquo;The inspectors came back saying the alarms were not compliant and wanted to sell us their own for $620... a lot of scare-tactic stuff. Turns out it was a lie.&rdquo;</p><cite>OzBargain, Brisbane homeowner</cite></div>
       <div class="q"><p>&ldquo;I increasingly think this whole smoke alarm industry is a croc, taking advantage of people's fear.&rdquo;</p><cite>OzBargain</cite></div>
     </div>
-    <p class="turn">If you have heard the stories, <b>that is exactly why we do it differently.</b> A local licensed electrician, a real person on the phone, one honest price, and a certificate in your hand the same day.</p>
+    <p class="turn">If you have heard the stories, <b>that is exactly why we do it differently.</b> A local licensed electrician, a real person on the phone, a price that beats any written quote by 5%, and a certificate in your hand the same day.</p>
   </div>
 </section>
 
-<!-- ONE HONEST PRICE (no figures on the page since 16/09/2026) -->
+<!-- 5% QUOTE BEAT (no figures on the page since 16/09/2026; promo copy since 16/09/2026) -->
 <section class="band no-surprises">
   <div class="wrap reveal">
     <div class="shead">
-      <span class="eyebrow">One honest price, told up front</span>
-      <h2>One honest price. No tiers, no asterisk, no surprises on the&nbsp;day.</h2>
-      <p>The rest of the market runs "from" hooks that turn into good/better/best tiers once they are at your door. We do not. Your quote covers everything below, and it is told to you up front.</p>
+      <span class="eyebrow">Limited time only</span>
+      <h2>We beat any written smoke alarms quote by 5%. No tiers, no asterisk, no surprises on the&nbsp;day.</h2>
+      <p>The rest of the market runs "from" hooks that turn into good/better/best tiers once they are at your door. We do not. Send us any written quote for the same job and we will beat it by 5%. Your price covers everything below, and it is told to you up front.</p>
     </div>
     <div class="two">
       <div class="card inc">
@@ -752,12 +776,12 @@ html.js .sr-pop.in{opacity:1;transform:none}
 <section class="band video-band">
   <div class="wrap reveal">
     <div class="shead">
-      <span class="eyebrow">The honest price</span>
+      <span class="eyebrow">We beat any written quote by 5%</span>
       <h2>Why we keep it to one number.</h2>
       <p>30 seconds on how Goldsure does QLD smoke alarm compliance, and why "from $99*" is rarely what you actually pay.</p>
     </div>
     <div class="video-embed" id="saVideo" data-src="/assets/sa/video/honest-price.mp4">
-      <img class="video-poster" src="/assets/sa/video/honest-price-poster.jpg" alt="Watch: the honest price for QLD smoke alarm compliance" loading="lazy" decoding="async" />
+      <img class="video-poster" src="/assets/sa/video/honest-price-poster.jpg" alt="Watch: how Goldsure prices QLD smoke alarm compliance" loading="lazy" decoding="async" />
       <button class="video-play" type="button" aria-label="Play the video"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
     <p class="video-cap">Sound on &middot; about 30 seconds</p>
@@ -879,7 +903,8 @@ html.js .sr-pop.in{opacity:1;transform:none}
   <div class="wrap reveal">
     <div class="shead" style="text-align:center;margin-left:auto;margin-right:auto"><span class="eyebrow">Questions</span><h2>What Queensland homeowners ask before booking.</h2></div>
     <div class="faq">
-      <div class="acc open"><button>Is the price really all-in?</button><div class="panel"><div><p>Yes. Your quote covers the compliant photoelectric alarm, installation and interconnection by a licensed electrician, correct placement, testing, and your same-day Certificate of Compliance. One honest price, no good/better/best tiers, told to you up front before we book.</p></div></div></div>
+      <div class="acc open"><button>Is the price really all-in?</button><div class="panel"><div><p>Yes. Your quote covers the compliant photoelectric alarm, installation and interconnection by a licensed electrician, correct placement, testing, and your same-day Certificate of Compliance. No good/better/best tiers, told to you up front before we book. And if another company has given you a written quote, we will beat it by 5%.</p></div></div></div>
+      <div class="acc"><button>How does the 5% quote beat work?</button><div class="panel"><div><p>Upload the written quote in the form below, or just tell us what you were quoted, and we will beat that price by 5% for the same job. Limited time only.</p></div></div></div>
       <div class="acc"><button>Can I just buy a cheap DIY kit and do it myself?</button><div class="panel"><div><p>Only if your home has no existing hard-wired alarms. If your home already has hard-wired (240V) alarms, Queensland law requires them to be replaced like-for-like by a licensed electrician. A DIY battery kit there leaves you non-compliant and can void your home insurance. We will tell you honestly which your home needs.</p></div></div></div>
       <div class="acc"><button>What does the 2027 law actually require?</button><div class="panel"><div><p>From 1 January 2027, every Queensland home needs photoelectric, interconnected smoke alarms (AS 3786) in every bedroom, in the hallways connecting bedrooms, and on every storey. Most homes need more alarms than the owner expects, often four to six. We assess and confirm exactly how many before we book.</p></div></div></div>
       <div class="acc"><button>I am selling. Do I need this now?</button><div class="panel"><div><p>Yes. Compliance is already required at the point of sale. If your alarms are not compliant, the buyer can legally deduct 0.15% of the sale price at settlement, around $1,125 on a $750k home, and your solicitor will want a certificate. We can have your same-day certificate sorted before your open home.</p></div></div></div>
@@ -896,11 +921,11 @@ html.js .sr-pop.in{opacity:1;transform:none}
     <div class="grid">
       <div class="final-left">
         <span class="eyebrow on-dark">Get your free quote</span>
-        <h2>One honest price, from a local team that shows up.</h2>
+        <h2>We beat any written smoke alarms quote by 5%. Limited time only.</h2>
         <p class="lede">Tell us about your home and we will confirm exactly how many alarms you need to be compliant. No obligation, no pressure, no surprises.</p>
         <div class="hero-trust">
           <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" ><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span><span class="tb-t"><b>4.8 <span class="stars5" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></b><span>Google rating</span></span></div>
-          <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13 21a2 2 0 0 1-2.9 0l-7-7a2 2 0 0 1-.6-1.4V4.5a2 2 0 0 1 2-2h8.1a2 2 0 0 1 1.4.6l6.6 6.6a2 2 0 0 1 0 2.7z"/><path d="M7.4 7.4h.01"/></svg></span><span class="tb-t"><b>One honest price</b><span>Installed by our team</span></span></div>
+          <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13 21a2 2 0 0 1-2.9 0l-7-7a2 2 0 0 1-.6-1.4V4.5a2 2 0 0 1 2-2h8.1a2 2 0 0 1 1.4.6l6.6 6.6a2 2 0 0 1 0 2.7z"/><path d="M7.4 7.4h.01"/></svg></span><span class="tb-t"><b>Beat by 5%</b><span>Any written quote</span></span></div>
           <div><span class="tb-ic" aria-hidden="true"><svg class="scallop" viewBox="0 0 22 22"><path fill="currentColor" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816z"/></svg><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><polyline points="12 7.5 12 12 15.5 14"/></svg></span><span class="tb-t"><b>Same-day</b><span>Compliance cert</span></span></div>
         </div>
         <figure class="final-team"><img src="/assets/sa/img/team-hero.jpg" alt="The Goldsure team, licensed Queensland electricians" loading="lazy" decoding="async" /></figure>
@@ -908,7 +933,7 @@ html.js .sr-pop.in{opacity:1;transform:none}
 
       <div class="form">
         <div class="form-title">Get my free quote</div>
-        <div class="form-sub">No obligation. We will be in touch and confirm what your home needs.</div>
+        <div class="form-sub">No obligation. Got a written quote from another company? Add it below and we will beat it by 5%.</div>
         <form id="hero-lead-form" novalidate data-track-form="hero_quote_form">
           <div class="hnf-group">
             <label for="hf-name">Full name</label>
@@ -933,6 +958,16 @@ html.js .sr-pop.in{opacity:1;transform:none}
               <option value="AM: 8:00am to 11:59am">AM: 8:00am to 11:59am</option>
               <option value="PM: 12:00pm to 5:00pm">PM: 12:00pm to 5:00pm</option>
             </select>
+          </div>
+          <div class="hnf-group">
+            <label for="hf-quote-file">Upload your competitor quote <em>(optional)</em></label>
+            <input type="file" id="hf-quote-file" name="competitor_quote" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp,image/*,application/pdf">
+            <span class="hnf-hint">PDF or photo, up to 4MB.</span>
+          </div>
+          <div class="hnf-or"><span>Or</span></div>
+          <div class="hnf-group">
+            <label for="hf-quoted">What were you quoted? <em>(optional)</em></label>
+            <input type="text" id="hf-quoted" name="what_were_you_quoted" placeholder="e.g. $650 for 5 alarms from another company" autocomplete="off">
           </div>
           <div id="hnf-error" class="hnf-error" hidden></div>
           <button type="submit" class="hnf-submit" id="hnf-submit">Get my free quote &rarr;</button>
@@ -965,7 +1000,7 @@ html.js .sr-pop.in{opacity:1;transform:none}
 
 <!-- STICKY VALUE BAR -->
 <div id="bar">
-  <span class="bar-msg"><b>One honest price, installed by our team.</b> <span class="long">Same-day certificate. Sorted before the 2027 rush.</span></span>
+  <span class="bar-msg"><b>We beat any written quote by 5%.</b> <span class="long">Limited time only. Same-day certificate.</span></span>
   <a class="btn btn-gold" href="#quote">Get my free quote</a>
 </div>
 
@@ -1071,12 +1106,23 @@ document.querySelectorAll(".acc button").forEach(function(b){
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     btn.disabled = true; btn.textContent = 'Submitting...'; errEl.hidden = true;
+    var quotedEl = form.elements['what_were_you_quoted'];
+    var fileEl   = form.elements['competitor_quote'];
+    var file     = fileEl && fileEl.files && fileEl.files[0] ? fileEl.files[0] : null;
+    if (file && file.size > 4 * 1024 * 1024) {
+      errEl.textContent = 'That file is over 4MB. Please choose a smaller file, or just type what you were quoted.';
+      errEl.hidden = false; btn.disabled = false; btn.textContent = 'Get my free quote →'; return;
+    }
     var payload = {
       name:                   form.elements['name'].value.trim(),
       phone:                  form.elements['phone'].value.trim(),
       email:                  form.elements['email'].value.trim(),
       postal_code:            form.elements['postal_code'].value.trim(),
       preferred_time_of_call: form.elements['preferred_time_of_call'].value,
+      what_were_you_quoted:   quotedEl ? quotedEl.value.trim() : '',
+      competitor_quote_file_name: file ? file.name : '',
+      competitor_quote_file_type: file ? (file.type || '') : '',
+      competitor_quote_file_base64: '',
       source:                 'Smoke Alarm Landing Page',
       page_url:               window.location.href,
       utm_source:             utmParams.get('utm_source')   || '',
@@ -1087,12 +1133,33 @@ document.querySelectorAll(".acc button").forEach(function(b){
       fbclid:                 utmParams.get('fbclid')       || '',
       gclid:                  utmParams.get('gclid')        || ''
     };
-    fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
-    .then(function (res) { if (res.ok) { window.location.href = '/thank-you'; } else { throw new Error('status ' + res.status); } })
-    .catch(function () {
+    function send(p) {
+      return fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(p) })
+        .then(function (res) { if (!res.ok) { throw new Error('status ' + res.status); } });
+    }
+    function submitLead() {
+      var attempt = send(payload);
+      if (payload.competitor_quote_file_base64) {
+        // If the webhook refuses the payload with the file inside, send the lead once more without the file so it is never lost.
+        attempt = attempt.catch(function () {
+          var p2 = {}; for (var k in payload) { p2[k] = payload[k]; }
+          p2.competitor_quote_file_base64 = '';
+          p2.competitor_quote_file_note = 'Customer attached ' + payload.competitor_quote_file_name + ' but it could not be delivered. Ask them to send it.';
+          return send(p2);
+        });
+      }
+      attempt.then(function () { window.location.href = '/thank-you'; }).catch(fail);
+    }
+    function fail() {
       errEl.textContent = 'Something went wrong, please try again or call us on (07) 2145 5155.';
       errEl.hidden = false; btn.disabled = false; btn.textContent = 'Get my free quote →';
-    });
+    }
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function () { payload.competitor_quote_file_base64 = String(reader.result).split(',')[1] || ''; submitLead(); };
+      reader.onerror = function () { submitLead(); };
+      reader.readAsDataURL(file);
+    } else { submitLead(); }
   });
 })();
 </script>
