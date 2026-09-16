@@ -160,14 +160,26 @@ header.nav.scrolled{background:oklch(0.30 0.11 264 / .97);box-shadow:0 10px 30px
 .hero-text{grid-area:text}.hero-trust{grid-area:trust;align-self:start}.hero-card{grid-area:card}
 .hero h1{font-size:clamp(1.95rem,1.3rem + 2.6vw,3.2rem);margin:.1em 0 .3em;max-width:17ch}
 .hero h1 .gold{color:var(--gold)}
-.hero-promo{display:flex;align-items:center;gap:20px;background:var(--white);color:var(--ink);border:2px solid var(--gold);border-radius:18px;padding:16px 20px;margin:0 0 22px;max-width:560px;box-shadow:0 24px 48px -28px oklch(0 0 0 /.7)}
-.hero-promo img{width:168px;height:auto;flex:0 0 auto;display:block}
-.hero-promo .eyebrow{display:block;margin-bottom:6px}
-.hero-promo strong{display:block;font-family:var(--font-serif);font-weight:700;font-size:clamp(1.15rem,1rem + .8vw,1.5rem);line-height:1.18;text-wrap:balance}
-.hero-promo strong em{font-style:normal;color:var(--gold-deep)}
-.hero-promo p{margin:8px 0 0;font-size:var(--step--1);color:var(--ink-soft);line-height:1.45;text-wrap:pretty}
-.hero-promo p a{color:var(--cobalt);font-weight:600}
-@media(max-width:560px){.hero-promo{gap:14px;padding:14px}.hero-promo img{width:108px}.hero-promo strong{font-size:1.08rem}.hero-promo p{font-size:.86rem;margin-top:6px}}
+/* 5% promo callout under the H1 (16/09/2026). Variants: v-a glass card (default), v-b bare typographic, v-c ink card with overlapping pill */
+.hero-promo{position:relative;margin:0 0 24px;max-width:560px;color:var(--white)}
+.promo-pill{display:inline-flex;align-items:center;gap:8px;background:var(--coral-deep);color:var(--white);font-family:var(--font-sans);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px 7px 11px;border-radius:999px;line-height:1;box-shadow:0 8px 20px -10px oklch(0.55 0.20 25 /.9)}
+.promo-pill i{width:7px;height:7px;border-radius:50%;background:var(--white);box-shadow:0 0 0 0 oklch(1 0 0 /.6);animation:promo-pulse 1.8s ease-out infinite}
+@keyframes promo-pulse{0%{box-shadow:0 0 0 0 oklch(1 0 0 /.55)}100%{box-shadow:0 0 0 8px oklch(1 0 0 /0)}}
+@media(prefers-reduced-motion:reduce){.promo-pill i{animation:none}}
+.hero-promo strong{display:block;font-family:var(--font-serif);font-weight:700;font-size:clamp(1.35rem,1.05rem + 1.2vw,1.9rem);line-height:1.12;margin:14px 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.hero-promo strong em{font-style:normal;color:var(--gold)}
+.hero-promo p{margin:0;font-size:var(--step--1);color:oklch(1 0 0 /.8);line-height:1.5;text-wrap:pretty;max-width:46ch}
+.hero-promo p a{color:var(--gold);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:oklch(0.80 0.12 85 /.6)}
+.hero-promo p a:hover{color:var(--white)}
+/* A: frosted card with a gold accent bar */
+.hero-promo.v-a{padding:20px 22px 20px 26px;background:oklch(1 0 0 /.08);border:1px solid oklch(1 0 0 /.18);border-radius:16px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 24px 50px -30px oklch(0 0 0 /.8)}
+.hero-promo.v-a::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;background:var(--gold)}
+/* B: no container, gold hairlines above and below */
+.hero-promo.v-b{padding:18px 0;border-top:1px solid oklch(0.80 0.12 85 /.45);border-bottom:1px solid oklch(0.80 0.12 85 /.45)}
+/* C: ink card, gold border, pill overlapping the top edge */
+.hero-promo.v-c{margin-top:30px;padding:26px 22px 20px;background:var(--ink);border:1.5px solid var(--gold);border-radius:16px;box-shadow:0 24px 50px -30px oklch(0 0 0 /.9)}
+.hero-promo.v-c .promo-pill{position:absolute;top:-15px;left:18px}
+@media(max-width:560px){.hero-promo strong{font-size:1.32rem}.hero-promo.v-a{padding:16px 16px 16px 20px}}
 .hero-points{list-style:none;display:grid;gap:12px;margin:0 0 22px;max-width:44ch}
 .hero-points li{position:relative;padding-left:32px;color:oklch(1 0 0 / .9);font-size:var(--step-0);line-height:1.4}
 .hero-points li svg{position:absolute;left:0;top:2px;width:21px;height:21px;color:var(--gold)}
@@ -551,13 +563,10 @@ html.js .sr-pop.in{opacity:1;transform:none}
     <div class="hero-text">
       <span class="eyebrow on-dark">Queensland Owned &amp; Operated &middot; Caloundra to Brisbane</span>
       <h1>Smoke alarm installation, done by a <span class="gold">qualified team</span> to get your home compliant.</h1>
-      <div class="hero-promo">
-        <img src="/assets/sa/img/quote-beat-badge.svg" alt="We beat any written smoke alarms quote by 5%. Limited time only." width="168" height="132" />
-        <div>
-          <span class="eyebrow">Limited time only</span>
-          <strong>We beat any written smoke alarms quote by&nbsp;<em>5%</em></strong>
-          <p>Got a quote from another company? <a href="#quote">Upload it below</a>, or tell us what you were quoted, and we will beat it.</p>
-        </div>
+      <div class="hero-promo v-c">
+        <span class="promo-pill"><i aria-hidden="true"></i>Limited time only</span>
+        <strong>We beat any written smoke alarms quote by&nbsp;<em>5%</em></strong>
+        <p>Got a quote from another company? <a href="#quote">Upload it below</a>, or tell us what you were quoted, and we will beat&nbsp;it.</p>
       </div>
       <ul class="hero-points">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><b>Licensed QLD electricians, not an offshore call centre.</b> We call before we arrive, and we show up.</li>
