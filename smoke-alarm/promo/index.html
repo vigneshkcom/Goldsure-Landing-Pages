@@ -39,7 +39,7 @@ fbq('track', 'PageView');
 <meta property="og:image" content="https://smokealarmpromo.goldsure.com.au/promo/assets/alarm-hero.jpg" />
 <!--
   GOLDSURE SMOKE ALARMS - QUOTE BEAT PROMOTION PAGE (review draft, built 15/09/2026, Fable 5.1)
-  Served by the goldsure-smokealarms Vercel project (root directory smoke-alarm): live path /promo, thank-you /promo/thank-you. Asset paths are /promo/... for that reason.
+  Served by the goldsure-smokealarms Vercel project (root directory smoke-alarm). Live at https://smokealarmpromo.goldsure.com.au/ (vercel.json routes / and /thank-you on that host to the files in /promo; the old smokealarms.goldsure.com.au/promo address redirects there). Asset paths stay /promo/... because that is where the files sit.
   Offer copy locked: "We beat any written quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
   every pending item renders as a dashed "draft" chip so reviewers can see where it lands. Remove #preview-note and fill PROMO
   in the config block below before launch.
@@ -402,7 +402,7 @@ var PROMO = {
   offer_id: 'smoke_alarm_quote_beat_5',
   offer_version: 'draft-2026-09-15',
   end_iso: null,                   /* e.g. '2026-10-31T23:59:59+10:00' (Australia/Brisbane, no daylight saving) */
-  thank_you: '/promo/thank-you'
+  thank_you: '/thank-you'
 };
 /* ---------- expiry ---------- */
 (function(){
