@@ -46,10 +46,9 @@ fbq('track', 'PageView');
   the form, promotion terms removed, team photo under the form button, service area Caloundra to the Gold Coast incl. Bribie Island, Brisbane, Logan.
   Offer copy locked: "We beat any written smoke alarm quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
   16/09/2026 (Ben): review bar and every "to be confirmed" chip removed; hero ghost button and the form card now carry the phone number.
-  Fill PROMO in the config block below before launch.
-  Form: PROMO.live=false in this draft, so submit shows an honest preview notice and sends NOTHING. Fields and payload now match the
-  main smoke alarm page's form (name, phone, email, postcode, preferred time of call, competitor quote upload OR what you were quoted;
-  JSON to PROMO.webhook with the file as base64, one resend without the file if refused). Never claim receipt on a timeout; success only on 2xx.
+  16/09/2026 launch: enquiries go to the existing smoke-alarm LeadConnector flow. An attached quote is stored first in the customer's
+  folder under the QLD photos Team Folder in Zoho WorkDrive, and only the WorkDrive reference is added to the lead payload. Never claim
+  receipt on a timeout; success requires both the upload (when attached) and the lead webhook to return 2xx.
   Tracking: GTM-TQ47CNZX + Meta pixel 1482683390150721 (same as the smoke alarm pages). Their hostname conditions and the Meta Lead
   rule (old exact /thank-you URL) need a launch check for this new hostname. Clarity not added (hostname-restricted, confirm first).
 -->
@@ -421,12 +420,13 @@ html.anim .reveal.in{opacity:1;transform:none}
 </div>
 
 <script>
-/* ---------- PROMO CONFIG (fill before launch) ---------- */
+/* ---------- PROMO CONFIG ---------- */
 var PROMO = {
-  live: false,                     /* false = preview: nothing is sent, no thank-you redirect */
-  webhook: '',                     /* left empty until verified. The main smoke alarm page posts the same JSON shape to its LeadConnector (GoHighLevel) webhook. */
+  live: true,
+  webhook: 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/dcfdeb51-112a-433d-be65-f20a229fc3cc',
+  upload_api: 'https://portal.goldsure.com.au/api/zoho/create-photo-request',
   offer_id: 'smoke_alarm_quote_beat_5',
-  offer_version: 'draft-2026-09-15',
+  offer_version: 'live-2026-09-16',
   end_iso: null,                   /* e.g. '2026-10-31T23:59:59+10:00' (Australia/Brisbane, no daylight saving) */
   thank_you: '/thank-you'
 };
@@ -481,12 +481,14 @@ function attribution(){try{return JSON.parse(sessionStorage.getItem('promo_attr'
       competitor_quote_file_name:hasFile?file.files[0].name:'',competitor_quote_file_type:hasFile?(file.files[0].type||''):'',competitor_quote_file_base64:'',
       source:'Smoke Alarm Quote Beat Promo',offer_id:PROMO.offer_id,offer_version:PROMO.offer_version,submission_id:sid(),quote_attached:hasFile?'yes':'no',quote_status:hasFile?'attached':'quote still required',page_url:location.href,
       utm_source:a.utm_source||'',utm_medium:a.utm_medium||'',utm_campaign:a.utm_campaign||'',utm_content:a.utm_content||'',utm_term:a.utm_term||'',gclid:a.gclid||'',fbclid:a.fbclid||''};
-    /* same shape as the main smoke alarm page's form (JSON to the webhook, file as base64; resend once without the file if refused) */
-    function send(p){var ctrl=new AbortController();var t=setTimeout(function(){ctrl.abort();},20000);return fetch(PROMO.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),signal:ctrl.signal}).then(function(res){clearTimeout(t);if(!res.ok)throw new Error('status '+res.status);});}
+    function request(url,options){var ctrl=new AbortController();var t=setTimeout(function(){ctrl.abort();},30000);options.signal=ctrl.signal;return fetch(url,options).then(function(res){clearTimeout(t);if(!res.ok)return res.json().catch(function(){return {};}).then(function(body){throw new Error(body.error||('status '+res.status));});return res;},function(reason){clearTimeout(t);throw reason;});}
+    function send(p){return request(PROMO.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});}
+    function readQuote(f){return new Promise(function(resolve,reject){var reader=new FileReader();reader.onload=function(){resolve(String(reader.result));};reader.onerror=function(){reject(new Error('file read failed'));};reader.readAsDataURL(f);});}
+    function storeQuote(f){return request(PROMO.upload_api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',name:payload.name,phone:payload.phone})}).then(function(res){return res.json();}).then(function(folder){if(!folder.folderId)throw new Error('quote folder was not created');return readQuote(f).then(function(dataBase64){return request(PROMO.upload_api,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',folderId:folder.folderId,filename:f.name,dataBase64:dataBase64,customerName:payload.name,phone:payload.phone,uploadCount:1,notify:true})}).then(function(){payload.competitor_quote_workdrive_folder_id=folder.folderId;payload.competitor_quote_workdrive_url=folder.folderUrl||'';payload.competitor_quote_file_note='Competitor quote stored in Goldsure WorkDrive';});});});}
     function done(){try{sessionStorage.setItem('promo_sid',payload.submission_id);}catch(x){}track('promo_submit_accepted',{has_file:hasFile});location.href=PROMO.thank_you+'?sid='+encodeURIComponent(payload.submission_id);}
     function fail(){track('promo_submit_failed');err.textContent='That did not go through. Your details are still here, please try again.';err.hidden=false;btn.disabled=false;btn.innerHTML='Get a Free Quote &rarr;';}
-    function submitLead(){var attempt=send(payload);if(payload.competitor_quote_file_base64){attempt=attempt.catch(function(){var p2={};for(var k in payload)p2[k]=payload[k];p2.competitor_quote_file_base64='';p2.competitor_quote_file_note='Customer attached '+payload.competitor_quote_file_name+' but it could not be delivered. Ask them to send it.';return send(p2);});}attempt.then(done).catch(fail);}
-    if(hasFile){var reader=new FileReader();reader.onload=function(){payload.competitor_quote_file_base64=String(reader.result).split(',')[1]||'';submitLead();};reader.onerror=function(){submitLead();};reader.readAsDataURL(file.files[0]);}else{submitLead();}
+    var submission=hasFile?storeQuote(file.files[0]).then(function(){return send(payload);}):send(payload);
+    submission.then(done).catch(fail);
   });
 })();
 </script>
