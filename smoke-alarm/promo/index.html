@@ -46,9 +46,9 @@ fbq('track', 'PageView');
   the form, promotion terms removed, team photo under the form button, service area Caloundra to the Gold Coast incl. Bribie Island, Brisbane, Logan.
   Offer copy locked: "We beat any written smoke alarm quote by 5%" + "Limited time only". Dates and detailed quote conditions are PENDING:
   16/09/2026 (Ben): review bar and every "to be confirmed" chip removed; hero ghost button and the form card now carry the phone number.
-  16/09/2026 launch: enquiries go to the existing smoke-alarm LeadConnector flow. An attached quote is stored first in the customer's
-  folder under the QLD photos Team Folder in Zoho WorkDrive, and only the WorkDrive reference is added to the lead payload. Never claim
-  receipt on a timeout; success requires both the upload (when attached) and the lead webhook to return 2xx.
+  16/09/2026 launch: enquiries go to the existing smoke-alarm LeadConnector flow. For an attachment, the customer folder is created
+  under the QLD photos Team Folder, the lead is submitted with that WorkDrive reference, and the quote is then uploaded. The upload
+  service adds a GHL note with the folder link. Never claim receipt on a timeout; success requires both the upload and lead webhook to return 2xx.
   Tracking: GTM-TQ47CNZX + Meta pixel 1482683390150721 (same as the smoke alarm pages). Their hostname conditions and the Meta Lead
   rule (old exact /thank-you URL) need a launch check for this new hostname. Clarity not added (hostname-restricted, confirm first).
 -->
@@ -484,10 +484,12 @@ function attribution(){try{return JSON.parse(sessionStorage.getItem('promo_attr'
     function request(url,options){var ctrl=new AbortController();var t=setTimeout(function(){ctrl.abort();},30000);options.signal=ctrl.signal;return fetch(url,options).then(function(res){clearTimeout(t);if(!res.ok)return res.json().catch(function(){return {};}).then(function(body){throw new Error(body.error||('status '+res.status));});return res;},function(reason){clearTimeout(t);throw reason;});}
     function send(p){return request(PROMO.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});}
     function readQuote(f){return new Promise(function(resolve,reject){var reader=new FileReader();reader.onload=function(){resolve(String(reader.result));};reader.onerror=function(){reject(new Error('file read failed'));};reader.readAsDataURL(f);});}
-    function storeQuote(f){return request(PROMO.upload_api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',name:payload.name,phone:payload.phone})}).then(function(res){return res.json();}).then(function(folder){if(!folder.folderId)throw new Error('quote folder was not created');return readQuote(f).then(function(dataBase64){return request(PROMO.upload_api,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',folderId:folder.folderId,filename:f.name,dataBase64:dataBase64,customerName:payload.name,phone:payload.phone,uploadCount:1,notify:true})}).then(function(){payload.competitor_quote_workdrive_folder_id=folder.folderId;payload.competitor_quote_workdrive_url=folder.folderUrl||'';payload.competitor_quote_file_note='Competitor quote stored in Goldsure WorkDrive';});});});}
+    function createQuoteFolder(){return request(PROMO.upload_api,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',name:payload.name,phone:payload.phone})}).then(function(res){return res.json();}).then(function(folder){if(!folder.folderId)throw new Error('quote folder was not created');payload.competitor_quote_workdrive_folder_id=folder.folderId;payload.competitor_quote_workdrive_url=folder.folderUrl||'';payload.competitor_quote_file_note='Competitor quote stored in Goldsure WorkDrive';return folder;});}
+    function uploadQuote(folder,f){return readQuote(f).then(function(dataBase64){return request(PROMO.upload_api,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:'smoke-promo',folderId:folder.folderId,filename:f.name,dataBase64:dataBase64,customerName:payload.name,phone:payload.phone,uploadCount:1,notify:true})});});}
+    function storeQuote(f){return createQuoteFolder().then(function(folder){return send(payload).then(function(){return uploadQuote(folder,f);});});}
     function done(){try{sessionStorage.setItem('promo_sid',payload.submission_id);}catch(x){}track('promo_submit_accepted',{has_file:hasFile});location.href=PROMO.thank_you+'?sid='+encodeURIComponent(payload.submission_id);}
     function fail(){track('promo_submit_failed');err.textContent='That did not go through. Your details are still here, please try again.';err.hidden=false;btn.disabled=false;btn.innerHTML='Get a Free Quote &rarr;';}
-    var submission=hasFile?storeQuote(file.files[0]).then(function(){return send(payload);}):send(payload);
+    var submission=hasFile?storeQuote(file.files[0]):send(payload);
     submission.then(done).catch(fail);
   });
 })();
