@@ -870,35 +870,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 id="faq-h"><span>Before you claim</span> <span class="blue">the bundle.</span></h2>
       </div>
       <div class="faq">
-        <details open>
+        <details name="faq" open>
           <summary>Is it really $2,999 for both?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">Yes. $2,999 covers the Econova all-in-one heat pump and the EcoPure whole-home filter, supplied and installed by our team. If your home needs anything unusual, we tell you in writing before you commit<span class="d">, never on install day</span>.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>What if I only want the heat pump?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">No problem. We still supply and install heat pumps on their own. Pick "Just the heat pump" on the form and we will quote it.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>What does the water filter actually do?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">It filters the water where it enters your home, in three stages: a sediment filter, then two carbon filters. It cuts sediment, chlorine, bad taste and odour from every tap and shower. It is not a water softener.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>Do I still need my water jug?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">No. Every tap in the house is already filtered, so the jug and its monthly cartridges can go.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>Melbourne water is already safe. Why filter it?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">It is safe, and this is not about safety. It is about convenience and taste: less chlorine taste and smell from every tap and shower, with no jug to refill.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>Will it affect my water pressure?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">The EcoPure is rated for up to 60 litres a minute. We check your mains pressure before we fit it.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>How often do the filters need changing?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">Every 12 to 18 months. They swap out without tools.</p>
         </details>
-        <details>
+        <details name="faq">
           <summary>Who does the installation?<span class="faq-i" aria-hidden="true"></span></summary>
           <p class="answer">Our own licensed plumbers and electricians. Not subcontractors.</p>
         </details>
@@ -1084,6 +1084,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   });
 })();
+</script>
+<script>
+/* FAQ: only one answer open at a time (backup for browsers without details name support) */
+(function(){var d=document.querySelectorAll('.faq details');d.forEach(function(x){x.addEventListener('toggle',function(){if(x.open)d.forEach(function(y){if(y!==x&&y.open)y.open=false})})})})();
 </script>
 </body>
 </html>
