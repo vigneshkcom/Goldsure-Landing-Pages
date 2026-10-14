@@ -64,7 +64,9 @@ test('form lead is forwarded to GHL and a personalized Hostinger email is sent w
     assert.deepEqual(JSON.parse(res.body), { ok: true, emailStatus: 'sent' });
     assert.equal(calls.length, 2);
     assert.equal(forwarded.lead_type, 'Water Filter Lead');
-    assert.deepEqual(forwarded.ghl_tags, ['Water Filter Lead']);
+    assert.deepEqual(forwarded.ghl_tags, ['Water Filter']);
+    assert.equal(forwarded.first_name, 'Mia');
+    assert.equal(forwarded.last_name, 'Chen');
     assert.match(forwarded.internal_note, /Requested offer: The \$2,999 bundle/);
     assert.match(forwarded.internal_note, /Requested offer: The \$2,999 bundle/);
     assert.match(forwarded.internal_note, /Customer message: Call me/);

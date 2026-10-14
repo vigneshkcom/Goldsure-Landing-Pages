@@ -1,4 +1,4 @@
-var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/75acb356-a9c6-40b7-afcc-0ba5a87d5701';
+var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/e4c7448e-f6e9-4d8c-9cc0-a69c82cf3ad9';
 var { renderCustomerEnquiryEmail } = require('../lib/lead-email');
 var { hasHostingerMailConfig, sendHostingerMail } = require('../lib/hostinger-mail');
 
@@ -63,13 +63,16 @@ module.exports = async function handler(req, res) {
   }
 
   var isBundle = interest === 'The $2,999 bundle';
+  var nameParts = name.split(/\s+/);
   var lead = Object.assign({}, body, {
     name: name,
+    first_name: nameParts[0],
+    last_name: nameParts.slice(1).join(' '),
     phone: phone,
     email: email,
     interest: interest,
     lead_type: isBundle ? 'Water Filter Lead' : 'Heat Pump Lead',
-    ghl_tags: isBundle ? ['Water Filter Lead'] : [],
+    ghl_tags: isBundle ? ['Water Filter'] : [],
     internal_note: [
       'New enquiry from Heat Pump + Water Filter Bundle Page.',
       'Requested offer: ' + interest + '.',
