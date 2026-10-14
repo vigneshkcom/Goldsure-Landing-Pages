@@ -578,13 +578,13 @@ textarea.finput{height:84px;padding:12px 14px;line-height:21px;resize:vertical;d
   .foot p{color:#FFFFFFA8;font-size:12px;line-height:18px}
 
   .sticky-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;align-items:center;justify-content:space-between;gap:20px;
-    padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:#142F72F0;border-top:1px solid #FFFFFF24;box-shadow:#00000099 0 -10px 24px -14px;
+    padding:8px 16px max(8px, calc(env(safe-area-inset-bottom) - 16px));background:#142F72F0;border-top:1px solid #FFFFFF24;box-shadow:#00000099 0 -10px 24px -14px;
     transition:transform .25s ease}
   .sticky-bar.away{transform:translateY(110%)}
   .sb-t{display:flex;flex-direction:column}
   .sb-1{color:#fff;font-weight:700;font-size:14px;line-height:18px}
   .sb-2{color:var(--gold);font-weight:600;font-size:13px;line-height:17px}
-  .sticky-bar .btn{height:46px;padding:0 22px;font-size:15px;line-height:18px;gap:6px;box-shadow:none}
+  .sticky-bar .btn{height:42px;padding:0 20px;font-size:15px;line-height:18px;gap:6px;box-shadow:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
 </style>
