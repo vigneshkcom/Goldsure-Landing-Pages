@@ -587,6 +587,8 @@ textarea.finput{height:84px;padding:12px 14px;line-height:21px;resize:vertical;d
   .sticky-bar .btn{height:42px;padding:0 20px;font-size:15px;line-height:18px;gap:6px;box-shadow:none}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
+#heat-pump,#water-filter,#price,#offer-h,#jug-h,#proof-h,#faq-h{scroll-margin-top:96px}
+@media (max-width:900px){#heat-pump,#water-filter,#price,#offer-h,#jug-h,#proof-h,#faq-h{scroll-margin-top:16px}}
 </style>
 </head>
 <body>
@@ -714,7 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="ocards">
-      <article class="ocard hp">
+      <article class="ocard hp" id="heat-pump">
         <div class="ocard-img"><img src="/assets/img/econova-all-in-one.webp" alt="Econova all-in-one heat pump" width="218" height="320" loading="lazy" decoding="async" /></div>
         <div class="ocard-text">
           <div class="ocard-head">
@@ -734,7 +736,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="plus ocards-plus" aria-hidden="true">+</div>
 
-      <article class="ocard wf">
+      <article class="ocard wf" id="water-filter">
         <div class="ocard-img"><img src="/assets/img/ecopure-filter.webp" alt="EcoPure whole-home water filter" width="168" height="270" loading="lazy" decoding="async" /></div>
         <div class="ocard-text">
           <div class="ocard-head">
@@ -753,7 +755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </article>
     </div>
 
-    <div class="total">
+    <div class="total" id="price">
       <div class="total-l">
         <span class="total-p">$2,999</span>
         <div class="total-t">
