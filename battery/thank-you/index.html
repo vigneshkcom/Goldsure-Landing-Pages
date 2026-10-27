@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- GTM: new battery container goes here (head snippet) -->
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '29060531043583282');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=29060531043583282&ev=PageView&noscript=1" alt=""></noscript>
+<!-- End Meta Pixel Code -->
+<script>
+  /* Lead fires once, only after a real form submit set the flag on the landing page */
+  try{
+    if(sessionStorage.getItem('gs_batt_lead')==='1'){
+      sessionStorage.removeItem('gs_batt_lead');
+      fbq('track','Lead');
+    }
+  }catch(e){}
+</script>
+<title>Home Batteries Melbourne | Goldsure</title>
+<meta name="description" content="Already have solar? Add a battery. A battery saves the solar power you make during the day, so your home runs on it at night instead of the grid.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#142F72">
+<link rel="icon" type="image/png" sizes="96x96" href="/battery/assets/gs-favicon-96px.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/battery/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600,700&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;color:#fff;font-family:"General Sans",-apple-system,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background-color:#142F72;background-image:radial-gradient(circle farthest-corner at 50% 30%,#2256BB99 0%,#2256BB00 60%),linear-gradient(180deg,#142F72 0%,#091F53 100%);background-attachment:fixed}
+h1,p{margin:0}
+.bar{height:64px;display:flex;align-items:center;justify-content:center;padding:0 20px}
+.bar img{width:112px;height:28px;object-fit:contain;display:block}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 20px 56px}
+.card{width:min(520px,100%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px}
+.check{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#DDB95E 0%,#C9A84C 100%);box-shadow:inset 0 1px 0 #FFFFFF73,0 16px 36px #A8892F59}
+h1{font-family:"Clash Display",system-ui,sans-serif;font-weight:600;font-size:32px;line-height:36px;letter-spacing:-.02em;text-wrap:balance}
+.lead{font-size:17px;line-height:26px;color:#FFFFFFD9;text-wrap:pretty;max-width:440px}
+.next{width:100%;margin-top:8px;padding:22px 24px;border-radius:18px;background:#FFFFFF14;border:1px solid #FFFFFF2E;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);text-align:left;display:flex;flex-direction:column;gap:12px}
+.next small{color:#C9A84C;font-weight:600;font-size:12px;line-height:16px;letter-spacing:.14em;text-transform:uppercase}
+.next ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.next li{font-weight:500;font-size:16px;line-height:22px;color:#fff}
+@media (min-width:768px){
+  .bar{height:84px}.bar img{width:160px;height:40px}
+  h1{font-size:44px;line-height:48px}
+  .lead{font-size:19px;line-height:29px}
+  .card{gap:24px}
+  .next{padding:26px 28px}
+  .next li{font-size:17px;line-height:24px}
+}
+@media (prefers-reduced-transparency:reduce){.next{background:#24407F;-webkit-backdrop-filter:none;backdrop-filter:none}}
+</style>
+</head>
+<body>
+<!-- GTM: noscript snippet here -->
+<header class="bar"><img src="/battery/assets/goldsure-logo.png" alt="Goldsure" width="112" height="28"></header>
+<main>
+  <div class="card">
+    <div class="check" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="#0D0D0D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h1>Thanks, you're in. We'll be in touch.</h1>
+    <p class="lead">One of our licensed team will check your solar setup and get your battery quote ready.</p>
+    <div class="next">
+      <small>What happens next</small>
+      <ol>
+        <li>1. We look at your answers</li>
+        <li>2. We size a battery to your home</li>
+        <li>3. You get a fixed written price</li>
+      </ol>
+    </div>
+  </div>
+</main>
+</body>
+</html>

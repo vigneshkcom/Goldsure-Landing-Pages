@@ -76,6 +76,36 @@
       "has": [
         {
           "type": "host",
+          "value": "battery.goldsure.com.au"
+        }
+      ],
+      "destination": "/battery/index.html"
+    },
+    {
+      "source": "/thank-you",
+      "has": [
+        {
+          "type": "host",
+          "value": "battery.goldsure.com.au"
+        }
+      ],
+      "destination": "/battery/thank-you/index.html"
+    },
+    {
+      "source": "/thank-you/",
+      "has": [
+        {
+          "type": "host",
+          "value": "battery.goldsure.com.au"
+        }
+      ],
+      "destination": "/battery/thank-you/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
           "value": "smokealarmpromo.goldsure.com.au"
         }
       ],
@@ -368,6 +398,26 @@
     {
       "source": "/api/splitsystem/submit-lead",
       "destination": "/api/splitsystem/submit-lead"
+    },
+    {
+      "source": "/battery",
+      "destination": "/battery/index.html"
+    },
+    {
+      "source": "/battery/",
+      "destination": "/battery/index.html"
+    },
+    {
+      "source": "/thank-you/battery",
+      "destination": "/battery/thank-you/index.html"
+    },
+    {
+      "source": "/thank-you/battery/",
+      "destination": "/battery/thank-you/index.html"
+    },
+    {
+      "source": "/api/battery/submit-lead",
+      "destination": "/api/battery/submit-lead"
     }
   ]
 }
