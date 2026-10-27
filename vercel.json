@@ -79,7 +79,7 @@
           "value": "battery.goldsure.com.au"
         }
       ],
-      "destination": "/battery/index.html"
+      "destination": "/battery"
     },
     {
       "source": "/thank-you",
@@ -89,7 +89,7 @@
           "value": "battery.goldsure.com.au"
         }
       ],
-      "destination": "/battery/thank-you/index.html"
+      "destination": "/battery/thank-you"
     },
     {
       "source": "/thank-you/",
@@ -99,7 +99,7 @@
           "value": "battery.goldsure.com.au"
         }
       ],
-      "destination": "/battery/thank-you/index.html"
+      "destination": "/battery/thank-you"
     },
     {
       "source": "/",
@@ -401,19 +401,19 @@
     },
     {
       "source": "/battery",
-      "destination": "/battery/index.html"
+      "destination": "/battery"
     },
     {
       "source": "/battery/",
-      "destination": "/battery/index.html"
+      "destination": "/battery"
     },
     {
       "source": "/thank-you/battery",
-      "destination": "/battery/thank-you/index.html"
+      "destination": "/battery/thank-you"
     },
     {
       "source": "/thank-you/battery/",
-      "destination": "/battery/thank-you/index.html"
+      "destination": "/battery/thank-you"
     },
     {
       "source": "/api/battery/submit-lead",
