@@ -4,6 +4,60 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/battery",
+      "has": [
+        {
+          "type": "host",
+          "value": "battery.goldsure.com.au"
+        },
+        {
+          "type": "header",
+          "key": "sec-fetch-mode",
+          "value": "navigate"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/battery/",
+      "has": [
+        {
+          "type": "host",
+          "value": "battery.goldsure.com.au"
+        },
+        {
+          "type": "header",
+          "key": "sec-fetch-mode",
+          "value": "navigate"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/battery",
+      "has": [
+        {
+          "type": "host",
+          "value": "offers.goldsure.com.au"
+        }
+      ],
+      "destination": "https://battery.goldsure.com.au",
+      "permanent": true
+    },
+    {
+      "source": "/battery/",
+      "has": [
+        {
+          "type": "host",
+          "value": "offers.goldsure.com.au"
+        }
+      ],
+      "destination": "https://battery.goldsure.com.au",
+      "permanent": true
+    },
+    {
       "source": "/splitsystem",
       "has": [
         {
