@@ -1235,9 +1235,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(mq.addEventListener)mq.addEventListener('change',swapPh);
 
   /* ---- Attribution capture (kept for the visit) ---- */
-  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','gbraid','wbraid'];
   var qs=new URLSearchParams(location.search);
+  var externalReferrer='';
+  try{var ref=new URL(document.referrer);if(ref.hostname!==location.hostname)externalReferrer=ref.href}catch(e){}
+  // A new campaign replaces the previous campaign as a whole, so old click IDs
+  // cannot attribute a later Facebook visit to Google (or the other way around).
+  if(KEYS.some(function(k){return !!qs.get(k)})||externalReferrer){
+    try{KEYS.concat(['referrer']).forEach(function(k){sessionStorage.removeItem('gs_'+k)})}catch(e){}
+  }
   KEYS.forEach(function(k){var v=qs.get(k);if(v){try{sessionStorage.setItem('gs_'+k,v)}catch(e){}}});
+  if(externalReferrer){try{sessionStorage.setItem('gs_referrer',externalReferrer)}catch(e){}}
   function attr(k){var v=qs.get(k);if(v)return v;try{return sessionStorage.getItem('gs_'+k)||''}catch(e){return ''}}
 
   /* ---- Form ---- */
@@ -1303,7 +1311,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       page_url:location.href,
       utm_source:attr('utm_source'),utm_medium:attr('utm_medium'),utm_campaign:attr('utm_campaign'),
       utm_content:attr('utm_content'),utm_term:attr('utm_term'),
-      fbclid:attr('fbclid'),gclid:attr('gclid'),
+      fbclid:attr('fbclid'),gclid:attr('gclid'),gbraid:attr('gbraid'),wbraid:attr('wbraid'),
+      referrer:externalReferrer||attr('referrer'),
       website:form.elements.website.value
     };
     sending=true;btn.disabled=true;

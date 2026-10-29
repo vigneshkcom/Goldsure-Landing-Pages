@@ -53,6 +53,20 @@ function clean(value, max) {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
 }
 
+function enquirySource(body) {
+  var source = clean(body.utm_source, 100).toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (/^(facebook|fb|meta|instagram|ig)(ads|paid|cpc)?$/.test(source)) return 'Facebook';
+  if (/^(google|googleads|googleadwords|adwords|youtube)$/.test(source)) return 'Google';
+  if (clean(body.gclid, 500) || clean(body.gbraid, 500) || clean(body.wbraid, 500)) return 'Google';
+  if (clean(body.fbclid, 500)) return 'Facebook';
+  try {
+    var host = new URL(clean(body.referrer, 1000)).hostname.toLowerCase();
+    if (/(^|\.)(facebook\.com|instagram\.com|fb\.com)$/.test(host)) return 'Facebook';
+    if (/(^|\.)(google\.[a-z.]+|youtube\.com)$/.test(host)) return 'Google';
+  } catch (_) {}
+  return 'Direct inquiry';
+}
+
 module.exports = async function handler(req, res) {
   setCors(req, res);
 
@@ -93,6 +107,8 @@ module.exports = async function handler(req, res) {
   }
 
   var nameParts = name.split(/\s+/);
+  var source = enquirySource(body);
+  var trackingKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid', 'gbraid', 'wbraid'];
   var lead = {
     name: name,
     first_name: nameParts[0],
@@ -105,12 +121,13 @@ module.exports = async function handler(req, res) {
     phase: clean(body.phase, 20),
     message: clean(body.message, 1000),
     page_url: clean(body.page_url, 500),
-    ...Object.fromEntries(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid']
+    referrer: clean(body.referrer, 1000),
+    ...Object.fromEntries(trackingKeys
       .map(function (key) { return [key, clean(body[key], 500)]; })),
-    source: 'Home Battery Page',
+    source: source,
     lead_type: 'Battery Lead',
     internal_note: [
-      'New enquiry from Home Battery Page (battery.goldsure.com.au).',
+      'Source: ' + source,
       'Submitted name: ' + name,
       'Submitted phone: ' + phone,
       'Submitted email: ' + email,
@@ -119,10 +136,11 @@ module.exports = async function handler(req, res) {
       'Solar installed: ' + (clean(body.solar_installed, 60) || 'Not provided') + '.',
       'Phase: ' + (clean(body.phase, 20) || 'Not provided') + '.',
       'Customer message: ' + (clean(body.message, 1000) || 'None provided'),
-      'Page: ' + clean(body.page_url, 500),
-      ...['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid']
+      clean(body.page_url, 500) ? 'Page: ' + clean(body.page_url, 500) : '',
+      clean(body.referrer, 1000) ? 'Referrer: ' + clean(body.referrer, 1000) : '',
+      ...trackingKeys.filter(function (key) { return clean(body[key], 500); })
         .map(function (key) { return key + ': ' + clean(body[key], 500); })
-    ].join('\n')
+    ].filter(Boolean).join('\n')
   };
 
   try {
@@ -162,6 +180,7 @@ module.exports = async function handler(req, res) {
     }
     if (matches.size > 1) throw new Error('Conflicting contact matches require review');
     var contactId = Array.from(matches.keys())[0];
+    var primaryContact = Array.from(matches.values())[0];
     if (!contactId) {
       var created = await ghl('/contacts/', 'POST', {
         locationId: LOCATION_ID, firstName: lead.first_name, lastName: lead.last_name,
@@ -170,8 +189,10 @@ module.exports = async function handler(req, res) {
         ...(/^\d{4}$/.test(postcode) ? { postalCode: postcode } : {})
       });
       contactId = created.contact?.id || created.id;
+      primaryContact = created.contact;
     }
     if (!contactId) throw new Error('GHL did not confirm a contact');
+    var primaryName = primaryContact?.name || [primaryContact?.firstName, primaryContact?.lastName].filter(Boolean).join(' ') || name;
 
     var opportunities = await ghl('/opportunities/search?location_id=' + LOCATION_ID + '&contact_id=' + encodeURIComponent(contactId) + '&limit=100');
     if (opportunities.meta?.nextPage || opportunities.meta?.total > 100) throw new Error('Opportunity search needs review');
@@ -181,7 +202,7 @@ module.exports = async function handler(req, res) {
     if (!existing) {
       var opportunity = await ghl('/opportunities/', 'POST', {
         locationId: LOCATION_ID, pipelineId: PIPELINE_ID, pipelineStageId: NEW_LEAD_STAGE_ID,
-        contactId: contactId, name: name + ' - Battery enquiry', status: 'open', source: lead.source
+        contactId: contactId, name: primaryName, status: 'open', source: lead.source
       });
       if (!(opportunity.opportunity?.id || opportunity.id)) throw new Error('GHL did not confirm a Battery opportunity');
     }

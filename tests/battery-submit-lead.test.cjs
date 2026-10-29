@@ -44,7 +44,8 @@ test('new lead creates contact and exact Battery New Lead opportunity with form 
   const opportunity = calls.find(c => c.url.endsWith('/opportunities/')).data;
   assert.equal(opportunity.pipelineId, pipeline.id);
   assert.equal(opportunity.pipelineStageId, pipeline.stages[0].id);
-  assert.equal(opportunity.source, 'Home Battery Page');
+  assert.equal(opportunity.source, 'Direct inquiry');
+  assert.equal(opportunity.name, body.name);
   const note = calls.find(c => c.url.endsWith('/notes')).data.body;
   for (const value of ['5 to 10 years ago', 'Three', 'Please quote', 'battery-october']) assert.ok(note.includes(value));
   assert.deepEqual(calls.find(c => c.url.endsWith('/tags')).data.tags, ['Battery']);
@@ -98,7 +99,7 @@ test('published webhook receives mapped form fields without also running direct 
   assert.equal(webhookCalls.length, 1);
   const lead = webhookCalls[0].data;
   assert.equal(lead.phone, '+61491570006');
-  assert.equal(lead.source, 'Home Battery Page');
+  assert.equal(lead.source, 'Direct inquiry');
   assert.equal(lead.has_solar, 'Yes');
   assert.equal(lead.phase, 'Three');
   assert.equal(lead.utm_campaign, body.utm_campaign);
@@ -115,4 +116,32 @@ test('published webhook can save leads independently of fallback credentials', a
   const { res, calls } = await run(body, { webhookAccepted: true, noKey: true });
   assert.equal(res.statusCode, 200);
   assert.equal(calls.length, 0);
+});
+test('UTM source aliases resolve to Facebook or Google before click-ID fallbacks', async () => {
+  for (const [utm_source, expected] of [['facebook', 'Facebook'], ['fb', 'Facebook'], ['meta', 'Facebook'], ['instagram', 'Facebook'], ['Google', 'Google'], ['google_ads', 'Google']]) {
+    const { webhookCalls } = await run({ ...body, utm_source }, { webhookAccepted: true });
+    assert.equal(webhookCalls[0].data.source, expected);
+    assert.ok(webhookCalls[0].data.internal_note.startsWith('Source: ' + expected + '\n'));
+    assert.ok(webhookCalls[0].data.internal_note.includes('utm_source: ' + utm_source));
+  }
+  assert.equal((await run({ ...body, utm_source: 'facebook', gclid: 'old-id' }, { webhookAccepted: true })).webhookCalls[0].data.source, 'Facebook');
+});
+test('missing UTMs use ad click IDs or recognised referrers, otherwise direct inquiry', async () => {
+  for (const [attribution, expected] of [[{fbclid:'fb-test'},'Facebook'],[{gclid:'google-test'},'Google'],[{gbraid:'ios-google-test'},'Google'],[{wbraid:'ios-google-test'},'Google'],[{referrer:'https://l.facebook.com/'} ,'Facebook'],[{referrer:'https://www.google.com.au/'} ,'Google'],[{},'Direct inquiry']]) {
+    const { webhookCalls } = await run({ ...body, ...attribution }, { webhookAccepted: true });
+    assert.equal(webhookCalls[0].data.source, expected);
+  }
+});
+test('direct enquiry notes omit empty UTM and click-ID lines', async () => {
+  const { webhookCalls } = await run({ ...body, utm_campaign:'', page_url:'https://battery.goldsure.com.au/#quote' }, { webhookAccepted: true });
+  const note = webhookCalls[0].data.internal_note;
+  assert.ok(note.startsWith('Source: Direct inquiry\n'));
+  assert.ok(!note.includes('utm_'));
+  assert.ok(!note.includes('fbclid:'));
+  assert.ok(!note.includes('gclid:'));
+  assert.ok(!note.split('\n').some(line=>/:\s*$/.test(line)));
+});
+test('fallback opportunity name uses the matched primary contact name exactly', async () => {
+  const { calls } = await run(body, { contacts: [{ id:'primary', phone:'+61491570006', firstName:'Existing', lastName:'Customer' }] });
+  assert.equal(calls.find(c=>c.url.endsWith('/opportunities/')).data.name, 'Existing Customer');
 });
