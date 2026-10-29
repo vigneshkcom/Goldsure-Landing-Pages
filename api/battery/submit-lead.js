@@ -1,4 +1,6 @@
-// Battery enquiries go directly to their own pipeline, never the aircon workflow.
+// Published GHL workflow: Goldsure Battery Website Leads.
+// Keep direct GHL delivery as a fallback if the inbound webhook rejects a lead.
+var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/282cb68b-d749-4c5b-af30-856ebdd980aa';
 var LOCATION_ID = 'AOfC7QeiTk5m22pLkh8H';
 var PIPELINE_ID = 'vNOSzOo0pXEnGS38xuNw';
 var NEW_LEAD_STAGE_ID = '5ecf91e1-3067-4a4e-be2a-641cd0027923';
@@ -98,6 +100,13 @@ module.exports = async function handler(req, res) {
     phone: phone,
     email: email,
     postcode: postcode,
+    has_solar: hasSolar,
+    solar_installed: clean(body.solar_installed, 60),
+    phase: clean(body.phase, 20),
+    message: clean(body.message, 1000),
+    page_url: clean(body.page_url, 500),
+    ...Object.fromEntries(['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid']
+      .map(function (key) { return [key, clean(body[key], 500)]; })),
     source: 'Home Battery Page',
     lead_type: 'Battery Lead',
     internal_note: [
@@ -115,6 +124,23 @@ module.exports = async function handler(req, res) {
         .map(function (key) { return key + ': ' + clean(body[key], 500); })
     ].join('\n')
   };
+
+  try {
+    var webhookResponse = await fetch(GHL_WEBHOOK, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead), signal: AbortSignal.timeout(12000)
+    });
+    if (!webhookResponse.ok) throw new Error('Webhook rejected (' + webhookResponse.status + ')');
+    var acknowledgement = await webhookResponse.json();
+    // A draft trigger returns HTTP 200 with "test request received" but runs no actions.
+    if (acknowledgement.status !== 'Success: request sent to trigger execution server' || !acknowledgement.id) {
+      throw new Error('Webhook did not confirm a live workflow execution');
+    }
+    console.info('[Battery lead] Webhook execution accepted:', acknowledgement.id);
+    return json(res, 200, { ok: true, submissionId: acknowledgement.id });
+  } catch (error) {
+    console.warn('[Battery lead] Webhook unavailable; using direct GHL delivery:', error.message);
+  }
 
   try {
     if (!process.env.GHL_API_KEY) return json(res, 503, { error: 'Battery lead connection is unavailable. Please call us.' });

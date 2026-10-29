@@ -8,11 +8,18 @@ const pipeline = { id: 'vNOSzOo0pXEnGS38xuNw', name: 'Battery Customers', stages
 const body = { name: 'Battery Test', phone: '0491 570 006', email: 'battery-test@example.com', postcode: '3000', has_solar: 'Yes', phase: 'Three', solar_installed: '5 to 10 years ago', message: 'Please quote', utm_campaign: 'battery-october' };
 async function run(input = body, options = {}) {
   const calls = [];
+  const webhookCalls = [];
   process.env.GHL_API_KEY = options.noKey ? '' : 'test-key';
   global.fetch = async (url, init) => {
     assert.ok(url.startsWith('https://services.leadconnectorhq.com/'));
-    assert.ok(!url.includes('/hooks/'));
     const data = init.body ? JSON.parse(init.body) : null;
+    if (url.includes('/hooks/')) {
+      assert.equal(url, 'https://services.leadconnectorhq.com/hooks/AOfC7QeiTk5m22pLkh8H/webhook-trigger/282cb68b-d749-4c5b-af30-856ebdd980aa');
+      webhookCalls.push({ url, data });
+      if (options.webhookAccepted) return { ok: true, json: async () => ({ status: 'Success: request sent to trigger execution server', id: 'execution-1' }) };
+      if (options.webhookDraft) return { ok: true, json: async () => ({ status: 'Success: test request received' }) };
+      return { ok: false, status: 503 };
+    }
     calls.push({ url, method: init.method, data });
     if (options.failure && url.includes(options.failure)) return { ok: false, status: 503 };
     let payload;
@@ -26,7 +33,7 @@ async function run(input = body, options = {}) {
   };
   const res = { headers: {}, setHeader(k,v) { this.headers[k] = v; }, end(value) { this.body = value ? JSON.parse(value) : null; } };
   await handler({ method: options.method || 'POST', headers: { origin: 'https://battery.goldsure.com.au' }, body: input }, res);
-  return { res, calls };
+  return { res, calls, webhookCalls };
 }
 test('new lead creates contact and exact Battery New Lead opportunity with form notes', async () => {
   const { res, calls } = await run();
@@ -82,4 +89,30 @@ test('suburb input stays in note instead of becoming an invalid postal code', as
   assert.equal(res.statusCode, 200);
   assert.equal(calls.find(c => c.url.endsWith('/contacts/')).data.postalCode, undefined);
   assert.ok(calls.find(c => c.url.endsWith('/notes')).data.body.includes('Brunswick'));
+});
+test('published webhook receives mapped form fields without also running direct delivery', async () => {
+  const { res, calls, webhookCalls } = await run({ ...body, source: 'Aircon', pipelineId: 'wrong-pipeline', secret: 'not-forwarded' }, { webhookAccepted: true });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.submissionId, 'execution-1');
+  assert.equal(calls.length, 0);
+  assert.equal(webhookCalls.length, 1);
+  const lead = webhookCalls[0].data;
+  assert.equal(lead.phone, '+61491570006');
+  assert.equal(lead.source, 'Home Battery Page');
+  assert.equal(lead.has_solar, 'Yes');
+  assert.equal(lead.phase, 'Three');
+  assert.equal(lead.utm_campaign, body.utm_campaign);
+  assert.equal(lead.secret, undefined);
+  assert.equal(lead.pipelineId, undefined);
+});
+test('a draft webhook HTTP 200 falls back to confirmed direct GHL delivery', async () => {
+  const { res, calls } = await run(body, { webhookDraft: true });
+  assert.equal(res.statusCode, 200);
+  assert.ok(calls.some(c => c.url.endsWith('/opportunities/')));
+  assert.ok(calls.some(c => c.url.endsWith('/notes')));
+});
+test('published webhook can save leads independently of fallback credentials', async () => {
+  const { res, calls } = await run(body, { webhookAccepted: true, noKey: true });
+  assert.equal(res.statusCode, 200);
+  assert.equal(calls.length, 0);
 });
