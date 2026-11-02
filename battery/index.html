@@ -163,6 +163,7 @@ html.anim .chart.in .bar b{opacity:1}
 .panel{position:relative;flex:1 1 50%;padding:36px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .panel>*:not(img){position:relative;z-index:1}
+.panel.eve::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#06133559 0%,#0613351F 45%,#061335A6 100%)}
 .time{display:flex;align-items:center;gap:10px;width:fit-content;padding:6px 12px 6px 8px;border-radius:12px;background:#061335B3;font-weight:600;font-size:14px;line-height:18px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
 .time.night{color:var(--gold)}
 .cap{display:flex;flex-direction:column;gap:6px;width:fit-content;padding:18px 20px;border-radius:16px;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
@@ -201,7 +202,7 @@ html.anim .chart.in .bar b{opacity:1}
 .works{background:var(--cream);padding:80px 0}
 .works .wrap{display:grid;grid-template-columns:500px minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"photo head" "photo body";column-gap:64px;row-gap:32px;align-items:start}
 .works-photo{grid-area:photo;position:relative;min-height:560px;height:100%;border-radius:24px;overflow:hidden;padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
-.works-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.works-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 45%}
 .works-chip{position:relative;align-self:flex-start;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#FFFFFFB3;font-weight:600;font-size:14px;line-height:18px;color:var(--navy)}
 .works-head{grid-area:head;padding-top:12px}
 .works-head .h2{max-width:600px}
@@ -482,7 +483,8 @@ select.inp option{color:var(--ink)}
   .panel{flex:none;padding:16px}
   .panel.mid{height:270px;gap:40px}
   .panel.eve{height:400px;justify-content:flex-start;gap:10px}
-  .panel.eve>img{object-position:62% 70%}
+  .panel.eve>img{object-position:45% 50%}
+  .panel.eve::after{background:linear-gradient(180deg,#061335B3 0%,#06133533 50%,#06133533 100%)}
   .time{background:none;padding:6px 10px;font-size:12px;line-height:16px;color:#fff!important;text-shadow:0 1px 8px #000000BF;border-radius:10px}
   .time svg{display:none}
   .cap{gap:2px;padding:14px 16px;border-radius:14px;width:auto}
@@ -703,8 +705,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="hero-card">
-        <img src="/battery/assets/img/hero-battery.webp" alt="A Dyness home battery installed beside a brick home in Melbourne" width="1152" height="928" fetchpriority="high">
-        <div class="card-tag"><small>Our premium option</small><strong>Dyness home battery</strong></div>
+        <img src="/battery/assets/img/hero-install.webp" alt="A home battery Goldsure installed beside a brick home in Melbourne" width="1000" height="1126" fetchpriority="high">
+        <div class="card-tag"><small>Real Goldsure install</small><strong>Melbourne home battery</strong></div>
       </div>
     </div>
   </div>
@@ -768,7 +770,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="panel eve">
-        <img src="/battery/assets/img/evening.webp" alt="A home battery beside a house in the evening" width="1152" height="928" loading="lazy">
+        <img src="/battery/assets/img/evening-install.webp" alt="A home battery Goldsure installed on a Melbourne home" width="1152" height="928" loading="lazy">
         <div class="time night">
           <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           7pm
@@ -822,7 +824,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="works" aria-labelledby="works-h">
   <div class="wrap">
     <div class="works-photo rv">
-      <img src="/battery/assets/img/install-check.webp" alt="A Goldsure electrician checking a home's switchboard" width="1200" height="800" loading="lazy">
+      <img src="/battery/assets/img/handshake.webp" alt="A Goldsure installer shaking hands with a Melbourne homeowner" width="1200" height="800" loading="lazy">
       <div class="works-chip">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" fill="none" stroke="#142F72" stroke-width="2" stroke-linecap="round"/></svg>
         We check your system in person or from photos
