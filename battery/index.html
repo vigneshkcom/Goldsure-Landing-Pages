@@ -163,6 +163,7 @@ html.anim .chart.in .bar b{opacity:1}
 .panel{position:relative;flex:1 1 50%;padding:36px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .panel>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .panel>*:not(img){position:relative;z-index:1}
+.panel.eve>img{object-position:50% 18%}
 .panel.eve::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,#06133559 0%,#0613351F 45%,#061335A6 100%)}
 .time{display:flex;align-items:center;gap:10px;width:fit-content;padding:6px 12px 6px 8px;border-radius:12px;background:#061335B3;font-weight:600;font-size:14px;line-height:18px;letter-spacing:.14em;text-transform:uppercase;color:#fff}
 .time.night{color:var(--gold)}
@@ -483,7 +484,7 @@ select.inp option{color:var(--ink)}
   .panel{flex:none;padding:16px}
   .panel.mid{height:270px;gap:40px}
   .panel.eve{height:400px;justify-content:flex-start;gap:10px}
-  .panel.eve>img{object-position:45% 50%}
+  .panel.eve>img{object-position:50% 30%}
   .panel.eve::after{background:linear-gradient(180deg,#061335B3 0%,#06133533 50%,#06133533 100%)}
   .time{background:none;padding:6px 10px;font-size:12px;line-height:16px;color:#fff!important;text-shadow:0 1px 8px #000000BF;border-radius:10px}
   .time svg{display:none}
@@ -770,7 +771,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="panel eve">
-        <img src="/battery/assets/img/evening-install.webp" alt="A home battery Goldsure installed on a Melbourne home" width="1152" height="928" loading="lazy">
+        <img src="/battery/assets/img/evening-house.webp" alt="A home battery Goldsure installed on the side of a brick Melbourne home" width="900" height="1600" loading="lazy">
         <div class="time night">
           <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           7pm
