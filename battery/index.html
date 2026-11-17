@@ -383,10 +383,6 @@ html.anim .chart.in .bar b{opacity:1}
 .areas-head h2{font-size:44px;line-height:48px;letter-spacing:-.02em}
 .sub-grid{display:grid;grid-template-columns:repeat(5,1fr);column-gap:24px;row-gap:16px;width:min(960px,100%);margin:0;padding:0;list-style:none}
 .sub-grid li{font-weight:500;font-size:16px;line-height:22px;color:#FFFFFFE6}
-.map-wrap{width:min(960px,100%);height:460px;border-radius:18px;overflow:hidden;border:1px solid #FFFFFF29;box-shadow:0 30px 60px -34px #00000099;background:#1B3A86}
-#service-map{width:100%;height:100%}
-.sub-grid .sub-m{display:none}
-@media (max-width:600px){.sub-grid .sub-m{display:list-item}.map-wrap{height:320px}}
 .areas-note{font-size:15px;line-height:20px;color:#FFFFFFB3}
 .areas-note a{color:var(--gold);font-weight:600}
 .areas-note a:hover{text-decoration:underline}
@@ -461,7 +457,7 @@ select.inp option{color:var(--ink)}
   .h2{font-size:28px;line-height:33px;letter-spacing:-.02em}
   .lead{font-size:16px;line-height:24px}
 
-  .hero{background-color:#142F72;background-image:linear-gradient(180deg,#0A1840A6 0px,#1026608C 260px,#102660CC 380px,#142F72 450px,#142F72 100%),url(/battery/assets/img/hero-bg.webp);background-size:100% 100%,auto 450px;background-repeat:no-repeat;background-position:0 0,45% 0;padding-bottom:40px}
+  .hero{background-image:linear-gradient(180deg,#0A1840C7 0%,#102660CC 45%,#142F72F2 100%),url(/battery/assets/img/hero-bg.webp);background-position:50%,50% 20%;padding-bottom:40px}
   .nav{height:72px}
   .logo{width:160px;height:40px}
   .logo img{object-position:left center}
@@ -1151,13 +1147,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="eyebrow eyebrow-rule">Where we install</div>
       <h2 id="areas-h">We install across Melbourne and surrounds</h2>
     </div>
-    <div class="map-wrap rv"><div id="service-map" role="img" aria-label="Map of the areas Goldsure installs batteries across Melbourne, Geelong and the Mornington Peninsula"></div></div>
     <ul class="sub-grid rv">
       <li>📍 Melbourne</li><li>📍 St Kilda</li><li>📍 Brunswick</li><li>📍 Reservoir</li><li>📍 Epping</li>
       <li>📍 Craigieburn</li><li>📍 Sunbury</li><li>📍 Wallan</li><li>📍 Melton</li><li>📍 Tarneit</li>
       <li>📍 Werribee</li><li>📍 Lara</li><li>📍 Corio</li><li>📍 Geelong</li><li>📍 Barwon Heads</li>
       <li>📍 Torquay</li><li>📍 Sorrento</li><li>📍 Frankston</li><li>📍 Cranbourne</li><li>📍 Berwick</li>
-      <li>📍 Dandenong</li><li>📍 Glen Waverley</li><li>📍 Ringwood</li><li>📍 Pakenham</li><li>📍 Mornington</li><li class="sub-m">📍 Point Cook</li>
+      <li>📍 Dandenong</li><li>📍 Glen Waverley</li><li>📍 Ringwood</li><li>📍 Pakenham</li><li>📍 Mornington</li>
     </ul>
     <p class="areas-note rv">Don't see your suburb? <a href="#quote">Send an enquiry</a> and we will confirm coverage.</p>
   </div>
@@ -1453,22 +1448,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
   });
   }
-})();
-</script>
-<script>
-/* Service area map (same Google Maps setup as the split system page). Loads only when the areas section comes near the screen. */
-function initServiceMap(){
-  var el=document.getElementById('service-map');if(!el||!window.google)return;
-  var SUBURBS=[['Melbourne',-37.8136,144.9631],['St Kilda',-37.8676,144.9820],['Brunswick',-37.7671,144.9630],['Reservoir',-37.7182,145.0061],['Epping',-37.6463,145.0128],['Craigieburn',-37.6018,144.9409],['Sunbury',-37.5779,144.7281],['Wallan',-37.4122,144.9783],['Melton',-37.6840,144.5840],['Tarneit',-37.8464,144.6866],['Werribee',-37.9033,144.6637],['Lara',-38.0238,144.4003],['Corio',-38.0869,144.3603],['Geelong',-38.1499,144.3617],['Barwon Heads',-38.2679,144.4979],['Torquay',-38.3292,144.3261],['Sorrento',-38.3394,144.7410],['Frankston',-38.1442,145.1275],['Cranbourne',-38.1022,145.2831],['Berwick',-38.0363,145.3425],['Dandenong',-37.9878,145.2150],['Glen Waverley',-37.8790,145.1641],['Ringwood',-37.8147,145.2289],['Pakenham',-38.0706,145.4894],['Mornington',-38.2179,145.0381],['Point Cook',-37.9148,144.7509]];
-  var small=window.innerWidth<=720;
-  var map=new google.maps.Map(el,{center:{lat:-37.90,lng:144.93},zoom:small?8:9,scrollwheel:false,gestureHandling:'cooperative',disableDefaultUI:true,zoomControl:true});
-  new google.maps.Circle({map:map,center:{lat:-37.91,lng:144.83},radius:62000,fillColor:'#2256BB',fillOpacity:.18,strokeColor:'#142F72',strokeOpacity:.6,strokeWeight:2,clickable:false});
-  SUBURBS.forEach(function(x){new google.maps.Marker({position:{lat:x[1],lng:x[2]},map:map,title:x[0],icon:{path:google.maps.SymbolPath.CIRCLE,scale:7,fillColor:'#C9A84C',fillOpacity:.95,strokeColor:'#A8892F',strokeWeight:1.5}})});
-}
-(function(){
-  var el=document.getElementById('service-map');if(!el)return;var done=false;
-  function load(){if(done)return;done=true;var sc=document.createElement('script');sc.src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBq-5bFtdgCXYPGT7z0cQyHfS3ZQJnNtJM&callback=initServiceMap';sc.async=true;document.body.appendChild(sc)}
-  if('IntersectionObserver' in window){var o=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){o.disconnect();load()}},{rootMargin:'800px 0px'});o.observe(el)}else{load()}
 })();
 </script>
 </body>
