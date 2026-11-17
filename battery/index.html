@@ -87,7 +87,7 @@ html.anim .rv{opacity:0;transform:translateY(16px);transition:opacity .45s var(-
 html.anim .rv.in{opacity:1;transform:none}
 
 /* ---------------- HERO ---------------- */
-.hero{position:relative;color:#fff;background-color:var(--navy);background-image:linear-gradient(90deg,#0A1840F2 0%,#102660E0 48%,#142F729E 100%),url(/battery/assets/img/hero-bg.webp);background-size:cover,cover;background-position:50%,50% 30%;padding-bottom:72px}
+.hero{position:relative;color:#fff;background-color:var(--navy);background-image:linear-gradient(90deg,#0A1840E6 0%,#102660B3 45%,#142F7252 100%),url(/battery/assets/img/hero-bg.webp);background-size:cover,cover;background-position:50%,50% 30%;padding-bottom:72px}
 .nav{height:96px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:block;width:193px;height:48px}
 .logo img{width:100%;height:100%;object-fit:contain}
@@ -97,7 +97,7 @@ html.anim .rv.in{opacity:1;transform:none}
 .nav-phone{display:flex;align-items:center;gap:8px;font-weight:600;color:#fff}
 .nav-cta{height:46px;padding-inline:20px;border-radius:12px;font-size:15px;line-height:20px;gap:8px;box-shadow:inset 0 1px 0 #FFFFFF73,0 6px 16px #A8892F4D}
 .nav-call-m{width:44px;height:44px;border-radius:12px;background:#FFFFFF0F;border:1px solid #FFFFFF33;display:flex;align-items:center;justify-content:center}
-.hero-grid{display:grid;grid-template-columns:minmax(0,600px) minmax(440px,520px);justify-content:space-between;gap:48px;padding-top:56px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,620px) minmax(400px,452px);justify-content:space-between;gap:56px;padding-top:56px;align-items:center}
 .hero-copy{display:flex;flex-direction:column;gap:28px;padding-top:12px}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-weight:600;font-size:14px;line-height:18px;letter-spacing:.14em;text-transform:uppercase}
 .hero-eyebrow::before{content:"";width:28px;height:2px;background:var(--gold);flex-shrink:0}
@@ -109,15 +109,31 @@ html.anim .rv.in{opacity:1;transform:none}
 .hero-cta{height:56px;padding-inline:26px;border-radius:14px;font-size:17px;line-height:22px}
 .hero-call{height:56px;padding-inline:22px;border-radius:14px;border:1.5px solid #FFFFFF66;color:#fff;font-weight:600;font-size:17px;line-height:22px;background:transparent}
 .hero-call:hover{background:#FFFFFF0F}
-.seal{width:64px;height:64px;border-radius:999px;background:url(/battery/assets/img/hero-seal.webp) 50%/168% no-repeat;flex-shrink:0}
+.seal{width:72px;height:72px;border-radius:999px;background:url(/battery/assets/img/hero-seal.webp) 50%/168% no-repeat;flex-shrink:0}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:540px}
 .tile{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;background:#FFFFFF12;border:1px solid #FFFFFF29;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .tile-ic{width:32px;height:32px;border-radius:999px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tile b{display:block;font-weight:700;font-size:15px;line-height:19px;color:#fff}
 .tile b .stars{color:#E8B730;font-size:12px;letter-spacing:.05em}
 .tile small{display:block;font-size:12px;line-height:16px;color:#FFFFFFB3;margin-top:1px}
-.hero .hero-form{width:auto;align-self:start;margin-bottom:8px}
-.hero .hero-form .hf-title{font-size:26px;line-height:32px}
+.hero .hero-form{width:auto;margin-bottom:8px;padding:28px 30px 24px;gap:14px;border-top:5px solid var(--gold)}
+.hero .hero-form .hf-title{font-size:28px;line-height:34px}
+.hero .hero-form .fc-sub{margin-top:4px}
+.hero .hero-form .inp,.hero .hero-form .seg span{height:48px}
+.hero .hero-form .f-submit{height:56px}
+.hero .hero-form .consent{font-size:13px}
+.hero .hero-form textarea.inp{height:88px}
+.hero-ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.hero-ticks li{display:flex;align-items:center;gap:14px;font-size:19px;line-height:26px;color:#fff}
+.hero-ticks .pencil{position:relative;display:inline-block;font-weight:600}
+.hero-ticks .pencil svg{position:absolute;left:-2px;bottom:-9px;width:calc(100% + 6px);height:12px}
+.hero-ticks .tk{width:30px;height:30px;border-radius:999px;border:1.5px solid #C9A84C;background:#C9A84C1F;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-badges{display:flex;align-items:center;gap:40px;flex-wrap:wrap;padding-top:4px}
+.hb{display:flex;align-items:center;gap:14px}
+.hb b{display:block;font-family:var(--head);font-weight:600;font-size:18px;line-height:22px;color:#fff}
+.hb small{display:block;font-size:14px;line-height:20px;color:#FFFFFFB3;margin-top:2px}
+.hb .g-stars{display:block;color:#F4B400;font-size:22px;line-height:24px;letter-spacing:.06em}
+.hb .g-txt{color:#fff;font-size:16px;margin-top:4px}
 .hero-card{position:relative;height:560px;border-radius:20px;overflow:hidden;background:#1B3A86;box-shadow:0 1px 2px #060C281A,0 12px 24px #060C2829,0 40px 80px #060C284D}
 .hero-card img{width:100%;height:100%;object-fit:cover}
 .card-tag{position:absolute;left:20px;bottom:20px;background:var(--navy);border-radius:12px;padding:12px 16px;box-shadow:0 8px 20px #060C2859;display:flex;flex-direction:column;gap:2px}
@@ -441,26 +457,35 @@ select.inp option{color:var(--ink)}
   .h2{font-size:28px;line-height:33px;letter-spacing:-.02em}
   .lead{font-size:16px;line-height:24px}
 
-  .hero{background-image:linear-gradient(180deg,#0A1840EB 0%,#102660E6 55%,#142F72F2 100%),url(/battery/assets/img/hero-bg.webp);background-position:50%,50% 20%;padding-bottom:40px}
+  .hero{background-image:linear-gradient(180deg,#0A1840C7 0%,#102660CC 45%,#142F72F2 100%),url(/battery/assets/img/hero-bg.webp);background-position:50%,50% 20%;padding-bottom:40px}
   .nav{height:72px}
   .logo{width:160px;height:40px}
   .logo img{object-position:left center}
-  .hero-grid{display:flex;flex-direction:column;gap:22px;padding-top:0}
+  .hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:22px;padding-top:0}
   .hero-copy{display:contents}
   .hero-eyebrow{order:1;padding-top:8px;font-size:12px;line-height:16px}
   .hero-eyebrow::before{display:none}
   .hero h1{order:2;font-size:34px;line-height:38px;letter-spacing:-.025em}
   .hero-sub{order:3;font-size:17px;line-height:26px;max-width:none}
   .tiles{order:4;gap:8px;max-width:none}
-  .hero-ctas{order:5;gap:12px}
+  .hero-ticks{order:4;gap:10px}
+  .hero-ticks li{font-size:16px;line-height:22px;gap:12px}
+  .hero-ticks .tk{width:26px;height:26px}
+  .hero-badges{order:5;gap:18px 24px}
+  .hb b{font-size:16px;line-height:20px}
+  .hb small{font-size:13px;line-height:18px}
+  .hb .g-txt{font-size:14px}
+  .hb .g-stars{font-size:18px;line-height:20px}
+  .hero-ctas{order:6;gap:12px}
   .hero-card{order:6;height:400px;border-radius:22px;box-shadow:0 12px 32px #060C284D}
-  .hero .hero-form{order:6;margin-bottom:0;scroll-margin-top:16px}
+  .hero .hero-form{order:7;margin-bottom:0;scroll-margin-top:16px;padding:22px}
   .hero .hero-form .hf-title{font-size:24px;line-height:30px}
   .tile{padding:12px;border-radius:12px;border-color:#FFFFFF2E;-webkit-backdrop-filter:none;backdrop-filter:none}
   .tile-ic{display:none}
   .tile b{font-weight:600;font-size:15px;line-height:20px}
   .tile b .stars{font-size:inherit;letter-spacing:0}
   .btn-pair{flex:1 1 0;flex-direction:column;align-items:stretch;gap:10px}
+  .hero-ctas.m-only{display:flex}
   .hero-call{height:52px;border-width:1px;font-size:16px;line-height:20px}
   .seal{width:60px;height:60px}
   .card-tag{left:16px;bottom:16px;padding:10px 14px;background:#142F72E6;box-shadow:none}
@@ -688,9 +713,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="hero-eyebrow">Home batteries, Melbourne</div>
         <h1>Battery Installations For <span class="g">Homes With Solar Power</span> Across Melbourne</h1>
         <p class="hero-sub"><span class="d-only">A battery saves the solar power you make during the day, so your home runs on it at night instead of the grid.</span><span class="m-only">A battery saves your daytime solar, so your home runs on it at night instead of the grid.</span></p>
-        <div class="hero-ctas" id="hero-ctas">
+        <div class="hero-ctas m-only" id="hero-ctas">
           <div class="btn-pair">
-            <a class="btn btn-gold hero-cta m-only" href="#hero-quote">Get a Free Quote
+            <a class="btn btn-gold hero-cta" href="#hero-quote">Get a Free Quote
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <a class="btn hero-call" href="tel:0370502846">
@@ -698,31 +723,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               Call 03 7050 2846
             </a>
           </div>
-          <div class="seal" role="img" aria-label="Melbourne battery installs, licensed electricians"></div>
         </div>
-        <div class="tiles">
-          <div class="tile">
-            <span class="tile-ic"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z" fill="#142F72"/></svg></span>
-            <div><b>4.8 <span class="stars" aria-label="5 stars">★★★★★</span></b><small>Google rating</small></div>
-          </div>
-          <div class="tile">
-            <span class="tile-ic"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.6-3 8-7 9.5-4-1.5-7-4.9-7-9.5V6z" fill="none" stroke="#142F72" stroke-width="2.4" stroke-linejoin="round"/><path d="M9 12l2.2 2.2 4-4.4" fill="none" stroke="#142F72" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div><b>Licensed</b><small>Our own electricians</small></div>
-          </div>
-          <div class="tile">
-            <span class="tile-ic"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" fill="none" stroke="#142F72" stroke-width="2.4"/><circle cx="12" cy="10" r="3" fill="none" stroke="#142F72" stroke-width="2.4"/></svg></span>
-            <div><b>Melbourne</b><small>And surrounds</small></div>
-          </div>
-          <div class="tile">
-            <span class="tile-ic"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" fill="none" stroke="#142F72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="7.5" r="1.5" fill="#142F72"/></svg></span>
-            <div><b>Price beat</b><small>We won't be beaten</small></div>
-          </div>
+        <ul class="hero-ticks">
+          <li><span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="pencil">We won't be beaten on price<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9.5C48 6.2 96 4.6 148 5.3c52 .7 98 2.4 149 1.6" fill="none" stroke="#C9A84C" stroke-width="3.2" stroke-linecap="round"/><path d="M14 12.2c58-3.4 122-4.3 196-2.6" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" opacity=".75"/></svg></span></li>
+          <li><span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Switchboard work included in your fixed written price</li>
+          <li><span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Installed by our own licensed electricians</li>
+          <li><span class="tk"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Installs about 3 weeks out, so you can beat the 1 January discount drop</li>
+        </ul>
+        <div class="hero-badges">
+          <div class="hb"><div class="seal" role="img" aria-label="Melbourne battery installs, licensed electricians"></div><div><b>Licensed electricians</b><small>Melbourne battery installs</small></div></div>
+          <div class="hb"><svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg><div><span class="g-stars" aria-label="4.8 out of 5 stars">★★★★★</span><small class="g-txt">4.8 rating on Google reviews</small></div></div>
         </div>
       </div>
   <form class="form-card hero-form" id="hero-quote" data-form="hero" novalidate>
     <div>
       <h2 id="h-form-h" class="hf-title">Get a free battery quote</h2>
-      <p class="fc-sub">Takes about a minute. No obligation. We won't be beaten on price.</p>
+      <p class="fc-sub">Takes about a minute. No obligation.</p>
     </div>
     <div class="frow">
       <div class="field">
@@ -770,14 +786,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="field">
-      <span class="lbl" id="h-lbl-phase">Single or three phase power?</span>
-      <div class="seg three" role="radiogroup" aria-labelledby="h-lbl-phase">
-        <label><input type="radio" name="phase" value="Single"><span>Single</span></label>
-        <label><input type="radio" name="phase" value="Three"><span>Three</span></label>
-        <label><input type="radio" name="phase" value="Not sure"><span>Not sure</span></label>
-      </div>
-    </div>
-    <div class="field">
       <label for="h-f-msg"><span class="d-only">Anything else we should know? (optional)</span><span class="m-only">Anything else? (optional)</span></label>
       <textarea class="inp" id="h-f-msg" name="message" maxlength="2000" placeholder="For example, your inverter brand or a blackout backup question" data-ph-m="Inverter brand, blackout backup, anything"></textarea>
     </div>
@@ -790,7 +798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="lbl-txt">Get my free battery quote</span>
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
-    <p class="consent">By submitting you agree to be contacted about your enquiry.</p>
+    <p class="consent">Free quote, fixed written price. By submitting you agree to be contacted about your enquiry.</p>
     <div class="f-talk m-only"><span>Rather talk?</span><a href="tel:0370502846">Call 03 7050 2846</a></div>
   </form>
     </div>
@@ -1417,7 +1425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       has_solar:solar?solar.value:'',
       solar_installed:sel.value,
       phase:phase?phase.value:'',
-      message:form.elements.message.value.trim(),
+      message:form.elements.message?form.elements.message.value.trim():'',
       page_url:location.href,
       utm_source:attr('utm_source'),utm_medium:attr('utm_medium'),utm_campaign:attr('utm_campaign'),
       utm_content:attr('utm_content'),utm_term:attr('utm_term'),
