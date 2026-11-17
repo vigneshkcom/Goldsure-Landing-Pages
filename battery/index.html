@@ -383,6 +383,12 @@ html.anim .chart.in .bar b{opacity:1}
 .areas-head h2{font-size:44px;line-height:48px;letter-spacing:-.02em}
 .sub-grid{display:grid;grid-template-columns:repeat(5,1fr);column-gap:24px;row-gap:16px;width:min(960px,100%);margin:0;padding:0;list-style:none}
 .sub-grid li{font-weight:500;font-size:16px;line-height:22px;color:#FFFFFFE6}
+.map-wrap{position:relative;width:min(960px,100%);height:520px;border-radius:18px;overflow:hidden;border:1px solid #FFFFFF29;box-shadow:0 30px 60px -34px #00000099;background:#E9ECF2}
+.map-wrap iframe{display:block;width:100%;height:100%;border:0;pointer-events:none}
+.map-ring{position:absolute;left:50%;top:50%;width:0;height:0;transform:translate(-50%,-50%);border-radius:50%;background:#2256BB2E;border:2px solid #142F72B3;pointer-events:none}
+.sub-grid .sub-m{display:none}
+@media (max-width:600px){.sub-grid .sub-m{display:list-item}}
+@media (max-width:720px){.map-wrap{height:320px}}
 .areas-note{font-size:15px;line-height:20px;color:#FFFFFFB3}
 .areas-note a{color:var(--gold);font-weight:600}
 .areas-note a:hover{text-decoration:underline}
@@ -457,7 +463,7 @@ select.inp option{color:var(--ink)}
   .h2{font-size:28px;line-height:33px;letter-spacing:-.02em}
   .lead{font-size:16px;line-height:24px}
 
-  .hero{background-image:linear-gradient(180deg,#0A1840C7 0%,#102660CC 45%,#142F72F2 100%),url(/battery/assets/img/hero-bg.webp);background-position:50%,50% 20%;padding-bottom:40px}
+  .hero{background-color:#142F72;background-image:linear-gradient(180deg,#0A1840A6 0px,#1026608C 260px,#102660CC 380px,#142F72 450px,#142F72 100%),url(/battery/assets/img/hero-bg.webp);background-size:100% 100%,auto 450px;background-repeat:no-repeat;background-position:0 0,45% 0;padding-bottom:40px}
   .nav{height:72px}
   .logo{width:160px;height:40px}
   .logo img{object-position:left center}
@@ -1147,12 +1153,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="eyebrow eyebrow-rule">Where we install</div>
       <h2 id="areas-h">We install across Melbourne and surrounds</h2>
     </div>
+    <div class="map-wrap rv"><iframe id="service-map-frame" title="Map of the areas Goldsure installs batteries: 40 km around Melbourne and 20 km around Geelong" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe><div class="map-ring" data-lat="-37.8136" data-lng="144.9631" data-km="40" aria-hidden="true"></div><div class="map-ring" data-lat="-38.1499" data-lng="144.3617" data-km="20" aria-hidden="true"></div></div>
     <ul class="sub-grid rv">
       <li>📍 Melbourne</li><li>📍 St Kilda</li><li>📍 Brunswick</li><li>📍 Reservoir</li><li>📍 Epping</li>
       <li>📍 Craigieburn</li><li>📍 Sunbury</li><li>📍 Wallan</li><li>📍 Melton</li><li>📍 Tarneit</li>
       <li>📍 Werribee</li><li>📍 Lara</li><li>📍 Corio</li><li>📍 Geelong</li><li>📍 Barwon Heads</li>
       <li>📍 Torquay</li><li>📍 Sorrento</li><li>📍 Frankston</li><li>📍 Cranbourne</li><li>📍 Berwick</li>
-      <li>📍 Dandenong</li><li>📍 Glen Waverley</li><li>📍 Ringwood</li><li>📍 Pakenham</li><li>📍 Mornington</li>
+      <li>📍 Dandenong</li><li>📍 Glen Waverley</li><li>📍 Ringwood</li><li>📍 Pakenham</li><li>📍 Mornington</li><li class="sub-m">📍 Point Cook</li>
     </ul>
     <p class="areas-note rv">Don't see your suburb? <a href="#quote">Send an enquiry</a> and we will confirm coverage.</p>
   </div>
@@ -1448,6 +1455,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
   });
   }
+})();
+</script>
+<script>
+/* Service area map: keyless Google Maps embed with the two Meta targeting circles drawn on top (Melbourne CBD + 40 km, Geelong + 20 km). Circles are placed with Web Mercator maths from the same centre and zoom as the embed. */
+(function(){
+  var f=document.getElementById('service-map-frame');if(!f)return;
+  var LAT=-37.89,LNG=144.78,Z=window.innerWidth<=720?8:9;
+  f.setAttribute('src','https://maps.google.com/maps?ll='+LAT+','+LNG+'&z='+Z+'&t=m&output=embed');
+  var W=256*Math.pow(2,Z);
+  function px(lat,lng){var s=Math.sin(lat*Math.PI/180);return{x:(lng+180)/360*W,y:(0.5-Math.log((1+s)/(1-s))/(4*Math.PI))*W}}
+  var c=px(LAT,LNG);
+  [].forEach.call(document.querySelectorAll('.map-ring'),function(r){
+    var lat=+r.dataset.lat,lng=+r.dataset.lng,p=px(lat,lng);
+    var d=2*(+r.dataset.km*1000)/(156543.03392*Math.cos(lat*Math.PI/180)/Math.pow(2,Z));
+    r.style.left='calc(50% + '+(p.x-c.x).toFixed(1)+'px)';r.style.top='calc(50% + '+(p.y-c.y).toFixed(1)+'px)';
+    r.style.width=r.style.height=d.toFixed(1)+'px';
+  });
 })();
 </script>
 </body>
