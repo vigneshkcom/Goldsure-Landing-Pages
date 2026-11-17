@@ -97,12 +97,11 @@ html.anim .rv.in{opacity:1;transform:none}
 .nav-phone{display:flex;align-items:center;gap:8px;font-weight:600;color:#fff}
 .nav-cta{height:46px;padding-inline:20px;border-radius:12px;font-size:15px;line-height:20px;gap:8px;box-shadow:inset 0 1px 0 #FFFFFF73,0 6px 16px #A8892F4D}
 .nav-call-m{width:44px;height:44px;border-radius:12px;background:#FFFFFF0F;border:1px solid #FFFFFF33;display:flex;align-items:center;justify-content:center}
-.hero-grid{display:grid;grid-template-columns:minmax(0,640px) minmax(340px,488px);justify-content:space-between;gap:52px;padding-top:56px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,600px) minmax(440px,520px);justify-content:space-between;gap:48px;padding-top:56px;align-items:start}
 .hero-copy{display:flex;flex-direction:column;gap:28px;padding-top:12px}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-weight:600;font-size:14px;line-height:18px;letter-spacing:.14em;text-transform:uppercase}
 .hero-eyebrow::before{content:"";width:28px;height:2px;background:var(--gold);flex-shrink:0}
-.hero h1{font-size:clamp(46px,4.03vw,58px);line-height:1.035;letter-spacing:-.022em;white-space:nowrap}
-.hero h1 span{display:block}
+.hero h1{font-size:clamp(40px,3.5vw,50px);line-height:1.08;letter-spacing:-.022em;text-wrap:balance}
 .hero h1 .g{color:var(--gold)}
 .hero-sub{font-size:21px;line-height:32px;color:#FFFFFFDB;max-width:540px}
 .hero-ctas{display:flex;align-items:center;gap:12px}
@@ -117,6 +116,8 @@ html.anim .rv.in{opacity:1;transform:none}
 .tile b{display:block;font-weight:700;font-size:15px;line-height:19px;color:#fff}
 .tile b .stars{color:#E8B730;font-size:12px;letter-spacing:.05em}
 .tile small{display:block;font-size:12px;line-height:16px;color:#FFFFFFB3;margin-top:1px}
+.hero .hero-form{width:auto;align-self:start;margin-bottom:8px}
+.hero .hero-form .hf-title{font-size:26px;line-height:32px}
 .hero-card{position:relative;height:560px;border-radius:20px;overflow:hidden;background:#1B3A86;box-shadow:0 1px 2px #060C281A,0 12px 24px #060C2829,0 40px 80px #060C284D}
 .hero-card img{width:100%;height:100%;object-fit:cover}
 .card-tag{position:absolute;left:20px;bottom:20px;background:var(--navy);border-radius:12px;padding:12px 16px;box-shadow:0 8px 20px #060C2859;display:flex;flex-direction:column;gap:2px}
@@ -155,6 +156,13 @@ html.anim .chart.in .bar b{opacity:1}
 .bar:nth-child(3) i,.bar:nth-child(3) b{transition-delay:.18s!important}
 .bar:nth-child(4) i,.bar:nth-child(4) b{transition-delay:.27s!important}
 .bar:nth-child(5) i,.bar:nth-child(5) b{transition-delay:.36s!important}
+
+/* ---------------- REAL INSTALLS (photo row) ---------------- */
+.installs{background:#fff;padding:72px 0}
+.inst-h{font-size:30px;line-height:36px;letter-spacing:-.02em;text-align:center;margin-bottom:28px}
+.inst-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.inst-row figure{margin:0;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#E9ECF2}
+.inst-row img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ---------------- DAY VS NIGHT ---------------- */
 .dvn{background:var(--cream);padding:80px 0;text-align:center}
@@ -446,6 +454,8 @@ select.inp option{color:var(--ink)}
   .tiles{order:4;gap:8px;max-width:none}
   .hero-ctas{order:5;gap:12px}
   .hero-card{order:6;height:400px;border-radius:22px;box-shadow:0 12px 32px #060C284D}
+  .hero .hero-form{order:6;margin-bottom:0;scroll-margin-top:16px}
+  .hero .hero-form .hf-title{font-size:24px;line-height:30px}
   .tile{padding:12px;border-radius:12px;border-color:#FFFFFF2E;-webkit-backdrop-filter:none;backdrop-filter:none}
   .tile-ic{display:none}
   .tile b{font-weight:600;font-size:15px;line-height:20px}
@@ -457,6 +467,10 @@ select.inp option{color:var(--ink)}
   .card-tag strong{font-size:18px;line-height:22px}
 
   .countdown{padding:56px 0}
+  .installs{padding:48px 0}
+  .inst-h{font-size:24px;line-height:30px;margin-bottom:20px}
+  .inst-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .inst-row figure{border-radius:14px}
   .cd-card{display:flex;flex-direction:column;gap:18px;padding:24px;border-radius:20px;box-shadow:none}
   .cd-left{display:contents}
   .cd-left h2{order:1;font-size:28px;line-height:33px;letter-spacing:-.02em;max-width:300px}
@@ -672,11 +686,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="hero-eyebrow">Home batteries, Melbourne</div>
-        <h1><span>Already have solar?</span><span class="g">Add a battery.</span></h1>
+        <h1>Battery Installations For <span class="g">Homes With Solar Power</span> Across Melbourne</h1>
         <p class="hero-sub"><span class="d-only">A battery saves the solar power you make during the day, so your home runs on it at night instead of the grid.</span><span class="m-only">A battery saves your daytime solar, so your home runs on it at night instead of the grid.</span></p>
         <div class="hero-ctas" id="hero-ctas">
           <div class="btn-pair">
-            <a class="btn btn-gold hero-cta" href="#quote">Get a Free Quote
+            <a class="btn btn-gold hero-cta m-only" href="#hero-quote">Get a Free Quote
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
             <a class="btn hero-call" href="tel:0370502846">
@@ -705,10 +719,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
-      <div class="hero-card">
-        <img src="/battery/assets/img/hero-install.webp" alt="A home battery Goldsure installed beside a brick home in Melbourne" width="1000" height="1126" fetchpriority="high">
-        <div class="card-tag"><small>Real Goldsure install</small><strong>Melbourne home battery</strong></div>
+  <form class="form-card hero-form" id="hero-quote" data-form="hero" novalidate>
+    <div>
+      <h2 id="h-form-h" class="hf-title">Get a free battery quote</h2>
+      <p class="fc-sub">Takes about a minute. No obligation. We won't be beaten on price.</p>
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label for="h-f-name">Full name</label>
+        <input class="inp" id="h-f-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required maxlength="120">
+        <span class="err">Please enter your name.</span>
       </div>
+      <div class="field">
+        <label for="h-f-phone">Mobile</label>
+        <input class="inp" id="h-f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="04XX XXX XXX" required maxlength="20">
+        <span class="err">Please enter a valid Australian phone number.</span>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="field">
+        <label for="h-f-email">Email</label>
+        <input class="inp" id="h-f-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" required maxlength="160">
+        <span class="err">Please enter a valid email address.</span>
+      </div>
+      <div class="field pc">
+        <label for="h-f-postcode"><span class="d-only">Postcode</span><span class="m-only">Postcode or suburb</span></label>
+        <input class="inp" id="h-f-postcode" name="postcode" type="text" autocomplete="postal-code" placeholder="3000" required maxlength="40">
+        <span class="err">Please enter your postcode.</span>
+      </div>
+    </div>
+    <div class="frow">
+      <div class="field" id="h-fld-solar">
+        <span class="lbl" id="h-lbl-solar">Do you have solar?</span>
+        <div class="seg" role="radiogroup" aria-labelledby="h-lbl-solar">
+          <label><input type="radio" name="has_solar" value="Yes" required><span>Yes</span></label>
+          <label><input type="radio" name="has_solar" value="No"><span>No</span></label>
+        </div>
+        <span class="err">Please choose yes or no.</span>
+      </div>
+      <div class="field">
+        <label for="h-f-installed"><span class="d-only">When was it installed?</span><span class="m-only">Roughly when was it installed?</span></label>
+        <select class="inp empty" id="h-f-installed" name="solar_installed">
+          <option value="" selected>Select</option>
+          <option>Less than 2 years ago</option>
+          <option>2 to 5 years ago</option>
+          <option>5 to 10 years ago</option>
+          <option>More than 10 years ago</option>
+          <option>Not sure</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <span class="lbl" id="h-lbl-phase">Single or three phase power?</span>
+      <div class="seg three" role="radiogroup" aria-labelledby="h-lbl-phase">
+        <label><input type="radio" name="phase" value="Single"><span>Single</span></label>
+        <label><input type="radio" name="phase" value="Three"><span>Three</span></label>
+        <label><input type="radio" name="phase" value="Not sure"><span>Not sure</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="h-f-msg"><span class="d-only">Anything else we should know? (optional)</span><span class="m-only">Anything else? (optional)</span></label>
+      <textarea class="inp" id="h-f-msg" name="message" maxlength="2000" placeholder="For example, your inverter brand or a blackout backup question" data-ph-m="Inverter brand, blackout backup, anything"></textarea>
+    </div>
+    <div class="hp" aria-hidden="true">
+      <label for="h-f-website">Website</label>
+      <input id="h-f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+    <div class="form-error" id="h-form-error" role="alert">Sorry, that did not send. Please try again, or call us on <a href="tel:0370502846">03 7050 2846</a>.</div>
+    <button class="btn btn-gold f-submit" type="submit" id="h-f-submit">
+      <span class="lbl-txt">Get my free battery quote</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#0D0D0D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <p class="consent">By submitting you agree to be contacted about your enquiry.</p>
+    <div class="f-talk m-only"><span>Rather talk?</span><a href="tel:0370502846">Call 03 7050 2846</a></div>
+  </form>
     </div>
   </div>
 </header>
@@ -750,6 +834,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <small>Source: Clean Energy Regulator</small>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02b REAL INSTALLS (photo row) ============ -->
+<section class="installs" aria-labelledby="inst-h">
+  <div class="wrap">
+    <h2 class="inst-h rv" id="inst-h">Real Goldsure battery installs across Melbourne</h2>
+    <div class="inst-row rv">
+      <figure><img src="/battery/assets/img/row-side-install.webp" alt="A home battery installed down the side of a Melbourne home" width="800" height="1000" loading="lazy"></figure>
+      <figure><img src="/battery/assets/img/row-brick-install.webp" alt="A home battery Goldsure installed against a brick wall" width="800" height="1000" loading="lazy"></figure>
+      <figure><img src="/battery/assets/img/row-electrician.webp" alt="A Goldsure electrician working on an install" width="800" height="1000" loading="lazy"></figure>
+      <figure><img src="/battery/assets/img/row-side-path.webp" alt="A battery and inverter installed beside a Melbourne home" width="800" height="1000" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -1086,7 +1183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <form class="form-card rv" id="lead-form" novalidate>
+    <form class="form-card rv" id="lead-form" data-form="bottom" novalidate>
       <div>
         <h2 id="form-h">Get a free battery quote</h2>
         <p class="fc-sub">Takes about a minute. No obligation. We won't be beaten on price.</p>
@@ -1223,12 +1320,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* ---- Sticky bar (compact screens): shows once the hero buttons scroll away, hides while the form is on screen ---- */
   var sticky=document.getElementById('sticky');
   var heroCtas=document.getElementById('hero-ctas');
-  var formEl=document.getElementById('lead-form');
+  var formEls=document.querySelectorAll('form[data-form]');
   if('IntersectionObserver' in window){
-    var heroGone=false,formOn=false;
-    var upd=function(){sticky.classList.toggle('show',heroGone&&!formOn)};
+    var heroGone=false,formsOn=new Set();
+    var upd=function(){sticky.classList.toggle('show',heroGone&&formsOn.size===0)};
     new IntersectionObserver(function(es){es.forEach(function(e){heroGone=!e.isIntersecting&&e.boundingClientRect.top<0});upd()}).observe(heroCtas);
-    new IntersectionObserver(function(es){es.forEach(function(e){formOn=e.isIntersecting});upd()}).observe(formEl);
+    var fio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)formsOn.add(e.target);else formsOn.delete(e.target)});upd()});
+    formEls.forEach(function(f){fio.observe(f)});
   }else{sticky.classList.add('show')}
 
   /* ---- Mobile placeholder copy ---- */
@@ -1257,10 +1355,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function attr(k){var v=qs.get(k);if(v)return v;try{return sessionStorage.getItem('gs_'+k)||''}catch(e){return ''}}
 
   /* ---- Form ---- */
-  var form=document.getElementById('lead-form');
-  var btn=document.getElementById('f-submit');
-  var errBox=document.getElementById('form-error');
-  var sel=document.getElementById('f-installed');
+  /* Two copies of the same form: one in the header (data-form="hero"), one at the bottom (data-form="bottom").
+     Both post to the same handler and send people to /thank-you, where the conversions fire. */
+  document.querySelectorAll('form[data-form]').forEach(setupForm);
+  function setupForm(form){
+  var position=form.getAttribute('data-form');
+  var btn=form.querySelector('button[type="submit"]');
+  var errBox=form.querySelector('.form-error');
+  var sel=form.elements.solar_installed;
   sel.addEventListener('change',function(){sel.classList.toggle('empty',!sel.value)});
 
   var rules={
@@ -1273,7 +1375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function check(name,show){
     if(name==='has_solar'){
       var picked=!!form.querySelector('input[name="has_solar"]:checked');
-      if(show||picked)document.getElementById('fld-solar').classList.toggle('bad',!picked);
+      if(show||picked)form.querySelector('input[name="has_solar"]').closest('.field').classList.toggle('bad',!picked);
       return picked;
     }
     var el=form.elements[name];var ok=rules[name](el.value);
@@ -1329,6 +1431,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .then(function(r){
         if(!r.ok)throw new Error('HTTP '+r.status);
         try{sessionStorage.setItem('gs_batt_lead','1')}catch(e){}
+        try{(window.dataLayer=window.dataLayer||[]).push({event:'battery_form_submit',form_position:position})}catch(e){}
         window.location.href='/thank-you';
       })
       .catch(function(){
@@ -1336,6 +1439,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         errBox.classList.add('show');
       });
   });
+  }
 })();
 </script>
 </body>
