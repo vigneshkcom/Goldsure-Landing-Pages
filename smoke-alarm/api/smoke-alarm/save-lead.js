@@ -62,6 +62,10 @@ function buildAcceptUrl(lead) {
   return getBaseUrl() + '/accept-quote/smoke-alarm?token=' + encodeURIComponent(lead.quote_token || '');
 }
 
+function quoteReference(lead) {
+  return 'GS-SA-' + (lead.id ? String(lead.id).padStart(6, '0') : String(lead.quote_token || '').slice(0, 10).toUpperCase());
+}
+
 function generateQuoteToken() {
   return crypto.randomBytes(18).toString('hex');
 }
@@ -147,7 +151,7 @@ async function sendInternalEmail(lead) {
     '<tr style="background:#000000;"><td style="padding:14px 14px;"><p style="margin:0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff;">Grand Total</p></td><td align="right" style="padding:14px 14px;white-space:nowrap;"><p style="margin:0;font-size:18px;font-weight:700;color:#b08d2e;">' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) + '</p></td></tr>',
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="padding:12px 16px;background:#fef7e7;border-left:3px solid #b08d2e;border-radius:0 4px 4px 0;">',
-    '<p style="margin:0;font-size:13px;color:#7a6020;line-height:1.6;"><strong style="color:#141c2e;">Next step:</strong> Follow up with ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm the booking date and collect the $33.00 booking fee.</p>',
+    '<p style="margin:0;font-size:13px;color:#7a6020;line-height:1.6;"><strong style="color:#141c2e;">Downloaded only, not accepted.</strong> No booking or online payment has been made. Quote reference: ' + escapeHtml(quoteReference(lead)) + '. The customer can accept the quote to request a booking call. Confirm service availability before arranging the booking.</p>',
     '</td></tr></table>',
     '</td></tr>',
     '</table>',
@@ -193,7 +197,8 @@ async function sendCustomerQuoteEmail(lead) {
     '<tr><td bgcolor="#b08d2e" style="height:2px;font-size:1px;line-height:1px;">&nbsp;</td></tr>',
     '<tr><td style="padding:24px 30px;background:#ffffff;">',
     '<p style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:700;color:#000000;">Hi ' + escapeHtml(lead.full_name || 'there') + ',</p>',
-    '<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#444444;line-height:1.7;">Thank you for requesting a smoke alarm quote from Goldsure. Your estimate is below, and you can accept this quote online when you are ready.</p>',
+    '<p style="margin:0 0 10px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;">Official quote ' + escapeHtml(quoteReference(lead)) + ' | Valid for 21 days</p>',
+    '<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#444444;line-height:1.7;">Thank you for requesting a smoke alarm quote from Goldsure. View and accept your official quote below. No online payment is required to download or accept it. Our team will call to confirm service availability and arrange your booking.</p>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;border:1px solid #e0e0e0;">',
     '<tr bgcolor="#000000">',
     '<td style="padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;">Description</td>',
@@ -229,7 +234,7 @@ async function sendCustomerQuoteEmail(lead) {
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;background:#faf6ec;border-left:3px solid #b08d2e;">',
     '<tr><td style="padding:10px 14px;">',
     '<p style="margin:0 0 3px;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;color:#b08d2e;">Payment Structure</p>',
-    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;line-height:1.6;">' + escapeHtml(formatMoney(lead.booking_fee || 0)) + ' booking fee is payable upfront to secure your installation. The remaining balance of ' + escapeHtml(formatMoney(lead.installation_balance || 0)) + ' is payable on the day of installation.</p>',
+    '<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#333333;line-height:1.6;">No online payment is required. Our team will confirm we service your address and call to arrange the booking and the ' + escapeHtml(formatMoney(lead.booking_fee || 0)) + ' booking fee. The remaining balance of ' + escapeHtml(formatMoney(lead.installation_balance || 0)) + ' is payable on the day of installation.</p>',
     '</td></tr>',
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom:18px;background:#111111;border-radius:10px;">',
@@ -284,7 +289,7 @@ async function sendCustomerQuoteEmail(lead) {
     '</td>',
     '</tr>',
     '</table>',
-    '<p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#aaaaaa;font-style:italic;line-height:1.5;border-top:1px solid #eeeeee;padding-top:12px;">This quote is an estimate based on the property details provided. Final requirements may vary after on-site review by a licensed electrician.</p>',
+    '<p style="margin:18px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:10px;color:#aaaaaa;font-style:italic;line-height:1.5;border-top:1px solid #eeeeee;padding-top:12px;">This official quote is based on the property details provided and is valid for 21 days. Final requirements and service availability will be confirmed by Goldsure.</p>',
     '</td></tr>',
     '<tr><td bgcolor="#000000" align="center" style="padding:15px 20px;">',
     '<p style="margin:0 0 3px;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#b08d2e;">Goldsure Pty Ltd</p>',
@@ -302,7 +307,7 @@ async function sendCustomerQuoteEmail(lead) {
     from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [lead.email],
     reply_to: replyTo,
-    subject: 'Your Smoke Alarm Quote - Goldsure',
+    subject: 'Your Official Smoke Alarm Quote ' + quoteReference(lead) + ' - Goldsure',
     html: html
   });
 }
@@ -334,6 +339,15 @@ module.exports = async function handler(req, res) {
     return json(res, 400, { error: 'Missing required fields' });
   }
 
+  var alarmQty = Number(body.alarm_qty);
+  var controllerQty = body.controller_selected ? Number(body.controller_qty) : 0;
+  if (!Number.isInteger(alarmQty) || alarmQty < 1 || alarmQty > 100 ||
+      !Number.isInteger(controllerQty) || controllerQty < 0 || controllerQty > 100) {
+    return json(res, 400, { error: 'Enter valid alarm and controller quantities.' });
+  }
+  // Official quote amounts always come from server pricing, never browser totals.
+  var installationBalance = alarmQty * 98 + controllerQty * 49;
+
   var payload = {
     full_name: String(body.full_name || '').trim(),
     phone: String(body.phone || '').trim(),
@@ -343,11 +357,11 @@ module.exports = async function handler(req, res) {
     storeys: Number.isFinite(body.storeys) ? body.storeys : null,
     hallways: Number.isFinite(body.hallways) ? body.hallways : null,
     controller_selected: !!body.controller_selected,
-    controller_qty: Number.isFinite(body.controller_qty) ? body.controller_qty : null,
-    alarm_qty: Number.isFinite(body.alarm_qty) ? body.alarm_qty : null,
-    booking_fee: Number.isFinite(body.booking_fee) ? body.booking_fee : null,
-    installation_balance: Number.isFinite(body.installation_balance) ? body.installation_balance : null,
-    total_inc_gst: Number.isFinite(body.total_inc_gst) ? body.total_inc_gst : null,
+    controller_qty: controllerQty,
+    alarm_qty: alarmQty,
+    booking_fee: 33,
+    installation_balance: installationBalance,
+    total_inc_gst: installationBalance + 33,
     page_path: body.page_path ? String(body.page_path).trim() : null,
     status: 'downloaded',
     quote_token: generateQuoteToken(),
@@ -395,6 +409,9 @@ module.exports = async function handler(req, res) {
     return json(res, 200, {
       ok: true,
       lead: savedLead,
+      quoteReference: quoteReference(finalLead),
+      quoteUrl: buildAcceptUrl(finalLead),
+      acceptUrl: buildAcceptUrl(finalLead),
       email: emailResult,
       customerEmail: customerEmailResult
     });
@@ -404,3 +421,4 @@ module.exports = async function handler(req, res) {
     });
   }
 };
+

@@ -11,6 +11,10 @@ function formatMoney(value) {
   return '$' + Number(value || 0).toFixed(2);
 }
 
+function quoteReference(lead) {
+  return 'GS-SA-' + (lead.id ? String(lead.id).padStart(6, '0') : String(lead.quote_token || '').slice(0, 10).toUpperCase());
+}
+
 function formatFromAddress(value, displayName) {
   var raw = String(value || '').trim();
 
@@ -38,15 +42,19 @@ function formatSydneyDateTime(value) {
 }
 
 function renderPage(title, message, tone, lead) {
-  var accent = tone === 'success' ? '#41aa84' : tone === 'repeat' ? '#6b7fd7' : '#c94c4c';
-  var badge = tone === 'success' ? 'Quote Accepted' : tone === 'repeat' ? 'Already Accepted' : 'Invalid Link';
+  var accent = tone === 'quote' ? '#a8892f' : tone === 'success' ? '#41aa84' : tone === 'repeat' ? '#6b7fd7' : '#c94c4c';
+  var badge = tone === 'quote' ? 'Official Goldsure Quote' : tone === 'success' ? 'Quote Accepted' : tone === 'repeat' ? 'Already Accepted' : 'Invalid Link';
   var details = lead
     ? '<div style="margin-top:18px;padding:16px;background:#faf6ec;border-left:4px solid #c9a84c;text-align:left;">' +
-        '<div style="font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#a8892f;margin-bottom:8px;">Accepted Quote</div>' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#a8892f;margin-bottom:8px;">' + escapeHtml(quoteReference(lead)) + '</div>' +
         '<div style="font-size:15px;font-weight:700;color:#111827;margin-bottom:6px;">' + escapeHtml(lead.full_name || '-') + '</div>' +
         '<div style="font-size:14px;color:#475467;line-height:1.7;">' +
           'Property: ' + escapeHtml(lead.property_address || '-') + '<br>' +
-          'Total: ' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) +
+          'Smoke alarms: ' + escapeHtml(lead.alarm_qty || 0) + ' x $98.00<br>' +
+          (lead.controller_qty ? 'Controllers: ' + escapeHtml(lead.controller_qty) + ' x $49.00<br>' : '') +
+          'Booking fee (arranged by phone): ' + escapeHtml(formatMoney(lead.booking_fee || 0)) + '<br>' +
+          '<strong>Total incl. GST: ' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) + '</strong><br>' +
+          'Issued: ' + escapeHtml(formatSydneyDateTime(lead.created_at)) + '<br>Valid for 21 days from issue. Final requirements are confirmed by the electrician.' +
         '</div>' +
       '</div>'
     : '';
@@ -64,7 +72,8 @@ function renderPage(title, message, tone, lead) {
     '<h1 style="margin:18px 0 10px;font-size:34px;line-height:1.08;letter-spacing:-0.03em;color:#111827;">' + escapeHtml(title) + '</h1>',
     '<p style="margin:0 auto;max-width:420px;font-size:16px;line-height:1.7;color:#475467;">' + escapeHtml(message) + '</p>',
     details,
-    '<div style="margin-top:24px;font-size:14px;line-height:1.7;color:#475467;">A member of the Goldsure team will be in touch to confirm the next steps.</div>',
+    tone === 'quote' ? '<form method="POST" action="/api/smoke-alarm/accept-quote" style="margin-top:24px"><input type="hidden" name="token" value="' + escapeHtml(lead.quote_token) + '"><input type="hidden" name="action" value="accept-quote"><button type="submit" style="border:0;border-radius:8px;background:#c9a84c;color:#111827;padding:16px 24px;font-size:16px;font-weight:bold;cursor:pointer">Accept quote and request a call</button></form>' : '',
+    '<div style="margin-top:24px;font-size:14px;line-height:1.7;color:#475467;">No online payment is required. ' + (tone === 'quote' ? 'Accepting requests a call from our team to confirm service availability and arrange your booking.' : 'Our team will call to confirm service availability and arrange your booking.') + '</div>',
     '<div style="margin-top:8px;font-size:14px;line-height:1.7;color:#475467;">If you need anything urgently, call <strong>(07) 2145 5155</strong>.</div>',
     '</td></tr>',
     '<tr><td style="padding:18px 28px;background:#111111;text-align:center;">',
@@ -131,7 +140,7 @@ async function sendAcceptedInternalEmail(lead) {
     '<tr style="background:#000000;"><td style="padding:14px 14px;"><p style="margin:0;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:rgba(255,255,255,0.5);">Grand Total</p></td><td align="right" style="padding:14px 14px;white-space:nowrap;"><p style="margin:0;font-size:18px;font-weight:700;color:#b08d2e;">' + escapeHtml(formatMoney(lead.total_inc_gst || 0)) + '</p></td></tr>',
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="padding:12px 16px;background:#fef7e7;border-left:3px solid #b08d2e;border-radius:0 4px 4px 0;">',
-    '<p style="margin:0 0 12px;font-size:13px;color:#7a6020;line-height:1.6;"><strong style="color:#141c2e;">Next step:</strong> Follow up with ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm the booking date and collect the booking fee.</p>',
+    '<p style="margin:0 0 12px;font-size:16px;color:#14532d;line-height:1.6;"><strong>QUOTE ACCEPTED - CALL TO BOOK</strong><br>No online payment was requested or collected. Call ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm service availability and arrange the booking.</p>',
     '<a href="' + trackerUrl + '" style="display:inline-block;padding:12px 18px;background:#111111;color:#ffffff;font-size:12px;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:6px;">Open Lead Tracker</a>',
     '</td></tr></table>',
     '</td></tr>',
@@ -145,12 +154,12 @@ async function sendAcceptedInternalEmail(lead) {
     from: formatFromAddress(emailFrom, 'Goldsure Pty Ltd'),
     to: [emailTo],
     bcc: emailBcc ? [emailBcc] : [],
-    subject: 'Quote Accepted (Landing Page download) - ' + (lead.full_name || 'Customer') + ' - ' + formatMoney(lead.total_inc_gst || 0),
+    subject: 'Quote Accepted | CALL TO BOOK | ' + quoteReference(lead) + ' | ' + (lead.full_name || 'Customer'),
     html: html
-  });
+  }, 'landing-quote-accepted-' + lead.quote_token);
 }
 
-async function sendResendEmail(payload) {
+async function sendResendEmail(payload, idempotencyKey) {
   var resendApiKey = process.env.RESEND_API_KEY;
 
   if (!resendApiKey) {
@@ -161,7 +170,8 @@ async function sendResendEmail(payload) {
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + resendApiKey,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Idempotency-Key': idempotencyKey
     },
     body: JSON.stringify(payload)
   });
@@ -187,9 +197,11 @@ async function sendResendEmail(payload) {
 }
 
 module.exports = async function handler(req, res) {
-  if (req.method !== 'GET') {
+  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  if (!['GET', 'POST'].includes(req.method)) {
     res.statusCode = 405;
-    res.setHeader('Allow', 'GET');
+    res.setHeader('Allow', 'GET, POST');
     res.end('Method not allowed');
     return;
   }
@@ -205,7 +217,11 @@ module.exports = async function handler(req, res) {
   }
 
   var url = new URL(req.url, 'http://localhost');
-  var token = (url.searchParams.get('token') || '').trim();
+  var body = req.body || {};
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch (_) { body = Object.fromEntries(new URLSearchParams(body)); }
+  }
+  var token = String(url.searchParams.get('token') || body.token || '').trim();
 
   if (!token) {
     res.statusCode = 400;
@@ -267,10 +283,30 @@ module.exports = async function handler(req, res) {
       return;
     }
 
+    var issued = Date.parse(lead.created_at);
+    if (['rejected', 'lost', 'expired', 'not_interested', 'out_of_area'].includes(String(lead.status || '').toLowerCase()) ||
+        (Number.isFinite(issued) && Date.now() >= issued + 21 * 86400000)) {
+      res.statusCode = 410;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(renderPage('Quote no longer available', 'Please call Goldsure for an updated quote and service availability.', 'error', lead));
+      return;
+    }
+    if (req.method === 'GET') {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(renderPage('Your smoke alarm quote', 'Review your official quote below. You can accept it to request a booking call, with no online payment.', 'quote', lead));
+      return;
+    }
+    if (body.action !== 'accept-quote') {
+      res.statusCode = 400;
+      res.end('Please confirm acceptance using the quote form.');
+      return;
+    }
+
     var acceptedAt = new Date().toISOString();
     var patchResponse = await fetch(
       supabaseUrl.replace(/\/$/, '') +
-        '/rest/v1/calculator_leads?quote_token=eq.' + encodeURIComponent(token),
+        '/rest/v1/calculator_leads?quote_token=eq.' + encodeURIComponent(token) + '&accepted_at=is.null&status=neq.won',
       {
         method: 'PATCH',
         headers: {
@@ -302,8 +338,28 @@ module.exports = async function handler(req, res) {
       return;
     }
 
-    var updatedLead = Array.isArray(patchData) ? patchData[0] : lead;
-    await sendAcceptedInternalEmail(updatedLead);
+    var updatedLead = Array.isArray(patchData) ? patchData[0] : null;
+    if (!updatedLead) {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(renderPage('Quote already accepted', 'Your acceptance is already recorded. Our team will call you.', 'repeat', lead));
+      return;
+    }
+    var emailResult;
+    try { emailResult = await sendAcceptedInternalEmail(updatedLead); }
+    catch (_) { emailResult = { ok: false }; }
+    if (!emailResult.ok) {
+      // Permit the customer to retry a failed notification. The provider's
+      // idempotency key prevents a second email after an ambiguous response.
+      await fetch(supabaseUrl.replace(/\/$/, '') + '/rest/v1/calculator_leads?quote_token=eq.' + encodeURIComponent(token) + '&accepted_at=eq.' + encodeURIComponent(acceptedAt), {
+        method: 'PATCH', headers: { apikey: serviceRoleKey, Authorization: 'Bearer ' + serviceRoleKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: lead.status || 'downloaded', accepted_at: null })
+      });
+      res.statusCode = 503;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(renderPage('Please try again', 'We could not notify our booking team. Please retry your acceptance or call (07) 2145 5155. No payment was taken.', 'error', lead));
+      return;
+    }
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -314,3 +370,4 @@ module.exports = async function handler(req, res) {
     res.end(renderPage('Unexpected error', 'Something went wrong while processing your acceptance. Please contact Goldsure and we will help you directly.', 'error'));
   }
 };
+

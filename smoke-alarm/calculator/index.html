@@ -586,7 +586,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
         <span class="pl-val" id="s-ctrl-t">$0.00</span>
       </div>
       <div class="price-line">
-        <span class="pl-label">Booking Fee <span style="opacity:0.65;">(Paid Upfront)</span></span>
+        <span class="pl-label">Booking Fee <span style="opacity:0.65;">(Arranged by phone)</span></span>
         <span class="pl-val">$33.00</span>
       </div>
       <div class="price-line dim">
@@ -597,10 +597,13 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
         <span class="pt-label">Total (Inc. GST)</span>
         <span class="pt-val" id="s-grand">$33.00</span>
       </div>
-      <button class="dl-btn" onclick="openModal()" data-track="calculator_download_quote_click">
+      <button class="dl-btn" onclick="openModal('accept')" data-track="calculator_accept_quote_click" style="margin-bottom:10px;">Accept quote and request a call</button>
+      <button class="dl-btn" onclick="openModal('download')" data-track="calculator_download_quote_click">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Itemised Quote
+        Download official quote
       </button>
+      <p style="margin-top:12px;font-size:13px;line-height:1.6;">Download or accept for free. No online payment. We will call to confirm service availability and arrange your booking.</p>
+      <p id="savedQuoteLink" style="display:none;margin-top:12px;font-size:14px;"></p>
     </div>
 
   </div>
@@ -611,7 +614,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
       <div><strong>Goldsure Pty Ltd</strong> · ABN: 66 683 305 106</div>
       <div><a href="tel:0721455155">(07) 2145 5155</a> · <a href="mailto:info@goldsure.com.au">info@goldsure.com.au</a></div>
     </div>
-    <div style="font-size:0.62rem;color:var(--muted);">Estimate only · Confirmed on site</div>
+    <div style="font-size:0.75rem;color:var(--muted);">Valid for 21 days · Final requirements confirmed on site</div>
   </div>
 
 </div>
@@ -621,7 +624,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">×</button>
     <h2>Your Quote Details</h2>
-    <p>Enter your details to generate a personalised PDF quote.</p>
+    <p>Enter your details for an official quote. No online payment is required.</p>
     <div class="modal-2col">
       <div class="modal-field">
         <label>Full Name <span style="color:#e04f4f;">*</span></label>
@@ -643,7 +646,7 @@ src="https://www.facebook.com/tr?id=1482683390150721&ev=PageView&noscript=1"
     </div>
     <div class="modal-actions">
       <button onclick="closeModal()">Cancel</button>
-      <button class="primary" onclick="generatePDF()">Generate PDF</button>
+      <button class="primary" id="quoteSubmitButton" onclick="generatePDF()">Download official quote</button>
     </div>
   </div>
 </div>
@@ -864,7 +867,10 @@ function calculate() {
   flashVal('s-balance');
 }
 
-function openModal()  {
+let quoteAction = 'download';
+function openModal(action = 'download')  {
+  quoteAction = action;
+  document.getElementById('quoteSubmitButton').textContent = action === 'accept' ? 'Review and accept quote' : 'Download official quote';
   document.getElementById('modal').classList.add('open');
   loadGoogleMaps();
 }
@@ -944,8 +950,12 @@ async function generatePDF() {
     return;
   }
 
+  let savedQuote;
+  const quoteButton = document.getElementById('quoteSubmitButton');
+  if (quoteButton.disabled) return;
+  quoteButton.disabled = true;
   try {
-    await saveLead(Object.assign({
+    savedQuote = await saveLead(Object.assign({
       full_name: name,
       phone: phone,
       email: email || null,
@@ -956,16 +966,33 @@ async function generatePDF() {
       page_path: window.location.pathname,
       error_message: error && error.message ? error.message : 'Failed to save lead'
     });
-    console.warn('Lead save failed; continuing PDF generation.', error);
-    toast('Quote PDF generated. Lead saving is temporarily unavailable.');
+    console.warn('Official quote could not be saved.', error);
+    toast('We could not save your quote. Please try again or call (07) 2145 5155.');
+    quoteButton.disabled = false;
+    return;
   }
 
+  const lead = savedQuote?.lead;
+  const quoteUrl = savedQuote?.quoteUrl;
+  const quoteRef = savedQuote?.quoteReference;
+  if (!lead?.quote_token || !quoteUrl || !quoteRef) {
+    toast('We could not create your official quote. Please try again.');
+    quoteButton.disabled = false;
+    return;
+  }
+  if (quoteAction === 'accept') {
+    quoteButton.disabled = false;
+    window.location.assign(quoteUrl);
+    return;
+  }
+
+  try {
   const beds   = parseInt(document.getElementById('bedrooms').value) || 0;
   const halls  = parseInt(document.getElementById('hallways').value) || 0;
   const strs   = parseInt(document.getElementById('levels').value) || 1;
-  const alarmQ = parseInt(document.getElementById('s-qty').innerText) || 0;
-  const ctrlQ  = parseInt(document.getElementById('s-ctrl-qty').innerText) || 0;
-  const grandR = parseFloat(document.getElementById('s-grand').innerText.replace(/[^\d.]/g, ''));
+  const alarmQ = Number(lead.alarm_qty);
+  const ctrlQ  = Number(lead.controller_qty || 0);
+  const grandR = Number(lead.total_inc_gst);
   const sub    = grandR / 1.1;
   const gst    = grandR - sub;
 
@@ -1007,7 +1034,7 @@ async function generatePDF() {
   doc.setTextColor(...GOLD); doc.setFont('helvetica', 'bold'); doc.setFontSize(28);
   doc.text('QUOTE', PW - MR, 27, { align: 'right' });
   doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(...WHITE);
-  doc.text('Installation Quote', PW - MR, 36, { align: 'right' });
+  doc.text('Official quote ' + quoteRef, PW - MR, 36, { align: 'right' });
 
   // Sender
   let y = 54;
@@ -1109,15 +1136,23 @@ async function generatePDF() {
   doc.roundedRect(ML, y, CW, 20, 2, 2, 'F');
   doc.setFillColor(...GOLD); doc.rect(ML, y, 2.5, 20, 'F');
   doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...GOLDDK);
-  doc.text('PAYMENT STRUCTURE', ML + 6, y + 6);
+  doc.text('NO ONLINE PAYMENT REQUIRED', ML + 6, y + 6);
   doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor('#7A6020');
-  const note = `$33.00 booking fee is payable today to secure your electrician. The remaining balance of ${f(alarmQ * 98 + ctrlQ * 49)} is payable on the day of installation.`;
+  const note = 'Downloading or accepting this quote is free. Our team will call to confirm service availability, arrange your booking and discuss the booking fee. No online payment is taken.';
   doc.text(doc.splitTextToSize(note, CW - 14), ML + 6, y + 12.5);
 
   // Disclaimer
   y += 26;
   doc.setFont('helvetica', 'bolditalic'); doc.setFontSize(7); doc.setTextColor(...MUTED);
-  doc.text(doc.splitTextToSize('* Estimate based on details provided. Actual requirements confirmed by a licensed electrician on site.', CW), ML, y);
+  doc.text(doc.splitTextToSize('Valid for 21 days from the date of issue. Quote based on details provided. Final requirements and service availability are confirmed by Goldsure.', CW), ML, y);
+  y += 14;
+  doc.setFillColor(...GOLD);
+  doc.roundedRect(ML, y, 96, 12, 2, 2, 'F');
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...INK);
+  doc.text('View and accept this quote', ML + 5, y + 7.5);
+  doc.link(ML, y, 96, 12, { url: quoteUrl });
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(7);
+  doc.text('No online payment. We will call to arrange your booking.', ML, y + 17);
 
   // ═══ PAGE 2 ═══
   doc.addPage();
@@ -1212,12 +1247,26 @@ async function generatePDF() {
     doc.setTextColor(...GOLD); doc.text(`Page ${pg} of 2`, PW - MR, PH - 11, { align: 'right' });
   });
 
-  doc.save(`Goldsure_Quote_${name.replace(/\s+/g, '_')}.pdf`);
+  doc.save(`Goldsure_Official_Quote_${quoteRef}.pdf`);
+  const savedLink = document.getElementById('savedQuoteLink');
+  savedLink.replaceChildren();
+  const link = document.createElement('a');
+  link.href = quoteUrl;
+  link.textContent = 'View or accept your saved quote ' + quoteRef;
+  savedLink.appendChild(link);
+  savedLink.style.display = 'block';
   closeModal();
   toast('PDF downloaded!');
+  } catch (error) {
+    console.warn('PDF generation failed.', error);
+    toast('Your quote is saved, but the PDF could not be generated. Please try again.');
+  } finally {
+    quoteButton.disabled = false;
+  }
 }
 
 calculate();
 </script>
 </body>
 </html>
+
