@@ -137,3 +137,11 @@ test('an unsaved quote cannot be downloaded as an official PDF', async () => {
 test('root and project API copies remain identical', () => {
   for (const file of ['save-lead.js', 'accept-quote.js']) assert.equal(fs.readFileSync(require.resolve('../api/smoke-alarm/' + file), 'utf8'), fs.readFileSync(require.resolve('../smoke-alarm/api/smoke-alarm/' + file), 'utf8'));
 });
+
+test('official quote links resolve in the dedicated smoke-alarm deployment', () => {
+  const config = JSON.parse(fs.readFileSync(require.resolve('../smoke-alarm/vercel.json'), 'utf8'));
+  for (const pathname of ['/accept-quote/smoke-alarm', '/accept-quote/smoke-alarm/', '/accept-quote']) {
+    const match = config.routes.find(route => route.src && new RegExp(route.src).test(pathname));
+    assert.equal(match?.dest, '/api/smoke-alarm/accept-quote');
+  }
+});

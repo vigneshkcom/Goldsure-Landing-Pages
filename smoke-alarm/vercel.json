@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
+    { "src": "^/accept-quote(?:/smoke-alarm)?/?$", "dest": "/api/smoke-alarm/accept-quote" },
     { "src": "^/$", "has": [{ "type": "host", "value": "smokealarmpromo.goldsure.com.au" }], "dest": "/promo/index.html" },
     { "src": "^/thank-you/?$", "has": [{ "type": "host", "value": "smokealarmpromo.goldsure.com.au" }], "dest": "/promo/thank-you/index.html" },
     { "src": "^/promo/?$", "has": [{ "type": "host", "value": "smokealarms.goldsure.com.au" }], "status": 308, "headers": { "Location": "https://smokealarmpromo.goldsure.com.au/" } },
@@ -8,3 +9,4 @@
     { "handle": "filesystem" }
   ]
 }
+
