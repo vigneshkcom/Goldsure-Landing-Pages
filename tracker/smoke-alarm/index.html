@@ -468,6 +468,11 @@ function buildRow(lead) {
   var status = normalizeStatus(lead.status);
   var reminderCount = Number(lead.reminder_count || 0);
   var age = formatAge(lead.created_at);
+  var paid = Boolean(lead.booking_fee_paid_at && Number(lead.booking_fee_amount) === 33);
+  var paymentBadge = paid
+    ? '<span class="subtle" style="color:#166534;font-weight:bold">$33 RECEIVED</span>'
+    : status === 'accepted' ? '<span class="subtle">$33 booking fee pending</span>' : '';
+  var jobBadge = lead.dataforce_job_id ? '<span class="subtle">Dataforce J' + escapeHtml(String(lead.dataforce_job_id)) + '</span>' : '';
 
   // Address + Property merged
   var addressCell = escapeHtml(lead.property_address || '-')
@@ -501,8 +506,8 @@ function buildRow(lead) {
   return [
     '<tr>',
     '<td>' + escapeHtml(formatDate(lead.created_at)) + '<span class="subtle">' + escapeHtml(age) + 'd ago</span></td>',
-    '<td><span class="status-badge status-' + escapeHtml(status) + '">' + escapeHtml(status) + '</span></td>',
-    '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span></td>',
+    '<td><span class="status-badge status-' + escapeHtml(status) + '">' + escapeHtml(status) + '</span>' + paymentBadge + '</td>',
+    '<td><span class="name">' + escapeHtml(lead.full_name) + '</span><span class="subtle">' + escapeHtml(lead.email || '-') + '</span>' + jobBadge + '</td>',
     '<td>' + escapeHtml(lead.phone || '-') + '</td>',
     '<td class="addr-cell">' + addressCell + '</td>',
     '<td>' + alarmsCell + '</td>',

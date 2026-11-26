@@ -12,13 +12,18 @@ function response() {
 function fixture(t, overrides = {}) {
   const originalFetch = global.fetch;
   const before = { ...process.env };
-  Object.assign(process.env, { SUPABASE_URL: 'https://fixture.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'fixture', RESEND_API_KEY: 'fixture', PUBLIC_SITE_URL: 'https://smokealarms.goldsure.com.au' });
+  Object.assign(process.env, { SUPABASE_URL: 'https://fixture.supabase.co', SUPABASE_SERVICE_ROLE_KEY: 'fixture', RESEND_API_KEY: 'fixture', PUBLIC_SITE_URL: 'https://smokealarms.goldsure.com.au', SMOKE_CALCULATOR_BRIDGE_SECRET: 'fixture' });
   t.after(() => { global.fetch = originalFetch; for (const key of Object.keys(process.env)) if (!(key in before)) delete process.env[key]; Object.assign(process.env, before); });
   const state = {
     lead: { id: 123, full_name: 'Example Customer', phone: '0400000000', email: null, property_address: '12 Example Street, Brisbane QLD 4000', alarm_qty: 4, controller_qty: 0, booking_fee: 33, installation_balance: 392, total_inc_gst: 425, quote_token: token, status: 'downloaded', accepted_at: null, created_at: new Date().toISOString(), ...overrides },
     emails: [], writes: [], failEmail: false,
   };
   global.fetch = async (url, init = {}) => {
+    if (String(url).startsWith('https://portal.goldsure.com.au/api/smoke-alarms/calculator-accept')) {
+      assert.equal(JSON.parse(init.body).lead.status, 'accepted');
+      assert.ok(init.headers['x-goldsure-signature']);
+      return new Response(JSON.stringify({success:true,job_id:12345,ghl_accepted:true,staff_booking_url:'https://portal.goldsure.com.au/smoke-alarms/booking-request.html?token=fixture&signature=fixture'}));
+    }
     if (String(url).startsWith('https://api.resend.com/emails')) {
       state.emails.push({ payload: JSON.parse(init.body), key: init.headers['Idempotency-Key'] });
       return new Response('{}', { status: state.failEmail ? 503 : 200 });
@@ -95,10 +100,10 @@ test('expired quotes cannot be accepted', async t => {
   assert.equal(res.statusCode, 410); assert.equal(state.writes.length, 0); assert.equal(state.emails.length, 0);
 });
 
-test('failed booking-team notification does not claim the acceptance is confirmed', async t => {
+test('failed notification retains the accepted quote after job and CRM integration', async t => {
   const state = fixture(t); state.failEmail = true; const res = response();
   await acceptQuote({ method: 'POST', url: '/api/smoke-alarm/accept-quote', body: 'action=accept-quote&token=' + token }, res);
-  assert.equal(res.statusCode, 503); assert.equal(state.lead.accepted_at, null);
+  assert.equal(res.statusCode, 503); assert.ok(state.lead.accepted_at);
   assert.match(res.body, /Please try again/);
 });
 

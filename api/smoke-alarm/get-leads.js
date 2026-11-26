@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
 
     return json(res, 200, {
       ok: true,
-      leads: Array.isArray(data) ? data : []
+      leads: Array.isArray(data) ? data.map(function(lead) { var safe = Object.assign({}, lead); delete safe.stripe_checkout_session_id; delete safe.stripe_payment_intent_id; return safe; }) : []
     });
   } catch (error) {
     return json(res, 500, {

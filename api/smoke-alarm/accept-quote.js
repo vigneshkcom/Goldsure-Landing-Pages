@@ -1,3 +1,4 @@
+const {syncAcceptedLead}=require('../../lib/smoke-booking-bridge.cjs');
 function escapeHtml(value) {
   return String(value == null ? '' : value)
     .replace(/&/g, '&amp;')
@@ -87,7 +88,7 @@ function renderPage(title, message, tone, lead) {
   ].join('');
 }
 
-async function sendAcceptedInternalEmail(lead) {
+async function sendAcceptedInternalEmail(lead, integration = {}) {
   var resendApiKey = process.env.RESEND_API_KEY;
   var emailTo = 'info@goldsure.com.au';
   var emailBcc = '';
@@ -141,6 +142,8 @@ async function sendAcceptedInternalEmail(lead) {
     '</table>',
     '<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="padding:12px 16px;background:#fef7e7;border-left:3px solid #b08d2e;border-radius:0 4px 4px 0;">',
     '<p style="margin:0 0 12px;font-size:16px;color:#14532d;line-height:1.6;"><strong>QUOTE ACCEPTED - CALL TO BOOK</strong><br>No online payment was requested or collected. Call ' + escapeHtml(lead.full_name || 'this customer') + ' to confirm service availability and arrange the booking.</p>',
+    '<p style="font-size:14px;line-height:1.6"><strong>Dataforce job:</strong> ' + (integration.job_id ? 'J' + escapeHtml(integration.job_id) + ' (Waiting list)' : 'Pending sync') + '<br><strong>GHL:</strong> ' + (integration.ghl_accepted ? 'Quote Accepted' : 'Pending sync') + '</p>',
+    integration.staff_booking_url ? '<p><a href="' + escapeHtml(integration.staff_booking_url) + '" style="display:inline-block;padding:14px 18px;background:#b08d2e;color:#111;font-size:14px;font-weight:bold;text-decoration:none;border-radius:6px">Send $33 booking request by SMS + email</a></p>' : '<p>Booking integration needs review. No payment request has been sent.</p>',
     '<a href="' + trackerUrl + '" style="display:inline-block;padding:12px 18px;background:#111111;color:#ffffff;font-size:12px;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:6px;">Open Lead Tracker</a>',
     '</td></tr></table>',
     '</td></tr>',
@@ -270,6 +273,9 @@ module.exports = async function handler(req, res) {
     }
 
     if ((lead.status || '').toLowerCase() === 'accepted') {
+      if (req.method === 'POST' && body.action === 'accept-quote') {
+        try { await syncAcceptedLead(lead); } catch (error) { console.error('[Accepted calculator retry]', error.message); }
+      }
       res.statusCode = 200;
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.end(renderPage('Quote already accepted', 'This quote has already been accepted. Our team will be in touch shortly.', 'repeat', lead));
@@ -317,7 +323,8 @@ module.exports = async function handler(req, res) {
         },
         body: JSON.stringify({
           status: 'accepted',
-          accepted_at: acceptedAt
+          accepted_at: acceptedAt,
+          booking_sync_pending: true
         })
       }
     );
@@ -345,16 +352,15 @@ module.exports = async function handler(req, res) {
       res.end(renderPage('Quote already accepted', 'Your acceptance is already recorded. Our team will call you.', 'repeat', lead));
       return;
     }
+    var integration = {};
+    try { integration = await syncAcceptedLead(updatedLead); }
+    catch (error) { console.error('[Calculator booking sync]', error.message); }
     var emailResult;
-    try { emailResult = await sendAcceptedInternalEmail(updatedLead); }
+    try { emailResult = await sendAcceptedInternalEmail(updatedLead, integration); }
     catch (_) { emailResult = { ok: false }; }
     if (!emailResult.ok) {
-      // Permit the customer to retry a failed notification. The provider's
-      // idempotency key prevents a second email after an ambiguous response.
-      await fetch(supabaseUrl.replace(/\/$/, '') + '/rest/v1/calculator_leads?quote_token=eq.' + encodeURIComponent(token) + '&accepted_at=eq.' + encodeURIComponent(acceptedAt), {
-        method: 'PATCH', headers: { apikey: serviceRoleKey, Authorization: 'Bearer ' + serviceRoleKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: lead.status || 'downloaded', accepted_at: null })
-      });
+      // Retain the verified acceptance even if the notification provider is unavailable.
+      // Integrations may already have created the waiting job.
       res.statusCode = 503;
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.end(renderPage('Please try again', 'We could not notify our booking team. Please retry your acceptance or call (07) 2145 5155. No payment was taken.', 'error', lead));
